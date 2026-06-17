@@ -668,6 +668,11 @@
         }
     }
     </style>
+    <script src="https://ucarecdn.com/libs/widget/3.x/uploadcare.full.min.js" charset="utf-8"></script>
+    <script>
+    UPLOADCARE_PUBLIC_KEY = '1b9920a3e9d2aae64bac';
+    UPLOADCARE_LOCALE = 'en';
+    </script>
     <script>
     (function() {
         var script = document.createElement('script');
@@ -815,14 +820,16 @@
                     Photo ID upload — driving licence or passport 
                     <span class="req">*</span>
                 </label>
-                <div class="upload-zone" id="id-zone">
-                    <input type="file" id="id-file" accept="image/*,.pdf" onchange="fileUploaded('id-zone','id-file','id-done')">
+                <div class="upload-zone" id="id-zone" style="cursor:default">
                     <div class="upload-icon">📎</div>
-                    <div class="upload-text">Click to upload or drag and drop</div>
+                    <div class="upload-text">Click the button below to upload your ID</div>
                     <div class="upload-sub">JPG, PNG or PDF · Max 10MB · Driving licence or passport only</div>
-                    <div class="upload-done" id="id-done" style="display:none"></div>
+                    <div style="margin-top:14px">
+                        <button type="button" id="id-upload-btn" onclick="openUploadcare()" style="background:#1a1a1a;color:#fff;border:none;padding:10px 22px;border-radius:6px;font-size:13px;cursor:pointer;letter-spacing:0.04em">Upload ID document</button>
+                    </div>
+                    <div class="upload-done" id="id-done" style="display:none;margin-top:10px"></div>
                 </div>
-                <p class="field-hint">Required for identity verification in accordance with prescribing regulations. Your ID is stored securely and never shared with third parties.</p>
+                <p class="field-hint">Required for identity verification in accordance with prescribing regulations. Your ID is stored securely via Uploadcare and never shared with third parties.</p>
             </div>
 
             <div class="field">
@@ -1846,6 +1853,24 @@
         sigCtx,
         sigDrawing = false,
         sigHasMark = false;
+    var idFileUrl = '';
+
+    function openUploadcare() {
+        var dialog = uploadcare.openDialog(null, {
+            publicKey: '1b9920a3e9d2aae64bac',
+            imagesOnly: false,
+            multiple: false
+        });
+        dialog.done(function(file) {
+            file.promise().done(function(fileInfo) {
+                idFileUrl = fileInfo.cdnUrl;
+                var done = document.getElementById('id-done');
+                done.textContent = '✓ ID uploaded successfully';
+                done.style.display = 'block';
+                document.getElementById('id-zone').style.borderColor = '#1a1a1a';
+            });
+        });
+    }
 
     // ── SCROLL TO TOP (works inside Wix iframe) ──────────────────────────
     function scrollToTop() {
@@ -2134,7 +2159,7 @@
                 ok = false;
                 alert('Please complete all required fields before continuing.')
             }
-            if (ok && !document.getElementById('id-file').files.length) {
+            if (ok && !idFileUrl) {
                 ok = false;
                 alert('Please upload a copy of your photo ID to continue.')
             }
@@ -2226,6 +2251,7 @@
         'Email: ' + document.getElementById('email').value,
         'Phone: ' + document.getElementById('phone').value,
         'Address: ' + document.getElementById('address').value,
+        'Photo ID: ' + idFileUrl,
         '', '--- SKIN PROFILE ---',
         'Skin type: ' + (document.querySelector('input[name="skin-type"]:checked') || {
             value: 'Not selected'
@@ -2294,6 +2320,7 @@
             client_email: document.getElementById('email').value,
             client_phone: document.getElementById('phone').value,
             client_dob: document.getElementById('dob').value,
+            id_document_url: idFileUrl,
             submission_date: new Date().toLocaleDateString('en-GB'),
             primary_concern: (document.querySelector('input[name="primary"]:checked') || {
                 value: 'Not selected'
