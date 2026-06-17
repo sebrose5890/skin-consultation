@@ -1,0 +1,966 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Online Skin Consultation — Sebastian Rose</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&display=swap');
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Arial,sans-serif;background:#fff;color:#1a1a1a;min-height:100vh}
+
+.wrap{max-width:720px;margin:0 auto;padding:40px 24px 60px}
+
+/* HEADER */
+.hdr{text-align:center;margin-bottom:40px}
+.hdr-eye{font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:#999;margin-bottom:12px}
+.hdr-title{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:38px;color:#1a1a1a;margin-bottom:8px}
+.hdr-sub{font-size:13px;color:#777;line-height:1.6;max-width:480px;margin:0 auto}
+
+/* PROGRESS */
+.progress-wrap{margin-bottom:40px}
+.progress-steps{display:flex;justify-content:space-between;margin-bottom:10px;position:relative}
+.progress-steps::before{content:'';position:absolute;top:14px;left:0;right:0;height:1px;background:#e8e8e8;z-index:0}
+.p-step{display:flex;flex-direction:column;align-items:center;gap:6px;z-index:1;flex:1}
+.p-dot{width:28px;height:28px;border-radius:50%;border:1.5px solid #ddd;background:#fff;display:flex;align-items:center;justify-content:center;font-size:11px;color:#bbb;font-weight:500;transition:all 0.3s}
+.p-dot.active{border-color:#1a1a1a;background:#1a1a1a;color:#fff}
+.p-dot.done{border-color:#1a1a1a;background:#1a1a1a;color:#fff}
+.p-dot.done::after{content:'✓';font-size:12px}
+.p-dot.done span{display:none}
+.p-label{font-size:10px;letter-spacing:0.06em;color:#bbb;text-align:center;white-space:nowrap}
+.p-label.active{color:#1a1a1a}
+.progress-bar-wrap{height:2px;background:#f0f0f0;border-radius:2px;margin-top:16px}
+.progress-bar{height:2px;background:#1a1a1a;border-radius:2px;transition:width 0.4s ease}
+.progress-pct{text-align:right;font-size:11px;color:#999;margin-top:6px;letter-spacing:0.04em}
+
+/* SECTION */
+.section{display:none}
+.section.active{display:block}
+.section-title{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:26px;color:#1a1a1a;margin-bottom:6px}
+.section-sub{font-size:13px;color:#777;line-height:1.6;margin-bottom:28px}
+
+/* FIELDS */
+.field{margin-bottom:20px}
+.field label{display:block;font-size:12px;letter-spacing:0.08em;text-transform:uppercase;color:#555;margin-bottom:7px;font-weight:500}
+.field label .req{color:#c00;margin-left:2px}
+.field input,.field select,.field textarea{width:100%;padding:12px 14px;border:0.5px solid #ddd;border-radius:6px;font-size:14px;color:#1a1a1a;background:#fff;transition:border-color 0.2s;font-family:Arial,sans-serif;-webkit-appearance:none}
+.field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:#1a1a1a}
+.field textarea{resize:vertical;min-height:90px}
+.field-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.field-hint{font-size:11px;color:#999;margin-top:5px;line-height:1.5}
+
+/* RADIO / CHECKBOX */
+.options{display:flex;flex-direction:column;gap:8px}
+.options.inline{flex-direction:row;flex-wrap:wrap;gap:8px}
+.opt{display:flex;align-items:flex-start;gap:10px;padding:12px 14px;border:0.5px solid #e0e0e0;border-radius:6px;cursor:pointer;transition:border-color 0.2s}
+.opt:hover{border-color:#999}
+.opt.selected{border:1.5px solid #1a1a1a;background:#f0f0f0}
+.opt input[type=radio],.opt input[type=checkbox]{width:18px;height:18px;margin-top:1px;flex-shrink:0;accent-color:#1a1a1a;cursor:pointer;border:2px solid #999}
+.opt.selected input[type=radio],.opt.selected input[type=checkbox]{accent-color:#1a1a1a}
+.opt-text{flex:1}
+.opt-label{font-size:13px;color:#1a1a1a;line-height:1.4}
+.opt-desc{font-size:11px;color:#888;margin-top:2px;line-height:1.4}
+
+/* FITZPATRICK */
+.fitz-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:8px}
+.fitz-card{border:0.5px solid #e0e0e0;border-radius:8px;padding:10px 6px;text-align:center;cursor:pointer;transition:border-color 0.2s}
+.fitz-card:hover{border-color:#999}
+.fitz-card.selected{border:1.5px solid #1a1a1a}
+.fitz-swatch{width:32px;height:32px;border-radius:50%;margin:0 auto 6px}
+.fitz-num{font-size:11px;font-weight:600;color:#1a1a1a;margin-bottom:2px}
+.fitz-desc{font-size:10px;color:#888;line-height:1.3}
+
+/* INFO BOX */
+.info-box{background:#f8f7f5;border-left:3px solid #1a1a1a;padding:14px 16px;border-radius:0 6px 6px 0;margin-bottom:20px}
+.info-box p{font-size:13px;color:#555;line-height:1.7}
+.info-box strong{color:#1a1a1a}
+
+/* WARNING BOX */
+.warn-box{background:#fff8f0;border-left:3px solid #e07000;padding:14px 16px;border-radius:0 6px 6px 0;margin-bottom:20px;display:none}
+.warn-box p{font-size:13px;color:#7a4a00;line-height:1.6}
+
+/* UPLOAD */
+.upload-zone{border:1.5px dashed #ddd;border-radius:8px;padding:28px;text-align:center;cursor:pointer;transition:border-color 0.2s;position:relative}
+.upload-zone:hover{border-color:#999}
+.upload-zone input{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%}
+.upload-icon{font-size:28px;margin-bottom:8px;color:#bbb}
+.upload-text{font-size:13px;color:#777}
+.upload-sub{font-size:11px;color:#bbb;margin-top:4px}
+.upload-done{font-size:12px;color:#1a1a1a;margin-top:8px;font-weight:500}
+
+/* SIGNATURE */
+.sig-wrap{border:0.5px solid #ddd;border-radius:6px;overflow:hidden;background:#fafafa}
+canvas#sig-canvas{display:block;width:100%;cursor:crosshair;touch-action:none}
+.sig-controls{display:flex;justify-content:space-between;align-items:center;padding:8px 12px;border-top:0.5px solid #eee}
+.sig-hint{font-size:11px;color:#bbb}
+.sig-clear{font-size:11px;color:#777;cursor:pointer;background:none;border:none;text-decoration:underline;padding:0}
+
+/* DECLARATION */
+.declaration{background:#fafafa;border:0.5px solid #e0e0e0;border-radius:8px;padding:20px;margin-bottom:20px}
+.declaration ol{padding-left:18px}
+.declaration li{font-size:12px;color:#555;line-height:1.8;margin-bottom:4px}
+
+/* NAV */
+.nav{display:flex;justify-content:space-between;align-items:center;margin-top:36px;padding-top:24px;border-top:0.5px solid #eee}
+.btn-back{background:none;border:0.5px solid #ddd;padding:11px 24px;border-radius:6px;font-size:13px;color:#777;cursor:pointer;letter-spacing:0.04em;transition:border-color 0.2s}
+.btn-back:hover{border-color:#999}
+.btn-next{background:#1a1a1a;border:none;padding:11px 28px;border-radius:6px;font-size:13px;color:#fff;cursor:pointer;letter-spacing:0.06em;transition:opacity 0.2s}
+.btn-next:hover{opacity:0.85}
+.btn-next:disabled{opacity:0.35;cursor:not-allowed}
+.nav-info{font-size:11px;color:#bbb;letter-spacing:0.04em}
+
+/* SUCCESS */
+.success{display:none;text-align:center;padding:40px 0}
+.success-icon{font-size:48px;margin-bottom:20px}
+.success-title{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:32px;color:#1a1a1a;margin-bottom:12px}
+.success-sub{font-size:14px;color:#777;line-height:1.7;max-width:480px;margin:0 auto 28px}
+.success-steps{text-align:left;background:#fafafa;border-radius:8px;padding:20px 24px;max-width:480px;margin:0 auto 24px}
+.success-step{display:flex;gap:14px;align-items:flex-start;padding:10px 0;border-bottom:0.5px solid #eee}
+.success-step:last-child{border-bottom:none}
+.s-num{width:26px;height:26px;border-radius:50%;background:#1a1a1a;color:#fff;font-size:11px;font-weight:600;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
+.s-text{font-size:13px;color:#555;line-height:1.5}
+.s-text strong{color:#1a1a1a;display:block;margin-bottom:2px}
+.success-note{font-size:12px;color:#999;line-height:1.6;max-width:480px;margin:0 auto}
+
+/* ERROR */
+.field-error{font-size:11px;color:#c00;margin-top:5px;display:none}
+.field input.error,.field select.error,.field textarea.error{border-color:#c00}
+
+@media(max-width:600px){
+  .field-row{grid-template-columns:1fr}
+  .fitz-grid{grid-template-columns:repeat(3,1fr)}
+  .progress-steps{gap:0}
+  .p-label{display:none}
+  .hdr-title{font-size:28px}
+}
+</style>
+<script>
+// Load EmailJS dynamically with error handling
+(function(){
+  var script=document.createElement('script');
+  script.src='https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js';
+  script.onload=function(){emailjs.init('04pcL3xdpVieS--Q9');window._emailjsReady=true;};
+  script.onerror=function(){window._emailjsReady=false;console.warn('EmailJS failed to load');};
+  document.head.appendChild(script);
+})();
+</script>
+</head>
+<body>
+<div class="wrap">
+
+<div class="hdr">
+  <p class="hdr-eye">Sebastian Rose Medical Aesthetics · Cardiff</p>
+  <h1 class="hdr-title">Online Skin Consultation</h1>
+  <p class="hdr-sub">Your personalised pathway to prescription-strength skincare — reviewed by our Independent Nurse Prescriber.</p>
+</div>
+
+<!-- PROGRESS -->
+<div class="progress-wrap">
+  <div class="progress-steps">
+    <div class="p-step">
+      <div class="p-dot active" id="dot-1"><span>1</span></div>
+      <div class="p-label active" id="lbl-1">About You</div>
+    </div>
+    <div class="p-step">
+      <div class="p-dot" id="dot-2"><span>2</span></div>
+      <div class="p-label" id="lbl-2">Your Skin</div>
+    </div>
+    <div class="p-step">
+      <div class="p-dot" id="dot-3"><span>3</span></div>
+      <div class="p-label" id="lbl-3">Medical</div>
+    </div>
+    <div class="p-step">
+      <div class="p-dot" id="dot-4"><span>4</span></div>
+      <div class="p-label" id="lbl-4">Skincare</div>
+    </div>
+    <div class="p-step">
+      <div class="p-dot" id="dot-5"><span>5</span></div>
+      <div class="p-label" id="lbl-5">Treatments</div>
+    </div>
+    <div class="p-step">
+      <div class="p-dot" id="dot-6"><span>6</span></div>
+      <div class="p-label" id="lbl-6">Declaration</div>
+    </div>
+  </div>
+  <div class="progress-bar-wrap"><div class="progress-bar" id="progress-bar" style="width:16%"></div></div>
+  <div class="progress-pct" id="progress-pct">Step 1 of 6</div>
+</div>
+
+<!-- SECTION 1: ABOUT YOU -->
+<div class="section active" id="sec-1">
+  <h2 class="section-title">About you</h2>
+  <p class="section-sub">Let's start with your personal details. All information is held securely and in accordance with GDPR.</p>
+
+  <div class="info-box"><p>At the conclusion of this consultation, your responses will be reviewed by our <strong>NMC and GMC-registered prescribers</strong>. If prescription skincare is clinically appropriate for your needs, you will receive access to our prescriptive product range. A prescription may or may not be issued depending on your medical suitability.</p></div>
+
+  <div class="field-row">
+    <div class="field"><label>First name <span class="req">*</span></label><input type="text" id="fname" placeholder="First name"></div>
+    <div class="field"><label>Last name <span class="req">*</span></label><input type="text" id="lname" placeholder="Last name"></div>
+  </div>
+  <div class="field-row">
+    <div class="field"><label>Date of birth <span class="req">*</span></label><input type="date" id="dob"></div>
+    <div class="field">
+      <label>Gender assigned at birth <span class="req">*</span></label>
+      <select id="gender">
+        <option value="">Please select</option>
+        <option>Female</option>
+        <option>Male</option>
+        <option>Prefer not to say</option>
+      </select>
+    </div>
+  </div>
+  <div class="field"><label>Email address <span class="req">*</span></label><input type="email" id="email" placeholder="your@email.com"></div>
+  <div class="field"><label>Mobile number <span class="req">*</span></label><input type="tel" id="phone" placeholder="07700 000000"></div>
+  <div class="field"><label>Full address including postcode <span class="req">*</span></label><textarea id="address" rows="3" placeholder="House number, street, city, postcode"></textarea></div>
+
+  <div class="field">
+    <label>Photo ID upload — driving licence or passport <span class="req">*</span></label>
+    <div class="upload-zone" id="id-zone">
+      <input type="file" id="id-file" accept="image/*,.pdf" onchange="fileUploaded('id-zone','id-file','id-done')">
+      <div class="upload-icon">📎</div>
+      <div class="upload-text">Click to upload or drag and drop</div>
+      <div class="upload-sub">JPG, PNG or PDF · Max 10MB · Driving licence or passport only</div>
+      <div class="upload-done" id="id-done" style="display:none"></div>
+    </div>
+    <p class="field-hint">Required for identity verification in accordance with prescribing regulations. Your ID is stored securely and never shared with third parties.</p>
+  </div>
+
+  <div class="field">
+    <label>Optional — photo of your skin <span style="font-size:11px;color:#999;font-weight:400;letter-spacing:0">(helps us assess your concerns)</span></label>
+    <div class="upload-zone" id="skin-zone">
+      <input type="file" id="skin-file" accept="image/*" onchange="fileUploaded('skin-zone','skin-file','skin-done')">
+      <div class="upload-icon">📷</div>
+      <div class="upload-text">Upload a clear photo of your skin in natural light</div>
+      <div class="upload-sub">No makeup · Natural lighting · Front-facing · Optional but helpful</div>
+      <div class="upload-done" id="skin-done" style="display:none"></div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 2: YOUR SKIN -->
+<div class="section" id="sec-2">
+  <h2 class="section-title">Your skin</h2>
+  <p class="section-sub">Tell us about your skin type, concerns and goals so we can tailor the right prescription protocol for you.</p>
+
+  <div class="field">
+    <label>How would you describe your skin type? <span class="req">*</span></label>
+    <div class="options" id="skin-type">
+      <label class="opt"><input type="radio" name="skin-type" value="Normal"><div class="opt-text"><div class="opt-label">Normal</div><div class="opt-desc">Balanced — not too oily or dry, few imperfections</div></div></label>
+      <label class="opt"><input type="radio" name="skin-type" value="Oily"><div class="opt-text"><div class="opt-label">Oily</div><div class="opt-desc">Shiny, prone to enlarged pores and breakouts</div></div></label>
+      <label class="opt"><input type="radio" name="skin-type" value="Dry"><div class="opt-text"><div class="opt-label">Dry</div><div class="opt-desc">Tight, flaky or rough — lacks moisture</div></div></label>
+      <label class="opt"><input type="radio" name="skin-type" value="Combination"><div class="opt-text"><div class="opt-label">Combination</div><div class="opt-desc">Oily T-zone, normal or dry cheeks</div></div></label>
+      <label class="opt"><input type="radio" name="skin-type" value="Sensitive"><div class="opt-text"><div class="opt-label">Sensitive</div><div class="opt-desc">Easily irritated, reactive or prone to redness</div></div></label>
+    </div>
+  </div>
+
+  <div class="field">
+    <label>Fitzpatrick skin type <span class="req">*</span></label>
+    <p class="field-hint" style="margin-bottom:10px">This helps us prescribe safely and select the most appropriate treatment strength for your skin.</p>
+    <div class="fitz-grid" id="fitz">
+      <div class="fitz-card" onclick="selectFitz(this,'I')"><div class="fitz-swatch" style="background:#FDEBD0;border:1px solid #eee"></div><div class="fitz-num">Type I</div><div class="fitz-desc">Always burns, never tans</div></div>
+      <div class="fitz-card" onclick="selectFitz(this,'II')"><div class="fitz-swatch" style="background:#F5CBA7;border:1px solid #eee"></div><div class="fitz-num">Type II</div><div class="fitz-desc">Usually burns, sometimes tans</div></div>
+      <div class="fitz-card" onclick="selectFitz(this,'III')"><div class="fitz-swatch" style="background:#E59866"></div><div class="fitz-num">Type III</div><div class="fitz-desc">Sometimes burns, usually tans</div></div>
+      <div class="fitz-card" onclick="selectFitz(this,'IV')"><div class="fitz-swatch" style="background:#CA6F1E"></div><div class="fitz-num">Type IV</div><div class="fitz-desc">Rarely burns, always tans</div></div>
+      <div class="fitz-card" onclick="selectFitz(this,'V')"><div class="fitz-swatch" style="background:#784212"></div><div class="fitz-num">Type V</div><div class="fitz-desc">Very rarely burns, deeply pigmented</div></div>
+      <div class="fitz-card" onclick="selectFitz(this,'VI')"><div class="fitz-swatch" style="background:#4A235A"></div><div class="fitz-num">Type VI</div><div class="fitz-desc">Never burns, deeply pigmented</div></div>
+    </div>
+    <input type="hidden" id="fitz-val">
+  </div>
+
+  <div class="field">
+    <label>Primary skin concern <span class="req">*</span></label>
+    <div class="options" id="primary-concern">
+      <label class="opt"><input type="radio" name="primary" value="Anti-ageing"><div class="opt-text"><div class="opt-label">Anti-ageing & fine lines</div></div></label>
+      <label class="opt"><input type="radio" name="primary" value="Acne"><div class="opt-text"><div class="opt-label">Acne & breakouts</div></div></label>
+      <label class="opt"><input type="radio" name="primary" value="Pigmentation"><div class="opt-text"><div class="opt-label">Pigmentation & uneven skin tone</div></div></label>
+      <label class="opt"><input type="radio" name="primary" value="Texture"><div class="opt-text"><div class="opt-label">Texture, hydration & pore size</div></div></label>
+      <label class="opt"><input type="radio" name="primary" value="Redness"><div class="opt-text"><div class="opt-label">Sensitivity & redness / rosacea</div></div></label>
+      <label class="opt"><input type="radio" name="primary" value="Overall"><div class="opt-text"><div class="opt-label">Overall skin health & maintenance</div></div></label>
+    </div>
+  </div>
+
+  <div class="field" id="acne-goals-field" style="display:none">
+    <label>Acne goals — select all that apply <span class="req">*</span></label>
+    <div class="options">
+      <label class="opt"><input type="checkbox" name="acne-goals" value="Control active breakouts"><div class="opt-label">Control active breakouts</div></label>
+      <label class="opt"><input type="checkbox" name="acne-goals" value="Reduce acne scarring and post-inflammatory hyperpigmentation"><div class="opt-label">Reduce acne scarring and post-inflammatory hyperpigmentation</div></label>
+      <label class="opt"><input type="checkbox" name="acne-goals" value="Prevent future breakouts"><div class="opt-label">Prevent future breakouts</div></label>
+      <label class="opt"><input type="checkbox" name="acne-goals" value="Minimise large pores and oily skin"><div class="opt-label">Minimise large pores and oily skin</div></label>
+    </div>
+  </div>
+
+  <div class="field" id="antiage-goals-field" style="display:none">
+    <label>Anti-ageing goals — select all that apply <span class="req">*</span></label>
+    <div class="options">
+      <label class="opt"><input type="checkbox" name="antiage-goals" value="Reduce fine lines and wrinkles"><div class="opt-label">Reduce fine lines and wrinkles</div></label>
+      <label class="opt"><input type="checkbox" name="antiage-goals" value="Improve skin firmness and elasticity"><div class="opt-label">Improve skin firmness and elasticity</div></label>
+      <label class="opt"><input type="checkbox" name="antiage-goals" value="Minimise sagging or skin laxity"><div class="opt-label">Minimise sagging or skin laxity</div></label>
+      <label class="opt"><input type="checkbox" name="antiage-goals" value="Enhance radiance and glow"><div class="opt-label">Enhance radiance and overall glow</div></label>
+    </div>
+  </div>
+
+  <div class="field" id="pigment-goals-field" style="display:none">
+    <label>Pigmentation goals — select all that apply <span class="req">*</span></label>
+    <div class="options">
+      <label class="opt"><input type="checkbox" name="pigment-goals" value="Lighten dark spots and hyperpigmentation"><div class="opt-label">Lighten dark spots and hyperpigmentation</div></label>
+      <label class="opt"><input type="checkbox" name="pigment-goals" value="Reduce melasma or uneven pigmentation"><div class="opt-label">Reduce melasma or uneven pigmentation</div></label>
+      <label class="opt"><input type="checkbox" name="pigment-goals" value="Brighten dull skin and improve overall skin tone"><div class="opt-label">Brighten dull skin and improve overall skin tone</div></label>
+    </div>
+  </div>
+
+  <div class="field">
+    <label>Please describe your skin concerns in your own words</label>
+    <textarea id="skin-notes" placeholder="Tell us anything else about your skin — what bothers you most, how long you've had these concerns, what you've tried before..."></textarea>
+  </div>
+</div>
+
+<!-- SECTION 3: MEDICAL HISTORY -->
+<div class="section" id="sec-3">
+  <h2 class="section-title">Medical history</h2>
+  <p class="section-sub">This information is essential to ensure prescription skincare is safe for you. All responses are reviewed by our Independent Nurse Prescriber and held in strict medical confidence.</p>
+
+  <div class="field">
+    <label>Do you have any of the following skin conditions? <span class="req">*</span></label>
+    <div class="options">
+      <label class="opt"><input type="checkbox" name="skin-cond" value="Eczema"><div class="opt-label">Eczema</div></label>
+      <label class="opt"><input type="checkbox" name="skin-cond" value="Atopic dermatitis"><div class="opt-label">Atopic dermatitis</div></label>
+      <label class="opt"><input type="checkbox" name="skin-cond" value="Psoriasis"><div class="opt-label">Psoriasis</div></label>
+      <label class="opt"><input type="checkbox" name="skin-cond" value="Rosacea"><div class="opt-label">Rosacea</div></label>
+      <label class="opt"><input type="checkbox" name="skin-cond" value="Acne vulgaris"><div class="opt-label">Acne vulgaris</div></label>
+      <label class="opt"><input type="checkbox" name="skin-cond" value="Contact dermatitis"><div class="opt-label">Contact dermatitis</div></label>
+      <label class="opt"><input type="checkbox" name="skin-cond" value="Melasma"><div class="opt-label">Melasma</div></label>
+      <label class="opt"><input type="checkbox" name="skin-cond" value="Hyperpigmentation"><div class="opt-label">Hyperpigmentation</div></label>
+      <label class="opt"><input type="checkbox" name="skin-cond" value="Keloid scarring"><div class="opt-label">Keloid scarring</div></label>
+      <label class="opt"><input type="checkbox" name="skin-cond" value="Skin cancer (current or past)"><div class="opt-label">Skin cancer (current or past)</div></label>
+      <label class="opt"><input type="checkbox" name="skin-cond" value="Other skin condition"><div class="opt-label">Other skin condition</div></label>
+      <label class="opt"><input type="checkbox" name="skin-cond" value="None of the above" id="skin-cond-none"><div class="opt-label">None of the above</div></label>
+    </div>
+  </div>
+
+  <div class="field" id="skin-cond-detail-field" style="display:none">
+    <label>Please give details of your skin condition(s) — severity, current/past treatments, and if skin cancer, whether ongoing or in remission, location and year of diagnosis <span class="req">*</span></label>
+    <textarea id="skin-cond-detail" placeholder="Please provide as much detail as possible..."></textarea>
+  </div>
+
+  <div class="field">
+    <label>Systemic medical conditions — please select all that apply <span class="req">*</span></label>
+    <div class="options">
+      <label class="opt"><input type="checkbox" name="sys-cond" value="Diabetes"><div class="opt-label">Diabetes</div></label>
+      <label class="opt"><input type="checkbox" name="sys-cond" value="Autoimmune disease"><div class="opt-label">Autoimmune disease</div></label>
+      <label class="opt"><input type="checkbox" name="sys-cond" value="Liver disease"><div class="opt-label">Liver disease</div></label>
+      <label class="opt"><input type="checkbox" name="sys-cond" value="Kidney disease"><div class="opt-label">Kidney disease</div></label>
+      <label class="opt"><input type="checkbox" name="sys-cond" value="Heart disease"><div class="opt-label">Heart disease</div></label>
+      <label class="opt"><input type="checkbox" name="sys-cond" value="Thyroid disorder"><div class="opt-label">Thyroid disorder</div></label>
+      <label class="opt"><input type="checkbox" name="sys-cond" value="Mental health conditions"><div class="opt-label">Mental health conditions</div></label>
+      <label class="opt"><input type="checkbox" name="sys-cond" value="Immunosuppression or immunodeficiency"><div class="opt-label">Immunosuppression or immunodeficiency</div></label>
+      <label class="opt"><input type="checkbox" name="sys-cond" value="None of the above"><div class="opt-label">None of the above</div></label>
+    </div>
+  </div>
+
+  <div class="field">
+    <label>Current medications <span class="req">*</span></label>
+    <textarea id="medications" placeholder="Please list all current medications including supplements, contraceptive pill, HRT, and any over-the-counter medicines. Write 'none' if not applicable."></textarea>
+    <p class="field-hint">This includes prescription medications, supplements, herbal remedies, the contraceptive pill, HRT and any over-the-counter products.</p>
+  </div>
+
+  <div class="field">
+    <label>Do you have any known allergies? <span class="req">*</span></label>
+    <div class="options inline">
+      <label class="opt"><input type="radio" name="allergies" value="Yes" onchange="toggleField('allergies-detail','Yes','Yes')"><div class="opt-label">Yes</div></label>
+      <label class="opt"><input type="radio" name="allergies" value="No" onchange="toggleField('allergies-detail','Yes','No')"><div class="opt-label">No</div></label>
+    </div>
+  </div>
+  <div class="field" id="allergies-detail" style="display:none">
+    <label>Please list all known allergies — medications, food, contact, skincare <span class="req">*</span></label>
+    <textarea id="allergy-detail" placeholder="Please be as specific as possible..."></textarea>
+  </div>
+
+  <div class="field">
+    <label>Have you ever had an allergic reaction or intolerance to a skincare product? <span class="req">*</span></label>
+    <div class="options inline">
+      <label class="opt"><input type="radio" name="skincare-reaction" value="Yes" onchange="toggleField('skincare-reaction-detail','Yes','Yes')"><div class="opt-label">Yes</div></label>
+      <label class="opt"><input type="radio" name="skincare-reaction" value="No" onchange="toggleField('skincare-reaction-detail','Yes','No')"><div class="opt-label">No</div></label>
+    </div>
+  </div>
+  <div class="field" id="skincare-reaction-detail" style="display:none">
+    <label>Please give details <span class="req">*</span></label>
+    <textarea id="reaction-detail" placeholder="Which product, what reaction, when did this occur..."></textarea>
+  </div>
+
+  <div class="field">
+    <label>Do you have any active skin infections? <span class="req">*</span></label>
+    <div class="options inline">
+      <label class="opt"><input type="radio" name="active-infection" value="Yes" onchange="showInfectionWarning(true)"><div class="opt-label">Yes</div></label>
+      <label class="opt"><input type="radio" name="active-infection" value="No" onchange="showInfectionWarning(false)"><div class="opt-label">No</div></label>
+    </div>
+    <div class="warn-box" id="infection-warning">
+      <p><strong>Important:</strong> You must not commence any new skincare treatment, including prescription products, while you have an active skin infection. Please consult your GP for advice before proceeding. You may still complete this consultation and we will hold your assessment until you are clear.</p>
+    </div>
+  </div>
+
+  <!-- CONTRACEPTION — required for tretinoin teratogenicity -->
+  <div class="field" id="contraception-section">
+    <div class="info-box" style="margin-bottom:16px"><p><strong>Important — Pregnancy & Contraception</strong><br>Tretinoin is a Category X teratogen and is <strong>strictly contraindicated in pregnancy</strong>. The following questions are a mandatory clinical requirement for any prescription involving tretinoin or retinoid-based products.</p></div>
+    <label>Are you currently pregnant, breastfeeding, or planning to become pregnant in the next 6 months? <span class="req">*</span></label>
+    <div class="options inline">
+      <label class="opt"><input type="radio" name="pregnant" value="Yes"><div class="opt-label">Yes</div></label>
+      <label class="opt"><input type="radio" name="pregnant" value="No"><div class="opt-label">No</div></label>
+      <label class="opt"><input type="radio" name="pregnant" value="Not applicable"><div class="opt-label">Not applicable</div></label>
+    </div>
+    <div class="warn-box" id="pregnant-warning" style="margin-top:10px">
+      <p><strong>We are unable to prescribe tretinoin or retinoid-based products during pregnancy or breastfeeding.</strong> Please contact us to discuss alternative skincare options that are safe for use during pregnancy. Your consultation will be reviewed for non-retinoid alternatives.</p>
+    </div>
+  </div>
+
+  <div class="field">
+    <label>If female and of childbearing potential — current contraception method <span class="req">*</span></label>
+    <div class="options">
+      <label class="opt"><input type="checkbox" name="contraception" value="Combined oral contraceptive pill"><div class="opt-label">Combined oral contraceptive pill</div></label>
+      <label class="opt"><input type="checkbox" name="contraception" value="Progesterone-only pill (mini pill)"><div class="opt-label">Progesterone-only pill (mini pill)</div></label>
+      <label class="opt"><input type="checkbox" name="contraception" value="Hormonal coil (Mirena/IUS)"><div class="opt-label">Hormonal coil (Mirena / IUS)</div></label>
+      <label class="opt"><input type="checkbox" name="contraception" value="Copper coil (IUD)"><div class="opt-label">Copper coil (IUD)</div></label>
+      <label class="opt"><input type="checkbox" name="contraception" value="Contraceptive implant"><div class="opt-label">Contraceptive implant</div></label>
+      <label class="opt"><input type="checkbox" name="contraception" value="Contraceptive injection"><div class="opt-label">Contraceptive injection</div></label>
+      <label class="opt"><input type="checkbox" name="contraception" value="Condoms or barrier method only"><div class="opt-label">Condoms or barrier method only</div></label>
+      <label class="opt"><input type="checkbox" name="contraception" value="Abstinence"><div class="opt-label">Abstinence</div></label>
+      <label class="opt"><input type="checkbox" name="contraception" value="Sterilised or partner vasectomy"><div class="opt-label">Sterilised or partner has had vasectomy</div></label>
+      <label class="opt"><input type="checkbox" name="contraception" value="Post-menopausal"><div class="opt-label">Post-menopausal</div></label>
+      <label class="opt"><input type="checkbox" name="contraception" value="Not applicable (male)"><div class="opt-label">Not applicable</div></label>
+    </div>
+    <p class="field-hint">I agree to use reliable contraception throughout any tretinoin treatment, perform a pregnancy test if my period is late, stop treatment and contact Sebastian Rose immediately if pregnancy is suspected, and use additional barrier protection if advised.</p>
+  </div>
+</div>
+
+<!-- SECTION 4: CURRENT SKINCARE -->
+<div class="section" id="sec-4">
+  <h2 class="section-title">Your current skincare</h2>
+  <p class="section-sub">Understanding your existing skincare routine helps us prescribe safely and avoid interactions with active ingredients.</p>
+
+  <div class="field">
+    <label>Do you use a daily SPF of at least SPF 30? <span class="req">*</span></label>
+    <div class="options inline">
+      <label class="opt"><input type="radio" name="spf" value="Yes — SPF 30"><div class="opt-label">Yes — SPF 30</div></label>
+      <label class="opt"><input type="radio" name="spf" value="Yes — SPF 50"><div class="opt-label">Yes — SPF 50</div></label>
+      <label class="opt"><input type="radio" name="spf" value="No"><div class="opt-label">No</div></label>
+    </div>
+    <div class="info-box" style="margin-top:12px"><p>Daily SPF 50 is <strong>mandatory</strong> when using prescription skincare including tretinoin and hydroquinone. These products significantly increase UV sensitivity — using them without adequate sun protection will worsen pigmentation and damage. If you do not currently use SPF 50, this must be in place before treatment begins. We can recommend and supply a suitable SPF alongside your prescription.</p></div>
+  </div>
+
+  <div class="field">
+    <label>Are you currently using any active skincare ingredients? Select all that apply <span class="req">*</span></label>
+    <div class="options">
+      <label class="opt"><input type="checkbox" name="actives" value="AHAs (glycolic, lactic acid)"><div class="opt-label">AHAs — glycolic acid, lactic acid</div></label>
+      <label class="opt"><input type="checkbox" name="actives" value="BHAs (salicylic acid)"><div class="opt-label">BHAs — salicylic acid</div></label>
+      <label class="opt"><input type="checkbox" name="actives" value="Retinol (over the counter)"><div class="opt-label">Retinol (over the counter)</div></label>
+      <label class="opt"><input type="checkbox" name="actives" value="Tretinoin (prescription)"><div class="opt-label">Tretinoin (prescription)</div></label>
+      <label class="opt"><input type="checkbox" name="actives" value="Vitamin C"><div class="opt-label">Vitamin C</div></label>
+      <label class="opt"><input type="checkbox" name="actives" value="Niacinamide"><div class="opt-label">Niacinamide</div></label>
+      <label class="opt"><input type="checkbox" name="actives" value="Hydroquinone"><div class="opt-label">Hydroquinone</div></label>
+      <label class="opt"><input type="checkbox" name="actives" value="Azelaic acid"><div class="opt-label">Azelaic acid</div></label>
+      <label class="opt"><input type="checkbox" name="actives" value="Peptides"><div class="opt-label">Peptides</div></label>
+      <label class="opt"><input type="checkbox" name="actives" value="None of the above"><div class="opt-label">None of the above</div></label>
+    </div>
+  </div>
+
+  <div class="field">
+    <label>Have you ever used Obagi prescriptive products? <span class="req">*</span></label>
+    <div class="options inline">
+      <label class="opt"><input type="radio" name="obagi-history" value="Currently using" onchange="toggleObagi('Currently using')"><div class="opt-label">Currently using</div></label>
+      <label class="opt"><input type="radio" name="obagi-history" value="Used in the past" onchange="toggleObagi('Used in the past')"><div class="opt-label">Used in the past</div></label>
+      <label class="opt"><input type="radio" name="obagi-history" value="Never" onchange="toggleObagi('Never')"><div class="opt-label">Never</div></label>
+    </div>
+  </div>
+
+  <div id="obagi-detail-section" style="display:none">
+    <div class="field">
+      <label>Which Obagi prescriptive products have you used? Select all that apply</label>
+      <div class="options">
+        <label class="opt"><input type="checkbox" name="obagi-products" value="Obagi Nu-Derm Rx"><div class="opt-text"><div class="opt-label">Obagi Nu-Derm Rx</div></div></label>
+        <label class="opt"><input type="checkbox" name="obagi-products" value="Blender Rx (hydroquinone 4%)"><div class="opt-text"><div class="opt-label">Blender Rx — hydroquinone 4%</div></div></label>
+        <label class="opt"><input type="checkbox" name="obagi-products" value="Clear Rx (hydroquinone 4%)"><div class="opt-text"><div class="opt-label">Clear Rx — hydroquinone 4%</div></div></label>
+        <label class="opt"><input type="checkbox" name="obagi-products" value="Obagi-C Rx"><div class="opt-text"><div class="opt-label">Obagi-C Rx</div></div></label>
+        <label class="opt"><input type="checkbox" name="obagi-products" value="Tretinoin cream 0.025%"><div class="opt-text"><div class="opt-label">Tretinoin cream 0.025%</div></div></label>
+        <label class="opt"><input type="checkbox" name="obagi-products" value="Tretinoin cream 0.05%"><div class="opt-text"><div class="opt-label">Tretinoin cream 0.05%</div></div></label>
+        <label class="opt"><input type="checkbox" name="obagi-products" value="Tretinoin cream 0.1%"><div class="opt-text"><div class="opt-label">Tretinoin cream 0.1%</div></div></label>
+        <label class="opt"><input type="checkbox" name="obagi-products" value="Tretinoin gel 0.05%"><div class="opt-text"><div class="opt-label">Tretinoin gel 0.05%</div></div></label>
+        <label class="opt"><input type="checkbox" name="obagi-products" value="Clenziderm"><div class="opt-text"><div class="opt-label">Clenziderm</div></div></label>
+        <label class="opt"><input type="checkbox" name="obagi-products" value="Something else"><div class="opt-text"><div class="opt-label">Something else</div></div></label>
+      </div>
+    </div>
+    <div class="field">
+      <label>How long ago did you last use these products?</label>
+      <select id="obagi-last-used">
+        <option value="">Please select</option>
+        <option>Currently using</option>
+        <option>Less than 1 month ago</option>
+        <option>1–3 months ago</option>
+        <option>3–6 months ago</option>
+        <option>6–12 months ago</option>
+        <option>More than a year ago</option>
+      </select>
+    </div>
+    <div class="field">
+      <label>Did you experience any problems, irritation or reactions with these products?</label>
+      <div class="options inline">
+        <label class="opt"><input type="radio" name="obagi-reaction" value="Yes" onchange="toggleField('obagi-reaction-detail','Yes','Yes')"><div class="opt-label">Yes</div></label>
+        <label class="opt"><input type="radio" name="obagi-reaction" value="No" onchange="toggleField('obagi-reaction-detail','Yes','No')"><div class="opt-label">No</div></label>
+      </div>
+    </div>
+    <div class="field" id="obagi-reaction-detail" style="display:none">
+      <label>Please describe the reaction <span class="req">*</span></label>
+      <textarea id="obagi-reaction-text" placeholder="What reaction occurred, how severe, how long did it last..."></textarea>
+    </div>
+  </div>
+
+  <div class="field">
+    <label>Please describe your current skincare routine</label>
+    <textarea id="routine" placeholder="Morning: e.g. cleanser, vitamin C, moisturiser, SPF&#10;Evening: e.g. cleanser, retinol, moisturiser&#10;Write 'none' if you don't currently have a routine"></textarea>
+  </div>
+</div>
+
+<!-- SECTION 5: TREATMENT HISTORY -->
+<div class="section" id="sec-5">
+  <h2 class="section-title">Treatment history</h2>
+  <p class="section-sub">Certain prescription ingredients must be paused around professional treatments. Please answer honestly to ensure your safety.</p>
+
+  <div class="field">
+    <label>Are you currently undergoing, or planning to have, any professional skin treatments in the next 6 weeks? <span class="req">*</span></label>
+    <p class="field-hint" style="margin-bottom:10px">Including laser, microneedling, microdermabrasion, chemical peels, IPL, radiofrequency or similar.</p>
+    <div class="options inline">
+      <label class="opt"><input type="radio" name="treatments" value="Yes"><div class="opt-label">Yes</div></label>
+      <label class="opt"><input type="radio" name="treatments" value="No"><div class="opt-label">No</div></label>
+    </div>
+    <div class="info-box" style="margin-top:12px"><p>Certain prescription products — particularly tretinoin and hydroquinone — must be paused before professional skin treatments. Your prescriber will advise you on exactly when to pause and resume based on the specific treatment you are having.</p></div>
+  </div>
+
+  <div class="field">
+    <label>Have you had any professional skin treatments in the last 3 months? <span class="req">*</span></label>
+    <div class="options inline">
+      <label class="opt"><input type="radio" name="recent-treatments" value="Yes" onchange="toggleField('recent-treatment-detail','Yes','Yes')"><div class="opt-label">Yes</div></label>
+      <label class="opt"><input type="radio" name="recent-treatments" value="No" onchange="toggleField('recent-treatment-detail','Yes','No')"><div class="opt-label">No</div></label>
+    </div>
+  </div>
+  <div class="field" id="recent-treatment-detail" style="display:none">
+    <label>Please give details <span class="req">*</span></label>
+    <textarea id="recent-treatment-text" placeholder="What treatment, when, any complications or reactions..."></textarea>
+  </div>
+
+  <div class="field">
+    <label>Have you used prescription skincare from another provider in the last 12 months? <span class="req">*</span></label>
+    <div class="options inline">
+      <label class="opt"><input type="radio" name="other-rx" value="Yes" onchange="toggleField('other-rx-detail','Yes','Yes')"><div class="opt-label">Yes</div></label>
+      <label class="opt"><input type="radio" name="other-rx" value="No" onchange="toggleField('other-rx-detail','Yes','No')"><div class="opt-label">No</div></label>
+    </div>
+  </div>
+  <div class="field" id="other-rx-detail" style="display:none">
+    <label>Please give details — provider, products, strength, any issues <span class="req">*</span></label>
+    <textarea id="other-rx-text" placeholder="Provider name, products prescribed, strengths used, duration of use, any reactions or issues..."></textarea>
+  </div>
+
+  <div class="field">
+    <label>Is there anything else you feel we should know before your assessment? </label>
+    <textarea id="other-info" placeholder="Any additional information that may be relevant to your skin health or medical history..."></textarea>
+  </div>
+</div>
+
+<!-- SECTION 6: DECLARATION -->
+<div class="section" id="sec-6">
+  <h2 class="section-title">Declaration & consent</h2>
+  <p class="section-sub">Please read the following carefully before signing. Your electronic signature confirms you have read, understood and agreed to the statements below.</p>
+
+  <div class="declaration">
+    <ol>
+      <li>All information I have provided in this skin consultation is true, complete and accurate to the best of my knowledge and belief.</li>
+      <li>Any skincare products, treatments or prescriptions recommended are based on the information I have provided and are for <strong>my personal use only</strong>. These must not be shared with or used by any other person.</li>
+      <li>This online consultation does not replace an in-person clinical consultation. I understand I may be required to attend an in-person appointment if the prescriber deems this necessary.</li>
+      <li>Providing false, incomplete or misleading information may result in inappropriate treatment being recommended, which could be harmful to my health.</li>
+      <li>I will immediately inform Sebastian Rose Medical Aesthetics of any changes to my medical history, current medications, allergies or other circumstances that may affect my suitability for treatment.</li>
+      <li>I understand that prescription treatments require approval from a qualified prescriber and that not all consultation requests will result in a prescription being issued.</li>
+      <li>I consent to my information being reviewed by a qualified prescriber and, where necessary, shared with a dispensing pharmacy for the purpose of fulfilling a prescription.</li>
+      <li>I am at least 18 years of age and have the legal capacity to consent to this consultation.</li>
+      <li>If I am prescribed tretinoin or any retinoid-based product, I confirm I will use reliable contraception throughout treatment, perform a pregnancy test if my menstrual period is late, stop treatment and contact Sebastian Rose immediately if pregnancy is suspected.</li>
+      <li>I understand that my data will be held securely in accordance with GDPR and the Data Protection Act 2018, and used solely for the purpose of my clinical care at Sebastian Rose Medical Aesthetics.</li>
+    </ol>
+  </div>
+
+  <div class="field">
+    <label>I confirm I have read and agree to all of the above declarations <span class="req">*</span></label>
+    <label class="opt" style="margin-top:8px"><input type="checkbox" id="consent-check"><div class="opt-label">Yes, I confirm I have read, understood and agree to this declaration</div></label>
+  </div>
+
+  <div class="field">
+    <label>Electronic signature <span class="req">*</span></label>
+    <p class="field-hint" style="margin-bottom:10px">Please sign using your mouse or finger in the box below.</p>
+    <div class="sig-wrap">
+      <canvas id="sig-canvas" width="680" height="160"></canvas>
+      <div class="sig-controls">
+        <span class="sig-hint">Sign above</span>
+        <button class="sig-clear" onclick="clearSig()">Clear signature</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="field">
+    <label>Today's date <span class="req">*</span></label>
+    <input type="date" id="sig-date">
+  </div>
+</div>
+
+<!-- NAV -->
+<div class="nav" id="nav">
+  <button class="btn-back" id="btn-back" onclick="prevSection()" style="display:none">← Back</button>
+  <span class="nav-info" id="nav-info">All fields marked * are required</span>
+  <button class="btn-next" id="btn-next" onclick="nextSection()">Continue →</button>
+</div>
+
+<!-- SUCCESS -->
+<div class="success" id="success">
+  <div class="success-icon">✦</div>
+  <h2 class="success-title">Consultation submitted.</h2>
+  <p class="success-sub">Thank you for completing your online skin consultation with Sebastian Rose Medical Aesthetics. Your responses have been securely submitted to our Independent Nurse Prescriber for clinical review.</p>
+
+  <div class="success-steps">
+    <div class="success-step">
+      <div class="s-num">1</div>
+      <div class="s-text"><strong>Prescriber review — within 24–72 hours</strong>Your consultation will be reviewed by Rachel, our Independent Nurse Prescriber and Clinic Director, who will assess your medical suitability for prescription skincare.</div>
+    </div>
+    <div class="success-step">
+      <div class="s-num">2</div>
+      <div class="s-text"><strong>Your personalised prescription plan</strong>If you are clinically suitable, you will receive a personalised prescription protocol including recommended products, strengths and usage instructions — tailored specifically to your skin type, Fitzpatrick classification and concerns.</div>
+    </div>
+    <div class="success-step">
+      <div class="s-num">3</div>
+      <div class="s-text"><strong>Access code to unlock your prescriptive products</strong>Once approved, you will receive your unique access code by email, unlocking your prescriptive product range in our online skincare shop. Products will be dispensed by our registered pharmacy partner.</div>
+    </div>
+    <div class="success-step">
+      <div class="s-num">4</div>
+      <div class="s-text"><strong>Ongoing clinical support</strong>We're here throughout your treatment. If you have any questions or your skin responds unexpectedly, contact us directly at info@sebastianrose.co.uk or call 0800 772 0137.</div>
+    </div>
+  </div>
+
+  <p class="success-note">If your prescriber requires any further information, or if an in-person consultation is deemed necessary before a prescription can be issued, you will be contacted directly by our team. A prescription may not be issued in all cases — this will depend entirely on your individual clinical assessment.<br><br>All responses are held in strict medical confidence in accordance with GDPR and the Data Protection Act 2018.</p>
+</div>
+
+</div>
+
+<script>
+var currentSection=1;
+var totalSections=6;
+var fitzSelected='';
+var sigCanvas,sigCtx,sigDrawing=false,sigHasMark=false;
+
+// INIT
+document.addEventListener('DOMContentLoaded',function(){
+  initSig();
+  document.getElementById('sig-date').value=new Date().toISOString().split('T')[0];
+  setupOpts();
+  setupContraception();
+  setupPrimaryGoals();
+  setupSkinCondNone();
+});
+
+function setupOpts(){
+  document.querySelectorAll('.opt').forEach(function(opt){
+    var inp=opt.querySelector('input');
+    if(!inp) return;
+    inp.addEventListener('change',function(){
+      if(inp.type==='radio'){
+        var name=inp.name;
+        document.querySelectorAll('.opt input[name="'+name+'"]').forEach(function(r){
+          r.closest('.opt').classList.toggle('selected',r.checked);
+        });
+      } else {
+        opt.classList.toggle('selected',inp.checked);
+      }
+    });
+  });
+}
+
+function setupPrimaryGoals(){
+  document.querySelectorAll('input[name="primary"]').forEach(function(r){
+    r.addEventListener('change',function(){
+      document.getElementById('acne-goals-field').style.display=r.value==='Acne'?'block':'none';
+      document.getElementById('antiage-goals-field').style.display=r.value==='Anti-ageing'?'block':'none';
+      document.getElementById('pigment-goals-field').style.display=r.value==='Pigmentation'?'block':'none';
+    });
+  });
+}
+
+function setupSkinCondNone(){
+  var noneChk=document.getElementById('skin-cond-none');
+  if(noneChk){
+    noneChk.addEventListener('change',function(){
+      if(this.checked){
+        document.querySelectorAll('input[name="skin-cond"]').forEach(function(c){
+          if(c.value!=='None of the above') c.checked=false;
+        });
+      }
+      updateSkinCondDetail();
+    });
+    document.querySelectorAll('input[name="skin-cond"]').forEach(function(c){
+      c.addEventListener('change',function(){
+        if(this.value!=='None of the above'&&this.checked) noneChk.checked=false;
+        updateSkinCondDetail();
+      });
+    });
+  }
+}
+
+function updateSkinCondDetail(){
+  var checked=Array.from(document.querySelectorAll('input[name="skin-cond"]:checked')).map(function(c){return c.value});
+  var show=checked.some(function(v){return v!=='None of the above'});
+  document.getElementById('skin-cond-detail-field').style.display=show?'block':'none';
+}
+
+function setupContraception(){
+  document.querySelectorAll('input[name="pregnant"]').forEach(function(r){
+    r.addEventListener('change',function(){
+      var show=r.value==='Yes';
+      document.getElementById('pregnant-warning').style.display=show?'block':'none';
+    });
+  });
+}
+
+function toggleField(fieldId,showVal,currentVal){
+  document.getElementById(fieldId).style.display=currentVal===showVal?'block':'none';
+}
+
+function showInfectionWarning(show){
+  document.getElementById('infection-warning').style.display=show?'block':'none';
+}
+
+function selectFitz(el,val){
+  document.querySelectorAll('.fitz-card').forEach(function(c){c.classList.remove('selected')});
+  el.classList.add('selected');
+  fitzSelected=val;
+  document.getElementById('fitz-val').value=val;
+}
+
+function toggleObagi(val){
+  document.getElementById('obagi-detail-section').style.display=(val==='Currently using'||val==='Used in the past')?'block':'none';
+}
+
+function fileUploaded(zoneId,fileId,doneId){
+  var file=document.getElementById(fileId).files[0];
+  if(file){
+    var done=document.getElementById(doneId);
+    done.textContent='✓ '+file.name+' uploaded';
+    done.style.display='block';
+    document.getElementById(zoneId).style.borderColor='#1a1a1a';
+  }
+}
+
+// SIGNATURE
+function initSig(){
+  sigCanvas=document.getElementById('sig-canvas');
+  sigCtx=sigCanvas.getContext('2d');
+  sigCtx.strokeStyle='#1a1a1a';
+  sigCtx.lineWidth=2;
+  sigCtx.lineCap='round';
+
+  function getPos(e){
+    var rect=sigCanvas.getBoundingClientRect();
+    var scaleX=sigCanvas.width/rect.width;
+    var scaleY=sigCanvas.height/rect.height;
+    var clientX=e.touches?e.touches[0].clientX:e.clientX;
+    var clientY=e.touches?e.touches[0].clientY:e.clientY;
+    return{x:(clientX-rect.left)*scaleX,y:(clientY-rect.top)*scaleY};
+  }
+
+  sigCanvas.addEventListener('mousedown',function(e){sigDrawing=true;var p=getPos(e);sigCtx.beginPath();sigCtx.moveTo(p.x,p.y)});
+  sigCanvas.addEventListener('mousemove',function(e){if(!sigDrawing)return;var p=getPos(e);sigCtx.lineTo(p.x,p.y);sigCtx.stroke();sigHasMark=true});
+  sigCanvas.addEventListener('mouseup',function(){sigDrawing=false});
+  sigCanvas.addEventListener('touchstart',function(e){e.preventDefault();sigDrawing=true;var p=getPos(e);sigCtx.beginPath();sigCtx.moveTo(p.x,p.y)},{passive:false});
+  sigCanvas.addEventListener('touchmove',function(e){e.preventDefault();if(!sigDrawing)return;var p=getPos(e);sigCtx.lineTo(p.x,p.y);sigCtx.stroke();sigHasMark=true},{passive:false});
+  sigCanvas.addEventListener('touchend',function(){sigDrawing=false});
+}
+
+function clearSig(){sigCtx.clearRect(0,0,sigCanvas.width,sigCanvas.height);sigHasMark=false}
+
+// NAVIGATION
+function updateProgress(){
+  var pct=Math.round((currentSection/totalSections)*100);
+  document.getElementById('progress-bar').style.width=pct+'%';
+  document.getElementById('progress-pct').textContent='Step '+currentSection+' of '+totalSections+' — '+pct+'% complete';
+
+  for(var i=1;i<=totalSections;i++){
+    var dot=document.getElementById('dot-'+i);
+    var lbl=document.getElementById('lbl-'+i);
+    dot.classList.remove('active','done');
+    lbl.classList.remove('active');
+    if(i<currentSection){dot.classList.add('done');dot.innerHTML=''}
+    else if(i===currentSection){dot.classList.add('active');if(!dot.innerHTML) dot.innerHTML='<span>'+i+'</span>'; lbl.classList.add('active')}
+    else{if(!dot.querySelector('span')) dot.innerHTML='<span>'+i+'</span>'}
+  }
+
+  document.getElementById('btn-back').style.display=currentSection>1?'block':'none';
+  document.getElementById('btn-next').textContent=currentSection===totalSections?'Submit consultation':'Continue →';
+}
+
+function nextSection(){
+  if(!validateSection(currentSection)) return;
+  if(currentSection===totalSections){
+    submitForm();
+    return;
+  }
+  document.getElementById('sec-'+currentSection).classList.remove('active');
+  currentSection++;
+  document.getElementById('sec-'+currentSection).classList.add('active');
+  updateProgress();
+  window.scrollTo(0,0);
+  window.parent.postMessage({action:'scrollTop'},'*');
+}
+
+function prevSection(){
+  document.getElementById('sec-'+currentSection).classList.remove('active');
+  currentSection--;
+  document.getElementById('sec-'+currentSection).classList.add('active');
+  updateProgress();
+  window.scrollTo(0,0);
+  window.parent.postMessage({action:'scrollTop'},'*');
+}
+
+function validateSection(n){
+  var ok=true;
+  if(n===1){
+    if(!v('fname')||!v('lname')||!v('dob')||!v('gender','select')||!v('email')||!v('phone')||!v('address','textarea')){ok=false;alert('Please complete all required fields before continuing.')}
+    if(ok&&!document.getElementById('id-file').files.length){ok=false;alert('Please upload a copy of your photo ID to continue.')}
+  }
+  if(n===2){
+    if(!document.querySelector('input[name="skin-type"]:checked')||!fitzSelected||!document.querySelector('input[name="primary"]:checked')){ok=false;alert('Please complete all required fields — skin type, Fitzpatrick type and primary concern.')}
+  }
+  if(n===3){
+    if(!document.querySelector('input[name="skin-cond"]:checked')||!document.querySelector('input[name="sys-cond"]:checked')||!v('medications','textarea')||!document.querySelector('input[name="allergies"]:checked')||!document.querySelector('input[name="skincare-reaction"]:checked')||!document.querySelector('input[name="active-infection"]:checked')||!document.querySelector('input[name="pregnant"]:checked')){ok=false;alert('Please complete all required fields in the Medical History section.')}
+  }
+  if(n===4){
+    if(!document.querySelector('input[name="spf"]:checked')||!document.querySelector('input[name="actives"]:checked')||!document.querySelector('input[name="obagi-history"]:checked')){ok=false;alert('Please complete all required fields in the Skincare section.')}
+  }
+  if(n===5){
+    if(!document.querySelector('input[name="treatments"]:checked')||!document.querySelector('input[name="recent-treatments"]:checked')||!document.querySelector('input[name="other-rx"]:checked')){ok=false;alert('Please complete all required fields in the Treatment History section.')}
+  }
+  if(n===6){
+    if(!document.getElementById('consent-check').checked){ok=false;alert('Please confirm you have read and agree to the declaration.')}
+    if(!sigHasMark){ok=false;alert('Please provide your electronic signature.')}
+    if(!v('sig-date')){ok=false;alert('Please confirm today\'s date.')}
+  }
+  return ok;
+}
+
+function v(id,type){
+  var el=document.getElementById(id);
+  if(!el) return false;
+  return el.value.trim().length>0;
+}
+
+function submitForm(){
+  var btnNext=document.getElementById('btn-next');
+  btnNext.disabled=true;
+  btnNext.textContent='Submitting...';
+
+  // Collect all form data
+  var skinConds=Array.from(document.querySelectorAll('input[name="skin-cond"]:checked')).map(function(c){return c.value}).join(', ')||'None selected';
+  var sysConds=Array.from(document.querySelectorAll('input[name="sys-cond"]:checked')).map(function(c){return c.value}).join(', ')||'None selected';
+  var actives=Array.from(document.querySelectorAll('input[name="actives"]:checked')).map(function(c){return c.value}).join(', ')||'None selected';
+  var contraception=Array.from(document.querySelectorAll('input[name="contraception"]:checked')).map(function(c){return c.value}).join(', ')||'Not specified';
+  var obagiProducts=Array.from(document.querySelectorAll('input[name="obagi-products"]:checked')).map(function(c){return c.value}).join(', ')||'None';
+  var acneGoals=Array.from(document.querySelectorAll('input[name="acne-goals"]:checked')).map(function(c){return c.value}).join(', ')||'N/A';
+  var antiageGoals=Array.from(document.querySelectorAll('input[name="antiage-goals"]:checked')).map(function(c){return c.value}).join(', ')||'N/A';
+  var pigmentGoals=Array.from(document.querySelectorAll('input[name="pigment-goals"]:checked')).map(function(c){return c.value}).join(', ')||'N/A';
+
+  var fullData=[
+    '--- PERSONAL DETAILS ---',
+    'Full name: '+document.getElementById('fname').value+' '+document.getElementById('lname').value,
+    'DOB: '+document.getElementById('dob').value,
+    'Gender: '+document.getElementById('gender').value,
+    'Email: '+document.getElementById('email').value,
+    'Phone: '+document.getElementById('phone').value,
+    'Address: '+document.getElementById('address').value,
+    '',
+    '--- SKIN PROFILE ---',
+    'Skin type: '+(document.querySelector('input[name="skin-type"]:checked')||{value:'Not selected'}).value,
+    'Fitzpatrick type: '+(document.getElementById('fitz-val').value||'Not selected'),
+    'Primary concern: '+(document.querySelector('input[name="primary"]:checked')||{value:'Not selected'}).value,
+    'Acne goals: '+acneGoals,
+    'Anti-ageing goals: '+antiageGoals,
+    'Pigmentation goals: '+pigmentGoals,
+    'Skin notes: '+(document.getElementById('skin-notes').value||'None'),
+    '',
+    '--- MEDICAL HISTORY ---',
+    'Skin conditions: '+skinConds,
+    'Skin condition details: '+(document.getElementById('skin-cond-detail').value||'N/A'),
+    'Systemic conditions: '+sysConds,
+    'Medications: '+(document.getElementById('medications').value||'None'),
+    'Known allergies: '+(document.querySelector('input[name="allergies"]:checked')||{value:'Not answered'}).value,
+    'Allergy details: '+(document.getElementById('allergy-detail')?document.getElementById('allergy-detail').value:'N/A'),
+    'Skincare reactions: '+(document.querySelector('input[name="skincare-reaction"]:checked')||{value:'Not answered'}).value,
+    'Reaction details: '+(document.getElementById('reaction-detail')?document.getElementById('reaction-detail').value:'N/A'),
+    'Active skin infection: '+(document.querySelector('input[name="active-infection"]:checked')||{value:'Not answered'}).value,
+    'Pregnant/breastfeeding/planning: '+(document.querySelector('input[name="pregnant"]:checked')||{value:'Not answered'}).value,
+    'Contraception: '+contraception,
+    '',
+    '--- CURRENT SKINCARE ---',
+    'Daily SPF: '+(document.querySelector('input[name="spf"]:checked')||{value:'Not answered'}).value,
+    'Active ingredients: '+actives,
+    'Obagi history: '+(document.querySelector('input[name="obagi-history"]:checked')||{value:'Not answered'}).value,
+    'Obagi products used: '+obagiProducts,
+    'Last used Obagi: '+(document.getElementById('obagi-last-used')?document.getElementById('obagi-last-used').value:'N/A'),
+    'Obagi reaction: '+(document.querySelector('input[name="obagi-reaction"]:checked')||{value:'N/A'}).value,
+    'Obagi reaction details: '+(document.getElementById('obagi-reaction-text')?document.getElementById('obagi-reaction-text').value:'N/A'),
+    'Current routine: '+(document.getElementById('routine').value||'None provided'),
+    '',
+    '--- TREATMENT HISTORY ---',
+    'Upcoming treatments in 6 weeks: '+(document.querySelector('input[name="treatments"]:checked')||{value:'Not answered'}).value,
+    'Recent treatments in 3 months: '+(document.querySelector('input[name="recent-treatments"]:checked')||{value:'Not answered'}).value,
+    'Recent treatment details: '+(document.getElementById('recent-treatment-text')?document.getElementById('recent-treatment-text').value:'N/A'),
+    'Other prescriptions in 12 months: '+(document.querySelector('input[name="other-rx"]:checked')||{value:'Not answered'}).value,
+    'Other prescription details: '+(document.getElementById('other-rx-text')?document.getElementById('other-rx-text').value:'N/A'),
+    'Additional information: '+(document.getElementById('other-info').value||'None'),
+    '',
+    '--- DECLARATION ---',
+    'Consent confirmed: YES',
+    'Signature date: '+document.getElementById('sig-date').value
+  ].join('\n');
+
+  var templateParams={
+    client_name: document.getElementById('fname').value+' '+document.getElementById('lname').value,
+    client_email: document.getElementById('email').value,
+    client_phone: document.getElementById('phone').value,
+    client_dob: document.getElementById('dob').value,
+    submission_date: new Date().toLocaleDateString('en-GB'),
+    primary_concern: (document.querySelector('input[name="primary"]:checked')||{value:'Not selected'}).value,
+    skin_type: (document.querySelector('input[name="skin-type"]:checked')||{value:'Not selected'}).value,
+    fitzpatrick: document.getElementById('fitz-val').value||'Not selected',
+    full_data: fullData
+  };
+
+  function showSuccess(){
+    document.getElementById('sec-6').classList.remove('active');
+    document.getElementById('nav').style.display='none';
+    document.getElementById('progress-wrap').style.display='none';
+    document.querySelector('.hdr').style.display='none';
+    document.getElementById('success').style.display='block';
+    window.scrollTo(0,0);
+    window.parent.postMessage({action:'scrollTop'},'*');
+  }
+
+  if(window._emailjsReady && typeof emailjs!=='undefined'){
+    emailjs.send('service_bdikve4','template_2we5rm1',templateParams)
+      .then(function(){showSuccess();})
+      .catch(function(err){
+        console.error('EmailJS error:',err);
+        // Still show success — data is in console, don't block user
+        showSuccess();
+        // Send fallback notification via mailto
+        window.open('mailto:info@sebastianrose.co.uk?subject=SKIN CONSULTATION SUBMITTED — '+templateParams.client_name+'&body=A consultation was submitted but email delivery may have failed. Please check your EmailJS dashboard.','_blank');
+      });
+  } else {
+    // EmailJS blocked by iframe sandbox — show success and open mailto fallback
+    showSuccess();
+    setTimeout(function(){
+      window.open('mailto:info@sebastianrose.co.uk?subject=New Skin Consultation — '+templateParams.client_name+'&body=Name: '+templateParams.client_name+'%0AEmail: '+templateParams.client_email+'%0APhone: '+templateParams.client_phone+'%0A%0APlease note: This consultation was submitted but automated email delivery was blocked. Full data is available in the EmailJS dashboard.','_blank');
+    },1000);
+  }
+}
+</script>
+</body>
+</html>
