@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Profhilo Consent | Sebastian Rose Medical Aesthetics</title>
+
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
+<style>
+/* ============================================================
+   BRAND COLOURS — change these to match your site
+   ============================================================ */
+:root{
+  --ink:#221f1c;
+  --muted:#6f6960;
+  --accent:#b09a77;
+  --accent-dark:#96805f;
+  --bg:#faf8f5;
+  --card:#ffffff;
+  --line:#e6ded2;
+  --warn-bg:#fdf7ee;
+  --warn-line:#e2caa5;
+  --alert-bg:#fbf1ef;
+  --alert-line:#ddb3ab;
+  --ok-bg:#f0f4ee;
+  --ok-line:#c0d1b8;
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{overflow-x:hidden;height:auto;min-height:0}
+/* hide the widget's own scrollbar so it never doubles up with the page's.
+   scrolling still works by wheel/trackpad, so nothing is ever unreachable. */
+html::-webkit-scrollbar,body::-webkit-scrollbar{width:0;height:0;display:none}
+html,body{scrollbar-width:none;-ms-overflow-style:none}
+body{
+  font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;
+  background:var(--bg);color:var(--ink);line-height:1.65;font-size:16px;
+  -webkit-font-smoothing:antialiased;padding:0 0 50px;
+}
+.wrap{max-width:800px;margin:0 auto;padding:28px 18px 0}
+
+.hero{text-align:center;padding:14px 0 26px}
+.hero .eyebrow{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);font-weight:700;margin-bottom:12px}
+.hero h1{font-family:Georgia,'Times New Roman',serif;font-weight:400;font-size:30px;line-height:1.3;letter-spacing:.02em;text-transform:uppercase;margin-bottom:12px}
+.hero p{color:var(--muted);font-size:15px;max-width:580px;margin:0 auto}
+
+.progress-shell{margin:0 0 26px}
+.progress-track{height:3px;background:var(--line);border-radius:2px;overflow:hidden}
+.progress-fill{height:100%;width:12.5%;background:var(--accent);transition:width .35s ease}
+.progress-label{display:flex;justify-content:space-between;margin-top:9px;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+
+.step{display:none}
+.step.active{display:block;animation:fade .3s ease}
+@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+.panel{background:var(--card);border:1px solid var(--line);border-radius:3px;padding:32px 28px;margin-bottom:18px}
+.panel h2{font-family:Georgia,'Times New Roman',serif;font-weight:400;font-size:19px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:8px}
+.panel .sub{color:var(--muted);font-size:14px;margin-bottom:24px}
+.panel h3{font-family:Georgia,serif;font-weight:400;font-size:16px;letter-spacing:.05em;text-transform:uppercase;margin:26px 0 10px;padding-bottom:7px;border-bottom:1px solid var(--line)}
+.panel p.body{font-size:14.8px;margin-bottom:14px;color:#3a352f}
+.panel ul.plain{margin:0 0 16px 18px;font-size:14.8px;color:#3a352f}
+.panel ul.plain li{margin-bottom:7px}
+
+.group{margin-bottom:22px}
+.group:last-child{margin-bottom:0}
+label.q{display:block;font-weight:600;font-size:14.5px;margin-bottom:8px}
+label.q .req{color:var(--accent);margin-left:3px}
+.hint{font-size:13px;color:var(--muted);margin:-3px 0 9px;line-height:1.5}
+
+input[type=text],input[type=email],input[type=tel],input[type=date],select,textarea{
+  width:100%;padding:12px 13px;font-size:15px;font-family:inherit;color:var(--ink);
+  background:#fff;border:1px solid var(--line);border-radius:2px;outline:none;transition:border-color .15s;
+}
+input:focus,select:focus,textarea:focus{border-color:var(--accent)}
+textarea{min-height:88px;resize:vertical}
+select{appearance:none;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8'><path d='M1 1l5 5 5-5' stroke='%236f6960' stroke-width='1.5' fill='none'/></svg>");background-repeat:no-repeat;background-position:right 14px center}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:560px){.two-col{grid-template-columns:1fr}}
+
+.opts{display:flex;flex-direction:column;gap:8px}
+.opts.inline{flex-direction:row;flex-wrap:wrap;gap:10px}
+.opts.grid2{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+@media(max-width:560px){.opts.grid2{grid-template-columns:1fr}}
+
+.opt{position:relative;display:flex;align-items:flex-start;gap:11px;padding:11px 14px;border:1px solid var(--line);border-radius:2px;background:#fff;cursor:pointer;font-size:14.5px;transition:border-color .15s,background .15s;user-select:none}
+.opt:hover{border-color:var(--accent)}
+.opt input{position:absolute;opacity:0;width:0;height:0;pointer-events:none}
+.mark{flex:0 0 18px;width:18px;height:18px;margin-top:2px;border:1.5px solid #c4bbae;background:#fff;position:relative;transition:all .15s}
+.mark.radio{border-radius:50%}
+.opt.checked{border-color:var(--accent);background:#fcfaf7}
+.opt.checked .mark{border-color:var(--accent);background:var(--accent)}
+.opt.checked .mark::after{content:"";position:absolute;left:5px;top:1px;width:5px;height:10px;border:solid #fff;border-width:0 2px 2px 0;transform:rotate(45deg)}
+.opt.checked .mark.radio::after{content:"";position:absolute;left:4px;top:4px;width:6px;height:6px;border:0;border-radius:50%;background:#fff;transform:none}
+.opt.inline-sm{padding:9px 16px}
+
+.reveal{display:none;margin-top:11px;padding-left:14px;border-left:2px solid var(--accent)}
+.reveal.show{display:block;animation:fade .25s ease}
+
+.note{background:var(--warn-bg);border:1px solid var(--warn-line);border-radius:2px;padding:15px 17px;font-size:13.8px;line-height:1.65;margin-bottom:22px;color:#5c4a33}
+.note strong{display:block;margin-bottom:4px}
+.alert{background:var(--alert-bg);border:1px solid var(--alert-line);border-radius:2px;padding:15px 17px;font-size:13.8px;line-height:1.65;margin-bottom:22px;color:#6b3a33}
+.alert strong{display:block;margin-bottom:4px}
+.privacy{background:#f5f2ed;border:1px solid var(--line);border-radius:2px;padding:16px 18px;font-size:12.8px;color:var(--muted);line-height:1.65;margin-top:18px}
+.privacy strong{color:var(--ink)}
+
+.nav{display:flex;gap:12px;margin-top:6px}
+button.primary{flex:1;padding:15px;background:var(--accent);color:#fff;border:0;border-radius:2px;font-size:12.5px;letter-spacing:.18em;text-transform:uppercase;font-weight:700;cursor:pointer;font-family:inherit;transition:background .15s}
+button.primary:hover{background:var(--accent-dark)}
+button.primary:disabled{opacity:.55;cursor:not-allowed}
+button.ghost{padding:15px 26px;background:#fff;color:var(--muted);border:1px solid var(--line);border-radius:2px;font-size:12.5px;letter-spacing:.18em;text-transform:uppercase;font-weight:700;cursor:pointer;font-family:inherit}
+button.ghost:hover{border-color:var(--accent);color:var(--accent)}
+a.linkbtn{display:inline-block;padding:13px 22px;background:var(--accent);color:#fff;text-decoration:none;border-radius:2px;font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;font-weight:700;transition:background .15s}
+a.linkbtn:hover{background:var(--accent-dark)}
+
+.err{display:none;background:#fbeceb;border:1px solid #e0b2ac;color:#8a3a31;padding:12px 15px;border-radius:2px;font-size:13.5px;margin-bottom:16px}
+.err.show{display:block}
+
+#done{display:none;text-align:center;padding:52px 26px;background:var(--ok-bg);border:1px solid var(--ok-line);border-radius:3px}
+#done h2{font-family:Georgia,serif;font-weight:400;font-size:24px;letter-spacing:.05em;text-transform:uppercase;margin-bottom:14px}
+#done p{color:#48553f;font-size:15px;max-width:490px;margin:0 auto 10px}
+.tick{width:54px;height:54px;border-radius:50%;background:#7d9370;color:#fff;font-size:27px;line-height:54px;margin:0 auto 20px}
+
+.foot{text-align:center;font-size:12px;color:var(--muted);margin-top:22px;line-height:1.7}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <span id="topAnchor" aria-hidden="true"></span>
+
+  <div class="hero">
+    <div class="eyebrow">Sebastian Rose Medical Aesthetics</div>
+    <h1>Profhilo&reg;<br>Information &amp; Consent</h1>
+    <p>Bio-remodelling with Profhilo, Profhilo Structura and Profhilo Body. Please read this in full. Your practitioner will discuss it with you and answer any questions before treatment. You may decline at any time, including after giving consent.</p>
+  </div>
+
+  <div class="progress-shell">
+    <div class="progress-track"><div class="progress-fill" id="bar"></div></div>
+    <div class="progress-label"><span id="stepName">Your details</span><span id="stepNum">Step 1 of 8</span></div>
+  </div>
+
+  <div class="err" id="err"></div>
+
+  <form id="form" autocomplete="on">
+
+  <!-- ===== STEP 1 ===== -->
+  <div class="step active" data-name="Your details">
+    <div class="panel">
+      <h2>Your details</h2>
+      <p class="sub">So this consent can be filed against your clinical record.</p>
+
+      <div class="group two-col">
+        <div><label class="q">First name<span class="req">*</span></label><input type="text" name="First name" required></div>
+        <div><label class="q">Surname<span class="req">*</span></label><input type="text" name="Surname" required></div>
+      </div>
+
+      <div class="group two-col">
+        <div><label class="q">Date of birth<span class="req">*</span></label><input type="date" name="Date of birth" id="dob" required></div>
+        <div><label class="q">Mobile number<span class="req">*</span></label><input type="tel" name="Mobile" required></div>
+      </div>
+      <div class="err" id="ageErr" style="margin-top:-8px"></div>
+
+      <div class="group">
+        <label class="q">Email address<span class="req">*</span></label>
+        <input type="email" name="Email" required>
+      </div>
+
+      <div class="group">
+        <label class="q">Have you completed our medical history and pre-screening questionnaire?<span class="req">*</span></label>
+        <div class="opts inline" data-radio="Medical history completed">
+          <label class="opt inline-sm"><input type="radio" name="Medical history completed" value="Yes" required><span class="mark radio"></span>Yes</label>
+          <label class="opt inline-sm" data-reveal="noHxDetail"><input type="radio" name="Medical history completed" value="No / not sure"><span class="mark radio"></span>No, or not sure</label>
+        </div>
+        <div class="reveal" id="noHxDetail">
+          <p class="body" style="margin:0 0 12px">A full medical history is needed before any injectable treatment. Please complete it now — it takes a few minutes, and you can come straight back here afterwards.</p>
+          <a href="https://www.sebastianrose.co.uk/medical-history-and-prescreening" target="_blank" rel="noopener" class="linkbtn">Complete the medical history form &rarr;</a>
+        </div>
+      </div>
+
+      <div class="group">
+        <label class="q">Has anything changed since you completed it?<span class="req">*</span></label>
+        <div class="hint">New medication, illness, pregnancy, surgery, vaccinations, dental work, or a new diagnosis.</div>
+        <div class="opts inline" data-radio="Anything changed">
+          <label class="opt inline-sm"><input type="radio" name="Anything changed" value="Nothing has changed" required><span class="mark radio"></span>Nothing has changed</label>
+          <label class="opt inline-sm" data-reveal="changeDetail"><input type="radio" name="Anything changed" value="Yes — something has changed"><span class="mark radio"></span>Yes, something has changed</label>
+        </div>
+        <div class="reveal" id="changeDetail">
+          <label class="q">Please tell us what</label>
+          <textarea name="What has changed"></textarea>
+        </div>
+      </div>
+    </div>
+    <div class="nav"><button type="button" class="primary" data-next>Continue</button></div>
+  </div>
+
+  <!-- ===== STEP 2 ===== -->
+  <div class="step" data-name="Safety screening">
+    <div class="panel">
+      <h2>Safety screening</h2>
+      <p class="sub">Profhilo has one of the shortest contraindication lists of any injectable, but please answer each one.</p>
+
+      <div class="note">
+        If you are unsure about any of these, say so rather than guessing. Your practitioner would far rather clarify something than treat on an assumption.
+      </div>
+
+      <div class="alert" id="pregBlock" style="display:none">
+        <strong>We cannot proceed with this treatment.</strong>
+        Profhilo is not given in pregnancy or while breastfeeding. This is a precaution rather than evidence of harm, but we do not make exceptions. Please contact the clinic on 0800 772 0137 and we will be glad to talk through what we can safely offer in the meantime, and to book you in once you are ready.
+      </div>
+
+      <div class="group">
+        <label class="q">Do any of the following apply to you?<span class="req">*</span></label>
+        <div class="opts" data-checkgroup="Screening">
+          <label class="opt"><input type="checkbox" name="Screening" id="pregStop" value="PREGNANT OR BREASTFEEDING"><span class="mark"></span>I am pregnant or breastfeeding</label>
+          <label class="opt"><input type="checkbox" name="Screening" value="Trying to conceive or having fertility treatment"><span class="mark"></span>I am trying to conceive, or having fertility treatment</label>
+          <label class="opt"><input type="checkbox" name="Screening" value="Known allergy or hypersensitivity to hyaluronic acid"><span class="mark"></span>I am allergic to hyaluronic acid, or have reacted to an HA product before</label>
+          <label class="opt"><input type="checkbox" name="Screening" value="Active infection, inflammation or cold sore in the treatment area"><span class="mark"></span>I have infection, inflammation or a cold sore where I would be injected</label>
+          <label class="opt"><input type="checkbox" name="Screening" value="History of cold sores (herpes simplex)"><span class="mark"></span>I get cold sores</label>
+          <label class="opt"><input type="checkbox" name="Screening" value="Active autoimmune or connective tissue disease"><span class="mark"></span>I have an active autoimmune or connective tissue condition</label>
+          <label class="opt"><input type="checkbox" name="Screening" value="Active cancer or currently under oncology care"><span class="mark"></span>I have active cancer, or am under an oncology team</label>
+          <label class="opt"><input type="checkbox" name="Screening" value="Isotretinoin (Roaccutane) current or within 6 months"><span class="mark"></span>I take, or have taken within 6 months, Roaccutane or isotretinoin</label>
+          <label class="opt"><input type="checkbox" name="Screening" value="Bleeding or clotting disorder"><span class="mark"></span>I have a bleeding or clotting disorder</label>
+          <label class="opt"><input type="checkbox" name="Screening" value="Taking anticoagulant or antiplatelet medication"><span class="mark"></span>I take blood-thinning medication or daily aspirin</label>
+          <label class="opt"><input type="checkbox" name="Screening" value="Tendency to keloid or hypertrophic scarring"><span class="mark"></span>I scar badly, or form raised or keloid scars</label>
+          <label class="opt"><input type="checkbox" name="Screening" value="History of nodules or delayed reaction to any injectable"><span class="mark"></span>I have had lumps, nodules or a delayed reaction to an injectable before</label>
+          <label class="opt"><input type="checkbox" name="Screening" value="Dental treatment or vaccination within the last or next 2 weeks"><span class="mark"></span>I have had, or will have, dental treatment or a vaccination within two weeks</label>
+          <label class="opt"><input type="checkbox" name="Screening" value="Currently unwell or recent infection"><span class="mark"></span>I am unwell, or have recently had an infection</label>
+          <label class="opt"><input type="checkbox" name="Screening" value="NONE OF THE ABOVE"><span class="mark"></span><strong>None of the above apply to me</strong></label>
+        </div>
+      </div>
+
+      <div class="group">
+        <label class="q">Details of anything ticked above</label>
+        <textarea name="Screening detail"></textarea>
+      </div>
+
+      <div class="group">
+        <label class="q">Have you had any product injected into the area before?<span class="req">*</span></label>
+        <div class="hint">Including filler, biostimulators, skin boosters, polynucleotides, threads or fat transfer.</div>
+        <div class="opts" data-radio="Previous product">
+          <label class="opt"><input type="radio" name="Previous product" value="No — nothing has ever been injected there" required><span class="mark radio"></span>No, nothing has ever been injected there</label>
+          <label class="opt"><input type="radio" name="Previous product" value="Yes — Profhilo or another skin booster"><span class="mark radio"></span>Yes, Profhilo or another skin booster</label>
+          <label class="opt"><input type="radio" name="Previous product" value="Yes — hyaluronic acid filler"><span class="mark radio"></span>Yes, hyaluronic acid filler</label>
+          <label class="opt"><input type="radio" name="Previous product" value="Yes — biostimulator, threads, permanent filler or fat transfer"><span class="mark radio"></span>Yes, something else</label>
+          <label class="opt"><input type="radio" name="Previous product" value="I don't know what I have had"><span class="mark radio"></span>I don't know what I've had</label>
+        </div>
+      </div>
+
+      <div class="group">
+        <label class="q">Please give details — what, where, when, and by whom</label>
+        <textarea name="Previous product detail"></textarea>
+      </div>
+    </div>
+    <div class="nav"><button type="button" class="ghost" data-back>Back</button><button type="button" class="primary" data-next>Continue</button></div>
+  </div>
+
+  <!-- ===== STEP 3 ===== -->
+  <div class="step" data-name="About the treatment">
+    <div class="panel">
+      <h2>About the treatment</h2>
+      <p class="sub">What Profhilo is, and why it is not a filler.</p>
+
+      <h3>What it is</h3>
+      <p class="body">Profhilo is pure hyaluronic acid — the same substance your skin already produces to hold water and maintain its structure. It is made by IBSA using a patented process called NAHYCO&reg;, in which high and low molecular weight hyaluronic acid are bonded together using heat rather than chemicals.</p>
+      <p class="body">This matters. Conventional dermal fillers are cross-linked using a chemical agent called BDDE to make them thick enough to hold a shape. <strong>Profhilo contains no BDDE and no chemical cross-linker at all.</strong> It stays fluid, spreads through the tissue rather than sitting where it is placed, and works by stimulating your skin rather than filling it.</p>
+
+      <h3>What it does</h3>
+      <p class="body">The low molecular weight component stimulates your fibroblasts to produce new collagen and elastin. The high molecular weight component draws and holds water, giving deep hydration. The result is an improvement in skin quality, firmness, hydration and texture — often described as looking well rather than looking treated.</p>
+
+      <div class="alert">
+        <strong>Profhilo is not a filler and will not do what a filler does.</strong>
+        It does not add structural volume, it does not lift or sharpen a jawline or cheekbone, and it will not fill a line or a hollow. If those are your goals, filler is the appropriate treatment and we should discuss that instead. Patients who arrive expecting a filler result from Profhilo are the ones most likely to feel it did not work.
+      </div>
+
+      <h3>The range</h3>
+      <ul class="plain">
+        <li><strong>Profhilo</strong> — the original. A 2ml syringe containing 64mg of hyaluronic acid, 32mg of each molecular weight. Injected into the deep dermis of the face, neck, décolletage or hands.</li>
+        <li><strong>Profhilo Structura</strong> — a more concentrated formulation designed to work in the superficial fat pads of the midface rather than the dermis, supporting the tissue that gives the face its natural contour. Often relevant where volume has been lost through ageing or weight loss, including on weight management medication.</li>
+        <li><strong>Profhilo Body</strong> — a 3ml syringe containing 96mg of hyaluronic acid, for skin laxity and crepiness on the body, particularly inner arms, abdomen and above the knees.</li>
+      </ul>
+
+      <h3>How it is injected</h3>
+      <p class="body">Profhilo uses the <strong>BAP technique</strong> — Bio Aesthetic Points. Rather than many small injections across the face, the product is placed as five precise deposits on each side, chosen because they are anatomically safe and allow the product to spread evenly. It means fewer needle entries and a shorter appointment. The same principle is adapted for the neck, décolletage and body.</p>
+
+      <div class="note">
+        <strong>You will have visible raised bumps immediately afterwards. This is expected.</strong>
+        Because the product is deposited as small pools rather than spread thinly, you will see and feel a lump at each injection point. These settle as the product disperses, usually within 24 hours and almost always within 48. This is not a complication and it is not a sign anything has gone wrong — but it does mean Profhilo is not a treatment to have on the day of an event.
+      </div>
+
+      <h3>Timings</h3>
+      <ul class="plain">
+        <li>The standard course is <strong>2 sessions, 4 weeks apart</strong>. One session alone will not give the result.</li>
+        <li>Hydration is often noticeable within the first two weeks.</li>
+        <li>The full effect develops over <strong>4 to 8 weeks after the second session</strong>, as the collagen and elastin response builds.</li>
+        <li>Results typically last around <strong>6 months</strong>, after which a maintenance session keeps it going. Some people notice benefit for longer.</li>
+      </ul>
+
+      <div class="group">
+        <div class="opts" data-checkgroup="Understanding treatment" data-requireall="1">
+          <label class="opt"><input type="checkbox" name="Understanding treatment" value="Understands Profhilo is not a filler and adds no structural volume"><span class="mark"></span><strong>I understand Profhilo is not a dermal filler, will not add structural volume, lift, or fill lines or hollows.</strong></label>
+          <label class="opt"><input type="checkbox" name="Understanding treatment" value="Understands visible bumps at injection points for 24-48 hours are expected"><span class="mark"></span><strong>I understand I will have visible raised bumps at the injection points for up to 48 hours, and that this is expected.</strong></label>
+          <label class="opt"><input type="checkbox" name="Understanding treatment" value="Understands course of 2 sessions 4 weeks apart is required"><span class="mark"></span>I understand this requires 2 sessions 4 weeks apart, each charged separately, and that one session alone will not give the result.</label>
+          <label class="opt"><input type="checkbox" name="Understanding treatment" value="Understands result develops over weeks and lasts around 6 months"><span class="mark"></span>I understand the result develops over several weeks, lasts around 6 months, and that maintenance is needed to sustain it.</label>
+          <label class="opt"><input type="checkbox" name="Understanding treatment" value="Understands results vary and cannot be guaranteed"><span class="mark"></span>I understand results vary between individuals and cannot be guaranteed.</label>
+        </div>
+      </div>
+    </div>
+    <div class="nav"><button type="button" class="ghost" data-back>Back</button><button type="button" class="primary" data-next>Continue</button></div>
+  </div>
+
+  <!-- ===== STEP 4 ===== -->
+  <div class="step" data-name="Your treatment plan">
+    <div class="panel">
+      <h2>Your treatment plan</h2>
+      <p class="sub">Product and areas.</p>
+
+      <div class="group">
+        <label class="q">Which product are you having?<span class="req">*</span></label>
+        <div class="opts" data-radio="Product">
+          <label class="opt"><input type="radio" name="Product" value="Profhilo (classic)" required><span class="mark radio"></span>Profhilo — skin quality and hydration</label>
+          <label class="opt"><input type="radio" name="Product" value="Profhilo Structura"><span class="mark radio"></span>Profhilo Structura — midface support</label>
+          <label class="opt"><input type="radio" name="Product" value="Profhilo Body"><span class="mark radio"></span>Profhilo Body — body skin laxity</label>
+          <label class="opt"><input type="radio" name="Product" value="More than one — as discussed"><span class="mark radio"></span>More than one, as discussed</label>
+          <label class="opt"><input type="radio" name="Product" value="To be decided at consultation"><span class="mark radio"></span>To be decided with my practitioner</label>
+        </div>
+      </div>
+
+      <div class="group">
+        <label class="q">Areas<span class="req">*</span></label>
+        <div class="opts grid2" data-checkgroup="Areas">
+          <label class="opt"><input type="checkbox" name="Areas" value="Face"><span class="mark"></span>Face</label>
+          <label class="opt"><input type="checkbox" name="Areas" value="Midface (Structura)"><span class="mark"></span>Midface</label>
+          <label class="opt"><input type="checkbox" name="Areas" value="Neck"><span class="mark"></span>Neck</label>
+          <label class="opt"><input type="checkbox" name="Areas" value="Décolletage"><span class="mark"></span>Décolletage</label>
+          <label class="opt"><input type="checkbox" name="Areas" value="Hands"><span class="mark"></span>Hands</label>
+          <label class="opt"><input type="checkbox" name="Areas" value="Inner arms"><span class="mark"></span>Inner arms</label>
+          <label class="opt"><input type="checkbox" name="Areas" value="Abdomen"><span class="mark"></span>Abdomen</label>
+          <label class="opt"><input type="checkbox" name="Areas" value="Above the knees"><span class="mark"></span>Above the knees</label>
+          <label class="opt"><input type="checkbox" name="Areas" value="Other — as discussed"><span class="mark"></span>Other, as discussed</label>
+        </div>
+      </div>
+
+      <div class="group">
+        <label class="q">If "other", or anything you'd like noting</label>
+        <textarea name="Areas notes"></textarea>
+      </div>
+
+      <div class="note">
+        <strong>Timing matters more than you might expect.</strong>
+        Between the bumps on the day and the fact that the full result takes weeks to develop, we would not recommend booking your first session within three weeks of a wedding, holiday or photographs. Please tell us below if you have something coming up.
+      </div>
+
+      <div class="group">
+        <label class="q">Do you have an event, holiday or photographs coming up?</label>
+        <textarea name="Upcoming events"></textarea>
+      </div>
+
+      <div class="group">
+        <label class="q">What are you hoping this treatment will achieve?<span class="req">*</span></label>
+        <div class="hint">In your own words.</div>
+        <textarea name="Patient goals" required></textarea>
+      </div>
+    </div>
+    <div class="nav"><button type="button" class="ghost" data-back>Back</button><button type="button" class="primary" data-next>Continue</button></div>
+  </div>
+
+  <!-- ===== STEP 5 ===== -->
+  <div class="step" data-name="Risks">
+    <div class="panel">
+      <h2>Risks and side effects</h2>
+      <p class="sub">Profhilo has a very good safety record, but no injectable is without risk.</p>
+
+      <h3>Common — expect these</h3>
+      <ul class="plain">
+        <li>Visible raised bumps at each injection point, settling within 24 to 48 hours</li>
+        <li>Redness at the injection points for a few hours</li>
+        <li>Tenderness for a day or two</li>
+        <li>Mild swelling</li>
+      </ul>
+
+      <h3>Less common</h3>
+      <ul class="plain">
+        <li>Bruising, which can last up to two weeks</li>
+        <li>Bumps that take longer than 48 hours to settle</li>
+        <li>Itching at the treated area</li>
+        <li>A result that is less noticeable than you hoped, particularly where skin laxity is significant</li>
+        <li>Cold sore outbreak, where you are prone to them</li>
+        <li>Infection at an injection site, occasionally needing antibiotics</li>
+      </ul>
+
+      <h3>Rare</h3>
+      <ul class="plain">
+        <li>Hypersensitivity or allergic reaction to hyaluronic acid</li>
+        <li>A persistent nodule requiring treatment</li>
+        <li>Delayed inflammatory reaction, sometimes triggered by illness, dental work or vaccination weeks or months later</li>
+        <li>Blockage of a blood vessel by the product, described below</li>
+        <li>Nerve irritation causing altered sensation, usually temporary</li>
+      </ul>
+
+      <div class="note">
+        <strong>One genuine advantage worth knowing.</strong>
+        Because Profhilo is pure hyaluronic acid with no chemical cross-linker, it can be dissolved with an enzyme called hyaluronidase if that ever became necessary. Biostimulators such as PDLLA or PLLA cannot be. This is one of the reasons Profhilo's safety profile compares favourably.
+      </div>
+
+      <div class="alert">
+        <strong>Blockage of a blood vessel (vascular occlusion)</strong>
+        Any injectable placed under the skin can enter or press on a blood vessel and interrupt the blood supply to an area. This is rare with Profhilo — the BAP points are chosen specifically because they avoid major vessels — but it is a recognised risk of any injection and it needs treating within hours rather than days.
+        <br><br>
+        <strong>Contact the clinic immediately on 0800 772 0137 if, during or after treatment, you notice:</strong> pain that is severe, worsening, or out of proportion to what you were told to expect; skin that goes white, blotchy, mottled or dusky; a lace-like or net-like purple pattern on the skin; skin that feels cold; or any change to your vision. Out of hours, or if you have visual symptoms, go to A&amp;E and tell them you have had a hyaluronic acid injection — then call us.
+        <br><br>
+        Do not wait to see if it settles overnight.
+      </div>
+
+      <div class="group">
+        <div class="opts" data-checkgroup="Risk acknowledgement" data-requireall="1">
+          <label class="opt"><input type="checkbox" name="Risk acknowledgement" value="Has read and understood all listed risks"><span class="mark"></span>I have read all of the risks above, including the rare ones, and I understand them.</label>
+          <label class="opt"><input type="checkbox" name="Risk acknowledgement" value="Has had opportunity to ask questions"><span class="mark"></span>I have had the opportunity to ask questions and to raise any risk that matters particularly to me.</label>
+          <label class="opt"><input type="checkbox" name="Risk acknowledgement" value="Understands to contact clinic urgently for signs of vascular occlusion"><span class="mark"></span>I understand the warning signs of a blocked blood vessel and that I must contact the clinic immediately rather than waiting.</label>
+        </div>
+      </div>
+    </div>
+    <div class="nav"><button type="button" class="ghost" data-back>Back</button><button type="button" class="primary" data-next>Continue</button></div>
+  </div>
+
+  <!-- ===== STEP 6 ===== -->
+  <div class="step" data-name="Alternatives">
+    <div class="panel">
+      <h2>Alternatives</h2>
+      <p class="sub">You are entitled to know what else could achieve your goal, including doing nothing.</p>
+
+      <ul class="plain">
+        <li><strong>No treatment.</strong> Always a reasonable choice. There is no harm in declining.</li>
+        <li><strong>Dermal filler</strong>, where the real concern is lost volume or structure rather than skin quality. This is a different treatment with a different risk profile.</li>
+        <li><strong>Collagen biostimulators</strong> such as Juvelook, Lenisna or Sculptra, which build collagen over months and last longer, but cannot be dissolved and carry a higher nodule risk.</li>
+        <li><strong>Polynucleotides</strong>, which repair and improve skin quality by a different mechanism and are often used alongside or instead of Profhilo.</li>
+        <li><strong>Other skin boosters and injectable hydration</strong>, delivered as multiple small injections rather than the BAP technique.</li>
+        <li><strong>Microneedling, peels and resurfacing</strong>, for texture, tone and superficial lines.</li>
+        <li><strong>Medical skincare and daily sun protection</strong>, which underpin everything else.</li>
+        <li><strong>Surgery</strong>, where the concern is significant skin laxity that no injectable will address.</li>
+      </ul>
+
+      <div class="group">
+        <div class="opts" data-checkgroup="Alternatives acknowledgement" data-requireall="1">
+          <label class="opt"><input type="checkbox" name="Alternatives acknowledgement" value="Alternatives including no treatment have been explained"><span class="mark"></span>The alternatives, including having no treatment at all, have been explained to me and I have chosen to proceed.</label>
+        </div>
+      </div>
+    </div>
+    <div class="nav"><button type="button" class="ghost" data-back>Back</button><button type="button" class="primary" data-next>Continue</button></div>
+  </div>
+
+  <!-- ===== STEP 7 ===== -->
+  <div class="step" data-name="Aftercare">
+    <div class="panel">
+      <h2>Aftercare</h2>
+      <p class="sub">Straightforward, but the first 24 hours matter.</p>
+
+      <h3>For the first 24 hours</h3>
+      <ul class="plain">
+        <li><strong>Do not massage, rub or press the bumps.</strong> They need to disperse on their own. Pressing them can move the product where it should not go.</li>
+        <li>No makeup over the injection points.</li>
+        <li>No strenuous exercise, saunas, steam rooms or very hot baths.</li>
+        <li>No alcohol, which increases bruising and swelling.</li>
+        <li>Sleep on your back if you can.</li>
+      </ul>
+
+      <h3>For two weeks</h3>
+      <ul class="plain">
+        <li>No facials, massage, microneedling, peels, laser or energy-based treatments over the area.</li>
+        <li>Avoid dental treatment where possible, including the hygienist.</li>
+        <li>Avoid vaccinations where the timing is within your control.</li>
+        <li>Avoid sunbeds and prolonged heat.</li>
+      </ul>
+
+      <h3>Ongoing</h3>
+      <ul class="plain">
+        <li>Drink plenty of water — hyaluronic acid works by holding it.</li>
+        <li>Use sun protection daily.</li>
+        <li>Attend your second session at four weeks. The course is what produces the result.</li>
+      </ul>
+
+      <h3>Contact us if</h3>
+      <ul class="plain">
+        <li>The bumps have not settled after 48 hours</li>
+        <li>You have pain that is severe or getting worse rather than better</li>
+        <li>The skin looks white, mottled, dusky or feels cold</li>
+        <li>You notice any change in your vision</li>
+        <li>You develop signs of infection — spreading redness, heat, swelling or discharge</li>
+        <li>You develop a lump at any point, including weeks later</li>
+        <li>Anything at all concerns you</li>
+      </ul>
+      <p class="body">Call <strong>0800 772 0137</strong>. For visual symptoms or rapidly worsening pain, go to A&amp;E and tell them you have had a hyaluronic acid injection, then call us.</p>
+
+      <div class="group">
+        <div class="opts" data-checkgroup="Aftercare acknowledgement" data-requireall="1">
+          <label class="opt"><input type="checkbox" name="Aftercare acknowledgement" value="Has read and agrees to follow aftercare"><span class="mark"></span>I have read the aftercare and I agree to follow it, including not massaging the injection points.</label>
+          <label class="opt"><input type="checkbox" name="Aftercare acknowledgement" value="Will contact the clinic promptly with any concerns"><span class="mark"></span>I will contact the clinic promptly if I have any concerns following treatment.</label>
+        </div>
+      </div>
+    </div>
+    <div class="nav"><button type="button" class="ghost" data-back>Back</button><button type="button" class="primary" data-next>Continue</button></div>
+  </div>
+
+  <!-- ===== STEP 8 ===== -->
+  <div class="step" data-name="Consent">
+    <div class="panel">
+      <h2>Consent</h2>
+      <p class="sub">Please read each statement and tick to confirm.</p>
+
+      <div class="group">
+        <div class="opts" data-checkgroup="Consent" data-requireall="1">
+          <label class="opt"><input type="checkbox" name="Consent" value="Aged 18 or over"><span class="mark"></span>I am 18 years of age or over.</label>
+          <label class="opt"><input type="checkbox" name="Consent" value="Information given is true and complete"><span class="mark"></span>The information I have given today is true and complete to the best of my knowledge.</label>
+          <label class="opt"><input type="checkbox" name="Consent" value="Treatment, risks and alternatives discussed and understood"><span class="mark"></span>The proposed treatment, its risks and the alternatives have been explained to me, my questions have been answered, and I understand what I am agreeing to.</label>
+          <label class="opt"><input type="checkbox" name="Consent" value="Had sufficient time to consider"><span class="mark"></span>I have had enough time to consider this and I do not feel rushed or pressured.</label>
+          <label class="opt"><input type="checkbox" name="Consent" value="Understands consent may be withdrawn at any time"><span class="mark"></span>I understand I may withdraw my consent and decline treatment at any point, including after signing this.</label>
+          <label class="opt"><input type="checkbox" name="Consent" value="Understands no refund for treatment delivered as intended"><span class="mark"></span>I understand that fees cover the treatment provided and are not refundable where treatment has been carried out as agreed.</label>
+          <label class="opt"><input type="checkbox" name="Consent" value="Consents to clinical photography for the medical record"><span class="mark"></span>I consent to clinical photographs being taken and kept in my medical record as part of assessing my treatment.</label>
+          <label class="opt"><input type="checkbox" name="Consent" value="CONSENTS TO TREATMENT"><span class="mark"></span><strong>I consent to treatment with Profhilo as discussed.</strong></label>
+        </div>
+      </div>
+
+      <div class="note">
+        <strong>Before and after photographs — please choose one.</strong>
+        Your answer makes no difference at all to your treatment, and you can change your mind at any time by telling us.
+      </div>
+
+      <div class="group">
+        <div class="opts" data-radio="Marketing image consent">
+          <label class="opt"><input type="radio" name="Marketing image consent" value="YES — consents to before/after images being used on website and social media" required><span class="mark radio"></span><strong>Yes</strong> — I'm happy for before and after photographs of my treatment to be shared on the clinic's website and social media. Most of our patients found us this way, so it genuinely helps.</label>
+          <label class="opt"><input type="radio" name="Marketing image consent" value="YES — but treated area only, face not identifiable"><span class="mark radio"></span><strong>Yes, but treated area only</strong> — please don't show my full face.</label>
+          <label class="opt"><input type="radio" name="Marketing image consent" value="NO — DECLINED. Do not use images for marketing."><span class="mark radio"></span><strong>No</strong> — please keep my photographs for my clinical record only.</label>
+        </div>
+      </div>
+
+      <div class="group two-col">
+        <div><label class="q">Type your full name<span class="req">*</span></label><input type="text" name="Signed name" required></div>
+        <div><label class="q">Date<span class="req">*</span></label><input type="date" name="Date signed" id="dateSigned" required></div>
+      </div>
+      <div class="hint" style="margin-top:-8px">Typing your name here acts as your electronic signature confirming the statements above.</div>
+    </div>
+
+    <div class="nav">
+      <button type="button" class="ghost" data-back>Back</button>
+      <button type="button" class="primary" id="submitBtn">Submit consent</button>
+    </div>
+
+    <div class="panel" style="padding:20px 24px">
+      <div class="privacy">
+        <strong>How we look after this information.</strong>
+        This form is transmitted over an encrypted connection directly to the clinic's secure email. It is not stored on this web page and no copy is retained by the website. Your answers are special category health data under UK GDPR, processed for the purposes of providing healthcare under Article 9(2)(h), and held in your clinical record. We keep clinical records for the period required by professional guidance and do not sell or share them. Consent to use images for marketing is held separately under Article 6(1)(a) and may be withdrawn at any time. You may request a copy of what we hold, ask for corrections, or raise a concern with the Information Commissioner's Office. Data controller: R F Roberts Limited, trading as Sebastian Rose Medical Aesthetics. Contact info@sebastianrose.co.uk or 0800 772 0137.
+      </div>
+    </div>
+  </div>
+
+  </form>
+
+  <div id="done">
+    <div class="tick">&#10003;</div>
+    <h2>Thank you</h2>
+    <p>Your consent has been recorded and sent securely to the clinic.</p>
+    <p>If anything changes, or you change your mind, you can tell your practitioner at any point before treatment begins.</p>
+    <p style="margin-top:18px;font-size:13.5px">Any questions before then — call us on 0800 772 0137.</p>
+  </div>
+
+  <div class="foot">
+    Sebastian Rose Medical Aesthetics · 39 Charles Street, Cardiff, CF10 2GB<br>
+    0800 772 0137 · info@sebastianrose.co.uk
+  </div>
+
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  var EMAILJS_PUBLIC_KEY  = "04pcL3xdpVieS--Q9";
+  var EMAILJS_SERVICE_ID  = "service_bdikve4";
+  var EMAILJS_TEMPLATE_ID = "template_2we5rm1";
+
+  if (window.emailjs) { emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY }); }
+
+  var form     = document.getElementById('form');
+  var steps    = Array.prototype.slice.call(document.querySelectorAll('.step'));
+  var bar      = document.getElementById('bar');
+  var stepName = document.getElementById('stepName');
+  var stepNum  = document.getElementById('stepNum');
+  var errBox   = document.getElementById('err');
+  var current  = 0;
+
+  // tell the hosting page how tall we are, so it can resize the frame
+  var lastH = 0;
+  function reportHeight(){
+    try{
+      var h = Math.max(
+        document.body.scrollHeight,
+        document.documentElement.scrollHeight,
+        document.body.offsetHeight
+      );
+      if(Math.abs(h - lastH) > 8){
+        lastH = h;
+        window.parent.postMessage({ srType:'height', height: h }, '*');
+        window.parent.postMessage(String(h), '*');
+      }
+    }catch(e){}
+  }
+  window.addEventListener('load', reportHeight);
+  window.addEventListener('resize', reportHeight);
+  setInterval(reportHeight, 400);
+
+  function toTop(){
+    try { window.scrollTo(0,0); } catch(e){}
+    try { document.documentElement.scrollTop = 0; document.body.scrollTop = 0; } catch(e){}
+    try {
+      var a = document.getElementById('topAnchor');
+      if(a && a.scrollIntoView) a.scrollIntoView({ block:'start', inline:'nearest' });
+    } catch(e){}
+    try { window.parent.postMessage({ type:'scrollTo', top:0 }, '*'); } catch(e){}
+  }
+
+  function syncOpt(input){
+    var box = input.closest('.opt');
+    if(!box) return;
+    if(input.type === 'radio'){
+      var same = document.querySelectorAll('input[name="'+CSS.escape(input.name)+'"]');
+      Array.prototype.forEach.call(same, function(r){
+        var b = r.closest('.opt'); if(b) b.classList.toggle('checked', r.checked);
+        var rev = b && b.getAttribute('data-reveal');
+        if(rev){ var el = document.getElementById(rev); if(el) el.classList.toggle('show', r.checked); }
+      });
+    } else {
+      box.classList.toggle('checked', input.checked);
+      var rv = box.getAttribute('data-reveal');
+      if(rv){ var e2 = document.getElementById(rv); if(e2) e2.classList.toggle('show', input.checked); }
+    }
+  }
+
+  Array.prototype.forEach.call(document.querySelectorAll('.opt input'), function(input){
+    input.addEventListener('change', function(){
+      if(input.type === 'checkbox' && input.checked && /^NONE/.test(input.value)){
+        Array.prototype.forEach.call(document.querySelectorAll('input[name="'+CSS.escape(input.name)+'"]'), function(o){
+          if(o !== input && o.checked){ o.checked = false; syncOpt(o); }
+        });
+      }
+      if(input.type === 'checkbox' && input.checked && !/^NONE/.test(input.value)){
+        Array.prototype.forEach.call(document.querySelectorAll('input[name="'+CSS.escape(input.name)+'"]'), function(o){
+          if(/^NONE/.test(o.value) && o.checked){ o.checked = false; syncOpt(o); }
+        });
+      }
+      syncOpt(input);
+    });
+  });
+
+  // hard stop: pregnancy / breastfeeding
+  var pregStop  = document.getElementById('pregStop');
+  var pregBlock = document.getElementById('pregBlock');
+  function pregOK(){
+    var blocked = pregStop && pregStop.checked;
+    if(pregBlock) pregBlock.style.display = blocked ? 'block' : 'none';
+    return !blocked;
+  }
+  if(pregStop) pregStop.addEventListener('change', function(){ pregOK(); });
+
+  var dob = document.getElementById('dob');
+  var ageErr = document.getElementById('ageErr');
+  function ageOK(){
+    if(!dob.value) return true;
+    var d = new Date(dob.value), n = new Date();
+    var a = n.getFullYear() - d.getFullYear();
+    var m = n.getMonth() - d.getMonth();
+    if(m < 0 || (m === 0 && n.getDate() < d.getDate())) a--;
+    if(a < 18){
+      ageErr.textContent = "We are unable to offer this treatment to anyone under 18. Please call the clinic on 0800 772 0137 if you think this is an error.";
+      ageErr.classList.add('show');
+      return false;
+    }
+    ageErr.classList.remove('show');
+    return true;
+  }
+  dob.addEventListener('change', ageOK);
+
+  function show(i){
+    steps[current].classList.remove('active');
+    current = i;
+    steps[current].classList.add('active');
+    bar.style.width = ((current + 1) / steps.length * 100) + '%';
+    stepName.textContent = steps[current].getAttribute('data-name').replace(/&amp;/g,'&');
+    stepNum.textContent = 'Step ' + (current + 1) + ' of ' + steps.length;
+    errBox.classList.remove('show');
+    toTop();
+    setTimeout(reportHeight, 60);
+  }
+
+  function validate(step){
+    var bad = [];
+    Array.prototype.forEach.call(step.querySelectorAll('[required]'), function(f){
+      if(f.type === 'radio'){
+        if(!step.querySelector('input[name="'+CSS.escape(f.name)+'"]:checked')) bad.push(f.name);
+      } else if(!f.value.trim()){
+        bad.push(f.name);
+      }
+    });
+    Array.prototype.forEach.call(step.querySelectorAll('[data-checkgroup]'), function(grp){
+      var nm = grp.getAttribute('data-checkgroup');
+      if(grp.getAttribute('data-requireall')){
+        var boxes = grp.querySelectorAll('input[type=checkbox]');
+        var done  = grp.querySelectorAll('input[type=checkbox]:checked');
+        if(done.length < boxes.length) bad.push('every statement under "' + nm + '"');
+        return;
+      }
+      if(grp.getAttribute('data-optional')) return;
+      var cond = grp.getAttribute('data-conditional');
+      if(cond && !document.querySelector('input[name="'+CSS.escape(cond)+'"]:checked')) return;
+      if(!grp.querySelector('input:checked')) bad.push(nm);
+    });
+    // at least one area must be selected on the areas step
+    if(step.querySelector('[data-checkgroup="Licensed areas"]')){
+      var anyArea = document.querySelector('input[name="Licensed areas"]:checked') ||
+                    document.querySelector('input[name="Off-label areas"]:checked');
+      if(!anyArea) bad.push('At least one treatment area');
+    }
+    return bad;
+  }
+
+  Array.prototype.forEach.call(document.querySelectorAll('[data-next]'), function(b){
+    b.addEventListener('click', function(){
+      if(current === 0 && !ageOK()){ toTop(); return; }
+      if(!pregOK()){ toTop(); return; }
+      var bad = validate(steps[current]);
+      if(bad.length){
+        errBox.innerHTML = 'Please complete the following before continuing: <strong>' +
+          bad.filter(function(v,i,a){return a.indexOf(v)===i;}).join(', ') + '</strong>';
+        errBox.classList.add('show');
+        toTop();
+        return;
+      }
+      show(current + 1);
+    });
+  });
+
+  Array.prototype.forEach.call(document.querySelectorAll('[data-back]'), function(b){
+    b.addEventListener('click', function(){ show(current - 1); });
+  });
+
+  (function(){
+    var t = new Date(), p = function(n){ return (n<10?'0':'')+n; };
+    document.getElementById('dateSigned').value = t.getFullYear()+'-'+p(t.getMonth()+1)+'-'+p(t.getDate());
+  })();
+
+  function collect(){
+    var out = [], seen = {}, order = [];
+    Array.prototype.forEach.call(form.elements, function(el){
+      if(!el.name) return;
+      if(el.type === 'checkbox' || el.type === 'radio'){
+        if(!el.checked) return;
+        if(!seen[el.name]){ seen[el.name] = []; order.push(el.name); }
+        seen[el.name].push(el.value);
+      } else {
+        if(!el.value.trim()) return;
+        if(!seen[el.name]){ seen[el.name] = []; order.push(el.name); }
+        seen[el.name].push(el.value.trim());
+      }
+    });
+    order.forEach(function(k){ out.push(k.toUpperCase() + ':\n  ' + seen[k].join('\n  ')); });
+    // explicitly record a declined marketing consent
+    if(!document.querySelector('input[name="Marketing image consent"]:checked')){
+      out.push('MARKETING IMAGE CONSENT:\n  NOT ANSWERED — treat as declined');
+    }
+    return out.join('\n\n');
+  }
+
+  var submitBtn = document.getElementById('submitBtn');
+  submitBtn.addEventListener('click', function(){
+    if(!ageOK() || !pregOK()){ toTop(); return; }
+    var bad = validate(steps[current]);
+    if(bad.length){
+      errBox.innerHTML = 'Please complete the following: <strong>' +
+        bad.filter(function(v,i,a){return a.indexOf(v)===i;}).join(', ') + '</strong>';
+      errBox.classList.add('show');
+      toTop();
+      return;
+    }
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Sending…';
+
+    var name = (form.querySelector('[name="First name"]').value + ' ' +
+                form.querySelector('[name="Surname"]').value).trim();
+
+    var params = {
+      form_type: 'PROFHILO CONSENT',
+      patient_name: name,
+      from_name: name,
+      reply_to: form.querySelector('[name="Email"]').value,
+      full_data: 'PROFHILO — INFORMATION & CONSENT\nSubmitted: ' +
+                 new Date().toLocaleString('en-GB') + '\n\n' + collect(),
+      id_document_url: 'N/A — consent form'
+    };
+
+    emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, params)
+      .then(function(){
+        document.querySelector('.progress-shell').style.display = 'none';
+        form.style.display = 'none';
+        document.getElementById('done').style.display = 'block';
+        toTop();
+      })
+      .catch(function(e){
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Submit consent';
+        errBox.innerHTML = 'Sorry — this did not send. Please check your connection and try again, or speak to your practitioner. <br><small>' + (e && e.text ? e.text : '') + '</small>';
+        errBox.classList.add('show');
+        toTop();
+      });
+  });
+})();
+</script>
+</body>
+</html>
