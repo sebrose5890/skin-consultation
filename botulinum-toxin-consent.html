@@ -200,11 +200,17 @@ a.linkbtn:hover{background:var(--accent-dark)}
         If you are unsure about any of these, say so rather than guessing. Your practitioner would far rather clarify something than treat on an assumption.
       </div>
 
+      <div class="alert" id="pregBlock" style="display:none">
+        <strong>We cannot proceed with this treatment.</strong>
+        Botulinum toxin is not given in pregnancy or while breastfeeding. This is a precaution rather than evidence of harm, but we do not make exceptions. Please contact the clinic on 0800 772 0137 and we will be glad to talk through what we can safely offer in the meantime, and to book you in once you are ready.
+      </div>
+
       <div class="group">
         <label class="q">Do any of the following apply to you?<span class="req">*</span></label>
         <div class="opts" data-checkgroup="Screening">
           <label class="opt"><input type="checkbox" name="Screening" value="Known allergy to botulinum toxin, human albumin, lactose or sodium chloride"><span class="mark"></span>Known allergy to botulinum toxin, human albumin, lactose or sodium chloride</label>
-          <label class="opt"><input type="checkbox" name="Screening" value="Pregnant, breastfeeding or trying to conceive"><span class="mark"></span>I am pregnant, breastfeeding, or trying to conceive</label>
+          <label class="opt"><input type="checkbox" name="Screening" id="pregStop" value="PREGNANT OR BREASTFEEDING"><span class="mark"></span>I am pregnant or breastfeeding</label>
+          <label class="opt"><input type="checkbox" name="Screening" value="Trying to conceive or having fertility treatment"><span class="mark"></span>I am trying to conceive, or having fertility treatment</label>
           <label class="opt"><input type="checkbox" name="Screening" value="Neuromuscular disorder (myasthenia gravis, Lambert-Eaton, motor neurone disease, muscular dystrophy)"><span class="mark"></span>I have a neuromuscular disorder — myasthenia gravis, Lambert-Eaton syndrome, motor neurone disease or muscular dystrophy</label>
           <label class="opt"><input type="checkbox" name="Screening" value="Infection, inflammation or broken skin at the intended injection site"><span class="mark"></span>I have infection, inflammation, a cold sore or broken skin where I would be injected</label>
           <label class="opt"><input type="checkbox" name="Screening" value="Taking aminoglycoside antibiotics or muscle relaxants"><span class="mark"></span>I am taking aminoglycoside antibiotics (such as gentamicin) or muscle relaxants</label>
@@ -248,7 +254,7 @@ a.linkbtn:hover{background:var(--accent-dark)}
       <h3>Timings</h3>
       <ul class="plain">
         <li>You will usually notice a change from around <strong>3 to 5 days</strong>.</li>
-        <li>The full effect is reached at <strong>2 to 3 weeks</strong>. The result should not be judged before then.</li>
+        <li>The full effect is reached at <strong>21 days</strong>. The result should not be judged before then.</li>
         <li>It typically lasts <strong>3 to 4 months</strong>, though this varies considerably between individuals and by area treated.</li>
         <li>The effect wears off gradually. Muscles return to how they were beforehand — they do not become weaker over time or worse than before treatment.</li>
       </ul>
@@ -262,7 +268,7 @@ a.linkbtn:hover{background:var(--accent-dark)}
       </ul>
 
       <div class="note">
-        <strong>A review at two weeks is part of the treatment, not a sign something went wrong.</strong>
+        <strong>A review at 21 days is part of the treatment, not a sign something went wrong.</strong>
         Everyone metabolises this differently and small adjustments are normal. Please contact us if you would like to be seen.
       </div>
 
@@ -449,7 +455,7 @@ a.linkbtn:hover{background:var(--accent-dark)}
       <ul class="plain">
         <li>You develop drooping of an eyelid or brow</li>
         <li>You develop signs of infection — spreading redness, heat, pain or discharge</li>
-        <li>You are unhappy with the result at two weeks</li>
+        <li>You are unhappy with the result at 21 days</li>
         <li>Anything concerns you at all</li>
       </ul>
       <p class="body">Call <strong>0800 772 0137</strong>. For difficulty swallowing, speaking or breathing, seek urgent medical attention first.</p>
@@ -597,6 +603,16 @@ a.linkbtn:hover{background:var(--accent-dark)}
     });
   });
 
+  // hard stop: pregnancy / breastfeeding
+  var pregStop  = document.getElementById('pregStop');
+  var pregBlock = document.getElementById('pregBlock');
+  function pregOK(){
+    var blocked = pregStop && pregStop.checked;
+    if(pregBlock) pregBlock.style.display = blocked ? 'block' : 'none';
+    return !blocked;
+  }
+  if(pregStop) pregStop.addEventListener('change', function(){ pregOK(); });
+
   var dob = document.getElementById('dob');
   var ageErr = document.getElementById('ageErr');
   function ageOK(){
@@ -654,6 +670,7 @@ a.linkbtn:hover{background:var(--accent-dark)}
   Array.prototype.forEach.call(document.querySelectorAll('[data-next]'), function(b){
     b.addEventListener('click', function(){
       if(current === 0 && !ageOK()){ toTop(); return; }
+      if(!pregOK()){ toTop(); return; }
       var bad = validate(steps[current]);
       if(bad.length){
         errBox.innerHTML = 'Please complete the following before continuing: <strong>' +
@@ -699,6 +716,7 @@ a.linkbtn:hover{background:var(--accent-dark)}
 
   var submitBtn = document.getElementById('submitBtn');
   submitBtn.addEventListener('click', function(){
+    if(!ageOK() || !pregOK()){ toTop(); return; }
     var bad = validate(steps[current]);
     if(bad.length){
       errBox.innerHTML = 'Please complete the following: <strong>' +
