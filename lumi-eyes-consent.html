@@ -1,0 +1,839 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Lumi Eyes Consent | Sebastian Rose Medical Aesthetics</title>
+
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
+<style>
+/* ============================================================
+   BRAND COLOURS — change these to match your site
+   ============================================================ */
+:root{
+  --ink:#221f1c;
+  --muted:#6f6960;
+  --accent:#b09a77;
+  --accent-dark:#96805f;
+  --bg:#faf8f5;
+  --card:#ffffff;
+  --line:#e6ded2;
+  --warn-bg:#fdf7ee;
+  --warn-line:#e2caa5;
+  --alert-bg:#fbf1ef;
+  --alert-line:#ddb3ab;
+  --ok-bg:#f0f4ee;
+  --ok-line:#c0d1b8;
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{overflow-x:hidden;height:auto;min-height:0}
+/* hide the widget's own scrollbar so it never doubles up with the page's.
+   scrolling still works by wheel/trackpad, so nothing is ever unreachable. */
+html::-webkit-scrollbar,body::-webkit-scrollbar{width:0;height:0;display:none}
+html,body{scrollbar-width:none;-ms-overflow-style:none}
+body{
+  font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;
+  background:var(--bg);color:var(--ink);line-height:1.65;font-size:16px;
+  -webkit-font-smoothing:antialiased;padding:0 0 50px;
+}
+.wrap{max-width:800px;margin:0 auto;padding:28px 18px 0}
+
+.hero{text-align:center;padding:14px 0 26px}
+.hero .eyebrow{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);font-weight:700;margin-bottom:12px}
+.hero h1{font-family:Georgia,'Times New Roman',serif;font-weight:400;font-size:30px;line-height:1.3;letter-spacing:.02em;text-transform:uppercase;margin-bottom:12px}
+.hero p{color:var(--muted);font-size:15px;max-width:580px;margin:0 auto}
+
+.progress-shell{margin:0 0 26px}
+.progress-track{height:3px;background:var(--line);border-radius:2px;overflow:hidden}
+.progress-fill{height:100%;width:12.5%;background:var(--accent);transition:width .35s ease}
+.progress-label{display:flex;justify-content:space-between;margin-top:9px;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+
+.step{display:none}
+.step.active{display:block;animation:fade .3s ease}
+@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+.panel{background:var(--card);border:1px solid var(--line);border-radius:3px;padding:32px 28px;margin-bottom:18px}
+.panel h2{font-family:Georgia,'Times New Roman',serif;font-weight:400;font-size:19px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:8px}
+.panel .sub{color:var(--muted);font-size:14px;margin-bottom:24px}
+.panel h3{font-family:Georgia,serif;font-weight:400;font-size:16px;letter-spacing:.05em;text-transform:uppercase;margin:26px 0 10px;padding-bottom:7px;border-bottom:1px solid var(--line)}
+.panel p.body{font-size:14.8px;margin-bottom:14px;color:#3a352f}
+.panel ul.plain{margin:0 0 16px 18px;font-size:14.8px;color:#3a352f}
+.panel ul.plain li{margin-bottom:7px}
+
+.group{margin-bottom:22px}
+.group:last-child{margin-bottom:0}
+label.q{display:block;font-weight:600;font-size:14.5px;margin-bottom:8px}
+label.q .req{color:var(--accent);margin-left:3px}
+.hint{font-size:13px;color:var(--muted);margin:-3px 0 9px;line-height:1.5}
+
+input[type=text],input[type=email],input[type=tel],input[type=date],select,textarea{
+  width:100%;padding:12px 13px;font-size:15px;font-family:inherit;color:var(--ink);
+  background:#fff;border:1px solid var(--line);border-radius:2px;outline:none;transition:border-color .15s;
+}
+input:focus,select:focus,textarea:focus{border-color:var(--accent)}
+textarea{min-height:88px;resize:vertical}
+select{appearance:none;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8'><path d='M1 1l5 5 5-5' stroke='%236f6960' stroke-width='1.5' fill='none'/></svg>");background-repeat:no-repeat;background-position:right 14px center}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:560px){.two-col{grid-template-columns:1fr}}
+
+.opts{display:flex;flex-direction:column;gap:8px}
+.opts.inline{flex-direction:row;flex-wrap:wrap;gap:10px}
+.opts.grid2{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+@media(max-width:560px){.opts.grid2{grid-template-columns:1fr}}
+
+.opt{position:relative;display:flex;align-items:flex-start;gap:11px;padding:11px 14px;border:1px solid var(--line);border-radius:2px;background:#fff;cursor:pointer;font-size:14.5px;transition:border-color .15s,background .15s;user-select:none}
+.opt:hover{border-color:var(--accent)}
+.opt input{position:absolute;opacity:0;width:0;height:0;pointer-events:none}
+.mark{flex:0 0 18px;width:18px;height:18px;margin-top:2px;border:1.5px solid #c4bbae;background:#fff;position:relative;transition:all .15s}
+.mark.radio{border-radius:50%}
+.opt.checked{border-color:var(--accent);background:#fcfaf7}
+.opt.checked .mark{border-color:var(--accent);background:var(--accent)}
+.opt.checked .mark::after{content:"";position:absolute;left:5px;top:1px;width:5px;height:10px;border:solid #fff;border-width:0 2px 2px 0;transform:rotate(45deg)}
+.opt.checked .mark.radio::after{content:"";position:absolute;left:4px;top:4px;width:6px;height:6px;border:0;border-radius:50%;background:#fff;transform:none}
+.opt.inline-sm{padding:9px 16px}
+
+.reveal{display:none;margin-top:11px;padding-left:14px;border-left:2px solid var(--accent)}
+.reveal.show{display:block;animation:fade .25s ease}
+
+.note{background:var(--warn-bg);border:1px solid var(--warn-line);border-radius:2px;padding:15px 17px;font-size:13.8px;line-height:1.65;margin-bottom:22px;color:#5c4a33}
+.note strong{display:block;margin-bottom:4px}
+.alert{background:var(--alert-bg);border:1px solid var(--alert-line);border-radius:2px;padding:15px 17px;font-size:13.8px;line-height:1.65;margin-bottom:22px;color:#6b3a33}
+.alert strong{display:block;margin-bottom:4px}
+.privacy{background:#f5f2ed;border:1px solid var(--line);border-radius:2px;padding:16px 18px;font-size:12.8px;color:var(--muted);line-height:1.65;margin-top:18px}
+.privacy strong{color:var(--ink)}
+
+.nav{display:flex;gap:12px;margin-top:6px}
+button.primary{flex:1;padding:15px;background:var(--accent);color:#fff;border:0;border-radius:2px;font-size:12.5px;letter-spacing:.18em;text-transform:uppercase;font-weight:700;cursor:pointer;font-family:inherit;transition:background .15s}
+button.primary:hover{background:var(--accent-dark)}
+button.primary:disabled{opacity:.55;cursor:not-allowed}
+button.ghost{padding:15px 26px;background:#fff;color:var(--muted);border:1px solid var(--line);border-radius:2px;font-size:12.5px;letter-spacing:.18em;text-transform:uppercase;font-weight:700;cursor:pointer;font-family:inherit}
+button.ghost:hover{border-color:var(--accent);color:var(--accent)}
+a.linkbtn{display:inline-block;padding:13px 22px;background:var(--accent);color:#fff;text-decoration:none;border-radius:2px;font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;font-weight:700;transition:background .15s}
+a.linkbtn:hover{background:var(--accent-dark)}
+
+.err{display:none;background:#fbeceb;border:1px solid #e0b2ac;color:#8a3a31;padding:12px 15px;border-radius:2px;font-size:13.5px;margin-bottom:16px}
+.err.show{display:block}
+
+#done{display:none;text-align:center;padding:52px 26px;background:var(--ok-bg);border:1px solid var(--ok-line);border-radius:3px}
+#done h2{font-family:Georgia,serif;font-weight:400;font-size:24px;letter-spacing:.05em;text-transform:uppercase;margin-bottom:14px}
+#done p{color:#48553f;font-size:15px;max-width:490px;margin:0 auto 10px}
+.tick{width:54px;height:54px;border-radius:50%;background:#7d9370;color:#fff;font-size:27px;line-height:54px;margin:0 auto 20px}
+
+.foot{text-align:center;font-size:12px;color:var(--muted);margin-top:22px;line-height:1.7}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <span id="topAnchor" aria-hidden="true"></span>
+
+  <div class="hero">
+    <div class="eyebrow">Sebastian Rose Medical Aesthetics</div>
+    <h1>Lumi Eyes<br>Information &amp; Consent</h1>
+    <p>Polynucleotide skin booster for the under-eye area. Please read this in full. Your practitioner will discuss it with you and answer any questions before treatment. You may decline at any time, including after giving consent.</p>
+  </div>
+
+  <div class="progress-shell">
+    <div class="progress-track"><div class="progress-fill" id="bar"></div></div>
+    <div class="progress-label"><span id="stepName">Your details</span><span id="stepNum">Step 1 of 8</span></div>
+  </div>
+
+  <div class="err" id="err"></div>
+
+  <form id="form" autocomplete="on">
+
+  <!-- ===== STEP 1 ===== -->
+  <div class="step active" data-name="Your details">
+    <div class="panel">
+      <h2>Your details</h2>
+      <p class="sub">So this consent can be filed against your clinical record.</p>
+
+      <div class="alert">
+        <strong>We do not treat anyone under the age of 18.</strong>
+        Treatments at Sebastian Rose are for adults only, without exception.
+      </div>
+
+      <div class="note">
+        <strong>Please read before going further — this treatment is age-specific.</strong>
+        In our clinical opinion, Lumi Eyes is only suitable for patients aged <strong>18 to 25</strong>.
+        <br><br>
+        This is not an arbitrary rule. In younger patients, under-eye concerns are usually about skin quality — thin skin, early fine lines, dullness and the darkness that comes from skin transparency. That is exactly what polynucleotides address. From the mid-twenties onward, under-eye concerns are far more often structural: loss of volume, hollowing, descent of the cheek, fat herniation causing bags, or skin laxity. Polynucleotides will not improve any of those, and treating them with this would waste your money and your time.
+        <br><br>
+        If you are over 25 and the under-eye area concerns you, please still come and see us. We would simply rather assess you properly and recommend something that will actually work than sell you this.
+      </div>
+
+      <div class="group two-col">
+        <div><label class="q">First name<span class="req">*</span></label><input type="text" name="First name" required></div>
+        <div><label class="q">Surname<span class="req">*</span></label><input type="text" name="Surname" required></div>
+      </div>
+
+      <div class="group two-col">
+        <div><label class="q">Date of birth<span class="req">*</span></label><input type="date" name="Date of birth" id="dob" required></div>
+        <div><label class="q">Mobile number<span class="req">*</span></label><input type="tel" name="Mobile" required></div>
+      </div>
+      <div class="err" id="ageErr" style="margin-top:-8px"></div>
+
+      <div class="note" id="over25Note" style="display:none">
+        <strong>Based on your date of birth, you are over 25.</strong>
+        You can continue with this form, but please expect your practitioner to talk with you about whether this is genuinely the right treatment for what is bothering you. We may recommend something different, and if we do not think Lumi Eyes will help you, we will say so rather than take the booking.
+      </div>
+
+      <div class="group">
+        <label class="q">Email address<span class="req">*</span></label>
+        <input type="email" name="Email" required>
+      </div>
+
+      <div class="group">
+        <label class="q">Have you completed our medical history and pre-screening questionnaire?<span class="req">*</span></label>
+        <div class="opts inline" data-radio="Medical history completed">
+          <label class="opt inline-sm"><input type="radio" name="Medical history completed" value="Yes" required><span class="mark radio"></span>Yes</label>
+          <label class="opt inline-sm" data-reveal="noHxDetail"><input type="radio" name="Medical history completed" value="No / not sure"><span class="mark radio"></span>No, or not sure</label>
+        </div>
+        <div class="reveal" id="noHxDetail">
+          <p class="body" style="margin:0 0 12px">A full medical history is needed before any injectable treatment. Please complete it now — it takes a few minutes, and you can come straight back here afterwards.</p>
+          <a href="https://www.sebastianrose.co.uk/medical-history-and-prescreening" target="_blank" rel="noopener" class="linkbtn">Complete the medical history form &rarr;</a>
+        </div>
+      </div>
+
+      <div class="group">
+        <label class="q">Has anything changed since you completed it?<span class="req">*</span></label>
+        <div class="hint">New medication, illness, pregnancy, surgery, vaccinations, dental work, or a new diagnosis.</div>
+        <div class="opts inline" data-radio="Anything changed">
+          <label class="opt inline-sm"><input type="radio" name="Anything changed" value="Nothing has changed" required><span class="mark radio"></span>Nothing has changed</label>
+          <label class="opt inline-sm" data-reveal="changeDetail"><input type="radio" name="Anything changed" value="Yes — something has changed"><span class="mark radio"></span>Yes, something has changed</label>
+        </div>
+        <div class="reveal" id="changeDetail">
+          <label class="q">Please tell us what</label>
+          <textarea name="What has changed"></textarea>
+        </div>
+      </div>
+    </div>
+    <div class="nav"><button type="button" class="primary" data-next>Continue</button></div>
+  </div>
+
+  <!-- ===== STEP 2 ===== -->
+  <div class="step" data-name="Safety screening">
+    <div class="panel">
+      <h2>Safety screening</h2>
+      <p class="sub">Please answer each one. The first is specific to this product and matters a great deal.</p>
+
+      <div class="alert" id="pregBlock" style="display:none">
+        <strong>We cannot proceed with this treatment.</strong>
+        Polynucleotide treatments are not given in pregnancy or while breastfeeding. Please contact the clinic on 0800 772 0137 and we will be glad to book you in once you are ready.
+      </div>
+
+      <div class="note">
+        <strong>Polynucleotides are derived from fish.</strong>
+        The active ingredient is purified DNA extracted from salmon or trout. If you are allergic to fish or seafood, this treatment is not suitable for you and you must tell us.
+      </div>
+
+      <div class="group">
+        <label class="q">Do any of the following apply to you?<span class="req">*</span></label>
+        <div class="opts" data-checkgroup="Screening">
+          <label class="opt"><input type="checkbox" name="Screening" value="ALLERGY to fish or seafood"><span class="mark"></span><strong>I am allergic to fish or seafood</strong></label>
+          <label class="opt"><input type="checkbox" name="Screening" id="pregStop" value="PREGNANT OR BREASTFEEDING"><span class="mark"></span>I am pregnant or breastfeeding</label>
+          <label class="opt"><input type="checkbox" name="Screening" value="Trying to conceive or having fertility treatment"><span class="mark"></span>I am trying to conceive, or having fertility treatment</label>
+          <label class="opt"><input type="checkbox" name="Screening" value="Known allergy to topical anaesthetic (lidocaine, prilocaine)"><span class="mark"></span>I am allergic to numbing cream or local anaesthetic</label>
+          <label class="opt"><input type="checkbox" name="Screening" value="Active infection, inflammation, cold sore or broken skin near the eyes"><span class="mark"></span>I have infection, inflammation, a cold sore or broken skin near my eyes</label>
+          <label class="opt"><input type="checkbox" name="Screening" value="Eye condition, recent eye surgery or under ophthalmology care"><span class="mark"></span>I have an eye condition, recent eye surgery, or am under an eye specialist</label>
+          <label class="opt"><input type="checkbox" name="Screening" value="Blepharitis, dry eye or recurrent eye irritation"><span class="mark"></span>I get blepharitis, dry eye or recurrent eye irritation</label>
+          <label class="opt"><input type="checkbox" name="Screening" value="Autoimmune or connective tissue disease"><span class="mark"></span>I have an autoimmune or connective tissue condition</label>
+          <label class="opt"><input type="checkbox" name="Screening" value="Weakened immune system or immunosuppressive therapy"><span class="mark"></span>I have a weakened immune system, or take immunosuppressant medication</label>
+          <label class="opt"><input type="checkbox" name="Screening" value="Bleeding or clotting disorder, or taking anticoagulants"><span class="mark"></span>I have a bleeding disorder, or take blood-thinning medication</label>
+          <label class="opt"><input type="checkbox" name="Screening" value="Tendency to keloid or hypertrophic scarring"><span class="mark"></span>I scar badly, or form raised or keloid scars</label>
+          <label class="opt"><input type="checkbox" name="Screening" value="History of nodules or delayed reaction to any injectable"><span class="mark"></span>I have had lumps or a delayed reaction to an injectable before</label>
+          <label class="opt"><input type="checkbox" name="Screening" value="Isotretinoin (Roaccutane) current or within 6 months"><span class="mark"></span>I take, or have taken within 6 months, Roaccutane or isotretinoin</label>
+          <label class="opt"><input type="checkbox" name="Screening" value="Dental treatment or vaccination within the last or next 2 weeks"><span class="mark"></span>I have had, or will have, dental treatment or a vaccination within two weeks</label>
+          <label class="opt"><input type="checkbox" name="Screening" value="Currently unwell or recent infection"><span class="mark"></span>I am unwell, or have recently had an infection</label>
+          <label class="opt"><input type="checkbox" name="Screening" value="NONE OF THE ABOVE"><span class="mark"></span><strong>None of the above apply to me</strong></label>
+        </div>
+      </div>
+
+      <div class="group">
+        <label class="q">Details of anything ticked above</label>
+        <textarea name="Screening detail"></textarea>
+      </div>
+
+      <div class="group">
+        <label class="q">Have you had anything injected under your eyes before?<span class="req">*</span></label>
+        <div class="hint">Including tear trough filler, other polynucleotides, skin boosters or PRP.</div>
+        <div class="opts" data-radio="Previous product">
+          <label class="opt"><input type="radio" name="Previous product" value="No — nothing has ever been injected there" required><span class="mark radio"></span>No, nothing has ever been injected there</label>
+          <label class="opt"><input type="radio" name="Previous product" value="Yes — tear trough filler"><span class="mark radio"></span>Yes, tear trough filler</label>
+          <label class="opt"><input type="radio" name="Previous product" value="Yes — polynucleotides or another skin booster"><span class="mark radio"></span>Yes, polynucleotides or another skin booster</label>
+          <label class="opt"><input type="radio" name="Previous product" value="Yes — PRP"><span class="mark radio"></span>Yes, PRP</label>
+          <label class="opt"><input type="radio" name="Previous product" value="I don't know what I have had"><span class="mark radio"></span>I don't know what I've had</label>
+        </div>
+      </div>
+
+      <div class="group">
+        <label class="q">Please give details — what, when, and by whom</label>
+        <textarea name="Previous product detail"></textarea>
+      </div>
+    </div>
+    <div class="nav"><button type="button" class="ghost" data-back>Back</button><button type="button" class="primary" data-next>Continue</button></div>
+  </div>
+
+  <!-- ===== STEP 3 ===== -->
+  <div class="step" data-name="About the treatment">
+    <div class="panel">
+      <h2>About the treatment</h2>
+      <p class="sub">What it is, what it does, and what it will not do.</p>
+
+      <h3>What it is</h3>
+      <p class="body">Polynucleotides are purified fragments of DNA, extracted from salmon or trout and highly refined. They have been used in wound healing and regenerative medicine since the 1950s. The formulation we use contains polynucleotide at <strong>2mg/ml</strong>.</p>
+      <p class="body">Injected into the skin, polynucleotides act on your fibroblasts — the cells that produce collagen and elastin — and support hydration, repair and cell turnover. This is a regenerative treatment. It improves the quality of the skin itself rather than adding anything to sit underneath it.</p>
+
+      <h3>How it is done</h3>
+      <p class="body">Numbing cream is applied first. The product is then placed through a series of very small, superficial injections across the under-eye area using a fine needle — a mesotherapy technique. The appointment takes around 30 minutes including numbing time.</p>
+
+      <h3>Course and timings</h3>
+      <ul class="plain">
+        <li>A course of <strong>3 treatments, 4 weeks apart</strong>, each charged separately.</li>
+        <li>Some improvement in hydration and brightness can be seen after the first session.</li>
+        <li>The fuller effect builds over the weeks following each treatment as the skin regenerates.</li>
+        <li>Results typically last <strong>6 to 12 months</strong> after a completed course.</li>
+        <li>Maintenance is usually recommended around twice a year.</li>
+      </ul>
+
+      <div class="alert">
+        <strong>What Lumi Eyes will not do.</strong>
+        <br><br>
+        It is <strong>not a filler</strong>. It will not fill a hollow, a tear trough or a groove, and it will not add volume of any kind.
+        <br><br>
+        It will not improve <strong>eye bags</strong> caused by fat herniation. If the problem is a bulge rather than a shadow, no injectable will fix it and the honest answer is a surgical opinion.
+        <br><br>
+        It will not correct <strong>shadowing caused by facial structure</strong> — a deep-set eye socket or prominent orbital rim casts a shadow, and treating the skin will not change that.
+        <br><br>
+        It will not lift <strong>loose or crepey skin</strong> that has genuinely lost elasticity.
+        <br><br>
+        It will not remove <strong>pigmented dark circles</strong> caused by melanin rather than by thin skin, though skin quality improvements can make them appear a little softer.
+      </div>
+
+      <h3>Product and evidence</h3>
+      <p class="body">Polynucleotides as a class have a substantial history of use and a growing evidence base in aesthetic medicine. However, the specific branded formulation used here is a skin booster rather than a licensed medicine, and there is limited published trial data on this exact product as opposed to polynucleotides generally. We think it works well for the right patient, which is why we offer it — but you should know the evidence position rather than assume it is equivalent to a licensed medicine.</p>
+
+      <p class="body">Polynucleotide is also not a hyaluronic acid product, which means it cannot be dissolved with hyaluronidase in the way filler can. It is broken down naturally by the body over time.</p>
+
+      <div class="group">
+        <div class="opts" data-checkgroup="Understanding treatment" data-requireall="1">
+          <label class="opt"><input type="checkbox" name="Understanding treatment" value="Understands this is a skin quality treatment, not a filler"><span class="mark"></span><strong>I understand this is a skin quality treatment and not a filler — it will not fill hollows, add volume, or improve eye bags or structural shadowing.</strong></label>
+          <label class="opt"><input type="checkbox" name="Understanding treatment" value="Understands the clinic considers this suitable for ages 18-25"><span class="mark"></span><strong>I understand the clinic considers this treatment suitable for patients aged 18 to 25, and that if I am older my practitioner may recommend something different.</strong></label>
+          <label class="opt"><input type="checkbox" name="Understanding treatment" value="Understands a course of 3 sessions is needed, each charged separately"><span class="mark"></span>I understand a course of 3 sessions 4 weeks apart is needed, each charged separately, and that one session will not give the full result.</label>
+          <label class="opt"><input type="checkbox" name="Understanding treatment" value="Understands the product is derived from fish DNA"><span class="mark"></span>I understand the product is derived from purified salmon or trout DNA.</label>
+          <label class="opt"><input type="checkbox" name="Understanding treatment" value="Understands results vary and cannot be guaranteed"><span class="mark"></span>I understand results vary between individuals and cannot be guaranteed.</label>
+        </div>
+      </div>
+    </div>
+    <div class="nav"><button type="button" class="ghost" data-back>Back</button><button type="button" class="primary" data-next>Continue</button></div>
+  </div>
+
+  <!-- ===== STEP 4 ===== -->
+  <div class="step" data-name="Your goals">
+    <div class="panel">
+      <h2>Your goals</h2>
+      <p class="sub">This helps us tell you honestly whether this is the right treatment.</p>
+
+      <div class="group">
+        <label class="q">What bothers you about your under-eye area?<span class="req">*</span></label>
+        <div class="hint">Tick everything that applies. Some of these we can help with, some we cannot — being accurate here means we can be honest with you.</div>
+        <div class="opts" data-checkgroup="Concerns">
+          <label class="opt"><input type="checkbox" name="Concerns" value="Skin looks dull, dry or tired"><span class="mark"></span>The skin looks dull, dry or tired</label>
+          <label class="opt"><input type="checkbox" name="Concerns" value="Fine lines or crepey texture"><span class="mark"></span>Fine lines or crepey texture</label>
+          <label class="opt"><input type="checkbox" name="Concerns" value="Darkness that looks like the skin is thin or transparent"><span class="mark"></span>Darkness — the skin looks thin, and I can see blue or purple through it</label>
+          <label class="opt"><input type="checkbox" name="Concerns" value="Darkness that looks like pigment or a brown stain"><span class="mark"></span>Darkness — more of a brown or pigmented look</label>
+          <label class="opt"><input type="checkbox" name="Concerns" value="A hollow or groove under the eye"><span class="mark"></span>A hollow or groove under the eye</label>
+          <label class="opt"><input type="checkbox" name="Concerns" value="A bag or bulge under the eye"><span class="mark"></span>A bag or bulge under the eye</label>
+          <label class="opt"><input type="checkbox" name="Concerns" value="Puffiness that comes and goes"><span class="mark"></span>Puffiness that comes and goes</label>
+          <label class="opt"><input type="checkbox" name="Concerns" value="Loose or sagging skin"><span class="mark"></span>Loose or sagging skin</label>
+          <label class="opt"><input type="checkbox" name="Concerns" value="I look tired even when I am not"><span class="mark"></span>I just look tired even when I'm not</label>
+        </div>
+      </div>
+
+      <div class="note">
+        <strong>Being straight with you.</strong>
+        Of the above, Lumi Eyes genuinely helps with dullness, fine lines, crepey texture and darkness caused by thin skin. It will not help with hollows, bags, sagging or pigmented darkness. If you have ticked those, we will tell you so at your consultation and suggest what would actually work — which may be a different treatment, or in some cases nothing we offer.
+      </div>
+
+      <div class="group">
+        <label class="q">What are you hoping this treatment will achieve?<span class="req">*</span></label>
+        <div class="hint">In your own words.</div>
+        <textarea name="Patient goals" required></textarea>
+      </div>
+
+      <div class="group">
+        <label class="q">Do you have an event, holiday or photographs coming up?</label>
+        <div class="hint">You will have small raised bumps at each injection point for a few hours, and possible bruising for longer.</div>
+        <textarea name="Upcoming events"></textarea>
+      </div>
+    </div>
+    <div class="nav"><button type="button" class="ghost" data-back>Back</button><button type="button" class="primary" data-next>Continue</button></div>
+  </div>
+
+  <!-- ===== STEP 5 ===== -->
+  <div class="step" data-name="Risks">
+    <div class="panel">
+      <h2>Risks and side effects</h2>
+      <p class="sub">Polynucleotides are generally very well tolerated. These are set out so your decision is properly informed.</p>
+
+      <h3>Common — expect these</h3>
+      <ul class="plain">
+        <li>Small raised bumps at each injection point, settling within a few hours</li>
+        <li>Redness immediately afterwards</li>
+        <li>Mild swelling for 24 to 48 hours</li>
+        <li>Tenderness for a day or so</li>
+        <li>Bruising — the skin here is thin and the area bruises easily. This can last up to two weeks.</li>
+      </ul>
+
+      <h3>Less common</h3>
+      <ul class="plain">
+        <li>Swelling that takes longer than a couple of days to settle</li>
+        <li>Small lumps that persist for a week or two</li>
+        <li>Itching at the treated area</li>
+        <li>Temporary pigment change at an injection point</li>
+        <li>Cold sore outbreak, where you are prone to them</li>
+        <li>Infection at an injection site, occasionally needing antibiotics</li>
+        <li>Less improvement than hoped, or none at all</li>
+      </ul>
+
+      <h3>Rare</h3>
+      <ul class="plain">
+        <li>Allergic or hypersensitivity reaction, including to the fish-derived component</li>
+        <li>A persistent nodule requiring treatment</li>
+        <li>Delayed inflammatory reaction, sometimes triggered by illness, dental work or vaccination weeks or months later</li>
+        <li>Blockage of a blood vessel by the product</li>
+        <li>Scarring or lasting pigment change</li>
+      </ul>
+
+      <div class="note">
+        <strong>Because polynucleotide is not a hyaluronic acid product, it cannot be dissolved.</strong>
+        Where a hyaluronic acid filler can be removed with an enzyme, this is broken down naturally by your body instead. It is worth knowing, though in practice the very small volumes used here mean this rarely becomes relevant.
+      </div>
+
+      <div class="alert">
+        <strong>Contact the clinic promptly on 0800 772 0137 if you develop:</strong> pain that is severe or worsening rather than settling; skin that goes white, blotchy, mottled or dusky; spreading redness, heat or discharge; any change to your vision; or a lump that has not settled after two weeks. If you have visual symptoms, go to A&amp;E and tell them you have had an injection near the eye — then call us.
+      </div>
+
+      <div class="group">
+        <div class="opts" data-checkgroup="Risk acknowledgement" data-requireall="1">
+          <label class="opt"><input type="checkbox" name="Risk acknowledgement" value="Has read and understood all listed risks"><span class="mark"></span>I have read all of the risks above, including the rare ones, and I understand them.</label>
+          <label class="opt"><input type="checkbox" name="Risk acknowledgement" value="Understands the area bruises easily"><span class="mark"></span>I understand the skin under the eye is thin and bruises easily, and that bruising can last up to two weeks.</label>
+          <label class="opt"><input type="checkbox" name="Risk acknowledgement" value="Has had opportunity to ask questions"><span class="mark"></span>I have had the opportunity to ask questions and to raise any risk that matters particularly to me.</label>
+          <label class="opt"><input type="checkbox" name="Risk acknowledgement" value="Understands when to contact the clinic"><span class="mark"></span>I understand when I should contact the clinic, and that I should not simply wait and see.</label>
+        </div>
+      </div>
+    </div>
+    <div class="nav"><button type="button" class="ghost" data-back>Back</button><button type="button" class="primary" data-next>Continue</button></div>
+  </div>
+
+  <!-- ===== STEP 6 ===== -->
+  <div class="step" data-name="Alternatives">
+    <div class="panel">
+      <h2>Alternatives</h2>
+      <p class="sub">You are entitled to know what else could achieve your goal, including doing nothing.</p>
+
+      <ul class="plain">
+        <li><strong>No treatment.</strong> Always a reasonable choice. There is no harm in declining.</li>
+        <li><strong>Sleep, hydration and sun protection.</strong> Genuinely — the under-eye area responds to these more than most people expect, and no injectable will outperform chronic poor sleep.</li>
+        <li><strong>Medical skincare</strong> formulated for the eye area, including retinoids and vitamin C used appropriately.</li>
+        <li><strong>Other polynucleotide formulations</strong> at higher concentrations, or from different manufacturers.</li>
+        <li><strong>Tear trough filler</strong>, where the problem is genuinely a hollow rather than skin quality — a different treatment with a different and higher risk profile, and not suitable for everyone.</li>
+        <li><strong>PRP</strong>, using your own blood, for skin quality in the same area.</li>
+        <li><strong>Skin boosters or mesotherapy</strong>, for hydration and glow.</li>
+        <li><strong>Surgical opinion</strong>, where the concern is fat herniation or significant skin excess. No injectable will address either.</li>
+      </ul>
+
+      <div class="group">
+        <div class="opts" data-checkgroup="Alternatives acknowledgement" data-requireall="1">
+          <label class="opt"><input type="checkbox" name="Alternatives acknowledgement" value="Alternatives including no treatment have been explained"><span class="mark"></span>The alternatives, including having no treatment at all, have been explained to me and I have chosen to proceed.</label>
+        </div>
+      </div>
+    </div>
+    <div class="nav"><button type="button" class="ghost" data-back>Back</button><button type="button" class="primary" data-next>Continue</button></div>
+  </div>
+
+  <!-- ===== STEP 7 ===== -->
+  <div class="step" data-name="Aftercare">
+    <div class="panel">
+      <h2>Aftercare</h2>
+      <p class="sub">Simple, but the first day matters.</p>
+
+      <h3>For the first 24 hours</h3>
+      <ul class="plain">
+        <li>Do not rub, press or massage the area. The small bumps disperse on their own.</li>
+        <li>No makeup, including concealer and mascara.</li>
+        <li>No strenuous exercise, saunas, steam rooms or very hot baths.</li>
+        <li>No alcohol, which increases bruising.</li>
+        <li>Sleep on your back with your head slightly raised if you can.</li>
+        <li>Avoid touching your eyes with unwashed hands.</li>
+      </ul>
+
+      <h3>For the first week</h3>
+      <ul class="plain">
+        <li>Reintroduce eye makeup only once any bumps have settled.</li>
+        <li>Avoid retinoids and acids around the eye area for a few days.</li>
+        <li>Cool compresses help if you are swollen or bruised. Never put ice directly on the skin.</li>
+        <li>Arnica can help with bruising.</li>
+      </ul>
+
+      <h3>For two weeks</h3>
+      <ul class="plain">
+        <li>No facials, massage, microneedling, peels or laser over the area.</li>
+        <li>Avoid dental treatment where possible, including the hygienist.</li>
+        <li>Avoid vaccinations where the timing is within your control.</li>
+        <li>Daily SPF, and sunglasses when it is bright.</li>
+      </ul>
+
+      <h3>Ongoing</h3>
+      <ul class="plain">
+        <li>Attend your remaining sessions as planned — the course is what produces the result.</li>
+        <li>Drink plenty of water and protect the area from the sun.</li>
+      </ul>
+
+      <h3>Contact us if</h3>
+      <ul class="plain">
+        <li>Pain is severe or getting worse rather than settling</li>
+        <li>You develop spreading redness, heat, swelling or discharge</li>
+        <li>You notice any change in your vision</li>
+        <li>A lump has not settled after two weeks</li>
+        <li>Anything at all concerns you</li>
+      </ul>
+      <p class="body">Call <strong>0800 772 0137</strong>.</p>
+
+      <div class="group">
+        <div class="opts" data-checkgroup="Aftercare acknowledgement" data-requireall="1">
+          <label class="opt"><input type="checkbox" name="Aftercare acknowledgement" value="Has read and agrees to follow aftercare"><span class="mark"></span>I have read the aftercare and I agree to follow it, including not rubbing the area.</label>
+          <label class="opt"><input type="checkbox" name="Aftercare acknowledgement" value="Will contact the clinic promptly with any concerns"><span class="mark"></span>I will contact the clinic promptly if I have any concerns following treatment.</label>
+        </div>
+      </div>
+    </div>
+    <div class="nav"><button type="button" class="ghost" data-back>Back</button><button type="button" class="primary" data-next>Continue</button></div>
+  </div>
+
+  <!-- ===== STEP 8 ===== -->
+  <div class="step" data-name="Consent">
+    <div class="panel">
+      <h2>Consent</h2>
+      <p class="sub">Please read each statement and tick to confirm.</p>
+
+      <div class="group">
+        <div class="opts" data-checkgroup="Consent" data-requireall="1">
+          <label class="opt"><input type="checkbox" name="Consent" value="Aged 18 or over"><span class="mark"></span>I am 18 years of age or over.</label>
+          <label class="opt"><input type="checkbox" name="Consent" value="Information given is true and complete"><span class="mark"></span>The information I have given today is true and complete to the best of my knowledge.</label>
+          <label class="opt"><input type="checkbox" name="Consent" value="Confirms no fish or seafood allergy"><span class="mark"></span><strong>I confirm I am not allergic to fish or seafood.</strong></label>
+          <label class="opt"><input type="checkbox" name="Consent" value="Treatment, risks and alternatives discussed and understood"><span class="mark"></span>The proposed treatment, its risks and the alternatives have been explained to me, my questions have been answered, and I understand what I am agreeing to.</label>
+          <label class="opt"><input type="checkbox" name="Consent" value="Had sufficient time to consider"><span class="mark"></span>I have had enough time to consider this and I do not feel rushed or pressured.</label>
+          <label class="opt"><input type="checkbox" name="Consent" value="Understands consent may be withdrawn at any time"><span class="mark"></span>I understand I may withdraw my consent and decline treatment at any point, including after signing this.</label>
+          <label class="opt"><input type="checkbox" name="Consent" value="Understands no refund for treatment delivered as intended"><span class="mark"></span>I understand that fees cover the treatment provided and are not refundable where treatment has been carried out as agreed.</label>
+          <label class="opt"><input type="checkbox" name="Consent" value="Consents to clinical photography for the medical record"><span class="mark"></span>I consent to clinical photographs being taken and kept in my medical record as part of assessing my treatment.</label>
+          <label class="opt"><input type="checkbox" name="Consent" value="CONSENTS TO TREATMENT"><span class="mark"></span><strong>I consent to treatment with Lumi Eyes as discussed.</strong></label>
+        </div>
+      </div>
+
+      <div class="note">
+        <strong>Before and after photographs — please choose one.</strong>
+        Your answer makes no difference at all to your treatment, and you can change your mind at any time by telling us.
+      </div>
+
+      <div class="group">
+        <div class="opts" data-radio="Marketing image consent">
+          <label class="opt"><input type="radio" name="Marketing image consent" value="YES — consents to before/after images being used on website and social media" required><span class="mark radio"></span><strong>Yes</strong> — I'm happy for before and after photographs of my treatment to be shared on the clinic's website and social media. Most of our patients found us this way, so it genuinely helps.</label>
+          <label class="opt"><input type="radio" name="Marketing image consent" value="YES — but treated area only, face not identifiable"><span class="mark radio"></span><strong>Yes, but treated area only</strong> — please don't show my full face.</label>
+          <label class="opt"><input type="radio" name="Marketing image consent" value="NO — DECLINED. Do not use images for marketing."><span class="mark radio"></span><strong>No</strong> — please keep my photographs for my clinical record only.</label>
+        </div>
+      </div>
+
+      <div class="group two-col">
+        <div><label class="q">Type your full name<span class="req">*</span></label><input type="text" name="Signed name" required></div>
+        <div><label class="q">Date<span class="req">*</span></label><input type="date" name="Date signed" id="dateSigned" required></div>
+      </div>
+      <div class="hint" style="margin-top:-8px">Typing your name here acts as your electronic signature confirming the statements above.</div>
+    </div>
+
+    <div class="nav">
+      <button type="button" class="ghost" data-back>Back</button>
+      <button type="button" class="primary" id="submitBtn">Submit consent</button>
+    </div>
+
+    <div class="panel" style="padding:20px 24px">
+      <div class="privacy">
+        <strong>How we look after this information.</strong>
+        This form is transmitted over an encrypted connection directly to the clinic's secure email. It is not stored on this web page and no copy is retained by the website. Your answers are special category health data under UK GDPR, processed for the purposes of providing healthcare under Article 9(2)(h), and held in your clinical record. We keep clinical records for the period required by professional guidance and do not sell or share them. Consent to use images for marketing is held separately under Article 6(1)(a) and may be withdrawn at any time. You may request a copy of what we hold, ask for corrections, or raise a concern with the Information Commissioner's Office. Data controller: R F Roberts Limited, trading as Sebastian Rose Medical Aesthetics. Contact info@sebastianrose.co.uk or 0800 772 0137.
+      </div>
+    </div>
+  </div>
+
+  </form>
+
+  <div id="done">
+    <div class="tick">&#10003;</div>
+    <h2>Thank you</h2>
+    <p>Your consent has been recorded and sent securely to the clinic.</p>
+    <p>Remember not to rub the area afterwards, and to leave makeup off for the first 24 hours.</p>
+    <p style="margin-top:18px;font-size:13.5px">Any questions before then — call us on 0800 772 0137.</p>
+  </div>
+
+  <div class="foot">
+    Sebastian Rose Medical Aesthetics · 39 Charles Street, Cardiff, CF10 2GB<br>
+    0800 772 0137 · info@sebastianrose.co.uk
+  </div>
+
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  var EMAILJS_PUBLIC_KEY  = "04pcL3xdpVieS--Q9";
+  var EMAILJS_SERVICE_ID  = "service_bdikve4";
+  var EMAILJS_TEMPLATE_ID = "template_2we5rm1";
+
+  if (window.emailjs) { emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY }); }
+
+  var form     = document.getElementById('form');
+  var steps    = Array.prototype.slice.call(document.querySelectorAll('.step'));
+  var bar      = document.getElementById('bar');
+  var stepName = document.getElementById('stepName');
+  var stepNum  = document.getElementById('stepNum');
+  var errBox   = document.getElementById('err');
+  var current  = 0;
+
+  // tell the hosting page how tall we are, so it can resize the frame
+  var lastH = 0;
+  function reportHeight(){
+    try{
+      var h = Math.max(
+        document.body.scrollHeight,
+        document.documentElement.scrollHeight,
+        document.body.offsetHeight
+      );
+      if(Math.abs(h - lastH) > 8){
+        lastH = h;
+        window.parent.postMessage({ srType:'height', height: h }, '*');
+        window.parent.postMessage(String(h), '*');
+      }
+    }catch(e){}
+  }
+  window.addEventListener('load', reportHeight);
+  window.addEventListener('resize', reportHeight);
+  setInterval(reportHeight, 400);
+
+  function toTop(){
+    try { window.scrollTo(0,0); } catch(e){}
+    try { document.documentElement.scrollTop = 0; document.body.scrollTop = 0; } catch(e){}
+    try {
+      var a = document.getElementById('topAnchor');
+      if(a && a.scrollIntoView) a.scrollIntoView({ block:'start', inline:'nearest' });
+    } catch(e){}
+    try { window.parent.postMessage({ type:'scrollTo', top:0 }, '*'); } catch(e){}
+  }
+
+  function syncOpt(input){
+    var box = input.closest('.opt');
+    if(!box) return;
+    if(input.type === 'radio'){
+      var same = document.querySelectorAll('input[name="'+CSS.escape(input.name)+'"]');
+      Array.prototype.forEach.call(same, function(r){
+        var b = r.closest('.opt'); if(b) b.classList.toggle('checked', r.checked);
+        var rev = b && b.getAttribute('data-reveal');
+        if(rev){ var el = document.getElementById(rev); if(el) el.classList.toggle('show', r.checked); }
+      });
+    } else {
+      box.classList.toggle('checked', input.checked);
+      var rv = box.getAttribute('data-reveal');
+      if(rv){ var e2 = document.getElementById(rv); if(e2) e2.classList.toggle('show', input.checked); }
+    }
+  }
+
+  Array.prototype.forEach.call(document.querySelectorAll('.opt input'), function(input){
+    input.addEventListener('change', function(){
+      if(input.type === 'checkbox' && input.checked && /^NONE/.test(input.value)){
+        Array.prototype.forEach.call(document.querySelectorAll('input[name="'+CSS.escape(input.name)+'"]'), function(o){
+          if(o !== input && o.checked){ o.checked = false; syncOpt(o); }
+        });
+      }
+      if(input.type === 'checkbox' && input.checked && !/^NONE/.test(input.value)){
+        Array.prototype.forEach.call(document.querySelectorAll('input[name="'+CSS.escape(input.name)+'"]'), function(o){
+          if(/^NONE/.test(o.value) && o.checked){ o.checked = false; syncOpt(o); }
+        });
+      }
+      syncOpt(input);
+    });
+  });
+
+  // hard stop: pregnancy / breastfeeding
+  var pregStop  = document.getElementById('pregStop');
+  var pregBlock = document.getElementById('pregBlock');
+  function pregOK(){
+    var blocked = pregStop && pregStop.checked;
+    if(pregBlock) pregBlock.style.display = blocked ? 'block' : 'none';
+    return !blocked;
+  }
+  if(pregStop) pregStop.addEventListener('change', function(){ pregOK(); });
+
+  var dob = document.getElementById('dob');
+  var ageErr = document.getElementById('ageErr');
+  function ageOK(){
+    if(!dob.value) return true;
+    var d = new Date(dob.value), n = new Date();
+    var a = n.getFullYear() - d.getFullYear();
+    var m = n.getMonth() - d.getMonth();
+    if(m < 0 || (m === 0 && n.getDate() < d.getDate())) a--;
+    if(a < 18){
+      ageErr.textContent = "We are unable to offer this treatment to anyone under 18. Please call the clinic on 0800 772 0137 if you think this is an error.";
+      ageErr.classList.add('show');
+      return false;
+    }
+    ageErr.classList.remove('show');
+    return true;
+  }
+  var over25Note = document.getElementById('over25Note');
+  function checkOver25(){
+    if(!over25Note || !dob.value){ if(over25Note) over25Note.style.display='none'; return; }
+    var d = new Date(dob.value), n = new Date();
+    var a = n.getFullYear() - d.getFullYear();
+    var m = n.getMonth() - d.getMonth();
+    if(m < 0 || (m === 0 && n.getDate() < d.getDate())) a--;
+    over25Note.style.display = (a > 25) ? 'block' : 'none';
+  }
+  dob.addEventListener('change', function(){ ageOK(); checkOver25(); });
+
+  function show(i){
+    steps[current].classList.remove('active');
+    current = i;
+    steps[current].classList.add('active');
+    bar.style.width = ((current + 1) / steps.length * 100) + '%';
+    stepName.textContent = steps[current].getAttribute('data-name').replace(/&amp;/g,'&');
+    stepNum.textContent = 'Step ' + (current + 1) + ' of ' + steps.length;
+    errBox.classList.remove('show');
+    toTop();
+    setTimeout(reportHeight, 60);
+  }
+
+  function validate(step){
+    var bad = [];
+    Array.prototype.forEach.call(step.querySelectorAll('[required]'), function(f){
+      if(f.type === 'radio'){
+        if(!step.querySelector('input[name="'+CSS.escape(f.name)+'"]:checked')) bad.push(f.name);
+      } else if(!f.value.trim()){
+        bad.push(f.name);
+      }
+    });
+    Array.prototype.forEach.call(step.querySelectorAll('[data-checkgroup]'), function(grp){
+      var nm = grp.getAttribute('data-checkgroup');
+      if(grp.getAttribute('data-requireall')){
+        var boxes = grp.querySelectorAll('input[type=checkbox]');
+        var done  = grp.querySelectorAll('input[type=checkbox]:checked');
+        if(done.length < boxes.length) bad.push('every statement under "' + nm + '"');
+        return;
+      }
+      if(grp.getAttribute('data-optional')) return;
+      var cond = grp.getAttribute('data-conditional');
+      if(cond && !document.querySelector('input[name="'+CSS.escape(cond)+'"]:checked')) return;
+      if(!grp.querySelector('input:checked')) bad.push(nm);
+    });
+    // at least one area must be selected on the areas step
+    if(step.querySelector('[data-checkgroup="Licensed areas"]')){
+      var anyArea = document.querySelector('input[name="Licensed areas"]:checked') ||
+                    document.querySelector('input[name="Off-label areas"]:checked');
+      if(!anyArea) bad.push('At least one treatment area');
+    }
+    return bad;
+  }
+
+  Array.prototype.forEach.call(document.querySelectorAll('[data-next]'), function(b){
+    b.addEventListener('click', function(){
+      if(current === 0 && !ageOK()){ toTop(); return; }
+      if(!pregOK()){ toTop(); return; }
+      var bad = validate(steps[current]);
+      if(bad.length){
+        errBox.innerHTML = 'Please complete the following before continuing: <strong>' +
+          bad.filter(function(v,i,a){return a.indexOf(v)===i;}).join(', ') + '</strong>';
+        errBox.classList.add('show');
+        toTop();
+        return;
+      }
+      show(current + 1);
+    });
+  });
+
+  Array.prototype.forEach.call(document.querySelectorAll('[data-back]'), function(b){
+    b.addEventListener('click', function(){ show(current - 1); });
+  });
+
+  (function(){
+    var t = new Date(), p = function(n){ return (n<10?'0':'')+n; };
+    document.getElementById('dateSigned').value = t.getFullYear()+'-'+p(t.getMonth()+1)+'-'+p(t.getDate());
+  })();
+
+  function collect(){
+    var out = [], seen = {}, order = [];
+    Array.prototype.forEach.call(form.elements, function(el){
+      if(!el.name) return;
+      if(el.type === 'checkbox' || el.type === 'radio'){
+        if(!el.checked) return;
+        if(!seen[el.name]){ seen[el.name] = []; order.push(el.name); }
+        seen[el.name].push(el.value);
+      } else {
+        if(!el.value.trim()) return;
+        if(!seen[el.name]){ seen[el.name] = []; order.push(el.name); }
+        seen[el.name].push(el.value.trim());
+      }
+    });
+    order.forEach(function(k){ out.push(k.toUpperCase() + ':\n  ' + seen[k].join('\n  ')); });
+    // explicitly record a declined marketing consent
+    if(!document.querySelector('input[name="Marketing image consent"]:checked')){
+      out.push('MARKETING IMAGE CONSENT:\n  NOT ANSWERED — treat as declined');
+    }
+    return out.join('\n\n');
+  }
+
+  var submitBtn = document.getElementById('submitBtn');
+  submitBtn.addEventListener('click', function(){
+    if(!ageOK() || !pregOK()){ toTop(); return; }
+    var bad = validate(steps[current]);
+    if(bad.length){
+      errBox.innerHTML = 'Please complete the following: <strong>' +
+        bad.filter(function(v,i,a){return a.indexOf(v)===i;}).join(', ') + '</strong>';
+      errBox.classList.add('show');
+      toTop();
+      return;
+    }
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Sending…';
+
+    var name = (form.querySelector('[name="First name"]').value + ' ' +
+                form.querySelector('[name="Surname"]').value).trim();
+
+    var params = {
+      form_type: 'LUMI EYES CONSENT',
+      patient_name: name,
+      from_name: name,
+      reply_to: form.querySelector('[name="Email"]').value,
+      full_data: 'LUMI EYES (POLYNUCLEOTIDE) — INFORMATION & CONSENT\nSubmitted: ' +
+                 new Date().toLocaleString('en-GB') + '\n\n' + collect(),
+      id_document_url: 'N/A — consent form'
+    };
+
+    emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, params)
+      .then(function(){
+        document.querySelector('.progress-shell').style.display = 'none';
+        form.style.display = 'none';
+        document.getElementById('done').style.display = 'block';
+        toTop();
+      })
+      .catch(function(e){
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Submit consent';
+        errBox.innerHTML = 'Sorry — this did not send. Please check your connection and try again, or speak to your practitioner. <br><small>' + (e && e.text ? e.text : '') + '</small>';
+        errBox.classList.add('show');
+        toTop();
+      });
+  });
+})();
+</script>
+</body>
+</html>
