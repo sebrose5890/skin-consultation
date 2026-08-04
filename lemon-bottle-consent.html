@@ -1,0 +1,834 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Lemon Bottle Consent | Sebastian Rose Medical Aesthetics</title>
+
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
+<style>
+/* ============================================================
+   BRAND COLOURS — change these to match your site
+   ============================================================ */
+:root{
+  --ink:#221f1c;
+  --muted:#6f6960;
+  --accent:#b09a77;
+  --accent-dark:#96805f;
+  --bg:#faf8f5;
+  --card:#ffffff;
+  --line:#e6ded2;
+  --warn-bg:#fdf7ee;
+  --warn-line:#e2caa5;
+  --alert-bg:#fbf1ef;
+  --alert-line:#ddb3ab;
+  --ok-bg:#f0f4ee;
+  --ok-line:#c0d1b8;
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{overflow-x:hidden;height:auto;min-height:0}
+/* hide the widget's own scrollbar so it never doubles up with the page's.
+   scrolling still works by wheel/trackpad, so nothing is ever unreachable. */
+html::-webkit-scrollbar,body::-webkit-scrollbar{width:0;height:0;display:none}
+html,body{scrollbar-width:none;-ms-overflow-style:none}
+body{
+  font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;
+  background:var(--bg);color:var(--ink);line-height:1.65;font-size:16px;
+  -webkit-font-smoothing:antialiased;padding:0 0 50px;
+}
+.wrap{max-width:800px;margin:0 auto;padding:28px 18px 0}
+
+.hero{text-align:center;padding:14px 0 26px}
+.hero .eyebrow{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);font-weight:700;margin-bottom:12px}
+.hero h1{font-family:Georgia,'Times New Roman',serif;font-weight:400;font-size:30px;line-height:1.3;letter-spacing:.02em;text-transform:uppercase;margin-bottom:12px}
+.hero p{color:var(--muted);font-size:15px;max-width:580px;margin:0 auto}
+
+.progress-shell{margin:0 0 26px}
+.progress-track{height:3px;background:var(--line);border-radius:2px;overflow:hidden}
+.progress-fill{height:100%;width:12.5%;background:var(--accent);transition:width .35s ease}
+.progress-label{display:flex;justify-content:space-between;margin-top:9px;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+
+.step{display:none}
+.step.active{display:block;animation:fade .3s ease}
+@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+.panel{background:var(--card);border:1px solid var(--line);border-radius:3px;padding:32px 28px;margin-bottom:18px}
+.panel h2{font-family:Georgia,'Times New Roman',serif;font-weight:400;font-size:19px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:8px}
+.panel .sub{color:var(--muted);font-size:14px;margin-bottom:24px}
+.panel h3{font-family:Georgia,serif;font-weight:400;font-size:16px;letter-spacing:.05em;text-transform:uppercase;margin:26px 0 10px;padding-bottom:7px;border-bottom:1px solid var(--line)}
+.panel p.body{font-size:14.8px;margin-bottom:14px;color:#3a352f}
+.panel ul.plain{margin:0 0 16px 18px;font-size:14.8px;color:#3a352f}
+.panel ul.plain li{margin-bottom:7px}
+
+.group{margin-bottom:22px}
+.group:last-child{margin-bottom:0}
+label.q{display:block;font-weight:600;font-size:14.5px;margin-bottom:8px}
+label.q .req{color:var(--accent);margin-left:3px}
+.hint{font-size:13px;color:var(--muted);margin:-3px 0 9px;line-height:1.5}
+
+input[type=text],input[type=email],input[type=tel],input[type=date],select,textarea{
+  width:100%;padding:12px 13px;font-size:15px;font-family:inherit;color:var(--ink);
+  background:#fff;border:1px solid var(--line);border-radius:2px;outline:none;transition:border-color .15s;
+}
+input:focus,select:focus,textarea:focus{border-color:var(--accent)}
+textarea{min-height:88px;resize:vertical}
+select{appearance:none;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8'><path d='M1 1l5 5 5-5' stroke='%236f6960' stroke-width='1.5' fill='none'/></svg>");background-repeat:no-repeat;background-position:right 14px center}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:560px){.two-col{grid-template-columns:1fr}}
+
+.opts{display:flex;flex-direction:column;gap:8px}
+.opts.inline{flex-direction:row;flex-wrap:wrap;gap:10px}
+.opts.grid2{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+@media(max-width:560px){.opts.grid2{grid-template-columns:1fr}}
+
+.opt{position:relative;display:flex;align-items:flex-start;gap:11px;padding:11px 14px;border:1px solid var(--line);border-radius:2px;background:#fff;cursor:pointer;font-size:14.5px;transition:border-color .15s,background .15s;user-select:none}
+.opt:hover{border-color:var(--accent)}
+.opt input{position:absolute;opacity:0;width:0;height:0;pointer-events:none}
+.mark{flex:0 0 18px;width:18px;height:18px;margin-top:2px;border:1.5px solid #c4bbae;background:#fff;position:relative;transition:all .15s}
+.mark.radio{border-radius:50%}
+.opt.checked{border-color:var(--accent);background:#fcfaf7}
+.opt.checked .mark{border-color:var(--accent);background:var(--accent)}
+.opt.checked .mark::after{content:"";position:absolute;left:5px;top:1px;width:5px;height:10px;border:solid #fff;border-width:0 2px 2px 0;transform:rotate(45deg)}
+.opt.checked .mark.radio::after{content:"";position:absolute;left:4px;top:4px;width:6px;height:6px;border:0;border-radius:50%;background:#fff;transform:none}
+.opt.inline-sm{padding:9px 16px}
+
+.reveal{display:none;margin-top:11px;padding-left:14px;border-left:2px solid var(--accent)}
+.reveal.show{display:block;animation:fade .25s ease}
+
+.note{background:var(--warn-bg);border:1px solid var(--warn-line);border-radius:2px;padding:15px 17px;font-size:13.8px;line-height:1.65;margin-bottom:22px;color:#5c4a33}
+.note strong{display:block;margin-bottom:4px}
+.alert{background:var(--alert-bg);border:1px solid var(--alert-line);border-radius:2px;padding:15px 17px;font-size:13.8px;line-height:1.65;margin-bottom:22px;color:#6b3a33}
+.alert strong{display:block;margin-bottom:4px}
+.privacy{background:#f5f2ed;border:1px solid var(--line);border-radius:2px;padding:16px 18px;font-size:12.8px;color:var(--muted);line-height:1.65;margin-top:18px}
+.privacy strong{color:var(--ink)}
+
+.nav{display:flex;gap:12px;margin-top:6px}
+button.primary{flex:1;padding:15px;background:var(--accent);color:#fff;border:0;border-radius:2px;font-size:12.5px;letter-spacing:.18em;text-transform:uppercase;font-weight:700;cursor:pointer;font-family:inherit;transition:background .15s}
+button.primary:hover{background:var(--accent-dark)}
+button.primary:disabled{opacity:.55;cursor:not-allowed}
+button.ghost{padding:15px 26px;background:#fff;color:var(--muted);border:1px solid var(--line);border-radius:2px;font-size:12.5px;letter-spacing:.18em;text-transform:uppercase;font-weight:700;cursor:pointer;font-family:inherit}
+button.ghost:hover{border-color:var(--accent);color:var(--accent)}
+a.linkbtn{display:inline-block;padding:13px 22px;background:var(--accent);color:#fff;text-decoration:none;border-radius:2px;font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;font-weight:700;transition:background .15s}
+a.linkbtn:hover{background:var(--accent-dark)}
+
+.err{display:none;background:#fbeceb;border:1px solid #e0b2ac;color:#8a3a31;padding:12px 15px;border-radius:2px;font-size:13.5px;margin-bottom:16px}
+.err.show{display:block}
+
+#done{display:none;text-align:center;padding:52px 26px;background:var(--ok-bg);border:1px solid var(--ok-line);border-radius:3px}
+#done h2{font-family:Georgia,serif;font-weight:400;font-size:24px;letter-spacing:.05em;text-transform:uppercase;margin-bottom:14px}
+#done p{color:#48553f;font-size:15px;max-width:490px;margin:0 auto 10px}
+.tick{width:54px;height:54px;border-radius:50%;background:#7d9370;color:#fff;font-size:27px;line-height:54px;margin:0 auto 20px}
+
+.foot{text-align:center;font-size:12px;color:var(--muted);margin-top:22px;line-height:1.7}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <span id="topAnchor" aria-hidden="true"></span>
+
+  <div class="hero">
+    <div class="eyebrow">Sebastian Rose Medical Aesthetics</div>
+    <h1>Lemon Bottle&reg;<br>Information &amp; Consent</h1>
+    <p>Injectable treatment for small, localised pockets of fat. Please read this in full. Your practitioner will discuss it with you and answer any questions before treatment. You may decline at any time, including after giving consent.</p>
+  </div>
+
+  <div class="progress-shell">
+    <div class="progress-track"><div class="progress-fill" id="bar"></div></div>
+    <div class="progress-label"><span id="stepName">Your details</span><span id="stepNum">Step 1 of 8</span></div>
+  </div>
+
+  <div class="err" id="err"></div>
+
+  <form id="form" autocomplete="on">
+
+  <!-- ===== STEP 1 ===== -->
+  <div class="step active" data-name="Your details">
+    <div class="panel">
+      <h2>Your details</h2>
+      <p class="sub">So this consent can be filed against your clinical record.</p>
+
+      <div class="alert">
+        <strong>We do not treat anyone under the age of 18.</strong>
+        Treatments at Sebastian Rose are for adults only, without exception.
+      </div>
+
+      <div class="group two-col">
+        <div><label class="q">First name<span class="req">*</span></label><input type="text" name="First name" required></div>
+        <div><label class="q">Surname<span class="req">*</span></label><input type="text" name="Surname" required></div>
+      </div>
+
+      <div class="group two-col">
+        <div><label class="q">Date of birth<span class="req">*</span></label><input type="date" name="Date of birth" id="dob" required></div>
+        <div><label class="q">Mobile number<span class="req">*</span></label><input type="tel" name="Mobile" required></div>
+      </div>
+      <div class="err" id="ageErr" style="margin-top:-8px"></div>
+
+      <div class="group">
+        <label class="q">Email address<span class="req">*</span></label>
+        <input type="email" name="Email" required>
+      </div>
+
+      <div class="group">
+        <label class="q">Have you completed our medical history and pre-screening questionnaire?<span class="req">*</span></label>
+        <div class="opts inline" data-radio="Medical history completed">
+          <label class="opt inline-sm"><input type="radio" name="Medical history completed" value="Yes" required><span class="mark radio"></span>Yes</label>
+          <label class="opt inline-sm" data-reveal="noHxDetail"><input type="radio" name="Medical history completed" value="No / not sure"><span class="mark radio"></span>No, or not sure</label>
+        </div>
+        <div class="reveal" id="noHxDetail">
+          <p class="body" style="margin:0 0 12px">A full medical history is needed before any injectable treatment. Please complete it now — it takes a few minutes, and you can come straight back here afterwards.</p>
+          <a href="https://www.sebastianrose.co.uk/medical-history-and-prescreening" target="_blank" rel="noopener" class="linkbtn">Complete the medical history form &rarr;</a>
+        </div>
+      </div>
+
+      <div class="group">
+        <label class="q">Has anything changed since you completed it?<span class="req">*</span></label>
+        <div class="hint">New medication, illness, pregnancy, surgery, vaccinations, or a new diagnosis.</div>
+        <div class="opts inline" data-radio="Anything changed">
+          <label class="opt inline-sm"><input type="radio" name="Anything changed" value="Nothing has changed" required><span class="mark radio"></span>Nothing has changed</label>
+          <label class="opt inline-sm" data-reveal="changeDetail"><input type="radio" name="Anything changed" value="Yes — something has changed"><span class="mark radio"></span>Yes, something has changed</label>
+        </div>
+        <div class="reveal" id="changeDetail">
+          <label class="q">Please tell us what</label>
+          <textarea name="What has changed"></textarea>
+        </div>
+      </div>
+    </div>
+    <div class="nav"><button type="button" class="primary" data-next>Continue</button></div>
+  </div>
+
+  <!-- ===== STEP 2 ===== -->
+  <div class="step" data-name="Safety screening">
+    <div class="panel">
+      <h2>Safety screening</h2>
+      <p class="sub">Please answer each one. Two of these matter more than people expect — see the notes underneath.</p>
+
+      <div class="alert" id="pregBlock" style="display:none">
+        <strong>We cannot proceed with this treatment.</strong>
+        Fat dissolving injections are not given in pregnancy or while breastfeeding. Please contact the clinic on 0800 772 0137 and we will be glad to book you in once you are ready.
+      </div>
+
+      <div class="group">
+        <label class="q">Do any of the following apply to you?<span class="req">*</span></label>
+        <div class="opts" data-checkgroup="Screening">
+          <label class="opt"><input type="checkbox" name="Screening" id="pregStop" value="PREGNANT OR BREASTFEEDING"><span class="mark"></span>I am pregnant or breastfeeding</label>
+          <label class="opt"><input type="checkbox" name="Screening" value="Trying to conceive or having fertility treatment"><span class="mark"></span>I am trying to conceive, or having fertility treatment</label>
+          <label class="opt"><input type="checkbox" name="Screening" value="ALLERGY to pineapple, bromelain or latex"><span class="mark"></span><strong>I am allergic to pineapple, bromelain or latex</strong></label>
+          <label class="opt"><input type="checkbox" name="Screening" value="Taking anticoagulant or antiplatelet medication, or daily aspirin"><span class="mark"></span><strong>I take blood-thinning medication, or daily aspirin</strong></label>
+          <label class="opt"><input type="checkbox" name="Screening" value="Bleeding or clotting disorder"><span class="mark"></span>I have a bleeding or clotting disorder</label>
+          <label class="opt"><input type="checkbox" name="Screening" value="Liver disease or impaired liver function"><span class="mark"></span>I have a liver condition</label>
+          <label class="opt"><input type="checkbox" name="Screening" value="Kidney disease or impaired kidney function"><span class="mark"></span>I have a kidney condition</label>
+          <label class="opt"><input type="checkbox" name="Screening" value="Diabetes"><span class="mark"></span>I have diabetes</label>
+          <label class="opt"><input type="checkbox" name="Screening" value="Heart disease or high blood pressure"><span class="mark"></span>I have heart disease or high blood pressure</label>
+          <label class="opt"><input type="checkbox" name="Screening" value="Autoimmune condition or immunosuppressive therapy"><span class="mark"></span>I have an autoimmune condition, or take immunosuppressant medication</label>
+          <label class="opt"><input type="checkbox" name="Screening" value="Active or previous cancer"><span class="mark"></span>I have, or have had, cancer</label>
+          <label class="opt"><input type="checkbox" name="Screening" value="Thyroid disorder"><span class="mark"></span>I have a thyroid condition</label>
+          <label class="opt"><input type="checkbox" name="Screening" value="Infection, inflammation, hernia or broken skin in the treatment area"><span class="mark"></span>I have infection, inflammation, a hernia or broken skin in the area</label>
+          <label class="opt"><input type="checkbox" name="Screening" value="Tendency to keloid or hypertrophic scarring"><span class="mark"></span>I scar badly, or form raised or keloid scars</label>
+          <label class="opt"><input type="checkbox" name="Screening" value="History of eating disorder or body dysmorphia"><span class="mark"></span>I have a history of an eating disorder or body image difficulties</label>
+          <label class="opt"><input type="checkbox" name="Screening" value="Currently unwell or recent infection"><span class="mark"></span>I am unwell, or have recently had an infection</label>
+          <label class="opt"><input type="checkbox" name="Screening" value="NONE OF THE ABOVE"><span class="mark"></span><strong>None of the above apply to me</strong></label>
+        </div>
+      </div>
+
+      <div class="note">
+        <strong>Why pineapple allergy and blood thinners are on that list.</strong>
+        Lemon Bottle contains <strong>bromelain</strong>, an enzyme derived from pineapple. If you are allergic to pineapple you may react to it, and there is recognised cross-reactivity with latex allergy.
+        <br><br>
+        Bromelain also has a mild blood-thinning effect of its own. Combined with anticoagulant or antiplatelet medication this increases the chance of significant bruising and bleeding, so we need to know.
+      </div>
+
+      <div class="group">
+        <label class="q">Details of anything ticked above</label>
+        <textarea name="Screening detail"></textarea>
+      </div>
+
+      <div class="group">
+        <label class="q">Have you had fat dissolving injections before?<span class="req">*</span></label>
+        <div class="opts" data-radio="Previous fat dissolving">
+          <label class="opt"><input type="radio" name="Previous fat dissolving" value="No — never" required><span class="mark radio"></span>No, never</label>
+          <label class="opt"><input type="radio" name="Previous fat dissolving" value="Yes — Lemon Bottle"><span class="mark radio"></span>Yes, Lemon Bottle</label>
+          <label class="opt"><input type="radio" name="Previous fat dissolving" value="Yes — a different product"><span class="mark radio"></span>Yes, a different product</label>
+          <label class="opt"><input type="radio" name="Previous fat dissolving" value="I don't know what I had"><span class="mark radio"></span>I don't know what I had</label>
+        </div>
+      </div>
+
+      <div class="group">
+        <label class="q">Please give details, including any reaction or problem afterwards</label>
+        <textarea name="Previous fat dissolving detail"></textarea>
+      </div>
+    </div>
+    <div class="nav"><button type="button" class="ghost" data-back>Back</button><button type="button" class="primary" data-next>Continue</button></div>
+  </div>
+
+  <!-- ===== STEP 3 ===== -->
+  <div class="step" data-name="About the treatment">
+    <div class="panel">
+      <h2>About the treatment</h2>
+      <p class="sub">What it is, what it is for, and what its regulatory position is.</p>
+
+      <h3>What it contains</h3>
+      <ul class="plain">
+        <li><strong>Riboflavin</strong> — vitamin B2, included to support fat metabolism.</li>
+        <li><strong>Bromelain</strong> — an enzyme from pineapple with anti-inflammatory properties.</li>
+        <li><strong>A lecithin-based component</strong> — included to emulsify fat so it can be carried away and cleared by the body.</li>
+      </ul>
+      <p class="body">It is injected directly into the layer of fat beneath the skin, in small amounts across a grid of points, using a fine needle. Treatment takes around 20 to 30 minutes depending on the area.</p>
+
+      <div class="alert">
+        <strong>Regulatory status — please read this carefully.</strong>
+        Lemon Bottle is classified as a cosmetic product. <strong>It is not licensed by the MHRA as a medicine, and it does not hold a CE or UKCA mark as a medical device.</strong> It has not been through the clinical trial process that licensed medicines undergo, and there is no published peer-reviewed trial data of the kind that exists for some other injectable treatments.
+        <br><br>
+        We use it because in our clinical experience it has an excellent safety record and produces good results, and because the licensed alternatives in this category carry their own well-documented risks — see the alternatives section. But you are entitled to know its regulatory position before agreeing, and to choose differently. If you would prefer a treatment with formal regulatory certification behind it, tell us and we will discuss what else we can offer.
+      </div>
+
+      <h3>What it is for — and what it is not</h3>
+      <div class="alert">
+        <strong>This is not a weight loss treatment.</strong>
+        It will not reduce your weight, and it will not work on generalised body fat. It is designed for small, stubborn pockets of fat in people who are already close to their target weight and whose weight is stable. If your goal is weight loss, this is the wrong treatment and we will discuss medically supervised options instead.
+      </div>
+
+      <h3>Timings</h3>
+      <ul class="plain">
+        <li>Swelling begins within hours and peaks over the first <strong>2 to 3 days</strong>. In the chin and jaw area this can be pronounced.</li>
+        <li>Most swelling settles within <strong>5 to 7 days</strong>, though some can persist for two weeks.</li>
+        <li>Results begin to show from around <strong>3 to 4 weeks</strong> as the treated fat is cleared.</li>
+        <li>A course of <strong>2 to 4 sessions, 2 to 4 weeks apart</strong> is usually needed, each charged separately.</li>
+        <li>Final result is assessed roughly <strong>6 to 8 weeks after your last session</strong>.</li>
+      </ul>
+
+      <h3>What it will not do</h3>
+      <ul class="plain">
+        <li>It does not tighten skin. If skin laxity is part of the problem, removing the fat underneath may make loose skin more apparent.</li>
+        <li>It does not treat cellulite.</li>
+        <li>It does not prevent the remaining fat cells from enlarging if you gain weight afterwards.</li>
+        <li>It cannot achieve a surgical result.</li>
+      </ul>
+
+      <div class="group">
+        <div class="opts" data-checkgroup="Understanding treatment" data-requireall="1">
+          <label class="opt"><input type="checkbox" name="Understanding treatment" value="Understands Lemon Bottle is not MHRA licensed or CE/UKCA marked"><span class="mark"></span><strong>I understand Lemon Bottle is classified as a cosmetic product, is not MHRA licensed and does not hold a CE or UKCA mark, and I have been offered the opportunity to discuss alternatives.</strong></label>
+          <label class="opt"><input type="checkbox" name="Understanding treatment" value="Understands this is NOT a weight loss treatment"><span class="mark"></span><strong>I understand this is not a weight loss treatment and will not reduce my overall weight.</strong></label>
+          <label class="opt"><input type="checkbox" name="Understanding treatment" value="Understands significant swelling is expected"><span class="mark"></span>I understand significant swelling is expected for several days afterwards.</label>
+          <label class="opt"><input type="checkbox" name="Understanding treatment" value="Understands a course of 2-4 sessions is needed, each charged separately"><span class="mark"></span>I understand a course of 2 to 4 sessions is usually needed, each charged separately, and that one session will not give the full result.</label>
+          <label class="opt"><input type="checkbox" name="Understanding treatment" value="Understands it does not tighten skin and may reveal laxity"><span class="mark"></span>I understand this does not tighten skin, and that reducing fat may make loose skin more noticeable.</label>
+          <label class="opt"><input type="checkbox" name="Understanding treatment" value="Understands results vary and cannot be guaranteed"><span class="mark"></span>I understand results vary between individuals and cannot be guaranteed.</label>
+        </div>
+      </div>
+    </div>
+    <div class="nav"><button type="button" class="ghost" data-back>Back</button><button type="button" class="primary" data-next>Continue</button></div>
+  </div>
+
+  <!-- ===== STEP 4 ===== -->
+  <div class="step" data-name="Your treatment plan">
+    <div class="panel">
+      <h2>Your treatment plan</h2>
+      <p class="sub">Areas and expectations.</p>
+
+      <div class="group">
+        <label class="q">Areas to be treated<span class="req">*</span></label>
+        <div class="opts grid2" data-checkgroup="Areas">
+          <label class="opt"><input type="checkbox" name="Areas" value="Chin / submental (double chin)"><span class="mark"></span>Under the chin</label>
+          <label class="opt"><input type="checkbox" name="Areas" value="Jawline / jowls"><span class="mark"></span>Jawline</label>
+          <label class="opt"><input type="checkbox" name="Areas" value="Abdomen"><span class="mark"></span>Abdomen</label>
+          <label class="opt"><input type="checkbox" name="Areas" value="Flanks / love handles"><span class="mark"></span>Flanks</label>
+          <label class="opt"><input type="checkbox" name="Areas" value="Upper arms"><span class="mark"></span>Upper arms</label>
+          <label class="opt"><input type="checkbox" name="Areas" value="Inner or outer thighs"><span class="mark"></span>Thighs</label>
+          <label class="opt"><input type="checkbox" name="Areas" value="Bra line / back"><span class="mark"></span>Bra line / back</label>
+          <label class="opt"><input type="checkbox" name="Areas" value="Above the knees"><span class="mark"></span>Above the knees</label>
+          <label class="opt"><input type="checkbox" name="Areas" value="Other — as discussed"><span class="mark"></span>Other, as discussed</label>
+        </div>
+      </div>
+
+      <div class="group">
+        <label class="q">If "other", or anything you'd like noting</label>
+        <textarea name="Areas notes"></textarea>
+      </div>
+
+      <div class="group">
+        <label class="q">Is your weight currently stable?<span class="req">*</span></label>
+        <div class="hint">This treatment works best when you are close to your target weight and not actively gaining or losing.</div>
+        <div class="opts" data-radio="Weight stable">
+          <label class="opt"><input type="radio" name="Weight stable" value="Yes — stable and close to target weight" required><span class="mark radio"></span>Yes, stable and close to my target weight</label>
+          <label class="opt"><input type="radio" name="Weight stable" value="Currently losing weight"><span class="mark radio"></span>I am currently losing weight</label>
+          <label class="opt"><input type="radio" name="Weight stable" value="Currently gaining weight"><span class="mark radio"></span>I am currently gaining weight</label>
+          <label class="opt"><input type="radio" name="Weight stable" value="On weight management medication"><span class="mark radio"></span>I am on weight management medication</label>
+        </div>
+      </div>
+
+      <div class="group">
+        <label class="q">What are you hoping this treatment will achieve?<span class="req">*</span></label>
+        <div class="hint">In your own words.</div>
+        <textarea name="Patient goals" required></textarea>
+      </div>
+
+      <div class="group">
+        <label class="q">Do you have an event, holiday or photographs coming up?</label>
+        <div class="hint">Swelling can be pronounced for several days and the result takes weeks. Please do not book this close to an occasion.</div>
+        <textarea name="Upcoming events"></textarea>
+      </div>
+
+      <div class="note">
+        <strong>Fat reduction is a body image decision as well as a clinical one.</strong>
+        If the area concerns you a great deal, if you find yourself thinking about it often, or if you have ever struggled with how you see your body, please say so. It does not mean we will refuse to treat you — it means we can have a more useful conversation about whether this is the right thing and what it will realistically change.
+      </div>
+
+      <div class="group">
+        <label class="q">Is there anything you would like to discuss privately with your practitioner?</label>
+        <textarea name="Private notes"></textarea>
+      </div>
+    </div>
+    <div class="nav"><button type="button" class="ghost" data-back>Back</button><button type="button" class="primary" data-next>Continue</button></div>
+  </div>
+
+  <!-- ===== STEP 5 ===== -->
+  <div class="step" data-name="Risks">
+    <div class="panel">
+      <h2>Risks and side effects</h2>
+      <p class="sub">Set out in full so you can weigh them properly.</p>
+
+      <h3>Common — expect these</h3>
+      <ul class="plain">
+        <li><strong>Significant swelling</strong>, beginning within hours, peaking at 2 to 3 days and settling over 5 to 7 days. Under the chin this can be very noticeable.</li>
+        <li>Redness and warmth in the treated area</li>
+        <li>Tenderness, aching or a bruised feeling for several days</li>
+        <li>Bruising, which can be extensive and last up to two weeks</li>
+        <li>Firmness, lumpiness or nodularity in the area as it settles, often for several weeks</li>
+        <li>Itching</li>
+        <li>Numbness or altered sensation in the treated area, usually temporary</li>
+      </ul>
+
+      <h3>Less common</h3>
+      <ul class="plain">
+        <li>Prolonged swelling or firmness lasting more than a few weeks</li>
+        <li>Uneven or asymmetrical result, needing further treatment to correct</li>
+        <li>Over-treatment producing a hollow or dented appearance</li>
+        <li>Loose or crepey skin becoming more apparent once fat is reduced</li>
+        <li>Infection at an injection site, occasionally needing antibiotics</li>
+        <li>Temporary pigment change at the treated site</li>
+        <li>Feeling unwell, headachy or fatigued for a day or two afterwards</li>
+        <li>Little or no visible result</li>
+      </ul>
+
+      <h3>Rare</h3>
+      <ul class="plain">
+        <li>Allergic or hypersensitivity reaction, including to bromelain</li>
+        <li>Persistent nodules requiring treatment</li>
+        <li>Abscess or deep infection</li>
+        <li>Damage to a nerve causing lasting altered sensation or, in the jaw area, temporary weakness of the lower lip</li>
+        <li>Skin damage or ulceration at the treated site</li>
+        <li>Scarring</li>
+      </ul>
+
+      <div class="alert">
+        <strong>Because this product is not a licensed medicine, its safety profile is not characterised in the way a licensed product's would be.</strong>
+        That means there may be risks that are not yet documented, and that the frequency of the risks listed above is based on clinical experience rather than trial data. We are telling you this so that your decision is properly informed.
+        <br><br>
+        <strong>Contact the clinic immediately on 0800 772 0137 if you develop:</strong> pain that is severe or worsening rather than settling; spreading redness, heat or discharge; a temperature or feeling generally unwell; skin that looks white, dusky or breaks down; or difficulty swallowing or breathing after treatment near the chin or jaw. Out of hours, or if you are unwell or struggling to breathe, go to A&amp;E and tell them what you have had — then call us.
+      </div>
+
+      <div class="group">
+        <div class="opts" data-checkgroup="Risk acknowledgement" data-requireall="1">
+          <label class="opt"><input type="checkbox" name="Risk acknowledgement" value="Has read and understood all listed risks"><span class="mark"></span>I have read all of the risks above, including the rare ones, and I understand them.</label>
+          <label class="opt"><input type="checkbox" name="Risk acknowledgement" value="Understands the safety profile is not fully characterised as the product is unlicensed"><span class="mark"></span><strong>I understand that because this product is not a licensed medicine, its full safety profile is not established, and there may be risks that are not yet known.</strong></label>
+          <label class="opt"><input type="checkbox" name="Risk acknowledgement" value="Has had opportunity to ask questions"><span class="mark"></span>I have had the opportunity to ask questions and to raise any risk that matters particularly to me.</label>
+          <label class="opt"><input type="checkbox" name="Risk acknowledgement" value="Understands when to contact the clinic urgently"><span class="mark"></span>I understand when I need to contact the clinic urgently, and that I should not wait to see if things settle.</label>
+        </div>
+      </div>
+    </div>
+    <div class="nav"><button type="button" class="ghost" data-back>Back</button><button type="button" class="primary" data-next>Continue</button></div>
+  </div>
+
+  <!-- ===== STEP 6 ===== -->
+  <div class="step" data-name="Alternatives">
+    <div class="panel">
+      <h2>Alternatives</h2>
+      <p class="sub">You are entitled to know what else could achieve your goal, including doing nothing.</p>
+
+      <ul class="plain">
+        <li><strong>No treatment.</strong> Always a reasonable choice. There is no harm in declining.</li>
+        <li><strong>Diet and exercise.</strong> Genuinely the first line for anything other than a small, localised, stubborn pocket. Fat dissolving is not a substitute and never will be.</li>
+        <li><strong>Deoxycholic acid products such as Aqualyx.</strong> These hold CE marking and have published peer-reviewed evidence behind them, which Lemon Bottle does not. However, they work by dissolving cell membranes directly, which is a more aggressive mechanism — they are associated with more pain, more swelling, and documented risks of skin necrosis and nerve injury. This is the trade-off, and it is the reason we have chosen the product we use. We are happy to discuss it fully.</li>
+        <li><strong>Medically supervised weight management.</strong> Where the underlying goal is weight loss rather than contouring a specific pocket, this is the appropriate route and we offer it.</li>
+        <li><strong>Skin tightening and collagen treatments.</strong> Where laxity rather than fat is the real issue.</li>
+        <li><strong>Surgery — liposuction.</strong> The only method that reliably removes larger volumes of fat, with the recovery, cost and risk that comes with an operation.</li>
+      </ul>
+
+      <div class="group">
+        <div class="opts" data-checkgroup="Alternatives acknowledgement" data-requireall="1">
+          <label class="opt"><input type="checkbox" name="Alternatives acknowledgement" value="Alternatives including no treatment have been explained"><span class="mark"></span>The alternatives, including having no treatment at all, have been explained to me and I have chosen to proceed.</label>
+          <label class="opt"><input type="checkbox" name="Alternatives acknowledgement" value="Understands CE-marked alternatives exist and has chosen Lemon Bottle knowing this"><span class="mark"></span><strong>I understand that CE-marked alternatives with published clinical evidence exist, that they carry a different risk profile, and I have chosen this treatment knowing that.</strong></label>
+        </div>
+      </div>
+    </div>
+    <div class="nav"><button type="button" class="ghost" data-back>Back</button><button type="button" class="primary" data-next>Continue</button></div>
+  </div>
+
+  <!-- ===== STEP 7 ===== -->
+  <div class="step" data-name="Aftercare">
+    <div class="panel">
+      <h2>Aftercare</h2>
+      <p class="sub">What you do afterwards affects both your comfort and your result.</p>
+
+      <h3>For the first 24 to 48 hours</h3>
+      <ul class="plain">
+        <li>Expect swelling. Cold compresses help — never put ice directly on the skin.</li>
+        <li>No strenuous exercise, saunas, steam rooms, sunbeds or very hot baths.</li>
+        <li>No alcohol.</li>
+        <li>Do not apply makeup or fake tan over the treated area.</li>
+        <li>Sleep with your head slightly raised if the chin or jaw was treated.</li>
+      </ul>
+
+      <h3>Massage and compression</h3>
+      <p class="body">Follow the specific massage instructions your practitioner gives you on the day. Gentle massage helps the treated fat disperse and clear, and reduces the chance of lumpiness. If compression garments have been recommended for a body area, wear them as advised.</p>
+
+      <h3>For the following weeks</h3>
+      <ul class="plain">
+        <li>Drink plenty of water. The fat released has to be cleared by your body, and hydration helps.</li>
+        <li>Keep active with gentle movement and walking once the initial soreness settles.</li>
+        <li>Keep your diet and weight stable — gaining weight will work against the result.</li>
+        <li>Attend your remaining sessions as planned.</li>
+        <li>Do not judge the result before 6 weeks.</li>
+      </ul>
+
+      <h3>Contact us if</h3>
+      <ul class="plain">
+        <li>Pain is severe or worsening rather than settling</li>
+        <li>Redness is spreading, or the area is hot with discharge</li>
+        <li>You develop a temperature or feel generally unwell</li>
+        <li>Skin looks white, dusky, or begins to break down</li>
+        <li>You have difficulty swallowing or breathing after treatment near the chin</li>
+        <li>Lumps are still present after several weeks</li>
+        <li>Anything at all concerns you</li>
+      </ul>
+      <p class="body">Call <strong>0800 772 0137</strong>. If you are unwell or struggling to breathe, go to A&amp;E first and tell them what you have had, then call us.</p>
+
+      <div class="group">
+        <div class="opts" data-checkgroup="Aftercare acknowledgement" data-requireall="1">
+          <label class="opt"><input type="checkbox" name="Aftercare acknowledgement" value="Has read and agrees to follow aftercare including massage"><span class="mark"></span>I have read the aftercare and I agree to follow it, including any massage or compression instructions given.</label>
+          <label class="opt"><input type="checkbox" name="Aftercare acknowledgement" value="Understands result should not be judged before 6 weeks"><span class="mark"></span>I understand I should not judge my result before 6 weeks.</label>
+          <label class="opt"><input type="checkbox" name="Aftercare acknowledgement" value="Will contact the clinic promptly with any concerns"><span class="mark"></span>I will contact the clinic promptly if I have any concerns following treatment.</label>
+        </div>
+      </div>
+    </div>
+    <div class="nav"><button type="button" class="ghost" data-back>Back</button><button type="button" class="primary" data-next>Continue</button></div>
+  </div>
+
+  <!-- ===== STEP 8 ===== -->
+  <div class="step" data-name="Consent">
+    <div class="panel">
+      <h2>Consent</h2>
+      <p class="sub">Please read each statement and tick to confirm.</p>
+
+      <div class="group">
+        <div class="opts" data-checkgroup="Consent" data-requireall="1">
+          <label class="opt"><input type="checkbox" name="Consent" value="Aged 18 or over"><span class="mark"></span>I am 18 years of age or over.</label>
+          <label class="opt"><input type="checkbox" name="Consent" value="Information given is true and complete"><span class="mark"></span>The information I have given today is true and complete to the best of my knowledge.</label>
+          <label class="opt"><input type="checkbox" name="Consent" value="Understands product is unlicensed and classified as a cosmetic"><span class="mark"></span><strong>I understand Lemon Bottle is an unlicensed cosmetic product, not an MHRA-licensed medicine or CE/UKCA-marked device, and I consent to its use knowing this.</strong></label>
+          <label class="opt"><input type="checkbox" name="Consent" value="Treatment, risks and alternatives discussed and understood"><span class="mark"></span>The proposed treatment, its risks and the alternatives have been explained to me, my questions have been answered, and I understand what I am agreeing to.</label>
+          <label class="opt"><input type="checkbox" name="Consent" value="Had sufficient time to consider"><span class="mark"></span>I have had enough time to consider this and I do not feel rushed or pressured.</label>
+          <label class="opt"><input type="checkbox" name="Consent" value="Understands consent may be withdrawn at any time"><span class="mark"></span>I understand I may withdraw my consent and decline treatment at any point, including after signing this.</label>
+          <label class="opt"><input type="checkbox" name="Consent" value="Understands no refund for treatment delivered as intended"><span class="mark"></span>I understand that fees cover the treatment provided and are not refundable where treatment has been carried out as agreed.</label>
+          <label class="opt"><input type="checkbox" name="Consent" value="Consents to clinical photography for the medical record"><span class="mark"></span>I consent to clinical photographs being taken and kept in my medical record as part of assessing my treatment.</label>
+          <label class="opt"><input type="checkbox" name="Consent" value="CONSENTS TO TREATMENT"><span class="mark"></span><strong>I consent to treatment with Lemon Bottle as discussed.</strong></label>
+        </div>
+      </div>
+
+      <div class="note">
+        <strong>Before and after photographs — please choose one.</strong>
+        Your answer makes no difference at all to your treatment, and you can change your mind at any time by telling us.
+      </div>
+
+      <div class="group">
+        <div class="opts" data-radio="Marketing image consent">
+          <label class="opt"><input type="radio" name="Marketing image consent" value="YES — consents to before/after images being used on website and social media" required><span class="mark radio"></span><strong>Yes</strong> — I'm happy for before and after photographs of my treatment to be shared on the clinic's website and social media. Most of our patients found us this way, so it genuinely helps.</label>
+          <label class="opt"><input type="radio" name="Marketing image consent" value="YES — but treated area only, face or body not identifiable"><span class="mark radio"></span><strong>Yes, but treated area only</strong> — please don't show my face, or anything identifiable.</label>
+          <label class="opt"><input type="radio" name="Marketing image consent" value="NO — DECLINED. Do not use images for marketing."><span class="mark radio"></span><strong>No</strong> — please keep my photographs for my clinical record only.</label>
+        </div>
+      </div>
+
+      <div class="group two-col">
+        <div><label class="q">Type your full name<span class="req">*</span></label><input type="text" name="Signed name" required></div>
+        <div><label class="q">Date<span class="req">*</span></label><input type="date" name="Date signed" id="dateSigned" required></div>
+      </div>
+      <div class="hint" style="margin-top:-8px">Typing your name here acts as your electronic signature confirming the statements above.</div>
+    </div>
+
+    <div class="nav">
+      <button type="button" class="ghost" data-back>Back</button>
+      <button type="button" class="primary" id="submitBtn">Submit consent</button>
+    </div>
+
+    <div class="panel" style="padding:20px 24px">
+      <div class="privacy">
+        <strong>How we look after this information.</strong>
+        This form is transmitted over an encrypted connection directly to the clinic's secure email. It is not stored on this web page and no copy is retained by the website. Your answers are special category health data under UK GDPR, processed for the purposes of providing healthcare under Article 9(2)(h), and held in your clinical record. We keep clinical records for the period required by professional guidance and do not sell or share them. Consent to use images for marketing is held separately under Article 6(1)(a) and may be withdrawn at any time. You may request a copy of what we hold, ask for corrections, or raise a concern with the Information Commissioner's Office. Data controller: R F Roberts Limited, trading as Sebastian Rose Medical Aesthetics. Contact info@sebastianrose.co.uk or 0800 772 0137.
+      </div>
+    </div>
+  </div>
+
+  </form>
+
+  <div id="done">
+    <div class="tick">&#10003;</div>
+    <h2>Thank you</h2>
+    <p>Your consent has been recorded and sent securely to the clinic.</p>
+    <p>Remember that swelling is expected and peaks around day two to three. Please don't judge your result before six weeks.</p>
+    <p style="margin-top:18px;font-size:13.5px">Any questions before then — call us on 0800 772 0137.</p>
+  </div>
+
+  <div class="foot">
+    Sebastian Rose Medical Aesthetics · 39 Charles Street, Cardiff, CF10 2GB<br>
+    0800 772 0137 · info@sebastianrose.co.uk
+  </div>
+
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  var EMAILJS_PUBLIC_KEY  = "04pcL3xdpVieS--Q9";
+  var EMAILJS_SERVICE_ID  = "service_bdikve4";
+  var EMAILJS_TEMPLATE_ID = "template_2we5rm1";
+
+  if (window.emailjs) { emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY }); }
+
+  var form     = document.getElementById('form');
+  var steps    = Array.prototype.slice.call(document.querySelectorAll('.step'));
+  var bar      = document.getElementById('bar');
+  var stepName = document.getElementById('stepName');
+  var stepNum  = document.getElementById('stepNum');
+  var errBox   = document.getElementById('err');
+  var current  = 0;
+
+  // tell the hosting page how tall we are, so it can resize the frame
+  var lastH = 0;
+  function reportHeight(){
+    try{
+      var h = Math.max(
+        document.body.scrollHeight,
+        document.documentElement.scrollHeight,
+        document.body.offsetHeight
+      );
+      if(Math.abs(h - lastH) > 8){
+        lastH = h;
+        window.parent.postMessage({ srType:'height', height: h }, '*');
+        window.parent.postMessage(String(h), '*');
+      }
+    }catch(e){}
+  }
+  window.addEventListener('load', reportHeight);
+  window.addEventListener('resize', reportHeight);
+  setInterval(reportHeight, 400);
+
+  function toTop(){
+    try { window.scrollTo(0,0); } catch(e){}
+    try { document.documentElement.scrollTop = 0; document.body.scrollTop = 0; } catch(e){}
+    try {
+      var a = document.getElementById('topAnchor');
+      if(a && a.scrollIntoView) a.scrollIntoView({ block:'start', inline:'nearest' });
+    } catch(e){}
+    try { window.parent.postMessage({ type:'scrollTo', top:0 }, '*'); } catch(e){}
+  }
+
+  function syncOpt(input){
+    var box = input.closest('.opt');
+    if(!box) return;
+    if(input.type === 'radio'){
+      var same = document.querySelectorAll('input[name="'+CSS.escape(input.name)+'"]');
+      Array.prototype.forEach.call(same, function(r){
+        var b = r.closest('.opt'); if(b) b.classList.toggle('checked', r.checked);
+        var rev = b && b.getAttribute('data-reveal');
+        if(rev){ var el = document.getElementById(rev); if(el) el.classList.toggle('show', r.checked); }
+      });
+    } else {
+      box.classList.toggle('checked', input.checked);
+      var rv = box.getAttribute('data-reveal');
+      if(rv){ var e2 = document.getElementById(rv); if(e2) e2.classList.toggle('show', input.checked); }
+    }
+  }
+
+  Array.prototype.forEach.call(document.querySelectorAll('.opt input'), function(input){
+    input.addEventListener('change', function(){
+      if(input.type === 'checkbox' && input.checked && /^NONE/.test(input.value)){
+        Array.prototype.forEach.call(document.querySelectorAll('input[name="'+CSS.escape(input.name)+'"]'), function(o){
+          if(o !== input && o.checked){ o.checked = false; syncOpt(o); }
+        });
+      }
+      if(input.type === 'checkbox' && input.checked && !/^NONE/.test(input.value)){
+        Array.prototype.forEach.call(document.querySelectorAll('input[name="'+CSS.escape(input.name)+'"]'), function(o){
+          if(/^NONE/.test(o.value) && o.checked){ o.checked = false; syncOpt(o); }
+        });
+      }
+      syncOpt(input);
+    });
+  });
+
+  // hard stop: pregnancy / breastfeeding
+  var pregStop  = document.getElementById('pregStop');
+  var pregBlock = document.getElementById('pregBlock');
+  function pregOK(){
+    var blocked = pregStop && pregStop.checked;
+    if(pregBlock) pregBlock.style.display = blocked ? 'block' : 'none';
+    return !blocked;
+  }
+  if(pregStop) pregStop.addEventListener('change', function(){ pregOK(); });
+
+  var dob = document.getElementById('dob');
+  var ageErr = document.getElementById('ageErr');
+  function ageOK(){
+    if(!dob.value) return true;
+    var d = new Date(dob.value), n = new Date();
+    var a = n.getFullYear() - d.getFullYear();
+    var m = n.getMonth() - d.getMonth();
+    if(m < 0 || (m === 0 && n.getDate() < d.getDate())) a--;
+    if(a < 18){
+      ageErr.textContent = "We are unable to offer this treatment to anyone under 18. Please call the clinic on 0800 772 0137 if you think this is an error.";
+      ageErr.classList.add('show');
+      return false;
+    }
+    ageErr.classList.remove('show');
+    return true;
+  }
+  dob.addEventListener('change', ageOK);
+
+  function show(i){
+    steps[current].classList.remove('active');
+    current = i;
+    steps[current].classList.add('active');
+    bar.style.width = ((current + 1) / steps.length * 100) + '%';
+    stepName.textContent = steps[current].getAttribute('data-name').replace(/&amp;/g,'&');
+    stepNum.textContent = 'Step ' + (current + 1) + ' of ' + steps.length;
+    errBox.classList.remove('show');
+    toTop();
+    setTimeout(reportHeight, 60);
+  }
+
+  function validate(step){
+    var bad = [];
+    Array.prototype.forEach.call(step.querySelectorAll('[required]'), function(f){
+      if(f.type === 'radio'){
+        if(!step.querySelector('input[name="'+CSS.escape(f.name)+'"]:checked')) bad.push(f.name);
+      } else if(!f.value.trim()){
+        bad.push(f.name);
+      }
+    });
+    Array.prototype.forEach.call(step.querySelectorAll('[data-checkgroup]'), function(grp){
+      var nm = grp.getAttribute('data-checkgroup');
+      if(grp.getAttribute('data-requireall')){
+        var boxes = grp.querySelectorAll('input[type=checkbox]');
+        var done  = grp.querySelectorAll('input[type=checkbox]:checked');
+        if(done.length < boxes.length) bad.push('every statement under "' + nm + '"');
+        return;
+      }
+      if(grp.getAttribute('data-optional')) return;
+      var cond = grp.getAttribute('data-conditional');
+      if(cond && !document.querySelector('input[name="'+CSS.escape(cond)+'"]:checked')) return;
+      if(!grp.querySelector('input:checked')) bad.push(nm);
+    });
+    // at least one area must be selected on the areas step
+    if(step.querySelector('[data-checkgroup="Licensed areas"]')){
+      var anyArea = document.querySelector('input[name="Licensed areas"]:checked') ||
+                    document.querySelector('input[name="Off-label areas"]:checked');
+      if(!anyArea) bad.push('At least one treatment area');
+    }
+    return bad;
+  }
+
+  Array.prototype.forEach.call(document.querySelectorAll('[data-next]'), function(b){
+    b.addEventListener('click', function(){
+      if(current === 0 && !ageOK()){ toTop(); return; }
+      if(!pregOK()){ toTop(); return; }
+      var bad = validate(steps[current]);
+      if(bad.length){
+        errBox.innerHTML = 'Please complete the following before continuing: <strong>' +
+          bad.filter(function(v,i,a){return a.indexOf(v)===i;}).join(', ') + '</strong>';
+        errBox.classList.add('show');
+        toTop();
+        return;
+      }
+      show(current + 1);
+    });
+  });
+
+  Array.prototype.forEach.call(document.querySelectorAll('[data-back]'), function(b){
+    b.addEventListener('click', function(){ show(current - 1); });
+  });
+
+  (function(){
+    var t = new Date(), p = function(n){ return (n<10?'0':'')+n; };
+    document.getElementById('dateSigned').value = t.getFullYear()+'-'+p(t.getMonth()+1)+'-'+p(t.getDate());
+  })();
+
+  function collect(){
+    var out = [], seen = {}, order = [];
+    Array.prototype.forEach.call(form.elements, function(el){
+      if(!el.name) return;
+      if(el.type === 'checkbox' || el.type === 'radio'){
+        if(!el.checked) return;
+        if(!seen[el.name]){ seen[el.name] = []; order.push(el.name); }
+        seen[el.name].push(el.value);
+      } else {
+        if(!el.value.trim()) return;
+        if(!seen[el.name]){ seen[el.name] = []; order.push(el.name); }
+        seen[el.name].push(el.value.trim());
+      }
+    });
+    order.forEach(function(k){ out.push(k.toUpperCase() + ':\n  ' + seen[k].join('\n  ')); });
+    // explicitly record a declined marketing consent
+    if(!document.querySelector('input[name="Marketing image consent"]:checked')){
+      out.push('MARKETING IMAGE CONSENT:\n  NOT ANSWERED — treat as declined');
+    }
+    return out.join('\n\n');
+  }
+
+  var submitBtn = document.getElementById('submitBtn');
+  submitBtn.addEventListener('click', function(){
+    if(!ageOK() || !pregOK()){ toTop(); return; }
+    var bad = validate(steps[current]);
+    if(bad.length){
+      errBox.innerHTML = 'Please complete the following: <strong>' +
+        bad.filter(function(v,i,a){return a.indexOf(v)===i;}).join(', ') + '</strong>';
+      errBox.classList.add('show');
+      toTop();
+      return;
+    }
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Sending…';
+
+    var name = (form.querySelector('[name="First name"]').value + ' ' +
+                form.querySelector('[name="Surname"]').value).trim();
+
+    var params = {
+      form_type: 'LEMON BOTTLE CONSENT',
+      patient_name: name,
+      from_name: name,
+      reply_to: form.querySelector('[name="Email"]').value,
+      full_data: 'LEMON BOTTLE (FAT DISSOLVING) — INFORMATION & CONSENT\nSubmitted: ' +
+                 new Date().toLocaleString('en-GB') + '\n\n' + collect(),
+      id_document_url: 'N/A — consent form'
+    };
+
+    emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, params)
+      .then(function(){
+        document.querySelector('.progress-shell').style.display = 'none';
+        form.style.display = 'none';
+        document.getElementById('done').style.display = 'block';
+        toTop();
+      })
+      .catch(function(e){
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Submit consent';
+        errBox.innerHTML = 'Sorry — this did not send. Please check your connection and try again, or speak to your practitioner. <br><small>' + (e && e.text ? e.text : '') + '</small>';
+        errBox.classList.add('show');
+        toTop();
+      });
+  });
+})();
+</script>
+</body>
+</html>
