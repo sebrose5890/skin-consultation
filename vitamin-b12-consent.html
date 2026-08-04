@@ -1,0 +1,829 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Vitamin B12 Consent | Sebastian Rose Medical Aesthetics</title>
+
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
+<style>
+/* ============================================================
+   BRAND COLOURS — change these to match your site
+   ============================================================ */
+:root{
+  --ink:#221f1c;
+  --muted:#6f6960;
+  --accent:#b09a77;
+  --accent-dark:#96805f;
+  --bg:#faf8f5;
+  --card:#ffffff;
+  --line:#e6ded2;
+  --warn-bg:#fdf7ee;
+  --warn-line:#e2caa5;
+  --alert-bg:#fbf1ef;
+  --alert-line:#ddb3ab;
+  --ok-bg:#f0f4ee;
+  --ok-line:#c0d1b8;
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{overflow-x:hidden;height:auto;min-height:0}
+/* hide the widget's own scrollbar so it never doubles up with the page's.
+   scrolling still works by wheel/trackpad, so nothing is ever unreachable. */
+html::-webkit-scrollbar,body::-webkit-scrollbar{width:0;height:0;display:none}
+html,body{scrollbar-width:none;-ms-overflow-style:none}
+body{
+  font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;
+  background:var(--bg);color:var(--ink);line-height:1.65;font-size:16px;
+  -webkit-font-smoothing:antialiased;padding:0 0 50px;
+}
+.wrap{max-width:800px;margin:0 auto;padding:28px 18px 0}
+
+.hero{text-align:center;padding:14px 0 26px}
+.hero .eyebrow{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);font-weight:700;margin-bottom:12px}
+.hero h1{font-family:Georgia,'Times New Roman',serif;font-weight:400;font-size:30px;line-height:1.3;letter-spacing:.02em;text-transform:uppercase;margin-bottom:12px}
+.hero p{color:var(--muted);font-size:15px;max-width:580px;margin:0 auto}
+
+.progress-shell{margin:0 0 26px}
+.progress-track{height:3px;background:var(--line);border-radius:2px;overflow:hidden}
+.progress-fill{height:100%;width:12.5%;background:var(--accent);transition:width .35s ease}
+.progress-label{display:flex;justify-content:space-between;margin-top:9px;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+
+.step{display:none}
+.step.active{display:block;animation:fade .3s ease}
+@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+.panel{background:var(--card);border:1px solid var(--line);border-radius:3px;padding:32px 28px;margin-bottom:18px}
+.panel h2{font-family:Georgia,'Times New Roman',serif;font-weight:400;font-size:19px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:8px}
+.panel .sub{color:var(--muted);font-size:14px;margin-bottom:24px}
+.panel h3{font-family:Georgia,serif;font-weight:400;font-size:16px;letter-spacing:.05em;text-transform:uppercase;margin:26px 0 10px;padding-bottom:7px;border-bottom:1px solid var(--line)}
+.panel p.body{font-size:14.8px;margin-bottom:14px;color:#3a352f}
+.panel ul.plain{margin:0 0 16px 18px;font-size:14.8px;color:#3a352f}
+.panel ul.plain li{margin-bottom:7px}
+
+.group{margin-bottom:22px}
+.group:last-child{margin-bottom:0}
+label.q{display:block;font-weight:600;font-size:14.5px;margin-bottom:8px}
+label.q .req{color:var(--accent);margin-left:3px}
+.hint{font-size:13px;color:var(--muted);margin:-3px 0 9px;line-height:1.5}
+
+input[type=text],input[type=email],input[type=tel],input[type=date],select,textarea{
+  width:100%;padding:12px 13px;font-size:15px;font-family:inherit;color:var(--ink);
+  background:#fff;border:1px solid var(--line);border-radius:2px;outline:none;transition:border-color .15s;
+}
+input:focus,select:focus,textarea:focus{border-color:var(--accent)}
+textarea{min-height:88px;resize:vertical}
+select{appearance:none;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8'><path d='M1 1l5 5 5-5' stroke='%236f6960' stroke-width='1.5' fill='none'/></svg>");background-repeat:no-repeat;background-position:right 14px center}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:560px){.two-col{grid-template-columns:1fr}}
+
+.opts{display:flex;flex-direction:column;gap:8px}
+.opts.inline{flex-direction:row;flex-wrap:wrap;gap:10px}
+.opts.grid2{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+@media(max-width:560px){.opts.grid2{grid-template-columns:1fr}}
+
+.opt{position:relative;display:flex;align-items:flex-start;gap:11px;padding:11px 14px;border:1px solid var(--line);border-radius:2px;background:#fff;cursor:pointer;font-size:14.5px;transition:border-color .15s,background .15s;user-select:none}
+.opt:hover{border-color:var(--accent)}
+.opt input{position:absolute;opacity:0;width:0;height:0;pointer-events:none}
+.mark{flex:0 0 18px;width:18px;height:18px;margin-top:2px;border:1.5px solid #c4bbae;background:#fff;position:relative;transition:all .15s}
+.mark.radio{border-radius:50%}
+.opt.checked{border-color:var(--accent);background:#fcfaf7}
+.opt.checked .mark{border-color:var(--accent);background:var(--accent)}
+.opt.checked .mark::after{content:"";position:absolute;left:5px;top:1px;width:5px;height:10px;border:solid #fff;border-width:0 2px 2px 0;transform:rotate(45deg)}
+.opt.checked .mark.radio::after{content:"";position:absolute;left:4px;top:4px;width:6px;height:6px;border:0;border-radius:50%;background:#fff;transform:none}
+.opt.inline-sm{padding:9px 16px}
+
+.reveal{display:none;margin-top:11px;padding-left:14px;border-left:2px solid var(--accent)}
+.reveal.show{display:block;animation:fade .25s ease}
+
+.note{background:var(--warn-bg);border:1px solid var(--warn-line);border-radius:2px;padding:15px 17px;font-size:13.8px;line-height:1.65;margin-bottom:22px;color:#5c4a33}
+.note strong{display:block;margin-bottom:4px}
+.alert{background:var(--alert-bg);border:1px solid var(--alert-line);border-radius:2px;padding:15px 17px;font-size:13.8px;line-height:1.65;margin-bottom:22px;color:#6b3a33}
+.alert strong{display:block;margin-bottom:4px}
+.privacy{background:#f5f2ed;border:1px solid var(--line);border-radius:2px;padding:16px 18px;font-size:12.8px;color:var(--muted);line-height:1.65;margin-top:18px}
+.privacy strong{color:var(--ink)}
+
+.nav{display:flex;gap:12px;margin-top:6px}
+button.primary{flex:1;padding:15px;background:var(--accent);color:#fff;border:0;border-radius:2px;font-size:12.5px;letter-spacing:.18em;text-transform:uppercase;font-weight:700;cursor:pointer;font-family:inherit;transition:background .15s}
+button.primary:hover{background:var(--accent-dark)}
+button.primary:disabled{opacity:.55;cursor:not-allowed}
+button.ghost{padding:15px 26px;background:#fff;color:var(--muted);border:1px solid var(--line);border-radius:2px;font-size:12.5px;letter-spacing:.18em;text-transform:uppercase;font-weight:700;cursor:pointer;font-family:inherit}
+button.ghost:hover{border-color:var(--accent);color:var(--accent)}
+a.linkbtn{display:inline-block;padding:13px 22px;background:var(--accent);color:#fff;text-decoration:none;border-radius:2px;font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;font-weight:700;transition:background .15s}
+a.linkbtn:hover{background:var(--accent-dark)}
+
+.err{display:none;background:#fbeceb;border:1px solid #e0b2ac;color:#8a3a31;padding:12px 15px;border-radius:2px;font-size:13.5px;margin-bottom:16px}
+.err.show{display:block}
+
+#done{display:none;text-align:center;padding:52px 26px;background:var(--ok-bg);border:1px solid var(--ok-line);border-radius:3px}
+#done h2{font-family:Georgia,serif;font-weight:400;font-size:24px;letter-spacing:.05em;text-transform:uppercase;margin-bottom:14px}
+#done p{color:#48553f;font-size:15px;max-width:490px;margin:0 auto 10px}
+.tick{width:54px;height:54px;border-radius:50%;background:#7d9370;color:#fff;font-size:27px;line-height:54px;margin:0 auto 20px}
+
+.foot{text-align:center;font-size:12px;color:var(--muted);margin-top:22px;line-height:1.7}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <span id="topAnchor" aria-hidden="true"></span>
+
+  <div class="hero">
+    <div class="eyebrow">Sebastian Rose Medical Aesthetics</div>
+    <h1>Vitamin B12<br>Information &amp; Consent</h1>
+    <p>Prescription hydroxocobalamin, prescribed and administered by an Independent Nurse Prescriber. Please read this in full. You may decline at any time, including after giving consent.</p>
+  </div>
+
+  <div class="progress-shell">
+    <div class="progress-track"><div class="progress-fill" id="bar"></div></div>
+    <div class="progress-label"><span id="stepName">Your details</span><span id="stepNum">Step 1 of 8</span></div>
+  </div>
+
+  <div class="err" id="err"></div>
+
+  <form id="form" autocomplete="on">
+
+  <!-- ===== STEP 1 ===== -->
+  <div class="step active" data-name="Your details">
+    <div class="panel">
+      <h2>Your details</h2>
+      <p class="sub">So this consent can be filed against your clinical record.</p>
+
+      <div class="alert">
+        <strong>We do not treat anyone under the age of 18.</strong>
+        Treatments at Sebastian Rose are for adults only, without exception.
+      </div>
+
+      <div class="alert">
+        <strong>A face-to-face consultation in clinic is mandatory, at least 48 hours before your injection.</strong>
+        Hydroxocobalamin is a prescription-only medicine. It cannot lawfully be prescribed without a proper consultation with the prescriber, and we do not treat on the same day as the consultation. If you have not had a consultation at least 48 hours beforehand, we will not be able to treat you.
+        <br><br>
+        We do not offer remote or telephone consultations for this.
+      </div>
+
+      <div class="group two-col">
+        <div><label class="q">First name<span class="req">*</span></label><input type="text" name="First name" required></div>
+        <div><label class="q">Surname<span class="req">*</span></label><input type="text" name="Surname" required></div>
+      </div>
+
+      <div class="group two-col">
+        <div><label class="q">Date of birth<span class="req">*</span></label><input type="date" name="Date of birth" id="dob" required></div>
+        <div><label class="q">Mobile number<span class="req">*</span></label><input type="tel" name="Mobile" required></div>
+      </div>
+      <div class="err" id="ageErr" style="margin-top:-8px"></div>
+
+      <div class="group">
+        <label class="q">Email address<span class="req">*</span></label>
+        <input type="email" name="Email" required>
+      </div>
+
+      <div class="group">
+        <label class="q">Your GP surgery — name and town<span class="req">*</span></label>
+        <div class="hint">We ask because B12 deficiency can have an underlying cause that needs investigating, and because your GP should know what you are taking.</div>
+        <input type="text" name="GP surgery" required>
+      </div>
+
+      <div class="group">
+        <label class="q">Have you completed our medical history and pre-screening questionnaire?<span class="req">*</span></label>
+        <div class="opts inline" data-radio="Medical history completed">
+          <label class="opt inline-sm"><input type="radio" name="Medical history completed" value="Yes" required><span class="mark radio"></span>Yes</label>
+          <label class="opt inline-sm" data-reveal="noHxDetail"><input type="radio" name="Medical history completed" value="No / not sure"><span class="mark radio"></span>No, or not sure</label>
+        </div>
+        <div class="reveal" id="noHxDetail">
+          <p class="body" style="margin:0 0 12px">A full medical history is needed before any prescription can be issued. Please complete it now.</p>
+          <a href="https://www.sebastianrose.co.uk/medical-history-and-prescreening" target="_blank" rel="noopener" class="linkbtn">Complete the medical history form &rarr;</a>
+        </div>
+      </div>
+
+      <div class="group">
+        <label class="q">Has your consultation taken place?<span class="req">*</span></label>
+        <div class="opts" data-radio="Consultation status">
+          <label class="opt"><input type="radio" name="Consultation status" value="Yes — more than 48 hours ago" required><span class="mark radio"></span>Yes, more than 48 hours ago</label>
+          <label class="opt"><input type="radio" name="Consultation status" value="Yes — but less than 48 hours ago"><span class="mark radio"></span>Yes, but less than 48 hours ago</label>
+          <label class="opt"><input type="radio" name="Consultation status" value="Booked but not yet taken place"><span class="mark radio"></span>Booked, but not yet</label>
+          <label class="opt"><input type="radio" name="Consultation status" value="Not yet booked"><span class="mark radio"></span>Not yet booked</label>
+        </div>
+      </div>
+    </div>
+    <div class="nav"><button type="button" class="primary" data-next>Continue</button></div>
+  </div>
+
+  <!-- ===== STEP 2 ===== -->
+  <div class="step" data-name="Symptoms &amp; risk factors">
+    <div class="panel">
+      <h2>Symptoms and risk factors</h2>
+      <p class="sub">This helps your prescriber decide whether treatment is appropriate, and how much you are likely to need.</p>
+
+      <div class="group">
+        <label class="q">Have you been told you are B12 deficient?<span class="req">*</span></label>
+        <div class="opts" data-radio="Diagnosed deficiency">
+          <label class="opt"><input type="radio" name="Diagnosed deficiency" value="Yes — confirmed by a blood test" required><span class="mark radio"></span>Yes, confirmed by a blood test</label>
+          <label class="opt"><input type="radio" name="Diagnosed deficiency" value="Yes — diagnosed with pernicious anaemia"><span class="mark radio"></span>Yes, I have been diagnosed with pernicious anaemia</label>
+          <label class="opt"><input type="radio" name="Diagnosed deficiency" value="No — but I think I may be deficient"><span class="mark radio"></span>No, but I think I may be</label>
+          <label class="opt"><input type="radio" name="Diagnosed deficiency" value="No — I want it for energy or general wellbeing"><span class="mark radio"></span>No — I'm interested for energy or general wellbeing</label>
+        </div>
+      </div>
+
+      <div class="group">
+        <label class="q">Which of these do you experience?<span class="req">*</span></label>
+        <div class="opts grid2" data-checkgroup="Symptoms">
+          <label class="opt"><input type="checkbox" name="Symptoms" value="Persistent tiredness or fatigue"><span class="mark"></span>Persistent tiredness</label>
+          <label class="opt"><input type="checkbox" name="Symptoms" value="Weakness or lethargy"><span class="mark"></span>Weakness or lethargy</label>
+          <label class="opt"><input type="checkbox" name="Symptoms" value="Breathlessness"><span class="mark"></span>Breathlessness</label>
+          <label class="opt"><input type="checkbox" name="Symptoms" value="Pale skin"><span class="mark"></span>Pale skin</label>
+          <label class="opt"><input type="checkbox" name="Symptoms" value="Pins and needles, numbness or tingling"><span class="mark"></span>Pins and needles or numbness</label>
+          <label class="opt"><input type="checkbox" name="Symptoms" value="Unsteadiness or problems with balance"><span class="mark"></span>Unsteadiness or balance problems</label>
+          <label class="opt"><input type="checkbox" name="Symptoms" value="Memory problems, confusion or brain fog"><span class="mark"></span>Memory problems or brain fog</label>
+          <label class="opt"><input type="checkbox" name="Symptoms" value="Sore or red tongue, mouth ulcers"><span class="mark"></span>Sore tongue or mouth ulcers</label>
+          <label class="opt"><input type="checkbox" name="Symptoms" value="Low mood or irritability"><span class="mark"></span>Low mood or irritability</label>
+          <label class="opt"><input type="checkbox" name="Symptoms" value="Disturbed vision"><span class="mark"></span>Disturbed vision</label>
+          <label class="opt"><input type="checkbox" name="Symptoms" value="Heart palpitations"><span class="mark"></span>Palpitations</label>
+          <label class="opt"><input type="checkbox" name="Symptoms" value="NO SYMPTOMS"><span class="mark"></span><strong>No symptoms</strong></label>
+        </div>
+      </div>
+
+      <div class="note">
+        <strong>Tingling, numbness, unsteadiness and memory problems matter more than the others.</strong>
+        These can indicate that a deficiency is affecting your nervous system, which changes how urgently and how intensively you need treating — and means you should also be seen by your GP. Please make sure you mention them at your consultation.
+      </div>
+
+      <div class="group">
+        <label class="q">Do any of these apply to you?<span class="req">*</span></label>
+        <div class="hint">These affect how well you absorb B12 from food and supplements.</div>
+        <div class="opts" data-checkgroup="Risk factors">
+          <label class="opt"><input type="checkbox" name="Risk factors" value="Vegan or vegetarian diet"><span class="mark"></span>I am vegan or vegetarian</label>
+          <label class="opt"><input type="checkbox" name="Risk factors" value="Pernicious anaemia"><span class="mark"></span>I have pernicious anaemia</label>
+          <label class="opt"><input type="checkbox" name="Risk factors" value="Coeliac disease, Crohn's or other digestive condition"><span class="mark"></span>I have coeliac disease, Crohn's or another digestive condition</label>
+          <label class="opt"><input type="checkbox" name="Risk factors" value="Previous gastric or bowel surgery, including bariatric surgery"><span class="mark"></span>I have had stomach or bowel surgery, including weight loss surgery</label>
+          <label class="opt"><input type="checkbox" name="Risk factors" value="Taking metformin"><span class="mark"></span>I take metformin</label>
+          <label class="opt"><input type="checkbox" name="Risk factors" value="Taking a proton pump inhibitor (omeprazole, lansoprazole) or long-term antacid"><span class="mark"></span>I take omeprazole, lansoprazole or similar</label>
+          <label class="opt"><input type="checkbox" name="Risk factors" value="Aged over 50"><span class="mark"></span>I am over 50</label>
+          <label class="opt"><input type="checkbox" name="Risk factors" value="Regular alcohol use"><span class="mark"></span>I drink alcohol regularly</label>
+          <label class="opt"><input type="checkbox" name="Risk factors" value="Family history of pernicious anaemia or B12 deficiency"><span class="mark"></span>Someone in my family has B12 deficiency or pernicious anaemia</label>
+          <label class="opt"><input type="checkbox" name="Risk factors" value="NONE OF THE ABOVE"><span class="mark"></span><strong>None of the above</strong></label>
+        </div>
+      </div>
+
+      <div class="group">
+        <label class="q">Are you already taking B12 in any form?<span class="req">*</span></label>
+        <div class="hint">Oral tablets, sprays, patches, or injections from anywhere else.</div>
+        <div class="opts inline" data-radio="Current B12">
+          <label class="opt inline-sm"><input type="radio" name="Current B12" value="No" required><span class="mark radio"></span>No</label>
+          <label class="opt inline-sm" data-reveal="b12Detail"><input type="radio" name="Current B12" value="Yes"><span class="mark radio"></span>Yes</label>
+        </div>
+        <div class="reveal" id="b12Detail">
+          <label class="q">What, how much, how often, and for how long?</label>
+          <textarea name="Current B12 detail"></textarea>
+        </div>
+      </div>
+    </div>
+    <div class="nav"><button type="button" class="ghost" data-back>Back</button><button type="button" class="primary" data-next>Continue</button></div>
+  </div>
+
+  <!-- ===== STEP 3 ===== -->
+  <div class="step" data-name="Safety screening">
+    <div class="panel">
+      <h2>Safety screening</h2>
+      <p class="sub">Please answer each one. Some of these prevent treatment entirely.</p>
+
+      <div class="alert" id="lebersBlock" style="display:none">
+        <strong>We cannot prescribe hydroxocobalamin.</strong>
+        Hydroxocobalamin must not be given to anyone with Leber's hereditary optic neuropathy or a related optic atrophy, because it can cause severe and rapid worsening of vision. Please contact the clinic on 0800 772 0137 so we can discuss this with you, and speak to your GP or ophthalmologist about how your B12 should be managed.
+      </div>
+
+      <div class="group">
+        <label class="q">Do any of the following apply to you?<span class="req">*</span></label>
+        <div class="opts" data-checkgroup="Screening">
+          <label class="opt"><input type="checkbox" name="Screening" id="lebersStop" value="LEBER'S HEREDITARY OPTIC NEUROPATHY or optic atrophy"><span class="mark"></span><strong>I have Leber's hereditary optic neuropathy, or another inherited optic nerve condition</strong></label>
+          <label class="opt"><input type="checkbox" name="Screening" value="Known allergy to hydroxocobalamin, cyanocobalamin or cobalt"><span class="mark"></span>I am allergic to vitamin B12, hydroxocobalamin, cyanocobalamin or cobalt</label>
+          <label class="opt"><input type="checkbox" name="Screening" value="Previous reaction to a B12 injection"><span class="mark"></span>I have reacted to a B12 injection before</label>
+          <label class="opt"><input type="checkbox" name="Screening" value="Pregnant, breastfeeding or trying to conceive"><span class="mark"></span>I am pregnant, breastfeeding or trying to conceive</label>
+          <label class="opt"><input type="checkbox" name="Screening" value="Anaemia — diagnosed or suspected"><span class="mark"></span>I am anaemic, or have been told I might be</label>
+          <label class="opt"><input type="checkbox" name="Screening" value="Low potassium, or a condition affecting potassium"><span class="mark"></span>I have low potassium, or a condition affecting it</label>
+          <label class="opt"><input type="checkbox" name="Screening" value="Heart or circulatory condition"><span class="mark"></span>I have a heart or circulatory condition</label>
+          <label class="opt"><input type="checkbox" name="Screening" value="Kidney disease"><span class="mark"></span>I have kidney disease</label>
+          <label class="opt"><input type="checkbox" name="Screening" value="Polycythaemia vera or a blood disorder"><span class="mark"></span>I have a blood disorder</label>
+          <label class="opt"><input type="checkbox" name="Screening" value="Current or previous cancer"><span class="mark"></span>I have, or have had, cancer</label>
+          <label class="opt"><input type="checkbox" name="Screening" value="Bleeding or clotting disorder, or taking anticoagulants"><span class="mark"></span>I have a bleeding disorder, or take blood-thinning medication</label>
+          <label class="opt"><input type="checkbox" name="Screening" value="Epilepsy"><span class="mark"></span>I have epilepsy</label>
+          <label class="opt"><input type="checkbox" name="Screening" value="Gout"><span class="mark"></span>I have gout</label>
+          <label class="opt"><input type="checkbox" name="Screening" value="Infection or broken skin at the injection site"><span class="mark"></span>I have infection or broken skin where I would be injected</label>
+          <label class="opt"><input type="checkbox" name="Screening" value="NONE OF THE ABOVE"><span class="mark"></span><strong>None of the above apply to me</strong></label>
+        </div>
+      </div>
+
+      <div class="group">
+        <label class="q">Details of anything ticked above</label>
+        <textarea name="Screening detail"></textarea>
+      </div>
+
+      <div class="note">
+        <strong>Why some of these are on the list.</strong>
+        When a significant B12 deficiency is corrected, your body suddenly starts producing red blood cells rapidly. This can pull <strong>potassium</strong> out of the bloodstream in the first few days, and can also increase iron and folate demand. In most people this is of no consequence, but it matters if you are already anaemic, have low potassium, or have a heart condition — which is one of the reasons we recommend a blood test first.
+      </div>
+
+      <div class="group">
+        <label class="q">List all medication and supplements you currently take<span class="req">*</span></label>
+        <div class="hint">Prescribed and over-the-counter, including anything for your stomach, and any vitamins. Write "none" if none.</div>
+        <textarea name="Current medication" required></textarea>
+      </div>
+    </div>
+    <div class="nav"><button type="button" class="ghost" data-back>Back</button><button type="button" class="primary" data-next>Continue</button></div>
+  </div>
+
+  <!-- ===== STEP 4 ===== -->
+  <div class="step" data-name="About the treatment">
+    <div class="panel">
+      <h2>About the treatment</h2>
+      <p class="sub">What we use, why, and what it will and will not do.</p>
+
+      <h3>What we use</h3>
+      <p class="body">We prescribe and administer <strong>hydroxocobalamin</strong> — the prescription-only form of vitamin B12 used by GPs and the NHS, and the form recommended in NICE guidance. It is given by intramuscular injection, usually into the upper arm.</p>
+      <p class="body">Hydroxocobalamin binds more effectively to plasma proteins than cyanocobalamin, so it is retained in the body for longer and needs to be given less often. It is not the same as the non-prescription B12 offered by some providers. We do not use cyanocobalamin or any non-prescription form.</p>
+
+      <h3>Why injection rather than tablets</h3>
+      <p class="body">Absorbing B12 from food or tablets depends on a protein called intrinsic factor made in the stomach. If you have pernicious anaemia, have had gastric or bowel surgery, have a digestive condition, take a stomach acid medication, or simply produce less stomach acid with age, you may absorb very little regardless of the dose you swallow. Injection bypasses that pathway entirely.</p>
+
+      <h3>Your treatment plan</h3>
+      <p class="body">We follow NICE guidance on loading and maintenance.</p>
+      <ul class="plain">
+        <li><strong>Loading:</strong> up to <strong>5 injections over an initial 2-week period</strong>. This builds your stores back up rather than simply topping you up.</li>
+        <li><strong>Maintenance:</strong> thereafter, generally every <strong>2 to 3 months</strong>, decided case by case based on your symptoms, your results and any underlying cause.</li>
+      </ul>
+
+      <div class="note">
+        <strong>Will you need all five loading injections?</strong>
+        Not everyone does, and we will decide with you as we go rather than committing you upfront.
+        <br><br>
+        <strong>You are more likely to need the full loading course if:</strong> your blood result showed a significant deficiency; you have symptoms affecting your nervous system such as tingling, numbness, unsteadiness or memory problems; you have a condition or surgery that prevents you absorbing B12 at all, such as pernicious anaemia or bariatric surgery; your symptoms have been present a long time; or you have had B12 injections before and found the benefit wore off quickly.
+        <br><br>
+        <strong>You may need fewer if:</strong> your deficiency was mild or borderline; your symptoms resolve early in the course and stay resolved; or the cause was dietary and can be corrected.
+        <br><br>
+        <strong>How you will know:</strong> most people who genuinely need the full course notice improvement building steadily across the injections rather than a single dramatic change. If your symptoms return within days of an injection, that generally means your stores are still low and the loading course should be completed. If you feel well after three and stay well, we may stop there. Tell us honestly how you feel between injections — that is the information we use to decide.
+      </div>
+
+      <h3>What it will not do</h3>
+      <ul class="plain">
+        <li><strong>B12 corrects a deficiency. If you are not deficient, it is unlikely to make you feel different.</strong> It is not an energy supplement, and there is no good evidence it improves energy, mood or performance in people whose levels are normal.</li>
+        <li>It is not a weight loss treatment.</li>
+        <li>It will not treat tiredness that has another cause — thyroid problems, iron deficiency, sleep disorders, depression and many other conditions cause the same symptoms. If your B12 is normal, the answer lies elsewhere and we will say so.</li>
+        <li>It does not replace investigation of why you are deficient. A genuine deficiency has a cause, and that cause may need your GP's attention.</li>
+      </ul>
+
+      <div class="group">
+        <div class="opts" data-checkgroup="Understanding treatment" data-requireall="1">
+          <label class="opt"><input type="checkbox" name="Understanding treatment" value="Understands hydroxocobalamin is a POM requiring face-to-face consultation 48 hours in advance"><span class="mark"></span><strong>I understand hydroxocobalamin is a prescription-only medicine, that a face-to-face consultation at least 48 hours beforehand is mandatory, and that a prescription may not be issued if I am not suitable.</strong></label>
+          <label class="opt"><input type="checkbox" name="Understanding treatment" value="Understands B12 corrects deficiency and is unlikely to help if not deficient"><span class="mark"></span><strong>I understand B12 corrects a deficiency, and that if I am not deficient it is unlikely to make me feel any different.</strong></label>
+          <label class="opt"><input type="checkbox" name="Understanding treatment" value="Understands this is not a weight loss or energy treatment"><span class="mark"></span>I understand this is not a weight loss treatment or a general energy supplement.</label>
+          <label class="opt"><input type="checkbox" name="Understanding treatment" value="Understands the loading and maintenance regime"><span class="mark"></span>I understand the loading course is up to 5 injections over 2 weeks, with maintenance generally every 2 to 3 months, each charged separately.</label>
+          <label class="opt"><input type="checkbox" name="Understanding treatment" value="Understands deficiency may have an underlying cause needing GP investigation"><span class="mark"></span>I understand a genuine deficiency has an underlying cause which may need investigating by my GP.</label>
+        </div>
+      </div>
+    </div>
+    <div class="nav"><button type="button" class="ghost" data-back>Back</button><button type="button" class="primary" data-next>Continue</button></div>
+  </div>
+
+  <!-- ===== STEP 5 ===== -->
+  <div class="step" data-name="Blood testing">
+    <div class="panel">
+      <h2>Blood testing</h2>
+      <p class="sub">Strongly recommended, not mandatory — but there is a reason the timing matters.</p>
+
+      <div class="alert">
+        <strong>If you are going to test, it has to be before you start.</strong>
+        Once you begin B12 injections, your blood level will be high because of the injections. A test taken afterwards cannot tell you whether you were deficient to begin with, and it cannot be used to diagnose pernicious anaemia or any other underlying cause. That window closes as soon as the first injection is given, and it does not reopen for months.
+        <br><br>
+        This is why we recommend testing at your first appointment if you have not already had one. It answers the question properly — and if you turn out not to be deficient, it saves you a course of injections that were never going to help.
+      </div>
+
+      <h3>What we offer</h3>
+      <p class="body">We provide private blood testing in clinic, analysed by our London laboratory partner, with results typically within 24 to 48 hours. Your practitioner will advise which tests are appropriate for you — B12 alone rarely tells the whole story, and related results are usually needed to interpret it properly.</p>
+
+      <div class="group">
+        <label class="q">Have you had a B12 blood test?<span class="req">*</span></label>
+        <div class="opts" data-radio="Blood test status">
+          <label class="opt"><input type="radio" name="Blood test status" value="Yes — recently, and I have the result" required><span class="mark radio"></span>Yes, recently, and I have the result</label>
+          <label class="opt"><input type="radio" name="Blood test status" value="Yes — but a while ago, or I don't have the result"><span class="mark radio"></span>Yes, but a while ago or I don't have the result</label>
+          <label class="opt"><input type="radio" name="Blood test status" value="No — I would like to have one with you first"><span class="mark radio"></span>No — I'd like to have one with you first</label>
+          <label class="opt"><input type="radio" name="Blood test status" value="No — and I would prefer to proceed without one"><span class="mark radio"></span>No — and I'd prefer to proceed without one</label>
+        </div>
+      </div>
+
+      <div class="group">
+        <label class="q">If you have a result, what did it show and when?</label>
+        <div class="hint">Please bring a copy or a screenshot with you if you have one.</div>
+        <textarea name="Blood test detail"></textarea>
+      </div>
+
+      <div class="group">
+        <div class="opts" data-checkgroup="Blood test acknowledgement" data-requireall="1">
+          <label class="opt"><input type="checkbox" name="Blood test acknowledgement" value="Understands testing is recommended but not mandatory"><span class="mark"></span>I understand blood testing is strongly recommended but is not mandatory.</label>
+          <label class="opt"><input type="checkbox" name="Blood test acknowledgement" value="Understands testing after starting injections cannot confirm deficiency or diagnose a cause"><span class="mark"></span><strong>I understand that if I proceed without a test, a later blood test will not be able to confirm whether I was deficient, or diagnose the cause.</strong></label>
+        </div>
+      </div>
+    </div>
+    <div class="nav"><button type="button" class="ghost" data-back>Back</button><button type="button" class="primary" data-next>Continue</button></div>
+  </div>
+
+  <!-- ===== STEP 6 ===== -->
+  <div class="step" data-name="Risks">
+    <div class="panel">
+      <h2>Risks and side effects</h2>
+      <p class="sub">Hydroxocobalamin is very well tolerated. These are set out so your decision is properly informed.</p>
+
+      <h3>Common — expect these</h3>
+      <ul class="plain">
+        <li>Soreness, redness or mild swelling at the injection site, settling within 48 hours</li>
+        <li>A dull ache in the arm for a day or two</li>
+        <li>Bruising at the injection site</li>
+      </ul>
+
+      <h3>Less common</h3>
+      <ul class="plain">
+        <li>Headache</li>
+        <li>Dizziness or feeling faint</li>
+        <li>Nausea</li>
+        <li>Hot flushes</li>
+        <li>Diarrhoea</li>
+        <li>Itching or a rash</li>
+        <li>Acne-like spots, or worsening of existing acne</li>
+        <li>Feeling temporarily wired or unable to sleep on the night of an injection</li>
+      </ul>
+
+      <h3>Rare</h3>
+      <ul class="plain">
+        <li>Allergic reaction, which very rarely can be severe (anaphylaxis)</li>
+        <li>A fall in potassium in the first days of treating a significant deficiency, which can cause palpitations, muscle weakness or cramps</li>
+        <li>Disturbance of heart rhythm, associated with the above</li>
+        <li>Infection at the injection site</li>
+        <li>Nerve irritation from the injection, causing temporary altered sensation</li>
+        <li>Worsening of gout</li>
+      </ul>
+
+      <div class="alert">
+        <strong>Contact the clinic on 0800 772 0137 if you develop:</strong> palpitations, muscle weakness or unusual cramping in the days after an injection; spreading redness, heat, swelling or discharge at the injection site; or a temperature and feeling generally unwell.
+        <br><br>
+        <strong>Call 999 immediately</strong> if you develop swelling of the face, lips, tongue or throat, difficulty breathing, a widespread rash, or feel faint and unwell shortly after an injection. These are signs of a severe allergic reaction. Please do not drive yourself.
+      </div>
+
+      <div class="group">
+        <div class="opts" data-checkgroup="Risk acknowledgement" data-requireall="1">
+          <label class="opt"><input type="checkbox" name="Risk acknowledgement" value="Has read and understood all listed risks"><span class="mark"></span>I have read all of the risks above, including the rare ones, and I understand them.</label>
+          <label class="opt"><input type="checkbox" name="Risk acknowledgement" value="Understands signs of allergic reaction and to call 999"><span class="mark"></span>I understand the signs of a severe allergic reaction and that I should call 999 rather than wait.</label>
+          <label class="opt"><input type="checkbox" name="Risk acknowledgement" value="Has had opportunity to ask questions"><span class="mark"></span>I have had the opportunity to ask questions and to raise any risk that matters particularly to me.</label>
+        </div>
+      </div>
+    </div>
+    <div class="nav"><button type="button" class="ghost" data-back>Back</button><button type="button" class="primary" data-next>Continue</button></div>
+  </div>
+
+  <!-- ===== STEP 7 ===== -->
+  <div class="step" data-name="Alternatives &amp; aftercare">
+    <div class="panel">
+      <h2>Alternatives and aftercare</h2>
+
+      <h3>Alternatives</h3>
+      <ul class="plain">
+        <li><strong>No treatment.</strong> Always a reasonable choice, particularly if you have not been shown to be deficient.</li>
+        <li><strong>Your GP.</strong> If you have a confirmed deficiency with an underlying cause such as pernicious anaemia, you are entitled to lifelong B12 on the NHS. We will always tell you if we think that is the right route for you.</li>
+        <li><strong>Oral or sublingual B12,</strong> which works well where the cause is dietary and absorption is intact.</li>
+        <li><strong>Dietary change,</strong> where the cause is a vegan or vegetarian diet — fortified foods and supplements can be enough.</li>
+        <li><strong>Investigating other causes of your symptoms.</strong> Tiredness has many causes and B12 is only one of them.</li>
+      </ul>
+
+      <h3>Aftercare</h3>
+      <ul class="plain">
+        <li>Stay in clinic for a few minutes after your first injection so we can be sure you feel well.</li>
+        <li>Keep the injection site clean and dry for a few hours.</li>
+        <li>A little soreness is normal — gentle movement of the arm helps.</li>
+        <li>Paracetamol is fine if you need it.</li>
+        <li>Drink normally and eat as usual.</li>
+        <li>Tell us how you feel between injections. That is genuinely how we decide what you need next.</li>
+      </ul>
+
+      <div class="group">
+        <div class="opts" data-checkgroup="Alternatives acknowledgement" data-requireall="1">
+          <label class="opt"><input type="checkbox" name="Alternatives acknowledgement" value="Alternatives including no treatment and GP route have been explained"><span class="mark"></span>The alternatives, including having no treatment and seeing my GP, have been explained to me and I have chosen to proceed.</label>
+          <label class="opt"><input type="checkbox" name="Alternatives acknowledgement" value="Has read and agrees to follow aftercare"><span class="mark"></span>I have read the aftercare and I agree to follow it.</label>
+          <label class="opt"><input type="checkbox" name="Alternatives acknowledgement" value="Will contact the clinic promptly with any concerns"><span class="mark"></span>I will contact the clinic promptly if I have any concerns following treatment.</label>
+        </div>
+      </div>
+    </div>
+    <div class="nav"><button type="button" class="ghost" data-back>Back</button><button type="button" class="primary" data-next>Continue</button></div>
+  </div>
+
+  <!-- ===== STEP 8 ===== -->
+  <div class="step" data-name="Consent">
+    <div class="panel">
+      <h2>Consent</h2>
+      <p class="sub">Please read each statement and tick to confirm.</p>
+
+      <div class="group">
+        <div class="opts" data-checkgroup="Consent" data-requireall="1">
+          <label class="opt"><input type="checkbox" name="Consent" value="Aged 18 or over"><span class="mark"></span>I am 18 years of age or over.</label>
+          <label class="opt"><input type="checkbox" name="Consent" value="Information given is true and complete"><span class="mark"></span>The information I have given today is true and complete to the best of my knowledge.</label>
+          <label class="opt"><input type="checkbox" name="Consent" value="Confirms face-to-face consultation completed at least 48 hours prior"><span class="mark"></span><strong>I confirm I have had, or will have, a face-to-face consultation in clinic at least 48 hours before my injection.</strong></label>
+          <label class="opt"><input type="checkbox" name="Consent" value="Understands a prescription may not be issued"><span class="mark"></span>I understand a prescription is not guaranteed, and will not be issued if my prescriber does not consider it appropriate.</label>
+          <label class="opt"><input type="checkbox" name="Consent" value="Consents to intramuscular injection of hydroxocobalamin"><span class="mark"></span><strong>I consent to being given hydroxocobalamin by intramuscular injection.</strong></label>
+          <label class="opt"><input type="checkbox" name="Consent" value="Will notify the clinic of changes to health or medication"><span class="mark"></span>I will tell the clinic if my health, medication or circumstances change during my course of treatment.</label>
+          <label class="opt"><input type="checkbox" name="Consent" value="Consents to GP contact if clinically necessary"><span class="mark"></span>I consent to the clinic contacting my GP if it becomes clinically necessary, and understand I may be advised to see my GP about the underlying cause.</label>
+          <label class="opt"><input type="checkbox" name="Consent" value="Treatment, risks and alternatives discussed and understood"><span class="mark"></span>The treatment, its risks and the alternatives have been explained to me, my questions have been answered, and I understand what I am agreeing to.</label>
+          <label class="opt"><input type="checkbox" name="Consent" value="Understands consent may be withdrawn at any time"><span class="mark"></span>I understand I may withdraw my consent at any point, including after signing this.</label>
+          <label class="opt"><input type="checkbox" name="Consent" value="Understands no refund for treatment delivered as intended"><span class="mark"></span>I understand that fees cover the treatment provided and are not refundable where treatment has been carried out as agreed.</label>
+        </div>
+      </div>
+
+      <div class="group">
+        <label class="q">Keeping in touch<span class="req">*</span></label>
+        <div class="hint">Entirely optional and makes no difference to your treatment.</div>
+        <div class="opts" data-radio="Marketing contact consent">
+          <label class="opt"><input type="radio" name="Marketing contact consent" value="YES — happy to receive reminders, offers and updates" required><span class="mark radio"></span><strong>Yes</strong> — I'd like reminders when my next injection is due, plus clinic news and offers.</label>
+          <label class="opt"><input type="radio" name="Marketing contact consent" value="REMINDERS ONLY — no marketing"><span class="mark radio"></span><strong>Reminders only</strong> — remind me when I'm due, but no marketing.</label>
+          <label class="opt"><input type="radio" name="Marketing contact consent" value="NO — appointment and clinical messages only"><span class="mark radio"></span><strong>No</strong> — appointment and clinical messages only.</label>
+        </div>
+      </div>
+
+      <div class="group two-col">
+        <div><label class="q">Type your full name<span class="req">*</span></label><input type="text" name="Signed name" required></div>
+        <div><label class="q">Date<span class="req">*</span></label><input type="date" name="Date signed" id="dateSigned" required></div>
+      </div>
+      <div class="hint" style="margin-top:-8px">Typing your name here acts as your electronic signature confirming the statements above.</div>
+    </div>
+
+    <div class="nav">
+      <button type="button" class="ghost" data-back>Back</button>
+      <button type="button" class="primary" id="submitBtn">Submit consent</button>
+    </div>
+
+    <div class="panel" style="padding:20px 24px">
+      <div class="privacy">
+        <strong>How we look after this information.</strong>
+        This form is transmitted over an encrypted connection directly to the clinic's secure email. It is not stored on this web page and no copy is retained by the website. Your answers are special category health data under UK GDPR, processed for the purposes of providing healthcare under Article 9(2)(h), and held in your clinical record. Prescribing records are kept in accordance with professional and legal requirements. We keep clinical records for the period required by professional guidance and do not sell or share them. Consent to receive marketing communications is held separately under Article 6(1)(a) and may be withdrawn at any time. You may request a copy of what we hold, ask for corrections, or raise a concern with the Information Commissioner's Office. Data controller: R F Roberts Limited, trading as Sebastian Rose Medical Aesthetics. Contact info@sebastianrose.co.uk or 0800 772 0137.
+      </div>
+    </div>
+  </div>
+
+  </form>
+
+  <div id="done">
+    <div class="tick">&#10003;</div>
+    <h2>Thank you</h2>
+    <p>Your consent has been recorded and sent securely to the clinic.</p>
+    <p>Remember your consultation must be at least 48 hours before your injection — we cannot treat on the same day.</p>
+    <p style="margin-top:18px;font-size:13.5px">Any questions before then — call us on 0800 772 0137.</p>
+  </div>
+
+  <div class="foot">
+    Sebastian Rose Medical Aesthetics · 39 Charles Street, Cardiff, CF10 2GB<br>
+    0800 772 0137 · info@sebastianrose.co.uk
+  </div>
+
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  var EMAILJS_PUBLIC_KEY  = "04pcL3xdpVieS--Q9";
+  var EMAILJS_SERVICE_ID  = "service_bdikve4";
+  var EMAILJS_TEMPLATE_ID = "template_2we5rm1";
+
+  if (window.emailjs) { emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY }); }
+
+  var form     = document.getElementById('form');
+  var steps    = Array.prototype.slice.call(document.querySelectorAll('.step'));
+  var bar      = document.getElementById('bar');
+  var stepName = document.getElementById('stepName');
+  var stepNum  = document.getElementById('stepNum');
+  var errBox   = document.getElementById('err');
+  var current  = 0;
+
+  // tell the hosting page how tall we are, so it can resize the frame
+  var lastH = 0;
+  function reportHeight(){
+    try{
+      var h = Math.max(
+        document.body.scrollHeight,
+        document.documentElement.scrollHeight,
+        document.body.offsetHeight
+      );
+      if(Math.abs(h - lastH) > 8){
+        lastH = h;
+        window.parent.postMessage({ srType:'height', height: h }, '*');
+        window.parent.postMessage(String(h), '*');
+      }
+    }catch(e){}
+  }
+  window.addEventListener('load', reportHeight);
+  window.addEventListener('resize', reportHeight);
+  setInterval(reportHeight, 400);
+
+  function toTop(){
+    try { window.scrollTo(0,0); } catch(e){}
+    try { document.documentElement.scrollTop = 0; document.body.scrollTop = 0; } catch(e){}
+    try {
+      var a = document.getElementById('topAnchor');
+      if(a && a.scrollIntoView) a.scrollIntoView({ block:'start', inline:'nearest' });
+    } catch(e){}
+    try { window.parent.postMessage({ type:'scrollTo', top:0 }, '*'); } catch(e){}
+  }
+
+  function syncOpt(input){
+    var box = input.closest('.opt');
+    if(!box) return;
+    if(input.type === 'radio'){
+      var same = document.querySelectorAll('input[name="'+CSS.escape(input.name)+'"]');
+      Array.prototype.forEach.call(same, function(r){
+        var b = r.closest('.opt'); if(b) b.classList.toggle('checked', r.checked);
+        var rev = b && b.getAttribute('data-reveal');
+        if(rev){ var el = document.getElementById(rev); if(el) el.classList.toggle('show', r.checked); }
+      });
+    } else {
+      box.classList.toggle('checked', input.checked);
+      var rv = box.getAttribute('data-reveal');
+      if(rv){ var e2 = document.getElementById(rv); if(e2) e2.classList.toggle('show', input.checked); }
+    }
+  }
+
+  Array.prototype.forEach.call(document.querySelectorAll('.opt input'), function(input){
+    input.addEventListener('change', function(){
+      if(input.type === 'checkbox' && input.checked && /^NONE/.test(input.value)){
+        Array.prototype.forEach.call(document.querySelectorAll('input[name="'+CSS.escape(input.name)+'"]'), function(o){
+          if(o !== input && o.checked){ o.checked = false; syncOpt(o); }
+        });
+      }
+      if(input.type === 'checkbox' && input.checked && !/^NONE/.test(input.value)){
+        Array.prototype.forEach.call(document.querySelectorAll('input[name="'+CSS.escape(input.name)+'"]'), function(o){
+          if(/^NONE/.test(o.value) && o.checked){ o.checked = false; syncOpt(o); }
+        });
+      }
+      syncOpt(input);
+    });
+  });
+
+  // hard stop: Leber's hereditary optic neuropathy
+  var lebersStop  = document.getElementById('lebersStop');
+  var lebersBlock = document.getElementById('lebersBlock');
+  function pregOK(){
+    var blocked = lebersStop && lebersStop.checked;
+    if(lebersBlock) lebersBlock.style.display = blocked ? 'block' : 'none';
+    return !blocked;
+  }
+  if(lebersStop) lebersStop.addEventListener('change', function(){ pregOK(); });
+
+  var dob = document.getElementById('dob');
+  var ageErr = document.getElementById('ageErr');
+  function ageOK(){
+    if(!dob.value) return true;
+    var d = new Date(dob.value), n = new Date();
+    var a = n.getFullYear() - d.getFullYear();
+    var m = n.getMonth() - d.getMonth();
+    if(m < 0 || (m === 0 && n.getDate() < d.getDate())) a--;
+    if(a < 18){
+      ageErr.textContent = "We are unable to offer this treatment to anyone under 18. Please call the clinic on 0800 772 0137 if you think this is an error.";
+      ageErr.classList.add('show');
+      return false;
+    }
+    ageErr.classList.remove('show');
+    return true;
+  }
+  dob.addEventListener('change', ageOK);
+
+  function show(i){
+    steps[current].classList.remove('active');
+    current = i;
+    steps[current].classList.add('active');
+    bar.style.width = ((current + 1) / steps.length * 100) + '%';
+    stepName.textContent = steps[current].getAttribute('data-name').replace(/&amp;/g,'&');
+    stepNum.textContent = 'Step ' + (current + 1) + ' of ' + steps.length;
+    errBox.classList.remove('show');
+    toTop();
+    setTimeout(reportHeight, 60);
+  }
+
+  function validate(step){
+    var bad = [];
+    Array.prototype.forEach.call(step.querySelectorAll('[required]'), function(f){
+      if(f.type === 'radio'){
+        if(!step.querySelector('input[name="'+CSS.escape(f.name)+'"]:checked')) bad.push(f.name);
+      } else if(!f.value.trim()){
+        bad.push(f.name);
+      }
+    });
+    Array.prototype.forEach.call(step.querySelectorAll('[data-checkgroup]'), function(grp){
+      var nm = grp.getAttribute('data-checkgroup');
+      if(grp.getAttribute('data-requireall')){
+        var boxes = grp.querySelectorAll('input[type=checkbox]');
+        var done  = grp.querySelectorAll('input[type=checkbox]:checked');
+        if(done.length < boxes.length) bad.push('every statement under "' + nm + '"');
+        return;
+      }
+      if(grp.getAttribute('data-optional')) return;
+      var cond = grp.getAttribute('data-conditional');
+      if(cond && !document.querySelector('input[name="'+CSS.escape(cond)+'"]:checked')) return;
+      if(!grp.querySelector('input:checked')) bad.push(nm);
+    });
+    // at least one area must be selected on the areas step
+    if(step.querySelector('[data-checkgroup="Licensed areas"]')){
+      var anyArea = document.querySelector('input[name="Licensed areas"]:checked') ||
+                    document.querySelector('input[name="Off-label areas"]:checked');
+      if(!anyArea) bad.push('At least one treatment area');
+    }
+    return bad;
+  }
+
+  Array.prototype.forEach.call(document.querySelectorAll('[data-next]'), function(b){
+    b.addEventListener('click', function(){
+      if(current === 0 && !ageOK()){ toTop(); return; }
+      if(!pregOK()){ toTop(); return; }
+      var bad = validate(steps[current]);
+      if(bad.length){
+        errBox.innerHTML = 'Please complete the following before continuing: <strong>' +
+          bad.filter(function(v,i,a){return a.indexOf(v)===i;}).join(', ') + '</strong>';
+        errBox.classList.add('show');
+        toTop();
+        return;
+      }
+      show(current + 1);
+    });
+  });
+
+  Array.prototype.forEach.call(document.querySelectorAll('[data-back]'), function(b){
+    b.addEventListener('click', function(){ show(current - 1); });
+  });
+
+  (function(){
+    var t = new Date(), p = function(n){ return (n<10?'0':'')+n; };
+    document.getElementById('dateSigned').value = t.getFullYear()+'-'+p(t.getMonth()+1)+'-'+p(t.getDate());
+  })();
+
+  function collect(){
+    var out = [], seen = {}, order = [];
+    Array.prototype.forEach.call(form.elements, function(el){
+      if(!el.name) return;
+      if(el.type === 'checkbox' || el.type === 'radio'){
+        if(!el.checked) return;
+        if(!seen[el.name]){ seen[el.name] = []; order.push(el.name); }
+        seen[el.name].push(el.value);
+      } else {
+        if(!el.value.trim()) return;
+        if(!seen[el.name]){ seen[el.name] = []; order.push(el.name); }
+        seen[el.name].push(el.value.trim());
+      }
+    });
+    order.forEach(function(k){ out.push(k.toUpperCase() + ':\n  ' + seen[k].join('\n  ')); });
+    // explicitly record a declined marketing consent
+    if(!document.querySelector('input[name="Marketing image consent"]:checked')){
+      out.push('MARKETING IMAGE CONSENT:\n  NOT ANSWERED — treat as declined');
+    }
+    return out.join('\n\n');
+  }
+
+  var submitBtn = document.getElementById('submitBtn');
+  submitBtn.addEventListener('click', function(){
+    if(!ageOK() || !pregOK()){ toTop(); return; }
+    var bad = validate(steps[current]);
+    if(bad.length){
+      errBox.innerHTML = 'Please complete the following: <strong>' +
+        bad.filter(function(v,i,a){return a.indexOf(v)===i;}).join(', ') + '</strong>';
+      errBox.classList.add('show');
+      toTop();
+      return;
+    }
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Sending…';
+
+    var name = (form.querySelector('[name="First name"]').value + ' ' +
+                form.querySelector('[name="Surname"]').value).trim();
+
+    var params = {
+      form_type: 'VITAMIN B12 CONSENT',
+      patient_name: name,
+      from_name: name,
+      reply_to: form.querySelector('[name="Email"]').value,
+      full_data: 'VITAMIN B12 (HYDROXOCOBALAMIN) — INFORMATION & CONSENT\nSubmitted: ' +
+                 new Date().toLocaleString('en-GB') + '\n\n' + collect(),
+      id_document_url: 'N/A — consent form'
+    };
+
+    emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, params)
+      .then(function(){
+        document.querySelector('.progress-shell').style.display = 'none';
+        form.style.display = 'none';
+        document.getElementById('done').style.display = 'block';
+        toTop();
+      })
+      .catch(function(e){
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Submit consent';
+        errBox.innerHTML = 'Sorry — this did not send. Please check your connection and try again, or speak to your practitioner. <br><small>' + (e && e.text ? e.text : '') + '</small>';
+        errBox.classList.add('show');
+        toTop();
+      });
+  });
+})();
+</script>
+</body>
+</html>
