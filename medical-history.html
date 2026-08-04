@@ -30,6 +30,9 @@
 
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
+html,body{overflow-x:hidden;overflow-y:hidden;height:auto;min-height:0}
+body::-webkit-scrollbar{display:none}
+body{scrollbar-width:none;-ms-overflow-style:none}
 body{
   font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;
   background:var(--bg);
@@ -37,7 +40,7 @@ body{
   line-height:1.65;
   font-size:16px;
   -webkit-font-smoothing:antialiased;
-  padding:0 0 60px;
+  padding:0 0 140px;
 }
 .wrap{max-width:780px;margin:0 auto;padding:28px 18px 0}
 
@@ -177,6 +180,7 @@ button.ghost:hover{border-color:var(--accent);color:var(--accent)}
 </head>
 <body>
 <div class="wrap">
+  <span id="topAnchor" aria-hidden="true"></span>
 
   <div class="hero">
     <div class="eyebrow">Sebastian Rose Medical Aesthetics</div>
@@ -687,9 +691,12 @@ button.ghost:hover{border-color:var(--accent);color:var(--accent)}
       </div>
 
       <div class="group">
-        <label class="q">Optional — separate to the above</label>
-        <div class="opts">
-          <label class="opt"><input type="checkbox" name="Optional consents" value="Consents to anonymised before/after images being used for marketing"><span class="mark"></span>I am happy for anonymised before and after photographs to be used on the clinic's website or social media. <em>(You can decline this and still have treatment, and you can withdraw it at any time.)</em></label>
+        <label class="q">Before and after photographs<span class="req">*</span></label>
+        <div class="hint">Separate to the above, and entirely your choice. Your answer makes no difference at all to your treatment, and you can change your mind at any time by telling us.</div>
+        <div class="opts" data-radio="Marketing image consent">
+          <label class="opt"><input type="radio" name="Marketing image consent" value="YES — consents to anonymised before/after images being used on website and social media" required><span class="mark radio"></span><strong>Yes</strong> — I'm happy for anonymised before and after photographs of my treatment to be shared on the clinic's website and social media. Most of our patients found us this way, so it genuinely helps.</label>
+          <label class="opt"><input type="radio" name="Marketing image consent" value="YES — but treated area only, face not identifiable"><span class="mark radio"></span><strong>Yes, but treated area only</strong> — please don't show my full face.</label>
+          <label class="opt"><input type="radio" name="Marketing image consent" value="NO — DECLINED. Do not use images for marketing."><span class="mark radio"></span><strong>No</strong> — please keep my photographs for my clinical record only.</label>
         </div>
       </div>
 
@@ -699,15 +706,18 @@ button.ghost:hover{border-color:var(--accent);color:var(--accent)}
       </div>
       <div class="hint" style="margin-top:-8px">Typing your name here acts as your electronic signature confirming the statements above.</div>
 
-      <div class="privacy">
-        <strong>How we look after this information.</strong>
-        This form is transmitted over an encrypted connection directly to the clinic's secure email. It is not stored on this web page and no copy is retained by the website. Your answers are special category health data under UK GDPR, processed for the purposes of providing healthcare under Article 9(2)(h), and held in your clinical record. We keep clinical records for the period required by professional guidance and do not sell, share or use them for marketing. You may request a copy of what we hold, ask for corrections, or raise a concern with the Information Commissioner's Office at any time. Data controller: R F Roberts Limited, trading as Sebastian Rose Medical Aesthetics. Contact info@sebastianrose.co.uk or 0800 772 0137.
-      </div>
     </div>
 
     <div class="nav">
       <button type="button" class="ghost" data-back>Back</button>
       <button type="button" class="primary" id="submitBtn">Submit securely</button>
+    </div>
+
+    <div class="panel" style="padding:20px 24px">
+      <div class="privacy">
+        <strong>How we look after this information.</strong>
+        This form is transmitted over an encrypted connection directly to the clinic's secure email. It is not stored on this web page and no copy is retained by the website. Your answers are special category health data under UK GDPR, processed for the purposes of providing healthcare under Article 9(2)(h), and held in your clinical record. We keep clinical records for the period required by professional guidance and do not sell, share or use them for marketing. You may request a copy of what we hold, ask for corrections, or raise a concern with the Information Commissioner's Office at any time. Data controller: R F Roberts Limited, trading as Sebastian Rose Medical Aesthetics. Contact info@sebastianrose.co.uk or 0800 772 0137.
+      </div>
     </div>
   </div>
 
@@ -749,9 +759,35 @@ button.ghost:hover{border-color:var(--accent);color:var(--accent)}
   var current  = 0;
 
   /* ---------- Scroll to top (triple method for iframe) ---------- */
+  // tell the hosting page how tall we are, so it can resize the frame
+  var lastH = 0;
+  function reportHeight(){
+    try{
+      var h = Math.max(
+        document.body.scrollHeight,
+        document.documentElement.scrollHeight,
+        document.body.offsetHeight
+      );
+      if(Math.abs(h - lastH) > 8){
+        lastH = h;
+        window.parent.postMessage({ srType:'height', height: h }, '*');
+        window.parent.postMessage(String(h), '*');
+      }
+    }catch(e){}
+  }
+  window.addEventListener('load', reportHeight);
+  window.addEventListener('resize', reportHeight);
+  setInterval(reportHeight, 400);
+
   function toTop(){
+    // scroll the widget's own document
     try { window.scrollTo(0,0); } catch(e){}
     try { document.documentElement.scrollTop = 0; document.body.scrollTop = 0; } catch(e){}
+    // pull the top of the widget into view in the hosting page
+    try {
+      var a = document.getElementById('topAnchor');
+      if(a && a.scrollIntoView) a.scrollIntoView({ block:'start', inline:'nearest' });
+    } catch(e){}
     try { window.parent.postMessage({ type:'scrollTo', top:0 }, '*'); } catch(e){}
   }
 
@@ -838,6 +874,7 @@ button.ghost:hover{border-color:var(--accent);color:var(--accent)}
     stepNum.textContent = 'Step ' + (current + 1) + ' of ' + steps.length;
     errBox.classList.remove('show');
     toTop();
+    setTimeout(reportHeight, 60);
   }
 
   function validate(step){
@@ -908,6 +945,9 @@ button.ghost:hover{border-color:var(--accent);color:var(--accent)}
     order.forEach(function(k){
       out.push(k.toUpperCase() + ':\n  ' + seen[k].join('\n  '));
     });
+    if(!document.querySelector('input[name="Marketing image consent"]:checked')){
+      out.push('MARKETING IMAGE CONSENT:\n  NOT ANSWERED — treat as declined');
+    }
     return out.join('\n\n');
   }
 
