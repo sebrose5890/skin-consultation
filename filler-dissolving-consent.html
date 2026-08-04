@@ -1,0 +1,879 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Filler Dissolving Consent | Sebastian Rose Medical Aesthetics</title>
+
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
+<style>
+/* ============================================================
+   BRAND COLOURS — change these to match your site
+   ============================================================ */
+:root{
+  --ink:#221f1c;
+  --muted:#6f6960;
+  --accent:#b09a77;
+  --accent-dark:#96805f;
+  --bg:#faf8f5;
+  --card:#ffffff;
+  --line:#e6ded2;
+  --warn-bg:#fdf7ee;
+  --warn-line:#e2caa5;
+  --alert-bg:#fbf1ef;
+  --alert-line:#ddb3ab;
+  --ok-bg:#f0f4ee;
+  --ok-line:#c0d1b8;
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{overflow-x:hidden;height:auto;min-height:0}
+/* hide the widget's own scrollbar so it never doubles up with the page's.
+   scrolling still works by wheel/trackpad, so nothing is ever unreachable. */
+html::-webkit-scrollbar,body::-webkit-scrollbar{width:0;height:0;display:none}
+html,body{scrollbar-width:none;-ms-overflow-style:none}
+body{
+  font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;
+  background:var(--bg);color:var(--ink);line-height:1.65;font-size:16px;
+  -webkit-font-smoothing:antialiased;padding:0 0 50px;
+}
+.wrap{max-width:800px;margin:0 auto;padding:28px 18px 0}
+
+.hero{text-align:center;padding:14px 0 26px}
+.hero .eyebrow{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);font-weight:700;margin-bottom:12px}
+.hero h1{font-family:Georgia,'Times New Roman',serif;font-weight:400;font-size:30px;line-height:1.3;letter-spacing:.02em;text-transform:uppercase;margin-bottom:12px}
+.hero p{color:var(--muted);font-size:15px;max-width:580px;margin:0 auto}
+
+.progress-shell{margin:0 0 26px}
+.progress-track{height:3px;background:var(--line);border-radius:2px;overflow:hidden}
+.progress-fill{height:100%;width:12.5%;background:var(--accent);transition:width .35s ease}
+.progress-label{display:flex;justify-content:space-between;margin-top:9px;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+
+.step{display:none}
+.step.active{display:block;animation:fade .3s ease}
+@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+.panel{background:var(--card);border:1px solid var(--line);border-radius:3px;padding:32px 28px;margin-bottom:18px}
+.panel h2{font-family:Georgia,'Times New Roman',serif;font-weight:400;font-size:19px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:8px}
+.panel .sub{color:var(--muted);font-size:14px;margin-bottom:24px}
+.panel h3{font-family:Georgia,serif;font-weight:400;font-size:16px;letter-spacing:.05em;text-transform:uppercase;margin:26px 0 10px;padding-bottom:7px;border-bottom:1px solid var(--line)}
+.panel p.body{font-size:14.8px;margin-bottom:14px;color:#3a352f}
+.panel ul.plain{margin:0 0 16px 18px;font-size:14.8px;color:#3a352f}
+.panel ul.plain li{margin-bottom:7px}
+
+.group{margin-bottom:22px}
+.group:last-child{margin-bottom:0}
+label.q{display:block;font-weight:600;font-size:14.5px;margin-bottom:8px}
+label.q .req{color:var(--accent);margin-left:3px}
+.hint{font-size:13px;color:var(--muted);margin:-3px 0 9px;line-height:1.5}
+
+input[type=text],input[type=email],input[type=tel],input[type=date],select,textarea{
+  width:100%;padding:12px 13px;font-size:15px;font-family:inherit;color:var(--ink);
+  background:#fff;border:1px solid var(--line);border-radius:2px;outline:none;transition:border-color .15s;
+}
+input:focus,select:focus,textarea:focus{border-color:var(--accent)}
+textarea{min-height:88px;resize:vertical}
+select{appearance:none;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8'><path d='M1 1l5 5 5-5' stroke='%236f6960' stroke-width='1.5' fill='none'/></svg>");background-repeat:no-repeat;background-position:right 14px center}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:560px){.two-col{grid-template-columns:1fr}}
+
+.opts{display:flex;flex-direction:column;gap:8px}
+.opts.inline{flex-direction:row;flex-wrap:wrap;gap:10px}
+.opts.grid2{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+@media(max-width:560px){.opts.grid2{grid-template-columns:1fr}}
+
+.opt{position:relative;display:flex;align-items:flex-start;gap:11px;padding:11px 14px;border:1px solid var(--line);border-radius:2px;background:#fff;cursor:pointer;font-size:14.5px;transition:border-color .15s,background .15s;user-select:none}
+.opt:hover{border-color:var(--accent)}
+.opt input{position:absolute;opacity:0;width:0;height:0;pointer-events:none}
+.mark{flex:0 0 18px;width:18px;height:18px;margin-top:2px;border:1.5px solid #c4bbae;background:#fff;position:relative;transition:all .15s}
+.mark.radio{border-radius:50%}
+.opt.checked{border-color:var(--accent);background:#fcfaf7}
+.opt.checked .mark{border-color:var(--accent);background:var(--accent)}
+.opt.checked .mark::after{content:"";position:absolute;left:5px;top:1px;width:5px;height:10px;border:solid #fff;border-width:0 2px 2px 0;transform:rotate(45deg)}
+.opt.checked .mark.radio::after{content:"";position:absolute;left:4px;top:4px;width:6px;height:6px;border:0;border-radius:50%;background:#fff;transform:none}
+.opt.inline-sm{padding:9px 16px}
+
+.reveal{display:none;margin-top:11px;padding-left:14px;border-left:2px solid var(--accent)}
+.reveal.show{display:block;animation:fade .25s ease}
+
+.note{background:var(--warn-bg);border:1px solid var(--warn-line);border-radius:2px;padding:15px 17px;font-size:13.8px;line-height:1.65;margin-bottom:22px;color:#5c4a33}
+.note strong{display:block;margin-bottom:4px}
+.alert{background:var(--alert-bg);border:1px solid var(--alert-line);border-radius:2px;padding:15px 17px;font-size:13.8px;line-height:1.65;margin-bottom:22px;color:#6b3a33}
+.alert strong{display:block;margin-bottom:4px}
+.privacy{background:#f5f2ed;border:1px solid var(--line);border-radius:2px;padding:16px 18px;font-size:12.8px;color:var(--muted);line-height:1.65;margin-top:18px}
+.privacy strong{color:var(--ink)}
+
+.nav{display:flex;gap:12px;margin-top:6px}
+button.primary{flex:1;padding:15px;background:var(--accent);color:#fff;border:0;border-radius:2px;font-size:12.5px;letter-spacing:.18em;text-transform:uppercase;font-weight:700;cursor:pointer;font-family:inherit;transition:background .15s}
+button.primary:hover{background:var(--accent-dark)}
+button.primary:disabled{opacity:.55;cursor:not-allowed}
+button.ghost{padding:15px 26px;background:#fff;color:var(--muted);border:1px solid var(--line);border-radius:2px;font-size:12.5px;letter-spacing:.18em;text-transform:uppercase;font-weight:700;cursor:pointer;font-family:inherit}
+button.ghost:hover{border-color:var(--accent);color:var(--accent)}
+a.linkbtn{display:inline-block;padding:13px 22px;background:var(--accent);color:#fff;text-decoration:none;border-radius:2px;font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;font-weight:700;transition:background .15s}
+a.linkbtn:hover{background:var(--accent-dark)}
+
+.err{display:none;background:#fbeceb;border:1px solid #e0b2ac;color:#8a3a31;padding:12px 15px;border-radius:2px;font-size:13.5px;margin-bottom:16px}
+.err.show{display:block}
+
+#done{display:none;text-align:center;padding:52px 26px;background:var(--ok-bg);border:1px solid var(--ok-line);border-radius:3px}
+#done h2{font-family:Georgia,serif;font-weight:400;font-size:24px;letter-spacing:.05em;text-transform:uppercase;margin-bottom:14px}
+#done p{color:#48553f;font-size:15px;max-width:490px;margin:0 auto 10px}
+.tick{width:54px;height:54px;border-radius:50%;background:#7d9370;color:#fff;font-size:27px;line-height:54px;margin:0 auto 20px}
+
+.foot{text-align:center;font-size:12px;color:var(--muted);margin-top:22px;line-height:1.7}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <span id="topAnchor" aria-hidden="true"></span>
+
+  <div class="hero">
+    <div class="eyebrow">Sebastian Rose Medical Aesthetics</div>
+    <h1>Filler Dissolving<br>Information &amp; Consent</h1>
+    <p>Hyaluronidase, prescribed and administered by an Independent Nurse Prescriber. Please read every word of this. It is longer than our other consent forms for good reason.</p>
+  </div>
+
+  <div class="progress-shell">
+    <div class="progress-track"><div class="progress-fill" id="bar"></div></div>
+    <div class="progress-label"><span id="stepName">Your details</span><span id="stepNum">Step 1 of 8</span></div>
+  </div>
+
+  <div class="err" id="err"></div>
+
+  <form id="form" autocomplete="on">
+
+  <!-- ===== STEP 1 ===== -->
+  <div class="step active" data-name="Your details">
+    <div class="panel">
+      <h2>Your details</h2>
+      <p class="sub">So this consent can be filed against your clinical record.</p>
+
+      <div class="alert">
+        <strong>We do not treat anyone under the age of 18.</strong>
+        Treatments at Sebastian Rose are for adults only, without exception.
+      </div>
+
+      <div class="alert">
+        <strong>A face-to-face consultation in clinic is mandatory, at least 48 hours before dissolving.</strong>
+        Hyaluronidase is a prescription-only medicine. It cannot lawfully be prescribed without a proper consultation with the prescriber, and we do not dissolve on the same day as the consultation.
+        <br><br>
+        This applies to planned dissolving. In a genuine emergency — a suspected blocked blood vessel — hyaluronidase is given immediately, and that is covered by the consent you signed for your original treatment.
+      </div>
+
+      <div class="group two-col">
+        <div><label class="q">First name<span class="req">*</span></label><input type="text" name="First name" required></div>
+        <div><label class="q">Surname<span class="req">*</span></label><input type="text" name="Surname" required></div>
+      </div>
+
+      <div class="group two-col">
+        <div><label class="q">Date of birth<span class="req">*</span></label><input type="date" name="Date of birth" id="dob" required></div>
+        <div><label class="q">Mobile number<span class="req">*</span></label><input type="tel" name="Mobile" required></div>
+      </div>
+      <div class="err" id="ageErr" style="margin-top:-8px"></div>
+
+      <div class="group">
+        <label class="q">Email address<span class="req">*</span></label>
+        <input type="email" name="Email" required>
+      </div>
+
+      <div class="group">
+        <label class="q">Your GP surgery — name and town<span class="req">*</span></label>
+        <input type="text" name="GP surgery" required>
+      </div>
+
+      <div class="group">
+        <label class="q">Emergency contact — name and number<span class="req">*</span></label>
+        <div class="hint">We ask for this treatment specifically because of the small risk of a severe allergic reaction.</div>
+        <input type="text" name="Emergency contact" required>
+      </div>
+
+      <div class="group">
+        <label class="q">Have you completed our medical history and pre-screening questionnaire?<span class="req">*</span></label>
+        <div class="opts inline" data-radio="Medical history completed">
+          <label class="opt inline-sm"><input type="radio" name="Medical history completed" value="Yes" required><span class="mark radio"></span>Yes</label>
+          <label class="opt inline-sm" data-reveal="noHxDetail"><input type="radio" name="Medical history completed" value="No / not sure"><span class="mark radio"></span>No, or not sure</label>
+        </div>
+        <div class="reveal" id="noHxDetail">
+          <p class="body" style="margin:0 0 12px">A full medical history is needed before any prescription can be issued.</p>
+          <a href="https://www.sebastianrose.co.uk/medical-history-and-prescreening" target="_blank" rel="noopener" class="linkbtn">Complete the medical history form &rarr;</a>
+        </div>
+      </div>
+
+      <div class="group">
+        <label class="q">Has your consultation taken place?<span class="req">*</span></label>
+        <div class="opts" data-radio="Consultation status">
+          <label class="opt"><input type="radio" name="Consultation status" value="Yes — more than 48 hours ago" required><span class="mark radio"></span>Yes, more than 48 hours ago</label>
+          <label class="opt"><input type="radio" name="Consultation status" value="Yes — but less than 48 hours ago"><span class="mark radio"></span>Yes, but less than 48 hours ago</label>
+          <label class="opt"><input type="radio" name="Consultation status" value="Booked but not yet taken place"><span class="mark radio"></span>Booked, but not yet</label>
+          <label class="opt"><input type="radio" name="Consultation status" value="Not yet booked"><span class="mark radio"></span>Not yet booked</label>
+        </div>
+      </div>
+    </div>
+    <div class="nav"><button type="button" class="primary" data-next>Continue</button></div>
+  </div>
+
+  <!-- ===== STEP 2 ===== -->
+  <div class="step" data-name="What we are dissolving">
+    <div class="panel">
+      <h2>What we are dissolving</h2>
+      <p class="sub">The single most important thing we need to establish is what is actually in there.</p>
+
+      <div class="alert">
+        <strong>Hyaluronidase only dissolves hyaluronic acid. It does nothing to anything else.</strong>
+        It will not touch Sculptra, Radiesse, Ellanse, Juvelook, Lenisna, silicone, PMMA, Aquamid, Bio-Alcamid, threads, fat transfer, or any permanent or semi-permanent product. If what you have is not hyaluronic acid, dissolving will not work and we will have injected you for nothing.
+        <br><br>
+        If you do not know what you had, say so. That is a useful and honest answer, and it changes how we approach this.
+      </div>
+
+      <div class="group">
+        <label class="q">What was injected?<span class="req">*</span></label>
+        <div class="opts" data-radio="Product type">
+          <label class="opt"><input type="radio" name="Product type" value="Hyaluronic acid filler — I know the brand" required><span class="mark radio"></span>Hyaluronic acid filler, and I know the brand</label>
+          <label class="opt"><input type="radio" name="Product type" value="Hyaluronic acid filler — I was told it was HA but don't know the brand"><span class="mark radio"></span>I was told it was hyaluronic acid, but I don't know the brand</label>
+          <label class="opt"><input type="radio" name="Product type" value="Something else — biostimulator, permanent filler, threads or fat"><span class="mark radio"></span>Something else — a biostimulator, permanent filler, threads or fat</label>
+          <label class="opt"><input type="radio" name="Product type" value="I DON'T KNOW what was injected"><span class="mark radio"></span><strong>I genuinely don't know what was injected</strong></label>
+          <label class="opt"><input type="radio" name="Product type" value="A mixture of different products over time"><span class="mark radio"></span>A mixture of different things over time</label>
+        </div>
+      </div>
+
+      <div class="group">
+        <label class="q">Everything you can tell us — product, area, dates, who did it<span class="req">*</span></label>
+        <div class="hint">Please include everything you have ever had injected in this area, however long ago, even if you think it has gone. Bring any records, receipts, product names or batch stickers to your appointment.</div>
+        <textarea name="Filler history" style="min-height:120px" required></textarea>
+      </div>
+
+      <div class="group">
+        <label class="q">Areas to be dissolved<span class="req">*</span></label>
+        <div class="opts grid2" data-checkgroup="Areas">
+          <label class="opt"><input type="checkbox" name="Areas" value="Lips"><span class="mark"></span>Lips</label>
+          <label class="opt"><input type="checkbox" name="Areas" value="Tear trough / under-eye"><span class="mark"></span>Under-eye / tear trough</label>
+          <label class="opt"><input type="checkbox" name="Areas" value="Cheeks / midface"><span class="mark"></span>Cheeks</label>
+          <label class="opt"><input type="checkbox" name="Areas" value="Chin"><span class="mark"></span>Chin</label>
+          <label class="opt"><input type="checkbox" name="Areas" value="Jawline"><span class="mark"></span>Jawline</label>
+          <label class="opt"><input type="checkbox" name="Areas" value="Nose"><span class="mark"></span>Nose</label>
+          <label class="opt"><input type="checkbox" name="Areas" value="Nasolabial folds"><span class="mark"></span>Nose-to-mouth lines</label>
+          <label class="opt"><input type="checkbox" name="Areas" value="Temples"><span class="mark"></span>Temples</label>
+          <label class="opt"><input type="checkbox" name="Areas" value="Other — as discussed"><span class="mark"></span>Other, as discussed</label>
+        </div>
+      </div>
+
+      <div class="group">
+        <label class="q">Why do you want it dissolved?<span class="req">*</span></label>
+        <div class="opts" data-checkgroup="Reason">
+          <label class="opt"><input type="checkbox" name="Reason" value="I don't like how it looks"><span class="mark"></span>I don't like how it looks</label>
+          <label class="opt"><input type="checkbox" name="Reason" value="It looks lumpy or uneven"><span class="mark"></span>It looks lumpy or uneven</label>
+          <label class="opt"><input type="checkbox" name="Reason" value="It looks asymmetrical"><span class="mark"></span>It looks asymmetrical</label>
+          <label class="opt"><input type="checkbox" name="Reason" value="It looks overfilled or too much"><span class="mark"></span>It looks overfilled</label>
+          <label class="opt"><input type="checkbox" name="Reason" value="It has migrated or moved"><span class="mark"></span>It has moved or migrated</label>
+          <label class="opt"><input type="checkbox" name="Reason" value="Swelling, puffiness or fluid retention"><span class="mark"></span>Swelling or puffiness</label>
+          <label class="opt"><input type="checkbox" name="Reason" value="A lump or nodule has formed"><span class="mark"></span>A lump or nodule has formed</label>
+          <label class="opt"><input type="checkbox" name="Reason" value="Recurrent infection or inflammation"><span class="mark"></span>Recurrent infection or inflammation</label>
+          <label class="opt"><input type="checkbox" name="Reason" value="I want a clean slate before starting again"><span class="mark"></span>I want a clean slate before starting again</label>
+          <label class="opt"><input type="checkbox" name="Reason" value="I no longer want filler at all"><span class="mark"></span>I don't want filler any more</label>
+          <label class="opt"><input type="checkbox" name="Reason" value="Advised to by another clinician"><span class="mark"></span>I was advised to by a clinician</label>
+        </div>
+      </div>
+
+      <div class="group">
+        <label class="q">In your own words<span class="req">*</span></label>
+        <textarea name="Reason detail" required></textarea>
+      </div>
+    </div>
+    <div class="nav"><button type="button" class="ghost" data-back>Back</button><button type="button" class="primary" data-next>Continue</button></div>
+  </div>
+
+  <!-- ===== STEP 3 ===== -->
+  <div class="step" data-name="What dissolving can and cannot do">
+    <div class="panel">
+      <h2>What dissolving can and cannot do</h2>
+      <p class="sub">Please read this section particularly carefully. Most disappointment after dissolving comes from expectations set here.</p>
+
+      <div class="alert">
+        <strong>1. We cannot dissolve "just a little bit".</strong>
+        Hyaluronidase spreads through tissue. It cannot be aimed at a specific millimetre of product and stopped there. Once it is in, it works on whatever hyaluronic acid it reaches. You should assume that everything in the treated area will be affected, not just the part you dislike.
+      </div>
+
+      <div class="alert">
+        <strong>2. It will not spot reduce.</strong>
+        We cannot take a fraction off one side, shave a lump down, or make something slightly smaller while leaving the rest. If you want a subtle reduction, dissolving is not the tool for that — and anyone who tells you otherwise is not being straight with you. The realistic choice is usually to dissolve the area properly and start again if you want to.
+      </div>
+
+      <div class="alert">
+        <strong>3. You will very likely look worse before you look better.</strong>
+        Immediately after dissolving you can expect swelling, and once that settles the area will look flatter, emptier and often older than it did before. This is the point of the treatment, but it is still a shock. Many people find the first two weeks genuinely upsetting.
+        <br><br>
+        Filler may also have been masking volume loss you had not noticed. Removing it can reveal ageing that was always there. That is not a complication — it is your face without the filler.
+      </div>
+
+      <div class="note">
+        <strong>4. Your own hyaluronic acid is affected, but only temporarily.</strong>
+        Hyaluronidase does break down the hyaluronic acid your body makes naturally, as well as the filler. This is why the area can look particularly deflated at first. <strong>It is not permanent.</strong> Your body replaces its own hyaluronic acid within a day or two, and it does not damage your tissue, your collagen or your skin's ability to make hyaluronic acid in future. Nothing is permanently removed.
+      </div>
+
+      <h3>Other things to expect</h3>
+      <ul class="plain">
+        <li><strong>More than one session is common.</strong> Dense, long-standing or heavily layered filler often needs two or three treatments, usually 2 to 4 weeks apart. Each is charged separately.</li>
+        <li><strong>The result is not fully predictable.</strong> We cannot promise how much will dissolve, how evenly, or exactly how you will look afterwards.</li>
+        <li><strong>Some product may remain</strong>, particularly if it is old, deeply placed or of a type that resists dissolving.</li>
+        <li><strong>Skin may not fully retract.</strong> Where a large volume has stretched tissue over a long time — lips especially — the skin may stay looser than it was before you ever had filler.</li>
+        <li><strong>The final appearance takes 2 to 4 weeks</strong> to settle. Do not judge it in the first fortnight.</li>
+        <li><strong>If you want filler again</strong>, we would normally wait at least 2 weeks, and often longer, before re-treating.</li>
+      </ul>
+
+      <div class="group">
+        <div class="opts" data-checkgroup="Understanding treatment" data-requireall="1">
+          <label class="opt"><input type="checkbox" name="Understanding treatment" value="Understands hyaluronidase only dissolves HA and does nothing to other products"><span class="mark"></span><strong>I understand hyaluronidase only dissolves hyaluronic acid, and will do nothing if what I have is a different type of product.</strong></label>
+          <label class="opt"><input type="checkbox" name="Understanding treatment" value="Understands it CANNOT be limited to a little bit"><span class="mark"></span><strong>I understand we cannot dissolve only a little bit, and that everything in the treated area is likely to be affected.</strong></label>
+          <label class="opt"><input type="checkbox" name="Understanding treatment" value="Understands it CANNOT spot reduce"><span class="mark"></span><strong>I understand this will not spot reduce, and cannot make one part slightly smaller while leaving the rest.</strong></label>
+          <label class="opt"><input type="checkbox" name="Understanding treatment" value="Understands the area will look flatter, emptier and possibly older afterwards"><span class="mark"></span><strong>I understand the area will look flatter and emptier afterwards, may look older, and that this may reveal volume loss the filler was masking.</strong></label>
+          <label class="opt"><input type="checkbox" name="Understanding treatment" value="Understands own HA is affected temporarily but regenerates and nothing is permanently removed"><span class="mark"></span>I understand my own hyaluronic acid is temporarily affected but regenerates within a day or two, and that nothing is permanently removed from my tissue.</label>
+          <label class="opt"><input type="checkbox" name="Understanding treatment" value="Understands more than one session may be needed, each charged separately"><span class="mark"></span>I understand more than one session may be needed, each charged separately, and that some product may remain.</label>
+          <label class="opt"><input type="checkbox" name="Understanding treatment" value="Understands the result is not fully predictable and skin may not fully retract"><span class="mark"></span>I understand the result is not fully predictable, that skin may not fully retract, and that the final appearance takes 2 to 4 weeks.</label>
+        </div>
+      </div>
+    </div>
+    <div class="nav"><button type="button" class="ghost" data-back>Back</button><button type="button" class="primary" data-next>Continue</button></div>
+  </div>
+
+  <!-- ===== STEP 4 ===== -->
+  <div class="step" data-name="Your appointment">
+    <div class="panel">
+      <h2>Your appointment</h2>
+      <p class="sub">This takes considerably longer than a filler appointment. Please plan for it.</p>
+
+      <div class="alert">
+        <strong>Allow around two hours in clinic, and do not book anything immediately afterwards.</strong>
+      </div>
+
+      <h3>What will happen, in order</h3>
+      <ul class="plain">
+        <li><strong>1. Patch test.</strong> A small amount of hyaluronidase is injected into your forearm.</li>
+        <li><strong>2. You wait 25 to 30 minutes in clinic.</strong> We watch for any sign of a reaction — redness, a raised weal, itching, or anything systemic.</li>
+        <li><strong>3. If the patch test is clear, we proceed</strong> and dissolve the treated area.</li>
+        <li><strong>4. You then wait a further 30 minutes in clinic.</strong> This is not optional. It is because a reaction can occur after the main dose even when the patch test was clear, and we want you here rather than in a car park if it does.</li>
+        <li><strong>5. We review you before you leave.</strong></li>
+      </ul>
+
+      <div class="note">
+        <strong>A clear patch test reduces the risk. It does not eliminate it.</strong>
+        A negative patch test is reassuring, and it is why we do it — but reactions have occurred after a clear test, including in people who have had hyaluronidase uneventfully before. Sensitisation can develop with repeated exposure, so a previous uneventful treatment does not guarantee the next one.
+        <br><br>
+        We keep adrenaline and full emergency equipment on site and our practitioners are trained in managing anaphylaxis.
+      </div>
+
+      <div class="group">
+        <label class="q">Will someone be able to collect you, or can you get home without driving?<span class="req">*</span></label>
+        <div class="hint">We would prefer you did not drive yourself immediately afterwards, and would rather you were not alone for the first few hours.</div>
+        <div class="opts" data-radio="Transport">
+          <label class="opt"><input type="radio" name="Transport" value="Yes — someone is coming with me or collecting me" required><span class="mark radio"></span>Yes, someone is coming with me or collecting me</label>
+          <label class="opt"><input type="radio" name="Transport" value="I will use public transport or a taxi"><span class="mark radio"></span>I'll use public transport or a taxi</label>
+          <label class="opt"><input type="radio" name="Transport" value="I plan to drive myself"><span class="mark radio"></span>I plan to drive myself</label>
+        </div>
+      </div>
+
+      <div class="group">
+        <label class="q">Do you have an event, holiday or photographs coming up?</label>
+        <div class="hint">Please do not book this within a month of anything important. Swelling, bruising and the flat appearance afterwards all take time to settle.</div>
+        <textarea name="Upcoming events"></textarea>
+      </div>
+
+      <div class="group">
+        <div class="opts" data-checkgroup="Appointment acknowledgement" data-requireall="1">
+          <label class="opt"><input type="checkbox" name="Appointment acknowledgement" value="Agrees to the patch test and 25-30 minute wait"><span class="mark"></span><strong>I agree to have a patch test and to wait 25 to 30 minutes in clinic before anything further is done.</strong></label>
+          <label class="opt"><input type="checkbox" name="Appointment acknowledgement" value="Agrees to remain in clinic for 30 minutes after dissolving"><span class="mark"></span><strong>I agree to remain in clinic for a further 30 minutes after being dissolved, and understand this is not optional.</strong></label>
+          <label class="opt"><input type="checkbox" name="Appointment acknowledgement" value="Understands a clear patch test does not eliminate the risk of reaction"><span class="mark"></span>I understand a clear patch test reduces but does not eliminate the risk of a reaction, and that a previous uneventful treatment is not a guarantee.</label>
+        </div>
+      </div>
+    </div>
+    <div class="nav"><button type="button" class="ghost" data-back>Back</button><button type="button" class="primary" data-next>Continue</button></div>
+  </div>
+
+  <!-- ===== STEP 5 ===== -->
+  <div class="step" data-name="Safety screening">
+    <div class="panel">
+      <h2>Safety screening</h2>
+      <p class="sub">Allergy history matters more here than for any other treatment we offer.</p>
+
+      <div class="alert" id="allergyBlock" style="display:none">
+        <strong>Please stop and speak to us before going further.</strong>
+        A previous reaction to hyaluronidase, or a known allergy to it, means we would not normally proceed. Please call the clinic on 0800 772 0137 so we can discuss this properly — there may be alternatives, and if there are not, you need to know that before you build any expectations.
+      </div>
+
+      <div class="note">
+        <strong>Why we ask about bee and wasp stings.</strong>
+        Bee and wasp venom contains hyaluronidase. If you have reacted badly to a sting, you may be sensitised to it. The hyaluronidase we use is also derived from sheep, so a sheep or lanolin allergy is relevant too.
+      </div>
+
+      <div class="group">
+        <label class="q">Do any of the following apply to you?<span class="req">*</span></label>
+        <div class="opts" data-checkgroup="Screening">
+          <label class="opt"><input type="checkbox" name="Screening" id="allergyStop" value="PREVIOUS REACTION OR KNOWN ALLERGY TO HYALURONIDASE"><span class="mark"></span><strong>I have reacted to hyaluronidase before, or been told I am allergic to it</strong></label>
+          <label class="opt"><input type="checkbox" name="Screening" value="Severe reaction to a bee or wasp sting"><span class="mark"></span>I have had a bad reaction to a bee or wasp sting</label>
+          <label class="opt"><input type="checkbox" name="Screening" value="Allergy to sheep products, lanolin or wool"><span class="mark"></span>I am allergic to sheep products, lanolin or wool</label>
+          <label class="opt"><input type="checkbox" name="Screening" value="Previous anaphylaxis to anything"><span class="mark"></span>I have had anaphylaxis to anything</label>
+          <label class="opt"><input type="checkbox" name="Screening" value="Carries an adrenaline auto-injector"><span class="mark"></span>I carry an adrenaline pen</label>
+          <label class="opt"><input type="checkbox" name="Screening" value="Multiple drug or food allergies"><span class="mark"></span>I have multiple drug or food allergies</label>
+          <label class="opt"><input type="checkbox" name="Screening" value="Asthma, particularly if poorly controlled"><span class="mark"></span>I have asthma</label>
+          <label class="opt"><input type="checkbox" name="Screening" value="Taking beta blockers"><span class="mark"></span>I take beta blockers (propranolol, bisoprolol, atenolol or similar)</label>
+          <label class="opt"><input type="checkbox" name="Screening" value="Pregnant, breastfeeding or trying to conceive"><span class="mark"></span>I am pregnant, breastfeeding or trying to conceive</label>
+          <label class="opt"><input type="checkbox" name="Screening" value="Active infection, inflammation or cold sore in the treatment area"><span class="mark"></span>I have infection, inflammation or a cold sore in the area</label>
+          <label class="opt"><input type="checkbox" name="Screening" value="Currently unwell or recent infection"><span class="mark"></span>I am unwell, or have recently had an infection</label>
+          <label class="opt"><input type="checkbox" name="Screening" value="Bleeding or clotting disorder, or taking anticoagulants"><span class="mark"></span>I have a bleeding disorder, or take blood-thinning medication</label>
+          <label class="opt"><input type="checkbox" name="Screening" value="Autoimmune condition or immunosuppressive therapy"><span class="mark"></span>I have an autoimmune condition, or take immunosuppressant medication</label>
+          <label class="opt"><input type="checkbox" name="Screening" value="NONE OF THE ABOVE"><span class="mark"></span><strong>None of the above apply to me</strong></label>
+        </div>
+      </div>
+
+      <div class="group">
+        <label class="q">Details of anything ticked above</label>
+        <textarea name="Screening detail"></textarea>
+      </div>
+
+      <div class="note">
+        <strong>If you take a beta blocker, please tell us clearly.</strong>
+        Beta blockers can make a severe allergic reaction harder to treat with adrenaline. It does not necessarily prevent us treating you, but we need to know beforehand and it changes how we prepare.
+      </div>
+
+      <div class="group">
+        <label class="q">Have you had hyaluronidase before?<span class="req">*</span></label>
+        <div class="opts" data-radio="Previous hyaluronidase">
+          <label class="opt"><input type="radio" name="Previous hyaluronidase" value="No — never" required><span class="mark radio"></span>No, never</label>
+          <label class="opt"><input type="radio" name="Previous hyaluronidase" value="Yes — with no problems"><span class="mark radio"></span>Yes, with no problems</label>
+          <label class="opt"><input type="radio" name="Previous hyaluronidase" value="Yes — and I had a reaction"><span class="mark radio"></span>Yes, and I had a reaction</label>
+          <label class="opt"><input type="radio" name="Previous hyaluronidase" value="I'm not sure"><span class="mark radio"></span>I'm not sure</label>
+        </div>
+      </div>
+
+      <div class="group">
+        <label class="q">If yes — when, where, and what happened?</label>
+        <textarea name="Previous hyaluronidase detail"></textarea>
+      </div>
+
+      <div class="group">
+        <label class="q">List all medication you currently take<span class="req">*</span></label>
+        <div class="hint">Prescribed and over-the-counter. Write "none" if none.</div>
+        <textarea name="Current medication" required></textarea>
+      </div>
+    </div>
+    <div class="nav"><button type="button" class="ghost" data-back>Back</button><button type="button" class="primary" data-next>Continue</button></div>
+  </div>
+
+  <!-- ===== STEP 6 ===== -->
+  <div class="step" data-name="Risks">
+    <div class="panel">
+      <h2>Risks and side effects</h2>
+      <p class="sub">Dissolving carries a different and, in one respect, higher risk profile than having filler in the first place.</p>
+
+      <h3>Common — expect these</h3>
+      <ul class="plain">
+        <li>Immediate swelling, often significant, particularly in the lips</li>
+        <li>Redness and warmth</li>
+        <li>Bruising, which can be extensive and last up to two weeks</li>
+        <li>Tenderness for several days</li>
+        <li>The area looking flat, deflated or older once swelling settles</li>
+        <li>Temporary lumpiness as the product breaks down unevenly</li>
+      </ul>
+
+      <h3>Less common</h3>
+      <ul class="plain">
+        <li>Uneven dissolving, leaving asymmetry that needs a further session</li>
+        <li>Over-dissolving, leaving an area flatter than you wanted</li>
+        <li>Incomplete dissolving, with product remaining</li>
+        <li>Skin looseness where tissue had been stretched</li>
+        <li>Infection at an injection site</li>
+        <li>Cold sore outbreak, where you are prone to them</li>
+        <li>Local allergic reaction — itching, a raised rash or swelling beyond the treated area</li>
+        <li>Feeling distressed or regretful about your appearance in the weeks afterwards</li>
+      </ul>
+
+      <h3>Rare</h3>
+      <ul class="plain">
+        <li>Delayed allergic reaction, appearing hours or days later</li>
+        <li>Persistent swelling or induration</li>
+        <li>Nerve irritation causing altered sensation</li>
+        <li>Scarring</li>
+      </ul>
+
+      <div class="alert">
+        <strong>Anaphylaxis — the risk that makes this treatment different.</strong>
+        Hyaluronidase can cause a severe, sudden allergic reaction. It is rare, but it is the reason for the patch test, the two waiting periods, and why we ask about bee stings, sheep allergy and beta blockers.
+        <br><br>
+        <strong>Signs of a severe reaction:</strong> swelling of the lips, tongue, face or throat beyond what was treated; difficulty breathing or swallowing; a widespread rash or hives; feeling faint, dizzy or that something is badly wrong; wheezing; or sudden severe abdominal pain.
+        <br><br>
+        <strong>If you are in clinic, tell us immediately — do not wait to see if it passes.</strong> If you have already left and develop any of these, <strong>call 999</strong>. Do not drive yourself. Tell them you have had an injection of hyaluronidase, then contact us.
+      </div>
+
+      <div class="alert">
+        <strong>Also contact us promptly on 0800 772 0137 if:</strong> swelling worsens rather than settles after 48 hours; you develop spreading redness, heat or discharge; you develop a temperature; or you are simply struggling with how you look and want to talk it through. That last one is not a waste of our time — please call.
+      </div>
+
+      <div class="group">
+        <div class="opts" data-checkgroup="Risk acknowledgement" data-requireall="1">
+          <label class="opt"><input type="checkbox" name="Risk acknowledgement" value="Has read and understood all listed risks"><span class="mark"></span>I have read all of the risks above, including the rare ones, and I understand them.</label>
+          <label class="opt"><input type="checkbox" name="Risk acknowledgement" value="Understands the risk of anaphylaxis and the signs to look for"><span class="mark"></span><strong>I understand hyaluronidase can cause a severe allergic reaction, I know the signs, and I understand I must call 999 rather than wait if they occur after I have left.</strong></label>
+          <label class="opt"><input type="checkbox" name="Risk acknowledgement" value="Understands emotional impact and that support is available"><span class="mark"></span>I understand I may find my appearance upsetting in the weeks afterwards, and that I can contact the clinic to talk about it.</label>
+          <label class="opt"><input type="checkbox" name="Risk acknowledgement" value="Has had opportunity to ask questions"><span class="mark"></span>I have had the opportunity to ask questions and to raise any risk that matters particularly to me.</label>
+        </div>
+      </div>
+    </div>
+    <div class="nav"><button type="button" class="ghost" data-back>Back</button><button type="button" class="primary" data-next>Continue</button></div>
+  </div>
+
+  <!-- ===== STEP 7 ===== -->
+  <div class="step" data-name="Alternatives &amp; aftercare">
+    <div class="panel">
+      <h2>Alternatives and aftercare</h2>
+
+      <h3>Alternatives</h3>
+      <ul class="plain">
+        <li><strong>Waiting.</strong> Hyaluronic acid filler is not permanent. If what is bothering you is mild, letting it break down naturally over months avoids the risks entirely. This is a genuinely reasonable option and we will often suggest it.</li>
+        <li><strong>Doing nothing.</strong> Sometimes what looks wrong at week two settles by week six. If you are within a few weeks of your original treatment, we may recommend waiting before deciding.</li>
+        <li><strong>Correcting rather than dissolving,</strong> where asymmetry can be balanced by adding a small amount elsewhere instead.</li>
+        <li><strong>Partial dissolving in a different area,</strong> where the problem is one region rather than the whole treatment — though the limits described earlier still apply.</li>
+        <li><strong>A second opinion.</strong> If you are unhappy with work done elsewhere, you are entitled to seek more than one view before deciding to dissolve.</li>
+      </ul>
+
+      <h3>Aftercare</h3>
+      <ul class="plain">
+        <li>Expect swelling — it usually peaks in the first 24 to 48 hours. Cool compresses help; never put ice directly on skin.</li>
+        <li>No makeup over the area for 24 hours.</li>
+        <li>No strenuous exercise, saunas, steam rooms or hot baths for 24 hours.</li>
+        <li>No alcohol for 24 hours.</li>
+        <li>Sleep with your head slightly raised.</li>
+        <li>Do not massage the area unless we have told you to.</li>
+        <li>Antihistamines can help with itching if you get any — ask us first.</li>
+        <li>Avoid facials, massage, peels and laser over the area for two weeks.</li>
+        <li><strong>Do not judge the result before 2 to 4 weeks.</strong> Please come back for review rather than making decisions in week one.</li>
+      </ul>
+
+      <div class="group">
+        <div class="opts" data-checkgroup="Alternatives acknowledgement" data-requireall="1">
+          <label class="opt"><input type="checkbox" name="Alternatives acknowledgement" value="Alternatives including waiting and doing nothing have been explained"><span class="mark"></span>The alternatives, including waiting for the filler to break down naturally and doing nothing at all, have been explained to me and I have chosen to proceed.</label>
+          <label class="opt"><input type="checkbox" name="Alternatives acknowledgement" value="Has read and agrees to follow aftercare"><span class="mark"></span>I have read the aftercare and I agree to follow it.</label>
+          <label class="opt"><input type="checkbox" name="Alternatives acknowledgement" value="Agrees not to judge the result before 2-4 weeks and to attend review"><span class="mark"></span>I understand the final appearance takes 2 to 4 weeks and I agree to attend review rather than judging it in the first fortnight.</label>
+        </div>
+      </div>
+    </div>
+    <div class="nav"><button type="button" class="ghost" data-back>Back</button><button type="button" class="primary" data-next>Continue</button></div>
+  </div>
+
+  <!-- ===== STEP 8 ===== -->
+  <div class="step" data-name="Consent">
+    <div class="panel">
+      <h2>Consent</h2>
+      <p class="sub">Please read each statement and tick to confirm.</p>
+
+      <div class="group">
+        <div class="opts" data-checkgroup="Consent" data-requireall="1">
+          <label class="opt"><input type="checkbox" name="Consent" value="Aged 18 or over"><span class="mark"></span>I am 18 years of age or over.</label>
+          <label class="opt"><input type="checkbox" name="Consent" value="Information given is true and complete"><span class="mark"></span>The information I have given today is true and complete to the best of my knowledge, including everything I have had injected.</label>
+          <label class="opt"><input type="checkbox" name="Consent" value="Confirms face-to-face consultation completed at least 48 hours prior"><span class="mark"></span><strong>I confirm I have had, or will have, a face-to-face consultation in clinic at least 48 hours before dissolving.</strong></label>
+          <label class="opt"><input type="checkbox" name="Consent" value="Understands hyaluronidase is a POM used off-label for this purpose"><span class="mark"></span>I understand hyaluronidase is a prescription-only medicine, that its use to dissolve dermal filler is an off-label but well-established use, and that a prescription will not be issued if my prescriber does not consider it appropriate.</label>
+          <label class="opt"><input type="checkbox" name="Consent" value="CONSENTS to patch test and hyaluronidase treatment"><span class="mark"></span><strong>I consent to a hyaluronidase patch test and, if clear, to hyaluronidase being injected to dissolve dermal filler as discussed.</strong></label>
+          <label class="opt"><input type="checkbox" name="Consent" value="Consents to emergency treatment including adrenaline if required"><span class="mark"></span><strong>I consent to emergency treatment, including adrenaline and calling an ambulance, if I develop a severe allergic reaction.</strong></label>
+          <label class="opt"><input type="checkbox" name="Consent" value="Understands results cannot be guaranteed and further sessions may be needed"><span class="mark"></span>I understand the outcome cannot be guaranteed, that further sessions may be needed at additional cost, and that some product may remain.</label>
+          <label class="opt"><input type="checkbox" name="Consent" value="Had sufficient time to consider"><span class="mark"></span>I have had enough time to consider this and I do not feel rushed or pressured.</label>
+          <label class="opt"><input type="checkbox" name="Consent" value="Understands consent may be withdrawn at any time"><span class="mark"></span>I understand I may withdraw my consent at any point, including after signing this and after the patch test.</label>
+          <label class="opt"><input type="checkbox" name="Consent" value="Understands no refund for treatment delivered as intended"><span class="mark"></span>I understand that fees cover the treatment provided and are not refundable where treatment has been carried out as agreed, including where the outcome is not what I hoped for.</label>
+          <label class="opt"><input type="checkbox" name="Consent" value="Consents to clinical photography for the medical record"><span class="mark"></span>I consent to clinical photographs being taken before and after treatment and kept in my medical record.</label>
+        </div>
+      </div>
+
+      <div class="note">
+        <strong>Before and after photographs — please choose one.</strong>
+        Your answer makes no difference at all to your treatment, and you can change your mind at any time by telling us.
+      </div>
+
+      <div class="group">
+        <div class="opts" data-radio="Marketing image consent">
+          <label class="opt"><input type="radio" name="Marketing image consent" value="YES — consents to before/after images being used on website and social media" required><span class="mark radio"></span><strong>Yes</strong> — I'm happy for before and after photographs to be shared on the clinic's website and social media.</label>
+          <label class="opt"><input type="radio" name="Marketing image consent" value="YES — but treated area only, face not identifiable"><span class="mark radio"></span><strong>Yes, but treated area only</strong> — please don't show my full face.</label>
+          <label class="opt"><input type="radio" name="Marketing image consent" value="NO — DECLINED. Do not use images for marketing."><span class="mark radio"></span><strong>No</strong> — please keep my photographs for my clinical record only.</label>
+        </div>
+      </div>
+
+      <div class="group two-col">
+        <div><label class="q">Type your full name<span class="req">*</span></label><input type="text" name="Signed name" required></div>
+        <div><label class="q">Date<span class="req">*</span></label><input type="date" name="Date signed" id="dateSigned" required></div>
+      </div>
+      <div class="hint" style="margin-top:-8px">Typing your name here acts as your electronic signature confirming the statements above.</div>
+    </div>
+
+    <div class="nav">
+      <button type="button" class="ghost" data-back>Back</button>
+      <button type="button" class="primary" id="submitBtn">Submit consent</button>
+    </div>
+
+    <div class="panel" style="padding:20px 24px">
+      <div class="privacy">
+        <strong>How we look after this information.</strong>
+        This form is transmitted over an encrypted connection directly to the clinic's secure email. It is not stored on this web page and no copy is retained by the website. Your answers are special category health data under UK GDPR, processed for the purposes of providing healthcare under Article 9(2)(h), and held in your clinical record. Prescribing records are kept in accordance with professional and legal requirements. We keep clinical records for the period required by professional guidance and do not sell or share them. Consent to use images for marketing is held separately under Article 6(1)(a) and may be withdrawn at any time. You may request a copy of what we hold, ask for corrections, or raise a concern with the Information Commissioner's Office. Data controller: R F Roberts Limited, trading as Sebastian Rose Medical Aesthetics. Contact info@sebastianrose.co.uk or 0800 772 0137.
+      </div>
+    </div>
+  </div>
+
+  </form>
+
+  <div id="done">
+    <div class="tick">&#10003;</div>
+    <h2>Thank you</h2>
+    <p>Your consent has been recorded and sent securely to the clinic.</p>
+    <p>Please allow around two hours in clinic on the day, and don't plan anything immediately afterwards.</p>
+    <p style="margin-top:18px;font-size:13.5px">Any questions before then — call us on 0800 772 0137.</p>
+  </div>
+
+  <div class="foot">
+    Sebastian Rose Medical Aesthetics · 39 Charles Street, Cardiff, CF10 2GB<br>
+    0800 772 0137 · info@sebastianrose.co.uk
+  </div>
+
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  var EMAILJS_PUBLIC_KEY  = "04pcL3xdpVieS--Q9";
+  var EMAILJS_SERVICE_ID  = "service_bdikve4";
+  var EMAILJS_TEMPLATE_ID = "template_2we5rm1";
+
+  if (window.emailjs) { emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY }); }
+
+  var form     = document.getElementById('form');
+  var steps    = Array.prototype.slice.call(document.querySelectorAll('.step'));
+  var bar      = document.getElementById('bar');
+  var stepName = document.getElementById('stepName');
+  var stepNum  = document.getElementById('stepNum');
+  var errBox   = document.getElementById('err');
+  var current  = 0;
+
+  // tell the hosting page how tall we are, so it can resize the frame
+  var lastH = 0;
+  function reportHeight(){
+    try{
+      var h = Math.max(
+        document.body.scrollHeight,
+        document.documentElement.scrollHeight,
+        document.body.offsetHeight
+      );
+      if(Math.abs(h - lastH) > 8){
+        lastH = h;
+        window.parent.postMessage({ srType:'height', height: h }, '*');
+        window.parent.postMessage(String(h), '*');
+      }
+    }catch(e){}
+  }
+  window.addEventListener('load', reportHeight);
+  window.addEventListener('resize', reportHeight);
+  setInterval(reportHeight, 400);
+
+  function toTop(){
+    try { window.scrollTo(0,0); } catch(e){}
+    try { document.documentElement.scrollTop = 0; document.body.scrollTop = 0; } catch(e){}
+    try {
+      var a = document.getElementById('topAnchor');
+      if(a && a.scrollIntoView) a.scrollIntoView({ block:'start', inline:'nearest' });
+    } catch(e){}
+    try { window.parent.postMessage({ type:'scrollTo', top:0 }, '*'); } catch(e){}
+  }
+
+  function syncOpt(input){
+    var box = input.closest('.opt');
+    if(!box) return;
+    if(input.type === 'radio'){
+      var same = document.querySelectorAll('input[name="'+CSS.escape(input.name)+'"]');
+      Array.prototype.forEach.call(same, function(r){
+        var b = r.closest('.opt'); if(b) b.classList.toggle('checked', r.checked);
+        var rev = b && b.getAttribute('data-reveal');
+        if(rev){ var el = document.getElementById(rev); if(el) el.classList.toggle('show', r.checked); }
+      });
+    } else {
+      box.classList.toggle('checked', input.checked);
+      var rv = box.getAttribute('data-reveal');
+      if(rv){ var e2 = document.getElementById(rv); if(e2) e2.classList.toggle('show', input.checked); }
+    }
+  }
+
+  Array.prototype.forEach.call(document.querySelectorAll('.opt input'), function(input){
+    input.addEventListener('change', function(){
+      if(input.type === 'checkbox' && input.checked && /^NONE/.test(input.value)){
+        Array.prototype.forEach.call(document.querySelectorAll('input[name="'+CSS.escape(input.name)+'"]'), function(o){
+          if(o !== input && o.checked){ o.checked = false; syncOpt(o); }
+        });
+      }
+      if(input.type === 'checkbox' && input.checked && !/^NONE/.test(input.value)){
+        Array.prototype.forEach.call(document.querySelectorAll('input[name="'+CSS.escape(input.name)+'"]'), function(o){
+          if(/^NONE/.test(o.value) && o.checked){ o.checked = false; syncOpt(o); }
+        });
+      }
+      syncOpt(input);
+    });
+  });
+
+  // hard stop: previous reaction / known allergy to hyaluronidase
+  var allergyStop  = document.getElementById('allergyStop');
+  var allergyBlock = document.getElementById('allergyBlock');
+  function pregOK(){
+    var blocked = allergyStop && allergyStop.checked;
+    if(allergyBlock) allergyBlock.style.display = blocked ? 'block' : 'none';
+    return !blocked;
+  }
+  if(allergyStop) allergyStop.addEventListener('change', function(){ pregOK(); });
+
+  var dob = document.getElementById('dob');
+  var ageErr = document.getElementById('ageErr');
+  function ageOK(){
+    if(!dob.value) return true;
+    var d = new Date(dob.value), n = new Date();
+    var a = n.getFullYear() - d.getFullYear();
+    var m = n.getMonth() - d.getMonth();
+    if(m < 0 || (m === 0 && n.getDate() < d.getDate())) a--;
+    if(a < 18){
+      ageErr.textContent = "We are unable to offer this treatment to anyone under 18. Please call the clinic on 0800 772 0137 if you think this is an error.";
+      ageErr.classList.add('show');
+      return false;
+    }
+    ageErr.classList.remove('show');
+    return true;
+  }
+  dob.addEventListener('change', ageOK);
+
+  function show(i){
+    steps[current].classList.remove('active');
+    current = i;
+    steps[current].classList.add('active');
+    bar.style.width = ((current + 1) / steps.length * 100) + '%';
+    stepName.textContent = steps[current].getAttribute('data-name').replace(/&amp;/g,'&');
+    stepNum.textContent = 'Step ' + (current + 1) + ' of ' + steps.length;
+    errBox.classList.remove('show');
+    toTop();
+    setTimeout(reportHeight, 60);
+  }
+
+  function validate(step){
+    var bad = [];
+    Array.prototype.forEach.call(step.querySelectorAll('[required]'), function(f){
+      if(f.type === 'radio'){
+        if(!step.querySelector('input[name="'+CSS.escape(f.name)+'"]:checked')) bad.push(f.name);
+      } else if(!f.value.trim()){
+        bad.push(f.name);
+      }
+    });
+    Array.prototype.forEach.call(step.querySelectorAll('[data-checkgroup]'), function(grp){
+      var nm = grp.getAttribute('data-checkgroup');
+      if(grp.getAttribute('data-requireall')){
+        var boxes = grp.querySelectorAll('input[type=checkbox]');
+        var done  = grp.querySelectorAll('input[type=checkbox]:checked');
+        if(done.length < boxes.length) bad.push('every statement under "' + nm + '"');
+        return;
+      }
+      if(grp.getAttribute('data-optional')) return;
+      var cond = grp.getAttribute('data-conditional');
+      if(cond && !document.querySelector('input[name="'+CSS.escape(cond)+'"]:checked')) return;
+      if(!grp.querySelector('input:checked')) bad.push(nm);
+    });
+    // at least one area must be selected on the areas step
+    if(step.querySelector('[data-checkgroup="Licensed areas"]')){
+      var anyArea = document.querySelector('input[name="Licensed areas"]:checked') ||
+                    document.querySelector('input[name="Off-label areas"]:checked');
+      if(!anyArea) bad.push('At least one treatment area');
+    }
+    return bad;
+  }
+
+  Array.prototype.forEach.call(document.querySelectorAll('[data-next]'), function(b){
+    b.addEventListener('click', function(){
+      if(current === 0 && !ageOK()){ toTop(); return; }
+      if(!pregOK()){ toTop(); return; }
+      var bad = validate(steps[current]);
+      if(bad.length){
+        errBox.innerHTML = 'Please complete the following before continuing: <strong>' +
+          bad.filter(function(v,i,a){return a.indexOf(v)===i;}).join(', ') + '</strong>';
+        errBox.classList.add('show');
+        toTop();
+        return;
+      }
+      show(current + 1);
+    });
+  });
+
+  Array.prototype.forEach.call(document.querySelectorAll('[data-back]'), function(b){
+    b.addEventListener('click', function(){ show(current - 1); });
+  });
+
+  (function(){
+    var t = new Date(), p = function(n){ return (n<10?'0':'')+n; };
+    document.getElementById('dateSigned').value = t.getFullYear()+'-'+p(t.getMonth()+1)+'-'+p(t.getDate());
+  })();
+
+  function collect(){
+    var out = [], seen = {}, order = [];
+    Array.prototype.forEach.call(form.elements, function(el){
+      if(!el.name) return;
+      if(el.type === 'checkbox' || el.type === 'radio'){
+        if(!el.checked) return;
+        if(!seen[el.name]){ seen[el.name] = []; order.push(el.name); }
+        seen[el.name].push(el.value);
+      } else {
+        if(!el.value.trim()) return;
+        if(!seen[el.name]){ seen[el.name] = []; order.push(el.name); }
+        seen[el.name].push(el.value.trim());
+      }
+    });
+    order.forEach(function(k){ out.push(k.toUpperCase() + ':\n  ' + seen[k].join('\n  ')); });
+    // explicitly record a declined marketing consent
+    if(!document.querySelector('input[name="Marketing image consent"]:checked')){
+      out.push('MARKETING IMAGE CONSENT:\n  NOT ANSWERED — treat as declined');
+    }
+    return out.join('\n\n');
+  }
+
+  var submitBtn = document.getElementById('submitBtn');
+  submitBtn.addEventListener('click', function(){
+    if(!ageOK() || !pregOK()){ toTop(); return; }
+    var bad = validate(steps[current]);
+    if(bad.length){
+      errBox.innerHTML = 'Please complete the following: <strong>' +
+        bad.filter(function(v,i,a){return a.indexOf(v)===i;}).join(', ') + '</strong>';
+      errBox.classList.add('show');
+      toTop();
+      return;
+    }
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Sending…';
+
+    var name = (form.querySelector('[name="First name"]').value + ' ' +
+                form.querySelector('[name="Surname"]').value).trim();
+
+    var params = {
+      form_type: 'FILLER DISSOLVING CONSENT',
+      patient_name: name,
+      from_name: name,
+      reply_to: form.querySelector('[name="Email"]').value,
+      full_data: 'FILLER DISSOLVING (HYALURONIDASE) — INFORMATION & CONSENT\nSubmitted: ' +
+                 new Date().toLocaleString('en-GB') + '\n\n' + collect(),
+      id_document_url: 'N/A — consent form'
+    };
+
+    emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, params)
+      .then(function(){
+        document.querySelector('.progress-shell').style.display = 'none';
+        form.style.display = 'none';
+        document.getElementById('done').style.display = 'block';
+        toTop();
+      })
+      .catch(function(e){
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Submit consent';
+        errBox.innerHTML = 'Sorry — this did not send. Please check your connection and try again, or speak to your practitioner. <br><small>' + (e && e.text ? e.text : '') + '</small>';
+        errBox.classList.add('show');
+        toTop();
+      });
+  });
+})();
+</script>
+</body>
+</html>
