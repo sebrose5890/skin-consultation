@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Exosome Consent | Sebastian Rose Medical Aesthetics</title>
+
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
+<style>
+/* ============================================================
+   BRAND COLOURS — change these to match your site
+   ============================================================ */
+:root{
+  --ink:#221f1c;
+  --muted:#6f6960;
+  --accent:#b09a77;
+  --accent-dark:#96805f;
+  --bg:#faf8f5;
+  --card:#ffffff;
+  --line:#e6ded2;
+  --warn-bg:#fdf7ee;
+  --warn-line:#e2caa5;
+  --alert-bg:#fbf1ef;
+  --alert-line:#ddb3ab;
+  --ok-bg:#f0f4ee;
+  --ok-line:#c0d1b8;
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{overflow-x:hidden;height:auto;min-height:0}
+/* hide the widget's own scrollbar so it never doubles up with the page's.
+   scrolling still works by wheel/trackpad, so nothing is ever unreachable. */
+html::-webkit-scrollbar,body::-webkit-scrollbar{width:0;height:0;display:none}
+html,body{scrollbar-width:none;-ms-overflow-style:none}
+body{
+  font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;
+  background:var(--bg);color:var(--ink);line-height:1.65;font-size:16px;
+  -webkit-font-smoothing:antialiased;padding:0 0 50px;
+}
+.wrap{max-width:800px;margin:0 auto;padding:28px 18px 0}
+
+.hero{text-align:center;padding:14px 0 26px}
+.hero .eyebrow{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);font-weight:700;margin-bottom:12px}
+.hero h1{font-family:Georgia,'Times New Roman',serif;font-weight:400;font-size:30px;line-height:1.3;letter-spacing:.02em;text-transform:uppercase;margin-bottom:12px}
+.hero p{color:var(--muted);font-size:15px;max-width:580px;margin:0 auto}
+
+.progress-shell{margin:0 0 26px}
+.progress-track{height:3px;background:var(--line);border-radius:2px;overflow:hidden}
+.progress-fill{height:100%;width:12.5%;background:var(--accent);transition:width .35s ease}
+.progress-label{display:flex;justify-content:space-between;margin-top:9px;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+
+.step{display:none}
+.step.active{display:block;animation:fade .3s ease}
+@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+.panel{background:var(--card);border:1px solid var(--line);border-radius:3px;padding:32px 28px;margin-bottom:18px}
+.panel h2{font-family:Georgia,'Times New Roman',serif;font-weight:400;font-size:19px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:8px}
+.panel .sub{color:var(--muted);font-size:14px;margin-bottom:24px}
+.panel h3{font-family:Georgia,serif;font-weight:400;font-size:16px;letter-spacing:.05em;text-transform:uppercase;margin:26px 0 10px;padding-bottom:7px;border-bottom:1px solid var(--line)}
+.panel p.body{font-size:14.8px;margin-bottom:14px;color:#3a352f}
+.panel ul.plain{margin:0 0 16px 18px;font-size:14.8px;color:#3a352f}
+.panel ul.plain li{margin-bottom:7px}
+
+.group{margin-bottom:22px}
+.group:last-child{margin-bottom:0}
+label.q{display:block;font-weight:600;font-size:14.5px;margin-bottom:8px}
+label.q .req{color:var(--accent);margin-left:3px}
+.hint{font-size:13px;color:var(--muted);margin:-3px 0 9px;line-height:1.5}
+
+input[type=text],input[type=email],input[type=tel],input[type=date],select,textarea{
+  width:100%;padding:12px 13px;font-size:15px;font-family:inherit;color:var(--ink);
+  background:#fff;border:1px solid var(--line);border-radius:2px;outline:none;transition:border-color .15s;
+}
+input:focus,select:focus,textarea:focus{border-color:var(--accent)}
+textarea{min-height:88px;resize:vertical}
+select{appearance:none;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8'><path d='M1 1l5 5 5-5' stroke='%236f6960' stroke-width='1.5' fill='none'/></svg>");background-repeat:no-repeat;background-position:right 14px center}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:560px){.two-col{grid-template-columns:1fr}}
+
+.opts{display:flex;flex-direction:column;gap:8px}
+.opts.inline{flex-direction:row;flex-wrap:wrap;gap:10px}
+.opts.grid2{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+@media(max-width:560px){.opts.grid2{grid-template-columns:1fr}}
+
+.opt{position:relative;display:flex;align-items:flex-start;gap:11px;padding:11px 14px;border:1px solid var(--line);border-radius:2px;background:#fff;cursor:pointer;font-size:14.5px;transition:border-color .15s,background .15s;user-select:none}
+.opt:hover{border-color:var(--accent)}
+.opt input{position:absolute;opacity:0;width:0;height:0;pointer-events:none}
+.mark{flex:0 0 18px;width:18px;height:18px;margin-top:2px;border:1.5px solid #c4bbae;background:#fff;position:relative;transition:all .15s}
+.mark.radio{border-radius:50%}
+.opt.checked{border-color:var(--accent);background:#fcfaf7}
+.opt.checked .mark{border-color:var(--accent);background:var(--accent)}
+.opt.checked .mark::after{content:"";position:absolute;left:5px;top:1px;width:5px;height:10px;border:solid #fff;border-width:0 2px 2px 0;transform:rotate(45deg)}
+.opt.checked .mark.radio::after{content:"";position:absolute;left:4px;top:4px;width:6px;height:6px;border:0;border-radius:50%;background:#fff;transform:none}
+.opt.inline-sm{padding:9px 16px}
+
+.reveal{display:none;margin-top:11px;padding-left:14px;border-left:2px solid var(--accent)}
+.reveal.show{display:block;animation:fade .25s ease}
+
+.note{background:var(--warn-bg);border:1px solid var(--warn-line);border-radius:2px;padding:15px 17px;font-size:13.8px;line-height:1.65;margin-bottom:22px;color:#5c4a33}
+.note strong{display:block;margin-bottom:4px}
+.alert{background:var(--alert-bg);border:1px solid var(--alert-line);border-radius:2px;padding:15px 17px;font-size:13.8px;line-height:1.65;margin-bottom:22px;color:#6b3a33}
+.alert strong{display:block;margin-bottom:4px}
+.privacy{background:#f5f2ed;border:1px solid var(--line);border-radius:2px;padding:16px 18px;font-size:12.8px;color:var(--muted);line-height:1.65;margin-top:18px}
+.privacy strong{color:var(--ink)}
+
+.nav{display:flex;gap:12px;margin-top:6px}
+button.primary{flex:1;padding:15px;background:var(--accent);color:#fff;border:0;border-radius:2px;font-size:12.5px;letter-spacing:.18em;text-transform:uppercase;font-weight:700;cursor:pointer;font-family:inherit;transition:background .15s}
+button.primary:hover{background:var(--accent-dark)}
+button.primary:disabled{opacity:.55;cursor:not-allowed}
+button.ghost{padding:15px 26px;background:#fff;color:var(--muted);border:1px solid var(--line);border-radius:2px;font-size:12.5px;letter-spacing:.18em;text-transform:uppercase;font-weight:700;cursor:pointer;font-family:inherit}
+button.ghost:hover{border-color:var(--accent);color:var(--accent)}
+a.linkbtn{display:inline-block;padding:13px 22px;background:var(--accent);color:#fff;text-decoration:none;border-radius:2px;font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;font-weight:700;transition:background .15s}
+a.linkbtn:hover{background:var(--accent-dark)}
+
+.err{display:none;background:#fbeceb;border:1px solid #e0b2ac;color:#8a3a31;padding:12px 15px;border-radius:2px;font-size:13.5px;margin-bottom:16px}
+.err.show{display:block}
+
+#done{display:none;text-align:center;padding:52px 26px;background:var(--ok-bg);border:1px solid var(--ok-line);border-radius:3px}
+#done h2{font-family:Georgia,serif;font-weight:400;font-size:24px;letter-spacing:.05em;text-transform:uppercase;margin-bottom:14px}
+#done p{color:#48553f;font-size:15px;max-width:490px;margin:0 auto 10px}
+.tick{width:54px;height:54px;border-radius:50%;background:#7d9370;color:#fff;font-size:27px;line-height:54px;margin:0 auto 20px}
+
+.foot{text-align:center;font-size:12px;color:var(--muted);margin-top:22px;line-height:1.7}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <span id="topAnchor" aria-hidden="true"></span>
+
+  <div class="hero">
+    <div class="eyebrow">Sebastian Rose Medical Aesthetics</div>
+    <h1>Exosomes<br>Information &amp; Consent</h1>
+    <p>Topical exosome application during medical microneedling. This is a supplementary consent — please complete it alongside your medical microneedling consent form.</p>
+  </div>
+
+  <div class="progress-shell">
+    <div class="progress-track"><div class="progress-fill" id="bar"></div></div>
+    <div class="progress-label"><span id="stepName">Your details</span><span id="stepNum">Step 1 of 5</span></div>
+  </div>
+
+  <div class="err" id="err"></div>
+
+  <form id="form" autocomplete="on">
+
+  <!-- ===== STEP 1 ===== -->
+  <div class="step active" data-name="Your details">
+    <div class="panel">
+      <h2>Your details</h2>
+      <p class="sub">So this consent can be filed against your clinical record.</p>
+
+      <div class="alert">
+        <strong>We do not treat anyone under the age of 18.</strong>
+        Treatments at Sebastian Rose are for adults only, without exception.
+      </div>
+
+      <div class="note">
+        <strong>This form does not replace your microneedling consent.</strong>
+        Exosomes are only ever applied here as part of a medical microneedling treatment, so please make sure you have completed the microneedling consent form as well — that one covers the procedure itself, the screening questions and the aftercare.
+        <br><br>
+        <a href="https://www.sebastianrose.co.uk/microneedling-consent" target="_blank" rel="noopener" class="linkbtn" style="margin-top:6px">Medical microneedling consent form &rarr;</a>
+      </div>
+
+      <div class="group two-col">
+        <div><label class="q">First name<span class="req">*</span></label><input type="text" name="First name" required></div>
+        <div><label class="q">Surname<span class="req">*</span></label><input type="text" name="Surname" required></div>
+      </div>
+
+      <div class="group two-col">
+        <div><label class="q">Date of birth<span class="req">*</span></label><input type="date" name="Date of birth" id="dob" required></div>
+        <div><label class="q">Mobile number<span class="req">*</span></label><input type="tel" name="Mobile" required></div>
+      </div>
+      <div class="err" id="ageErr" style="margin-top:-8px"></div>
+
+      <div class="group">
+        <label class="q">Email address<span class="req">*</span></label>
+        <input type="email" name="Email" required>
+      </div>
+
+      <div class="group">
+        <label class="q">Have you completed the medical microneedling consent form?<span class="req">*</span></label>
+        <div class="opts inline" data-radio="Microneedling consent completed">
+          <label class="opt inline-sm"><input type="radio" name="Microneedling consent completed" value="Yes" required><span class="mark radio"></span>Yes</label>
+          <label class="opt inline-sm" data-reveal="mnDetail"><input type="radio" name="Microneedling consent completed" value="Not yet"><span class="mark radio"></span>Not yet</label>
+        </div>
+        <div class="reveal" id="mnDetail">
+          <p class="body" style="margin:0">Please complete it before your appointment using the link above. We cannot proceed with exosomes without consent for the microneedling itself.</p>
+        </div>
+      </div>
+    </div>
+    <div class="nav"><button type="button" class="primary" data-next>Continue</button></div>
+  </div>
+
+  <!-- ===== STEP 2 ===== -->
+  <div class="step" data-name="What exosomes are">
+    <div class="panel">
+      <h2>What exosomes are</h2>
+      <p class="sub">And, importantly, how they are and are not used here.</p>
+
+      <h3>What they are</h3>
+      <p class="body">Exosomes are microscopic vesicles — tiny packages released naturally by cells. They carry growth factors, proteins, lipids and genetic signalling material, and act as messengers that tell surrounding cells how to repair and regenerate.</p>
+      <p class="body">In aesthetics they are used to accelerate healing after microneedling and to enhance the skin's repair response, with the aim of improving texture, hydration, radiance and overall skin quality.</p>
+
+      <div class="alert">
+        <strong>We apply exosomes topically only. They are never injected.</strong>
+        In the UK, injecting exosomes — intradermally, subcutaneously or intravenously — is not lawful. The MHRA treats injected exosomes as a medicinal product, and no exosome-based injectable holds a UK marketing authorisation.
+        <br><br>
+        At Sebastian Rose, exosomes are applied to the surface of the skin during and immediately after your microneedling treatment. The micro-channels created by the needling allow the product to be absorbed far more effectively than it would be from a serum applied to intact skin. <strong>Nothing is injected.</strong>
+        <br><br>
+        If any clinic offers to inject exosomes, or describes them as a skin booster given by needle, that is a clear warning sign and you should decline.
+      </div>
+
+      <h3>The product we use</h3>
+      <p class="body">We use only CE-marked exosome products sourced through verified UK suppliers. We do not use human-derived or donor tissue-derived exosome products. Your practitioner will tell you exactly which product is being used and can show you the packaging if you would like to see it.</p>
+
+      <h3>The evidence position</h3>
+      <p class="body">Exosomes are a genuinely promising area and there is a growing body of research behind them, including split-face studies showing improvements in skin texture, hydration, elasticity and pigmentation when combined with microneedling or laser. However, the evidence base in aesthetics is still emerging rather than established, and no exosome product is approved as a medicine by the MHRA or the FDA anywhere in the world.</p>
+      <p class="body">We think they are a worthwhile addition for the right patient, which is why we offer them — but we would rather you knew the evidence position than assumed it was equivalent to a licensed treatment.</p>
+
+      <h3>What to expect</h3>
+      <ul class="plain">
+        <li>Results are typically <strong>subtle and gradual</strong> rather than dramatic.</li>
+        <li>Many people notice faster settling of redness and a better recovery from the microneedling itself.</li>
+        <li>Improvements in skin quality build over the weeks following treatment, alongside the collagen response from the needling.</li>
+        <li>As with microneedling generally, a course produces considerably more than a single session.</li>
+      </ul>
+
+      <div class="group">
+        <div class="opts" data-checkgroup="Understanding treatment" data-requireall="1">
+          <label class="opt"><input type="checkbox" name="Understanding treatment" value="Understands exosomes are applied TOPICALLY ONLY and never injected"><span class="mark"></span><strong>I understand exosomes are applied to the surface of my skin only, and that nothing is injected.</strong></label>
+          <label class="opt"><input type="checkbox" name="Understanding treatment" value="Understands the evidence base is emerging and no exosome product is MHRA or FDA approved"><span class="mark"></span><strong>I understand the evidence base for exosomes in aesthetics is still emerging, and that no exosome product is approved as a medicine by the MHRA or FDA.</strong></label>
+          <label class="opt"><input type="checkbox" name="Understanding treatment" value="Understands results are subtle and gradual"><span class="mark"></span>I understand results are typically subtle and gradual, and develop alongside the effects of the microneedling itself.</label>
+          <label class="opt"><input type="checkbox" name="Understanding treatment" value="Understands results vary and cannot be guaranteed"><span class="mark"></span>I understand results vary between individuals and cannot be guaranteed.</label>
+          <label class="opt"><input type="checkbox" name="Understanding treatment" value="Understands exosomes are charged in addition to the microneedling treatment"><span class="mark"></span>I understand exosomes are an add-on and are charged in addition to the microneedling treatment.</label>
+        </div>
+      </div>
+    </div>
+    <div class="nav"><button type="button" class="ghost" data-back>Back</button><button type="button" class="primary" data-next>Continue</button></div>
+  </div>
+
+  <!-- ===== STEP 3 ===== -->
+  <div class="step" data-name="Screening">
+    <div class="panel">
+      <h2>Screening</h2>
+      <p class="sub">Only the questions specific to exosomes — the rest are covered on your microneedling consent.</p>
+
+      <div class="group">
+        <label class="q">Do any of the following apply to you?<span class="req">*</span></label>
+        <div class="opts" data-checkgroup="Screening">
+          <label class="opt"><input type="checkbox" name="Screening" value="Pregnant or breastfeeding"><span class="mark"></span>I am pregnant or breastfeeding</label>
+          <label class="opt"><input type="checkbox" name="Screening" value="History of reaction to a topical serum, mesotherapy or infused product"><span class="mark"></span>I have reacted badly to a serum, mesotherapy or infused product before</label>
+          <label class="opt"><input type="checkbox" name="Screening" value="Multiple allergies or highly reactive skin"><span class="mark"></span>I have multiple allergies, or very reactive skin</label>
+          <label class="opt"><input type="checkbox" name="Screening" value="Active or previous cancer, or currently under oncology care"><span class="mark"></span>I have, or have had, cancer</label>
+          <label class="opt"><input type="checkbox" name="Screening" value="Autoimmune condition or immunosuppressive therapy"><span class="mark"></span>I have an autoimmune condition, or take immunosuppressant medication</label>
+          <label class="opt"><input type="checkbox" name="Screening" value="Objects to products of animal, plant or biological origin"><span class="mark"></span>I have religious, ethical or dietary reasons for wanting to know the exact source of the product</label>
+          <label class="opt"><input type="checkbox" name="Screening" value="NONE OF THE ABOVE"><span class="mark"></span><strong>None of the above apply to me</strong></label>
+        </div>
+      </div>
+
+      <div class="group">
+        <label class="q">Details of anything ticked above</label>
+        <textarea name="Screening detail"></textarea>
+      </div>
+
+      <div class="note">
+        <strong>On the last option.</strong>
+        If knowing the origin of the product matters to you for any reason, please ask. We will tell you exactly what it is and show you the packaging. Nobody should be applying something to your skin that you would not have agreed to had you known what it was.
+      </div>
+
+      <div class="group">
+        <label class="q">Have you had exosomes before?<span class="req">*</span></label>
+        <div class="opts inline" data-radio="Previous exosomes">
+          <label class="opt inline-sm"><input type="radio" name="Previous exosomes" value="No — first time" required><span class="mark radio"></span>No, first time</label>
+          <label class="opt inline-sm"><input type="radio" name="Previous exosomes" value="Yes — here"><span class="mark radio"></span>Yes, here</label>
+          <label class="opt inline-sm" data-reveal="prevDetail"><input type="radio" name="Previous exosomes" value="Yes — elsewhere"><span class="mark radio"></span>Yes, elsewhere</label>
+        </div>
+        <div class="reveal" id="prevDetail">
+          <label class="q">Where, when, and was anything injected?</label>
+          <div class="hint">If you have been injected with exosomes previously, please tell us — it does not stop us treating you, but we need to know.</div>
+          <textarea name="Previous exosomes detail"></textarea>
+        </div>
+      </div>
+    </div>
+    <div class="nav"><button type="button" class="ghost" data-back>Back</button><button type="button" class="primary" data-next>Continue</button></div>
+  </div>
+
+  <!-- ===== STEP 4 ===== -->
+  <div class="step" data-name="Risks">
+    <div class="panel">
+      <h2>Risks and alternatives</h2>
+      <p class="sub">Specific to the exosome component. The risks of microneedling itself are set out on your microneedling consent.</p>
+
+      <h3>Common</h3>
+      <ul class="plain">
+        <li>Nothing beyond what you would expect from the microneedling itself — redness, mild swelling, tightness and flaking as the skin recovers</li>
+      </ul>
+
+      <h3>Less common</h3>
+      <ul class="plain">
+        <li>Irritation, stinging or a reaction to the product itself</li>
+        <li>Redness lasting longer than it would from microneedling alone</li>
+        <li>Small spots or a temporary breakout</li>
+        <li>No noticeable additional benefit over microneedling on its own</li>
+      </ul>
+
+      <h3>Rare</h3>
+      <ul class="plain">
+        <li>Allergic or hypersensitivity reaction to a component of the product</li>
+        <li>Prolonged inflammatory reaction</li>
+        <li>Contact dermatitis</li>
+      </ul>
+
+      <div class="note">
+        <strong>Because the micro-channels are open, anything applied penetrates more deeply than it would normally.</strong>
+        That is exactly why exosomes work well this way — and also why the product used must be appropriate for the purpose, sterile, and from a verified source. It is the same reason we ask you not to put your own skincare on afterwards.
+      </div>
+
+      <h3>Alternatives</h3>
+      <ul class="plain">
+        <li><strong>Microneedling on its own</strong>, without any add-on. Entirely reasonable, and effective in its own right.</li>
+        <li><strong>PRP</strong>, using your own blood, infused during the same treatment.</li>
+        <li><strong>Polynucleotides</strong>, which have a larger published evidence base and can be injected lawfully.</li>
+        <li><strong>Other infused actives</strong> such as NCTF, Sunekos or WOW Fusion serums.</li>
+        <li><strong>No treatment at all.</strong> Always a reasonable choice.</li>
+      </ul>
+
+      <div class="group">
+        <div class="opts" data-checkgroup="Risk acknowledgement" data-requireall="1">
+          <label class="opt"><input type="checkbox" name="Risk acknowledgement" value="Has read and understood the listed risks"><span class="mark"></span>I have read the risks above and I understand them.</label>
+          <label class="opt"><input type="checkbox" name="Risk acknowledgement" value="Alternatives including microneedling alone have been explained"><span class="mark"></span>I understand I could have microneedling without this add-on, or a different add-on, or no treatment at all, and I have chosen to proceed.</label>
+          <label class="opt"><input type="checkbox" name="Risk acknowledgement" value="Has had opportunity to ask questions"><span class="mark"></span>I have had the opportunity to ask questions, including about the product being used.</label>
+        </div>
+      </div>
+    </div>
+    <div class="nav"><button type="button" class="ghost" data-back>Back</button><button type="button" class="primary" data-next>Continue</button></div>
+  </div>
+
+  <!-- ===== STEP 5 ===== -->
+  <div class="step" data-name="Consent">
+    <div class="panel">
+      <h2>Consent</h2>
+      <p class="sub">Please read each statement and tick to confirm.</p>
+
+      <div class="group">
+        <div class="opts" data-checkgroup="Consent" data-requireall="1">
+          <label class="opt"><input type="checkbox" name="Consent" value="Aged 18 or over"><span class="mark"></span>I am 18 years of age or over.</label>
+          <label class="opt"><input type="checkbox" name="Consent" value="Information given is true and complete"><span class="mark"></span>The information I have given today is true and complete to the best of my knowledge.</label>
+          <label class="opt"><input type="checkbox" name="Consent" value="Has completed or will complete the microneedling consent form"><span class="mark"></span>I have completed, or will complete before treatment, the medical microneedling consent form.</label>
+          <label class="opt"><input type="checkbox" name="Consent" value="CONSENTS to topical application of exosomes during microneedling"><span class="mark"></span><strong>I consent to a CE-marked exosome product being applied topically to my skin during and after medical microneedling.</strong></label>
+          <label class="opt"><input type="checkbox" name="Consent" value="Understands nothing is injected"><span class="mark"></span><strong>I understand nothing is injected, and that injecting exosomes would not be lawful in the UK.</strong></label>
+          <label class="opt"><input type="checkbox" name="Consent" value="Treatment, risks and alternatives discussed and understood"><span class="mark"></span>The treatment, its risks and the alternatives have been explained to me, my questions have been answered, and I understand what I am agreeing to.</label>
+          <label class="opt"><input type="checkbox" name="Consent" value="Understands consent may be withdrawn at any time"><span class="mark"></span>I understand I may withdraw my consent and decline this add-on at any point, including after signing this.</label>
+          <label class="opt"><input type="checkbox" name="Consent" value="Understands no refund for treatment delivered as intended"><span class="mark"></span>I understand that fees cover the treatment provided and are not refundable where treatment has been carried out as agreed.</label>
+          <label class="opt"><input type="checkbox" name="Consent" value="Consents to clinical photography for the medical record"><span class="mark"></span>I consent to clinical photographs being taken and kept in my medical record as part of assessing my treatment.</label>
+        </div>
+      </div>
+
+      <div class="note">
+        <strong>Before and after photographs — please choose one.</strong>
+        Your answer makes no difference at all to your treatment, and you can change your mind at any time by telling us.
+      </div>
+
+      <div class="group">
+        <div class="opts" data-radio="Marketing image consent">
+          <label class="opt"><input type="radio" name="Marketing image consent" value="YES — consents to before/after images being used on website and social media" required><span class="mark radio"></span><strong>Yes</strong> — I'm happy for before and after photographs of my treatment to be shared on the clinic's website and social media. Most of our patients found us this way, so it genuinely helps.</label>
+          <label class="opt"><input type="radio" name="Marketing image consent" value="YES — but treated area only, face not identifiable"><span class="mark radio"></span><strong>Yes, but treated area only</strong> — please don't show my full face.</label>
+          <label class="opt"><input type="radio" name="Marketing image consent" value="NO — DECLINED. Do not use images for marketing."><span class="mark radio"></span><strong>No</strong> — please keep my photographs for my clinical record only.</label>
+        </div>
+      </div>
+
+      <div class="group two-col">
+        <div><label class="q">Type your full name<span class="req">*</span></label><input type="text" name="Signed name" required></div>
+        <div><label class="q">Date<span class="req">*</span></label><input type="date" name="Date signed" id="dateSigned" required></div>
+      </div>
+      <div class="hint" style="margin-top:-8px">Typing your name here acts as your electronic signature confirming the statements above.</div>
+    </div>
+
+    <div class="nav">
+      <button type="button" class="ghost" data-back>Back</button>
+      <button type="button" class="primary" id="submitBtn">Submit consent</button>
+    </div>
+
+    <div class="panel" style="padding:20px 24px">
+      <div class="privacy">
+        <strong>How we look after this information.</strong>
+        This form is transmitted over an encrypted connection directly to the clinic's secure email. It is not stored on this web page and no copy is retained by the website. Your answers are special category health data under UK GDPR, processed for the purposes of providing healthcare under Article 9(2)(h), and held in your clinical record. We keep clinical records for the period required by professional guidance and do not sell or share them. Consent to use images for marketing is held separately under Article 6(1)(a) and may be withdrawn at any time. You may request a copy of what we hold, ask for corrections, or raise a concern with the Information Commissioner's Office. Data controller: R F Roberts Limited, trading as Sebastian Rose Medical Aesthetics. Contact info@sebastianrose.co.uk or 0800 772 0137.
+      </div>
+    </div>
+  </div>
+
+  </form>
+
+  <div id="done">
+    <div class="tick">&#10003;</div>
+    <h2>Thank you</h2>
+    <p>Your consent has been recorded and sent securely to the clinic.</p>
+    <p>Please make sure your medical microneedling consent form is completed too — we need both before treatment.</p>
+    <p style="margin-top:18px;font-size:13.5px">Any questions before then — call us on 0800 772 0137.</p>
+  </div>
+
+  <div class="foot">
+    Sebastian Rose Medical Aesthetics · 39 Charles Street, Cardiff, CF10 2GB<br>
+    0800 772 0137 · info@sebastianrose.co.uk
+  </div>
+
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  var EMAILJS_PUBLIC_KEY  = "04pcL3xdpVieS--Q9";
+  var EMAILJS_SERVICE_ID  = "service_bdikve4";
+  var EMAILJS_TEMPLATE_ID = "template_2we5rm1";
+
+  if (window.emailjs) { emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY }); }
+
+  var form     = document.getElementById('form');
+  var steps    = Array.prototype.slice.call(document.querySelectorAll('.step'));
+  var bar      = document.getElementById('bar');
+  var stepName = document.getElementById('stepName');
+  var stepNum  = document.getElementById('stepNum');
+  var errBox   = document.getElementById('err');
+  var current  = 0;
+
+  // tell the hosting page how tall we are, so it can resize the frame
+  var lastH = 0;
+  function reportHeight(){
+    try{
+      var h = Math.max(
+        document.body.scrollHeight,
+        document.documentElement.scrollHeight,
+        document.body.offsetHeight
+      );
+      if(Math.abs(h - lastH) > 8){
+        lastH = h;
+        window.parent.postMessage({ srType:'height', height: h }, '*');
+        window.parent.postMessage(String(h), '*');
+      }
+    }catch(e){}
+  }
+  window.addEventListener('load', reportHeight);
+  window.addEventListener('resize', reportHeight);
+  setInterval(reportHeight, 400);
+
+  function toTop(){
+    try { window.scrollTo(0,0); } catch(e){}
+    try { document.documentElement.scrollTop = 0; document.body.scrollTop = 0; } catch(e){}
+    try {
+      var a = document.getElementById('topAnchor');
+      if(a && a.scrollIntoView) a.scrollIntoView({ block:'start', inline:'nearest' });
+    } catch(e){}
+    try { window.parent.postMessage({ type:'scrollTo', top:0 }, '*'); } catch(e){}
+  }
+
+  function syncOpt(input){
+    var box = input.closest('.opt');
+    if(!box) return;
+    if(input.type === 'radio'){
+      var same = document.querySelectorAll('input[name="'+CSS.escape(input.name)+'"]');
+      Array.prototype.forEach.call(same, function(r){
+        var b = r.closest('.opt'); if(b) b.classList.toggle('checked', r.checked);
+        var rev = b && b.getAttribute('data-reveal');
+        if(rev){ var el = document.getElementById(rev); if(el) el.classList.toggle('show', r.checked); }
+      });
+    } else {
+      box.classList.toggle('checked', input.checked);
+      var rv = box.getAttribute('data-reveal');
+      if(rv){ var e2 = document.getElementById(rv); if(e2) e2.classList.toggle('show', input.checked); }
+    }
+  }
+
+  Array.prototype.forEach.call(document.querySelectorAll('.opt input'), function(input){
+    input.addEventListener('change', function(){
+      if(input.type === 'checkbox' && input.checked && /^NONE/.test(input.value)){
+        Array.prototype.forEach.call(document.querySelectorAll('input[name="'+CSS.escape(input.name)+'"]'), function(o){
+          if(o !== input && o.checked){ o.checked = false; syncOpt(o); }
+        });
+      }
+      if(input.type === 'checkbox' && input.checked && !/^NONE/.test(input.value)){
+        Array.prototype.forEach.call(document.querySelectorAll('input[name="'+CSS.escape(input.name)+'"]'), function(o){
+          if(/^NONE/.test(o.value) && o.checked){ o.checked = false; syncOpt(o); }
+        });
+      }
+      syncOpt(input);
+    });
+  });
+
+  // hard stop: pregnancy / breastfeeding
+  var pregStop  = document.getElementById('pregStop');
+  var pregBlock = document.getElementById('pregBlock');
+  function pregOK(){
+    var blocked = pregStop && pregStop.checked;
+    if(pregBlock) pregBlock.style.display = blocked ? 'block' : 'none';
+    return !blocked;
+  }
+  if(pregStop) pregStop.addEventListener('change', function(){ pregOK(); });
+
+  var dob = document.getElementById('dob');
+  var ageErr = document.getElementById('ageErr');
+  function ageOK(){
+    if(!dob.value) return true;
+    var d = new Date(dob.value), n = new Date();
+    var a = n.getFullYear() - d.getFullYear();
+    var m = n.getMonth() - d.getMonth();
+    if(m < 0 || (m === 0 && n.getDate() < d.getDate())) a--;
+    if(a < 18){
+      ageErr.textContent = "We are unable to offer this treatment to anyone under 18. Please call the clinic on 0800 772 0137 if you think this is an error.";
+      ageErr.classList.add('show');
+      return false;
+    }
+    ageErr.classList.remove('show');
+    return true;
+  }
+  dob.addEventListener('change', ageOK);
+
+  function show(i){
+    steps[current].classList.remove('active');
+    current = i;
+    steps[current].classList.add('active');
+    bar.style.width = ((current + 1) / steps.length * 100) + '%';
+    stepName.textContent = steps[current].getAttribute('data-name').replace(/&amp;/g,'&');
+    stepNum.textContent = 'Step ' + (current + 1) + ' of ' + steps.length;
+    errBox.classList.remove('show');
+    toTop();
+    setTimeout(reportHeight, 60);
+  }
+
+  function validate(step){
+    var bad = [];
+    Array.prototype.forEach.call(step.querySelectorAll('[required]'), function(f){
+      if(f.type === 'radio'){
+        if(!step.querySelector('input[name="'+CSS.escape(f.name)+'"]:checked')) bad.push(f.name);
+      } else if(!f.value.trim()){
+        bad.push(f.name);
+      }
+    });
+    Array.prototype.forEach.call(step.querySelectorAll('[data-checkgroup]'), function(grp){
+      var nm = grp.getAttribute('data-checkgroup');
+      if(grp.getAttribute('data-requireall')){
+        var boxes = grp.querySelectorAll('input[type=checkbox]');
+        var done  = grp.querySelectorAll('input[type=checkbox]:checked');
+        if(done.length < boxes.length) bad.push('every statement under "' + nm + '"');
+        return;
+      }
+      if(grp.getAttribute('data-optional')) return;
+      var cond = grp.getAttribute('data-conditional');
+      if(cond && !document.querySelector('input[name="'+CSS.escape(cond)+'"]:checked')) return;
+      if(!grp.querySelector('input:checked')) bad.push(nm);
+    });
+    // at least one area must be selected on the areas step
+    if(step.querySelector('[data-checkgroup="Licensed areas"]')){
+      var anyArea = document.querySelector('input[name="Licensed areas"]:checked') ||
+                    document.querySelector('input[name="Off-label areas"]:checked');
+      if(!anyArea) bad.push('At least one treatment area');
+    }
+    return bad;
+  }
+
+  Array.prototype.forEach.call(document.querySelectorAll('[data-next]'), function(b){
+    b.addEventListener('click', function(){
+      if(current === 0 && !ageOK()){ toTop(); return; }
+      if(!pregOK()){ toTop(); return; }
+      var bad = validate(steps[current]);
+      if(bad.length){
+        errBox.innerHTML = 'Please complete the following before continuing: <strong>' +
+          bad.filter(function(v,i,a){return a.indexOf(v)===i;}).join(', ') + '</strong>';
+        errBox.classList.add('show');
+        toTop();
+        return;
+      }
+      show(current + 1);
+    });
+  });
+
+  Array.prototype.forEach.call(document.querySelectorAll('[data-back]'), function(b){
+    b.addEventListener('click', function(){ show(current - 1); });
+  });
+
+  (function(){
+    var t = new Date(), p = function(n){ return (n<10?'0':'')+n; };
+    document.getElementById('dateSigned').value = t.getFullYear()+'-'+p(t.getMonth()+1)+'-'+p(t.getDate());
+  })();
+
+  function collect(){
+    var out = [], seen = {}, order = [];
+    Array.prototype.forEach.call(form.elements, function(el){
+      if(!el.name) return;
+      if(el.type === 'checkbox' || el.type === 'radio'){
+        if(!el.checked) return;
+        if(!seen[el.name]){ seen[el.name] = []; order.push(el.name); }
+        seen[el.name].push(el.value);
+      } else {
+        if(!el.value.trim()) return;
+        if(!seen[el.name]){ seen[el.name] = []; order.push(el.name); }
+        seen[el.name].push(el.value.trim());
+      }
+    });
+    order.forEach(function(k){ out.push(k.toUpperCase() + ':\n  ' + seen[k].join('\n  ')); });
+    // explicitly record a declined marketing consent
+    if(!document.querySelector('input[name="Marketing image consent"]:checked')){
+      out.push('MARKETING IMAGE CONSENT:\n  NOT ANSWERED — treat as declined');
+    }
+    return out.join('\n\n');
+  }
+
+  var submitBtn = document.getElementById('submitBtn');
+  submitBtn.addEventListener('click', function(){
+    if(!ageOK() || !pregOK()){ toTop(); return; }
+    var bad = validate(steps[current]);
+    if(bad.length){
+      errBox.innerHTML = 'Please complete the following: <strong>' +
+        bad.filter(function(v,i,a){return a.indexOf(v)===i;}).join(', ') + '</strong>';
+      errBox.classList.add('show');
+      toTop();
+      return;
+    }
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Sending…';
+
+    var name = (form.querySelector('[name="First name"]').value + ' ' +
+                form.querySelector('[name="Surname"]').value).trim();
+
+    var params = {
+      form_type: 'EXOSOME CONSENT',
+      patient_name: name,
+      from_name: name,
+      reply_to: form.querySelector('[name="Email"]').value,
+      full_data: 'EXOSOMES (TOPICAL, WITH MICRONEEDLING) — INFORMATION & CONSENT\nSubmitted: ' +
+                 new Date().toLocaleString('en-GB') + '\n\n' + collect(),
+      id_document_url: 'N/A — consent form'
+    };
+
+    emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, params)
+      .then(function(){
+        document.querySelector('.progress-shell').style.display = 'none';
+        form.style.display = 'none';
+        document.getElementById('done').style.display = 'block';
+        toTop();
+      })
+      .catch(function(e){
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Submit consent';
+        errBox.innerHTML = 'Sorry — this did not send. Please check your connection and try again, or speak to your practitioner. <br><small>' + (e && e.text ? e.text : '') + '</small>';
+        errBox.classList.add('show');
+        toTop();
+      });
+  });
+})();
+</script>
+</body>
+</html>
