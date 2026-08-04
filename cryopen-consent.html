@@ -1,0 +1,841 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>CryoPen Consent | Sebastian Rose Medical Aesthetics</title>
+
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
+<style>
+/* ============================================================
+   BRAND COLOURS — change these to match your site
+   ============================================================ */
+:root{
+  --ink:#221f1c;
+  --muted:#6f6960;
+  --accent:#b09a77;
+  --accent-dark:#96805f;
+  --bg:#faf8f5;
+  --card:#ffffff;
+  --line:#e6ded2;
+  --warn-bg:#fdf7ee;
+  --warn-line:#e2caa5;
+  --alert-bg:#fbf1ef;
+  --alert-line:#ddb3ab;
+  --ok-bg:#f0f4ee;
+  --ok-line:#c0d1b8;
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{overflow-x:hidden;height:auto;min-height:0}
+/* hide the widget's own scrollbar so it never doubles up with the page's.
+   scrolling still works by wheel/trackpad, so nothing is ever unreachable. */
+html::-webkit-scrollbar,body::-webkit-scrollbar{width:0;height:0;display:none}
+html,body{scrollbar-width:none;-ms-overflow-style:none}
+body{
+  font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;
+  background:var(--bg);color:var(--ink);line-height:1.65;font-size:16px;
+  -webkit-font-smoothing:antialiased;padding:0 0 50px;
+}
+.wrap{max-width:800px;margin:0 auto;padding:28px 18px 0}
+
+.hero{text-align:center;padding:14px 0 26px}
+.hero .eyebrow{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);font-weight:700;margin-bottom:12px}
+.hero h1{font-family:Georgia,'Times New Roman',serif;font-weight:400;font-size:30px;line-height:1.3;letter-spacing:.02em;text-transform:uppercase;margin-bottom:12px}
+.hero p{color:var(--muted);font-size:15px;max-width:580px;margin:0 auto}
+
+.progress-shell{margin:0 0 26px}
+.progress-track{height:3px;background:var(--line);border-radius:2px;overflow:hidden}
+.progress-fill{height:100%;width:12.5%;background:var(--accent);transition:width .35s ease}
+.progress-label{display:flex;justify-content:space-between;margin-top:9px;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+
+.step{display:none}
+.step.active{display:block;animation:fade .3s ease}
+@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+.panel{background:var(--card);border:1px solid var(--line);border-radius:3px;padding:32px 28px;margin-bottom:18px}
+.panel h2{font-family:Georgia,'Times New Roman',serif;font-weight:400;font-size:19px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:8px}
+.panel .sub{color:var(--muted);font-size:14px;margin-bottom:24px}
+.panel h3{font-family:Georgia,serif;font-weight:400;font-size:16px;letter-spacing:.05em;text-transform:uppercase;margin:26px 0 10px;padding-bottom:7px;border-bottom:1px solid var(--line)}
+.panel p.body{font-size:14.8px;margin-bottom:14px;color:#3a352f}
+.panel ul.plain{margin:0 0 16px 18px;font-size:14.8px;color:#3a352f}
+.panel ul.plain li{margin-bottom:7px}
+
+.group{margin-bottom:22px}
+.group:last-child{margin-bottom:0}
+label.q{display:block;font-weight:600;font-size:14.5px;margin-bottom:8px}
+label.q .req{color:var(--accent);margin-left:3px}
+.hint{font-size:13px;color:var(--muted);margin:-3px 0 9px;line-height:1.5}
+
+input[type=text],input[type=email],input[type=tel],input[type=date],select,textarea{
+  width:100%;padding:12px 13px;font-size:15px;font-family:inherit;color:var(--ink);
+  background:#fff;border:1px solid var(--line);border-radius:2px;outline:none;transition:border-color .15s;
+}
+input:focus,select:focus,textarea:focus{border-color:var(--accent)}
+textarea{min-height:88px;resize:vertical}
+select{appearance:none;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8'><path d='M1 1l5 5 5-5' stroke='%236f6960' stroke-width='1.5' fill='none'/></svg>");background-repeat:no-repeat;background-position:right 14px center}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:560px){.two-col{grid-template-columns:1fr}}
+
+.opts{display:flex;flex-direction:column;gap:8px}
+.opts.inline{flex-direction:row;flex-wrap:wrap;gap:10px}
+.opts.grid2{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+@media(max-width:560px){.opts.grid2{grid-template-columns:1fr}}
+
+.opt{position:relative;display:flex;align-items:flex-start;gap:11px;padding:11px 14px;border:1px solid var(--line);border-radius:2px;background:#fff;cursor:pointer;font-size:14.5px;transition:border-color .15s,background .15s;user-select:none}
+.opt:hover{border-color:var(--accent)}
+.opt input{position:absolute;opacity:0;width:0;height:0;pointer-events:none}
+.mark{flex:0 0 18px;width:18px;height:18px;margin-top:2px;border:1.5px solid #c4bbae;background:#fff;position:relative;transition:all .15s}
+.mark.radio{border-radius:50%}
+.opt.checked{border-color:var(--accent);background:#fcfaf7}
+.opt.checked .mark{border-color:var(--accent);background:var(--accent)}
+.opt.checked .mark::after{content:"";position:absolute;left:5px;top:1px;width:5px;height:10px;border:solid #fff;border-width:0 2px 2px 0;transform:rotate(45deg)}
+.opt.checked .mark.radio::after{content:"";position:absolute;left:4px;top:4px;width:6px;height:6px;border:0;border-radius:50%;background:#fff;transform:none}
+.opt.inline-sm{padding:9px 16px}
+
+.reveal{display:none;margin-top:11px;padding-left:14px;border-left:2px solid var(--accent)}
+.reveal.show{display:block;animation:fade .25s ease}
+
+.note{background:var(--warn-bg);border:1px solid var(--warn-line);border-radius:2px;padding:15px 17px;font-size:13.8px;line-height:1.65;margin-bottom:22px;color:#5c4a33}
+.note strong{display:block;margin-bottom:4px}
+.alert{background:var(--alert-bg);border:1px solid var(--alert-line);border-radius:2px;padding:15px 17px;font-size:13.8px;line-height:1.65;margin-bottom:22px;color:#6b3a33}
+.alert strong{display:block;margin-bottom:4px}
+.privacy{background:#f5f2ed;border:1px solid var(--line);border-radius:2px;padding:16px 18px;font-size:12.8px;color:var(--muted);line-height:1.65;margin-top:18px}
+.privacy strong{color:var(--ink)}
+
+.nav{display:flex;gap:12px;margin-top:6px}
+button.primary{flex:1;padding:15px;background:var(--accent);color:#fff;border:0;border-radius:2px;font-size:12.5px;letter-spacing:.18em;text-transform:uppercase;font-weight:700;cursor:pointer;font-family:inherit;transition:background .15s}
+button.primary:hover{background:var(--accent-dark)}
+button.primary:disabled{opacity:.55;cursor:not-allowed}
+button.ghost{padding:15px 26px;background:#fff;color:var(--muted);border:1px solid var(--line);border-radius:2px;font-size:12.5px;letter-spacing:.18em;text-transform:uppercase;font-weight:700;cursor:pointer;font-family:inherit}
+button.ghost:hover{border-color:var(--accent);color:var(--accent)}
+a.linkbtn{display:inline-block;padding:13px 22px;background:var(--accent);color:#fff;text-decoration:none;border-radius:2px;font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;font-weight:700;transition:background .15s}
+a.linkbtn:hover{background:var(--accent-dark)}
+
+.err{display:none;background:#fbeceb;border:1px solid #e0b2ac;color:#8a3a31;padding:12px 15px;border-radius:2px;font-size:13.5px;margin-bottom:16px}
+.err.show{display:block}
+
+#done{display:none;text-align:center;padding:52px 26px;background:var(--ok-bg);border:1px solid var(--ok-line);border-radius:3px}
+#done h2{font-family:Georgia,serif;font-weight:400;font-size:24px;letter-spacing:.05em;text-transform:uppercase;margin-bottom:14px}
+#done p{color:#48553f;font-size:15px;max-width:490px;margin:0 auto 10px}
+.tick{width:54px;height:54px;border-radius:50%;background:#7d9370;color:#fff;font-size:27px;line-height:54px;margin:0 auto 20px}
+
+.foot{text-align:center;font-size:12px;color:var(--muted);margin-top:22px;line-height:1.7}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <span id="topAnchor" aria-hidden="true"></span>
+
+  <div class="hero">
+    <div class="eyebrow">Sebastian Rose Medical Aesthetics</div>
+    <h1>CryoPen&reg;<br>Information &amp; Consent</h1>
+    <p>Medical-grade cryotherapy for benign skin lesions. Please read this in full. Your practitioner will assess your skin and answer any questions before treatment. You may decline at any time, including after giving consent.</p>
+  </div>
+
+  <div class="progress-shell">
+    <div class="progress-track"><div class="progress-fill" id="bar"></div></div>
+    <div class="progress-label"><span id="stepName">Your details</span><span id="stepNum">Step 1 of 8</span></div>
+  </div>
+
+  <div class="err" id="err"></div>
+
+  <form id="form" autocomplete="on">
+
+  <!-- ===== STEP 1 ===== -->
+  <div class="step active" data-name="Your details">
+    <div class="panel">
+      <h2>Your details</h2>
+      <p class="sub">So this consent can be filed against your clinical record.</p>
+
+      <div class="alert">
+        <strong>We do not treat anyone under the age of 18.</strong>
+        CryoPen at Sebastian Rose is for adults only, without exception.
+      </div>
+
+      <div class="group two-col">
+        <div><label class="q">First name<span class="req">*</span></label><input type="text" name="First name" required></div>
+        <div><label class="q">Surname<span class="req">*</span></label><input type="text" name="Surname" required></div>
+      </div>
+
+      <div class="group two-col">
+        <div><label class="q">Date of birth<span class="req">*</span></label><input type="date" name="Date of birth" id="dob" required></div>
+        <div><label class="q">Mobile number<span class="req">*</span></label><input type="tel" name="Mobile" required></div>
+      </div>
+      <div class="err" id="ageErr" style="margin-top:-8px"></div>
+
+      <div class="group">
+        <label class="q">Email address<span class="req">*</span></label>
+        <input type="email" name="Email" required>
+      </div>
+
+      <div class="group">
+        <label class="q">Have you completed our medical history and pre-screening questionnaire?<span class="req">*</span></label>
+        <div class="opts inline" data-radio="Medical history completed">
+          <label class="opt inline-sm"><input type="radio" name="Medical history completed" value="Yes" required><span class="mark radio"></span>Yes</label>
+          <label class="opt inline-sm" data-reveal="noHxDetail"><input type="radio" name="Medical history completed" value="No / not sure"><span class="mark radio"></span>No, or not sure</label>
+        </div>
+        <div class="reveal" id="noHxDetail">
+          <p class="body" style="margin:0 0 12px">A full medical history is needed before treatment. Please complete it now — it takes a few minutes, and you can come straight back here afterwards.</p>
+          <a href="https://www.sebastianrose.co.uk/medical-history-and-prescreening" target="_blank" rel="noopener" class="linkbtn">Complete the medical history form &rarr;</a>
+        </div>
+      </div>
+    </div>
+    <div class="nav"><button type="button" class="primary" data-next>Continue</button></div>
+  </div>
+
+  <!-- ===== STEP 2 ===== -->
+  <div class="step" data-name="What you want treated">
+    <div class="panel">
+      <h2>What you want treated</h2>
+      <p class="sub">Please tell us what you think each lesion is. If you are not sure, say so — that is a perfectly good answer and we will assess it.</p>
+
+      <div class="group">
+        <label class="q">What are you hoping to have treated?<span class="req">*</span></label>
+        <div class="hint">Tick everything that applies.</div>
+        <div class="opts" data-checkgroup="Lesion types">
+          <label class="opt"><input type="checkbox" name="Lesion types" value="Skin tag"><span class="mark"></span>Skin tag</label>
+          <label class="opt"><input type="checkbox" name="Lesion types" value="Wart or verruca"><span class="mark"></span>Wart or verruca</label>
+          <label class="opt"><input type="checkbox" name="Lesion types" value="Cherry angioma (small red spot)"><span class="mark"></span>Cherry angioma — small red spot</label>
+          <label class="opt"><input type="checkbox" name="Lesion types" value="Milia"><span class="mark"></span>Milia — small white bumps</label>
+          <label class="opt"><input type="checkbox" name="Lesion types" value="Age spot / sun spot / liver spot (solar lentigo)"><span class="mark"></span>Age spot, sun spot or liver spot</label>
+          <label class="opt"><input type="checkbox" name="Lesion types" value="Molluscum contagiosum"><span class="mark"></span>Molluscum contagiosum</label>
+          <label class="opt" data-reveal="letterBlock"><input type="checkbox" name="Lesion types" id="needsLetter1" value="MOLE — requires prior written assessment"><span class="mark"></span><strong>A mole</strong></label>
+          <label class="opt" data-reveal="letterBlock"><input type="checkbox" name="Lesion types" id="needsLetter2" value="SEBORRHOEIC KERATOSIS — requires prior written assessment"><span class="mark"></span><strong>A seborrhoeic keratosis</strong> — a raised, waxy, stuck-on looking patch</label>
+          <label class="opt" data-reveal="letterBlock"><input type="checkbox" name="Lesion types" id="needsLetter3" value="SOLAR / ACTINIC KERATOSIS — requires prior written assessment"><span class="mark"></span><strong>A solar or actinic keratosis</strong> — a rough, dry, scaly patch on sun-exposed skin</label>
+          <label class="opt" data-reveal="letterBlock"><input type="checkbox" name="Lesion types" id="needsLetter4" value="NOT SURE what the lesion is"><span class="mark"></span><strong>I'm not sure what it is</strong></label>
+        </div>
+      </div>
+
+      <div class="reveal" id="letterBlock">
+        <div class="alert" style="margin-bottom:0">
+          <strong>This lesion needs to be checked before we can treat it.</strong>
+          We will not treat a mole, a seborrhoeic keratosis, a solar or actinic keratosis, or any lesion we are unsure about, unless it has been assessed by a dermatologist, a recognised mole-checking service, or your GP <strong>within the last 3 months</strong> — and you can show us written evidence.
+          <br><br>
+          This is the single most important safety rule in this field. Some skin cancers, including melanoma and squamous cell carcinoma, can closely resemble harmless moles, age spots and scaly patches. Freezing a lesion destroys the tissue. If a lesion that looked benign was in fact malignant, freezing it would destroy the evidence needed to diagnose it and could delay treatment of a skin cancer. That is a risk we will never take.
+        </div>
+      </div>
+
+      <div class="group">
+        <label class="q">Where on the body?<span class="req">*</span></label>
+        <div class="hint">Please be specific — for example "two skin tags on right side of neck, one age spot on left cheek".</div>
+        <textarea name="Lesion locations" required></textarea>
+      </div>
+
+      <div class="group">
+        <label class="q">Roughly how many lesions?<span class="req">*</span></label>
+        <div class="opts inline" data-radio="Number of lesions">
+          <label class="opt inline-sm"><input type="radio" name="Number of lesions" value="1" required><span class="mark radio"></span>1</label>
+          <label class="opt inline-sm"><input type="radio" name="Number of lesions" value="2 to 3"><span class="mark radio"></span>2–3</label>
+          <label class="opt inline-sm"><input type="radio" name="Number of lesions" value="4 to 6"><span class="mark radio"></span>4–6</label>
+          <label class="opt inline-sm"><input type="radio" name="Number of lesions" value="More than 6"><span class="mark radio"></span>More than 6</label>
+        </div>
+      </div>
+
+      <div class="group">
+        <label class="q">How long have you had them?<span class="req">*</span></label>
+        <div class="opts inline" data-radio="Duration">
+          <label class="opt inline-sm"><input type="radio" name="Duration" value="Less than 6 months" required><span class="mark radio"></span>Under 6 months</label>
+          <label class="opt inline-sm"><input type="radio" name="Duration" value="6 to 12 months"><span class="mark radio"></span>6–12 months</label>
+          <label class="opt inline-sm"><input type="radio" name="Duration" value="1 to 5 years"><span class="mark radio"></span>1–5 years</label>
+          <label class="opt inline-sm"><input type="radio" name="Duration" value="More than 5 years"><span class="mark radio"></span>5 years+</label>
+          <label class="opt inline-sm"><input type="radio" name="Duration" value="Since childhood"><span class="mark radio"></span>Since childhood</label>
+        </div>
+      </div>
+    </div>
+    <div class="nav"><button type="button" class="ghost" data-back>Back</button><button type="button" class="primary" data-next>Continue</button></div>
+  </div>
+
+  <!-- ===== STEP 3 ===== -->
+  <div class="step" data-name="Lesion safety check">
+    <div class="panel">
+      <h2>Lesion safety check</h2>
+      <p class="sub">These questions exist to catch anything that should be seen by a doctor rather than frozen. Please answer honestly — a "yes" does not necessarily mean anything is wrong.</p>
+
+      <div class="alert" id="redFlagBlock" style="display:none">
+        <strong>Please have this checked before we treat it.</strong>
+        One or more of your answers describes a change that should be assessed by a doctor before any lesion is destroyed. This does not mean anything is wrong — most changes turn out to be entirely harmless — but it does mean we are not the right first step.
+        <br><br>
+        Please see your GP, a dermatologist or a recognised mole-checking service. If they confirm in writing that the lesion is benign, we will be glad to see you and can usually treat it at that point. Call us on <strong>0800 772 0137</strong> if you would like help finding a service.
+      </div>
+
+      <div class="group">
+        <label class="q">In the last 12 months, has any lesion you want treated done any of the following?<span class="req">*</span></label>
+        <div class="opts" data-checkgroup="Red flags">
+          <label class="opt"><input type="checkbox" name="Red flags" class="redflag" value="CHANGED in size, shape or thickness"><span class="mark"></span>Changed in size, shape or thickness</label>
+          <label class="opt"><input type="checkbox" name="Red flags" class="redflag" value="CHANGED colour, or has more than one colour"><span class="mark"></span>Changed colour, or has more than one colour within it</label>
+          <label class="opt"><input type="checkbox" name="Red flags" class="redflag" value="BLED without being knocked or scratched"><span class="mark"></span>Bled without being knocked or scratched</label>
+          <label class="opt"><input type="checkbox" name="Red flags" class="redflag" value="ITCHED, stung, tingled or become painful"><span class="mark"></span>Itched, stung, tingled or become painful</label>
+          <label class="opt"><input type="checkbox" name="Red flags" class="redflag" value="CRUSTED, scabbed, ulcerated or failed to heal"><span class="mark"></span>Crusted, scabbed, ulcerated, or failed to heal</label>
+          <label class="opt"><input type="checkbox" name="Red flags" class="redflag" value="APPEARED as a new lesion in adulthood"><span class="mark"></span>Appeared as a completely new lesion</label>
+          <label class="opt"><input type="checkbox" name="Red flags" class="redflag" value="Has an IRREGULAR or ragged border"><span class="mark"></span>Has an irregular, ragged or blurred border</label>
+          <label class="opt"><input type="checkbox" name="Red flags" class="redflag" value="Is LARGER than 6mm across"><span class="mark"></span>Is larger than 6mm across, or bigger than a pencil eraser</label>
+          <label class="opt"><input type="checkbox" name="Red flags" class="redflag" value="Looks DIFFERENT from my other moles or spots"><span class="mark"></span>Looks noticeably different from my other moles or spots</label>
+          <label class="opt"><input type="checkbox" name="Red flags" value="NONE OF THE ABOVE — no changes"><span class="mark"></span><strong>None of the above — nothing has changed</strong></label>
+        </div>
+      </div>
+
+      <div class="group">
+        <label class="q">Do you have a personal or family history of skin cancer?<span class="req">*</span></label>
+        <div class="opts inline" data-radio="Skin cancer history">
+          <label class="opt inline-sm"><input type="radio" name="Skin cancer history" value="No" required><span class="mark radio"></span>No</label>
+          <label class="opt inline-sm" data-reveal="cancerDetail"><input type="radio" name="Skin cancer history" value="Yes — personal history"><span class="mark radio"></span>Yes, myself</label>
+          <label class="opt inline-sm" data-reveal="cancerDetail"><input type="radio" name="Skin cancer history" value="Yes — family history"><span class="mark radio"></span>Yes, in my family</label>
+        </div>
+        <div class="reveal" id="cancerDetail">
+          <label class="q">Please give details</label>
+          <textarea name="Skin cancer history detail"></textarea>
+        </div>
+      </div>
+
+      <div class="group">
+        <label class="q">Have you already had this lesion assessed by a GP, dermatologist or mole-checking service?<span class="req">*</span></label>
+        <div class="opts" data-radio="Prior assessment">
+          <label class="opt"><input type="radio" name="Prior assessment" value="Yes — assessed within the last 3 months, written evidence available" required><span class="mark radio"></span>Yes — within the last 3 months, and I have written evidence I can show you</label>
+          <label class="opt"><input type="radio" name="Prior assessment" value="Yes — but longer than 3 months ago"><span class="mark radio"></span>Yes, but longer than 3 months ago</label>
+          <label class="opt"><input type="radio" name="Prior assessment" value="Yes — but I do not have written evidence"><span class="mark radio"></span>Yes, but I don't have anything in writing</label>
+          <label class="opt"><input type="radio" name="Prior assessment" value="No — not assessed"><span class="mark radio"></span>No</label>
+          <label class="opt"><input type="radio" name="Prior assessment" value="Not applicable — skin tags / warts / milia only"><span class="mark radio"></span>Not applicable — I'm only having skin tags, warts, milia or similar</label>
+        </div>
+      </div>
+
+      <div class="group">
+        <label class="q">If you have written evidence, who assessed it and when?</label>
+        <div class="hint">Please bring the letter, email or printout with you to your appointment. We cannot treat these lesions without seeing it.</div>
+        <textarea name="Assessment details"></textarea>
+      </div>
+    </div>
+    <div class="nav"><button type="button" class="ghost" data-back>Back</button><button type="button" class="primary" data-next>Continue</button></div>
+  </div>
+
+  <!-- ===== STEP 4 ===== -->
+  <div class="step" data-name="Safety screening">
+    <div class="panel">
+      <h2>Safety screening</h2>
+      <p class="sub">A few health questions specific to cryotherapy.</p>
+
+      <div class="alert" id="pregBlock" style="display:none">
+        <strong>We cannot proceed with this treatment.</strong>
+        CryoPen is not carried out in pregnancy or while breastfeeding. Please contact the clinic on 0800 772 0137 and we will be glad to book you in once you are ready.
+      </div>
+
+      <div class="group">
+        <label class="q">Do any of the following apply to you?<span class="req">*</span></label>
+        <div class="opts" data-checkgroup="Screening">
+          <label class="opt"><input type="checkbox" name="Screening" id="pregStop" value="PREGNANT OR BREASTFEEDING"><span class="mark"></span>I am pregnant or breastfeeding</label>
+          <label class="opt"><input type="checkbox" name="Screening" value="Diabetes"><span class="mark"></span>I have diabetes</label>
+          <label class="opt"><input type="checkbox" name="Screening" value="Poor circulation, peripheral vascular disease or Raynaud's"><span class="mark"></span>I have poor circulation, peripheral vascular disease or Raynaud's</label>
+          <label class="opt"><input type="checkbox" name="Screening" value="Cold urticaria or cryoglobulinaemia"><span class="mark"></span>I react badly to cold — cold urticaria or similar</label>
+          <label class="opt"><input type="checkbox" name="Screening" value="Weakened immune system or immunosuppressant therapy"><span class="mark"></span>I have a weakened immune system, or take immunosuppressant medication</label>
+          <label class="opt"><input type="checkbox" name="Screening" value="Tendency to keloid or hypertrophic scarring"><span class="mark"></span>I scar badly, or form raised or keloid scars</label>
+          <label class="opt"><input type="checkbox" name="Screening" value="Bleeding or clotting disorder, or taking anticoagulants"><span class="mark"></span>I have a bleeding disorder, or take blood-thinning medication</label>
+          <label class="opt"><input type="checkbox" name="Screening" value="Active infection, eczema, psoriasis or broken skin at the site"><span class="mark"></span>I have infection, eczema, psoriasis or broken skin at the site</label>
+          <label class="opt"><input type="checkbox" name="Screening" value="History of cold sores (herpes simplex)"><span class="mark"></span>I get cold sores</label>
+          <label class="opt"><input type="checkbox" name="Screening" value="Isotretinoin (Roaccutane) current or within 6 months"><span class="mark"></span>I take, or have taken within 6 months, Roaccutane or isotretinoin</label>
+          <label class="opt"><input type="checkbox" name="Screening" value="Currently taking antibiotics or unwell"><span class="mark"></span>I am currently taking antibiotics, or feeling unwell</label>
+          <label class="opt"><input type="checkbox" name="Screening" value="Recent sun exposure, sunbed or self-tan at the site"><span class="mark"></span>I have had sun, a sunbed or self-tan on the area recently</label>
+          <label class="opt"><input type="checkbox" name="Screening" value="NONE OF THE ABOVE"><span class="mark"></span><strong>None of the above apply to me</strong></label>
+        </div>
+      </div>
+
+      <div class="group">
+        <label class="q">Details of anything ticked above</label>
+        <textarea name="Screening detail"></textarea>
+      </div>
+
+      <div class="group">
+        <label class="q">Skin type<span class="req">*</span></label>
+        <div class="hint">Freezing temporarily affects the cells that produce pigment, so the chance of a lighter or darker mark afterwards is higher in deeper skin tones. Choose the description closest to how your skin behaves in strong sun without protection.</div>
+        <select name="Fitzpatrick" required>
+          <option value="">Please select</option>
+          <option>I — Always burns, never tans. Very fair skin, often freckles.</option>
+          <option>II — Burns easily, tans minimally. Fair skin.</option>
+          <option>III — Sometimes burns, tans gradually. Light to medium skin.</option>
+          <option>IV — Rarely burns, tans easily. Olive or light brown skin.</option>
+          <option>V — Very rarely burns, tans deeply. Brown skin.</option>
+          <option>VI — Never burns. Deeply pigmented brown to black skin.</option>
+        </select>
+      </div>
+    </div>
+    <div class="nav"><button type="button" class="ghost" data-back>Back</button><button type="button" class="primary" data-next>Continue</button></div>
+  </div>
+
+  <!-- ===== STEP 5 ===== -->
+  <div class="step" data-name="About the treatment">
+    <div class="panel">
+      <h2>About the treatment</h2>
+      <p class="sub">What CryoPen is and what happens on the day.</p>
+
+      <h3>What it is</h3>
+      <p class="body">CryoPen is a handheld cryotherapy device that delivers a fine, controlled jet of nitrous oxide at approximately &minus;89&deg;C directly onto a lesion. The freeze forms ice crystals inside and between the cells, rupturing the cell membranes and destroying the targeted tissue. Your body then clears it naturally and fresh skin forms underneath.</p>
+      <p class="body">Benign tissue is reliably destroyed from around &minus;62&deg;C. Liquid nitrogen works at &minus;196&deg;C, which is far colder than necessary and harder to control. Nitrous oxide at &minus;89&deg;C is more than cold enough while reducing the risk of damage to surrounding skin, and the fine applicator concentrates the freeze onto the lesion alone to within a millimetre.</p>
+
+      <div class="note">
+        <strong>We use the medical-grade CryoPen.</strong>
+        It is a regulated medical device that non-medical practitioners are not legally permitted to operate. Several versions exist on the market and many salons use a lower-grade beauty device. Your treatment is carried out by an Independent Nurse Prescriber.
+      </div>
+
+      <h3>What happens</h3>
+      <ul class="plain">
+        <li>Each lesion takes a few seconds to a few minutes depending on size and type.</li>
+        <li>You will feel a sharp, cold, stinging sensation during the freeze, which settles quickly. No injections or anaesthetic are needed.</li>
+        <li>The lesion freezes and turns white, then thaws and flushes red.</li>
+        <li>Depending on the lesion, the area may blister and form a small scab over the following days.</li>
+        <li>The scab usually lifts within one to two weeks. Most areas are fully healed within two to six weeks.</li>
+        <li>Lesions on the legs typically take longer to heal.</li>
+      </ul>
+
+      <h3>How many sessions</h3>
+      <p class="body">Many lesions clear in a single session. Larger or more stubborn ones — particularly larger skin tags with a good blood supply, more prominent cherry angiomas and solar keratoses — often need a second or occasionally further treatments. We will advise you following clinical assessment, before any treatment is carried out.</p>
+
+      <div class="group">
+        <div class="opts" data-checkgroup="Understanding treatment" data-requireall="1">
+          <label class="opt"><input type="checkbox" name="Understanding treatment" value="Understands the treatment destroys tissue by freezing"><span class="mark"></span>I understand this treatment works by freezing and destroying the targeted tissue.</label>
+          <label class="opt"><input type="checkbox" name="Understanding treatment" value="Understands blistering, scabbing and healing timeline"><span class="mark"></span>I understand the area may blister and scab, and that healing typically takes two to six weeks.</label>
+          <label class="opt"><input type="checkbox" name="Understanding treatment" value="Understands further sessions may be needed at additional cost"><span class="mark"></span>I understand some lesions need more than one session, charged separately, and that this cannot always be predicted in advance.</label>
+          <label class="opt"><input type="checkbox" name="Understanding treatment" value="Understands results cannot be guaranteed and recurrence is possible"><span class="mark"></span>I understand results cannot be guaranteed and that a lesion can occasionally recur.</label>
+        </div>
+      </div>
+    </div>
+    <div class="nav"><button type="button" class="ghost" data-back>Back</button><button type="button" class="primary" data-next>Continue</button></div>
+  </div>
+
+  <!-- ===== STEP 6 ===== -->
+  <div class="step" data-name="Risks">
+    <div class="panel">
+      <h2>Risks and side effects</h2>
+      <p class="sub">CryoPen is very safe because of its precision, but no procedure that destroys tissue is without risk.</p>
+
+      <h3>Common — expect these</h3>
+      <ul class="plain">
+        <li>A sharp stinging sensation during the freeze</li>
+        <li>Redness and mild swelling immediately afterwards</li>
+        <li>The treated area darkening in colour — this is the destroyed cells, and the darker area or scab sloughs away as healthy skin regenerates underneath</li>
+        <li>A blister forming, which may be clear or blood-filled</li>
+        <li>A small scab, lifting within one to two weeks</li>
+        <li>Tenderness for a day or two</li>
+      </ul>
+
+      <h3>Less common</h3>
+      <ul class="plain">
+        <li><strong>Pigment change</strong> — a lighter or darker mark at the treated site, because freezing temporarily affects pigment-producing cells. This usually settles as the skin heals but can take months, and the risk is higher in deeper skin tones.</li>
+        <li>Slower healing, particularly on the legs</li>
+        <li>The lesion not fully clearing, needing a further session</li>
+        <li>Recurrence of the lesion later</li>
+        <li>Infection at the treated site, occasionally needing antibiotics</li>
+        <li>Cold sore outbreak, where you are prone to them and the treated area is near the mouth</li>
+      </ul>
+
+      <h3>Rare</h3>
+      <ul class="plain">
+        <li>Scarring, including a raised or keloid scar in those prone to them</li>
+        <li>Permanent loss of pigment at the treated site</li>
+        <li>Damage to a superficial nerve causing altered sensation, usually temporary</li>
+        <li>Loss of hair follicles within the treated area</li>
+        <li>An unexpected reaction to cold</li>
+      </ul>
+
+      <div class="alert">
+        <strong>The most serious risk is not a side effect — it is treating the wrong thing.</strong>
+        Freezing destroys tissue. If a lesion that appeared harmless were in fact a skin cancer, freezing it would destroy the evidence needed to diagnose it and could delay treatment. This is why moles, seborrhoeic keratoses, solar keratoses and anything we are unsure about must be assessed and confirmed benign in writing before we go near them, and why we may still decline on the day.
+      </div>
+
+      <div class="group">
+        <div class="opts" data-checkgroup="Risk acknowledgement" data-requireall="1">
+          <label class="opt"><input type="checkbox" name="Risk acknowledgement" value="Has read and understood all listed risks"><span class="mark"></span>I have read all of the risks above, including the rare ones, and I understand them.</label>
+          <label class="opt"><input type="checkbox" name="Risk acknowledgement" value="Understands pigment change risk, higher in deeper skin tones"><span class="mark"></span>I understand there is a risk of a lighter or darker mark at the treated site, and that this risk is higher in deeper skin tones.</label>
+          <label class="opt"><input type="checkbox" name="Risk acknowledgement" value="Understands scarring is possible"><span class="mark"></span>I understand scarring is possible, although uncommon.</label>
+          <label class="opt"><input type="checkbox" name="Risk acknowledgement" value="Has had opportunity to ask questions"><span class="mark"></span>I have had the opportunity to ask questions and to raise any risk that matters particularly to me.</label>
+        </div>
+      </div>
+    </div>
+    <div class="nav"><button type="button" class="ghost" data-back>Back</button><button type="button" class="primary" data-next>Continue</button></div>
+  </div>
+
+  <!-- ===== STEP 7 ===== -->
+  <div class="step" data-name="Aftercare">
+    <div class="panel">
+      <h2>Aftercare</h2>
+      <p class="sub">Mostly this comes down to leaving it alone.</p>
+
+      <h3>The main rule</h3>
+      <p class="body"><strong>Do not pick at the scab, or at the lesion itself. Leave it alone.</strong> Picking is the single most common cause of scarring, infection and a poor result. If a blister forms, do not burst it.</p>
+
+      <h3>For the first few days</h3>
+      <ul class="plain">
+        <li>Keep the area clean and dry.</li>
+        <li>Avoid makeup over the treated area until the skin has closed.</li>
+        <li>Avoid swimming pools, saunas and steam rooms.</li>
+        <li>Avoid heavy exercise for 24 hours if the area is likely to rub or sweat.</li>
+        <li>You can return to normal activities straight away otherwise.</li>
+      </ul>
+
+      <h3>Until fully healed</h3>
+      <ul class="plain">
+        <li>Protect the area from the sun with SPF 50 daily. This is the most effective thing you can do to reduce the chance of a lasting mark.</li>
+        <li>No sunbeds and no self-tan over the area.</li>
+        <li>Avoid exfoliants, acids and retinoids over the treated skin.</li>
+        <li>Do not apply anything to the area unless we have advised it.</li>
+      </ul>
+
+      <h3>Contact us if</h3>
+      <ul class="plain">
+        <li>The area becomes increasingly painful, hot, swollen or produces discharge</li>
+        <li>Redness spreads outward from the treated site</li>
+        <li>You feel generally unwell with a temperature</li>
+        <li>The area has not healed after six weeks</li>
+        <li>The lesion returns</li>
+        <li>Anything at all concerns you</li>
+      </ul>
+      <p class="body">Call <strong>0800 772 0137</strong>.</p>
+
+      <div class="group">
+        <div class="opts" data-checkgroup="Aftercare acknowledgement" data-requireall="1">
+          <label class="opt"><input type="checkbox" name="Aftercare acknowledgement" value="Has read and agrees to follow aftercare"><span class="mark"></span>I have read the aftercare and I agree to follow it.</label>
+          <label class="opt"><input type="checkbox" name="Aftercare acknowledgement" value="Agrees not to pick scabs or burst blisters"><span class="mark"></span><strong>I will not pick the scab or burst any blister that forms.</strong></label>
+          <label class="opt"><input type="checkbox" name="Aftercare acknowledgement" value="Agrees to use sun protection until healed"><span class="mark"></span>I will protect the area from the sun until it has healed.</label>
+          <label class="opt"><input type="checkbox" name="Aftercare acknowledgement" value="Will contact the clinic promptly with any concerns"><span class="mark"></span>I will contact the clinic promptly if I have any concerns following treatment.</label>
+        </div>
+      </div>
+    </div>
+    <div class="nav"><button type="button" class="ghost" data-back>Back</button><button type="button" class="primary" data-next>Continue</button></div>
+  </div>
+
+  <!-- ===== STEP 8 ===== -->
+  <div class="step" data-name="Consent">
+    <div class="panel">
+      <h2>Consent</h2>
+      <p class="sub">Please read each statement and tick to confirm.</p>
+
+      <div class="note">
+        <strong>We reserve the right to refuse treatment on the day.</strong>
+        If we are not completely satisfied that a lesion is benign and appropriate for CryoPen — whether because it looks atypical, has changed, does not have the required prior assessment, or simply does not sit right clinically — we will decline to treat it and may recommend review by a dermatologist or GP first.
+        <br><br>
+        You may have travelled, and you may be disappointed. We understand that. But our duty is to your safety, not to your convenience. We would always rather send you for a check that turns out to be reassuring than freeze something that should have been investigated.
+      </div>
+
+      <div class="group">
+        <div class="opts" data-checkgroup="Consent" data-requireall="1">
+          <label class="opt"><input type="checkbox" name="Consent" value="Aged 18 or over"><span class="mark"></span>I am 18 years of age or over.</label>
+          <label class="opt"><input type="checkbox" name="Consent" value="Information given is true and complete"><span class="mark"></span>The information I have given today is true and complete to the best of my knowledge.</label>
+          <label class="opt"><input type="checkbox" name="Consent" value="Understands moles, SK, AK and uncertain lesions require prior written assessment"><span class="mark"></span><strong>I understand that moles, seborrhoeic keratoses, solar or actinic keratoses, and any lesion the clinic is unsure about, will not be treated without written confirmation from a GP, dermatologist or mole-checking service dated within the last 3 months.</strong></label>
+          <label class="opt"><input type="checkbox" name="Consent" value="Understands the clinic may decline treatment on the day"><span class="mark"></span>I understand the clinic may decline to treat any lesion on the day, and that this is a clinical judgement made in my interest.</label>
+          <label class="opt"><input type="checkbox" name="Consent" value="Understands treating an undiagnosed malignant lesion would destroy diagnostic evidence"><span class="mark"></span>I understand that freezing destroys tissue, and that treating an undiagnosed lesion could destroy evidence needed to diagnose a skin cancer.</label>
+          <label class="opt"><input type="checkbox" name="Consent" value="Treatment, risks and alternatives discussed and understood"><span class="mark"></span>The proposed treatment, its risks and the alternatives have been explained to me, my questions have been answered, and I understand what I am agreeing to.</label>
+          <label class="opt"><input type="checkbox" name="Consent" value="Understands consent may be withdrawn at any time"><span class="mark"></span>I understand I may withdraw my consent and decline treatment at any point, including after signing this.</label>
+          <label class="opt"><input type="checkbox" name="Consent" value="Understands no refund for treatment delivered as intended"><span class="mark"></span>I understand that fees cover the treatment provided and are not refundable where treatment has been carried out as agreed.</label>
+          <label class="opt"><input type="checkbox" name="Consent" value="Consents to clinical photography for the medical record"><span class="mark"></span>I consent to clinical photographs being taken before and after treatment and kept in my medical record.</label>
+          <label class="opt"><input type="checkbox" name="Consent" value="CONSENTS TO TREATMENT"><span class="mark"></span><strong>I consent to treatment with CryoPen as discussed.</strong></label>
+        </div>
+      </div>
+
+      <div class="note">
+        <strong>Before and after photographs — please choose one.</strong>
+        Your answer makes no difference at all to your treatment, and you can change your mind at any time by telling us.
+      </div>
+
+      <div class="group">
+        <div class="opts" data-radio="Marketing image consent">
+          <label class="opt"><input type="radio" name="Marketing image consent" value="YES — consents to before/after images being used on website and social media" required><span class="mark radio"></span><strong>Yes</strong> — I'm happy for before and after photographs of my treatment to be shared on the clinic's website and social media. Most of our patients found us this way, so it genuinely helps.</label>
+          <label class="opt"><input type="radio" name="Marketing image consent" value="YES — but treated area only, face not identifiable"><span class="mark radio"></span><strong>Yes, but treated area only</strong> — please don't show my full face.</label>
+          <label class="opt"><input type="radio" name="Marketing image consent" value="NO — DECLINED. Do not use images for marketing."><span class="mark radio"></span><strong>No</strong> — please keep my photographs for my clinical record only.</label>
+        </div>
+      </div>
+
+      <div class="group two-col">
+        <div><label class="q">Type your full name<span class="req">*</span></label><input type="text" name="Signed name" required></div>
+        <div><label class="q">Date<span class="req">*</span></label><input type="date" name="Date signed" id="dateSigned" required></div>
+      </div>
+      <div class="hint" style="margin-top:-8px">Typing your name here acts as your electronic signature confirming the statements above.</div>
+    </div>
+
+    <div class="nav">
+      <button type="button" class="ghost" data-back>Back</button>
+      <button type="button" class="primary" id="submitBtn">Submit consent</button>
+    </div>
+
+    <div class="panel" style="padding:20px 24px">
+      <div class="privacy">
+        <strong>How we look after this information.</strong>
+        This form is transmitted over an encrypted connection directly to the clinic's secure email. It is not stored on this web page and no copy is retained by the website. Your answers are special category health data under UK GDPR, processed for the purposes of providing healthcare under Article 9(2)(h), and held in your clinical record. We keep clinical records for the period required by professional guidance and do not sell or share them. Consent to use images for marketing is held separately under Article 6(1)(a) and may be withdrawn at any time. You may request a copy of what we hold, ask for corrections, or raise a concern with the Information Commissioner's Office. Data controller: R F Roberts Limited, trading as Sebastian Rose Medical Aesthetics. Contact info@sebastianrose.co.uk or 0800 772 0137.
+      </div>
+    </div>
+  </div>
+
+  </form>
+
+  <div id="done">
+    <div class="tick">&#10003;</div>
+    <h2>Thank you</h2>
+    <p>Your consent has been recorded and sent securely to the clinic.</p>
+    <p>If your treatment involves a mole, a keratosis, or anything we need to be sure about, please remember to bring your written assessment with you.</p>
+    <p style="margin-top:18px;font-size:13.5px">Any questions before then — call us on 0800 772 0137.</p>
+  </div>
+
+  <div class="foot">
+    Sebastian Rose Medical Aesthetics · 39 Charles Street, Cardiff, CF10 2GB<br>
+    0800 772 0137 · info@sebastianrose.co.uk
+  </div>
+
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  var EMAILJS_PUBLIC_KEY  = "04pcL3xdpVieS--Q9";
+  var EMAILJS_SERVICE_ID  = "service_bdikve4";
+  var EMAILJS_TEMPLATE_ID = "template_2we5rm1";
+
+  if (window.emailjs) { emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY }); }
+
+  var form     = document.getElementById('form');
+  var steps    = Array.prototype.slice.call(document.querySelectorAll('.step'));
+  var bar      = document.getElementById('bar');
+  var stepName = document.getElementById('stepName');
+  var stepNum  = document.getElementById('stepNum');
+  var errBox   = document.getElementById('err');
+  var current  = 0;
+
+  // tell the hosting page how tall we are, so it can resize the frame
+  var lastH = 0;
+  function reportHeight(){
+    try{
+      var h = Math.max(
+        document.body.scrollHeight,
+        document.documentElement.scrollHeight,
+        document.body.offsetHeight
+      );
+      if(Math.abs(h - lastH) > 8){
+        lastH = h;
+        window.parent.postMessage({ srType:'height', height: h }, '*');
+        window.parent.postMessage(String(h), '*');
+      }
+    }catch(e){}
+  }
+  window.addEventListener('load', reportHeight);
+  window.addEventListener('resize', reportHeight);
+  setInterval(reportHeight, 400);
+
+  function toTop(){
+    try { window.scrollTo(0,0); } catch(e){}
+    try { document.documentElement.scrollTop = 0; document.body.scrollTop = 0; } catch(e){}
+    try {
+      var a = document.getElementById('topAnchor');
+      if(a && a.scrollIntoView) a.scrollIntoView({ block:'start', inline:'nearest' });
+    } catch(e){}
+    try { window.parent.postMessage({ type:'scrollTo', top:0 }, '*'); } catch(e){}
+  }
+
+  function syncOpt(input){
+    var box = input.closest('.opt');
+    if(!box) return;
+    if(input.type === 'radio'){
+      var same = document.querySelectorAll('input[name="'+CSS.escape(input.name)+'"]');
+      Array.prototype.forEach.call(same, function(r){
+        var b = r.closest('.opt'); if(b) b.classList.toggle('checked', r.checked);
+        var rev = b && b.getAttribute('data-reveal');
+        if(rev){ var el = document.getElementById(rev); if(el) el.classList.toggle('show', r.checked); }
+      });
+    } else {
+      box.classList.toggle('checked', input.checked);
+      var rv = box.getAttribute('data-reveal');
+      if(rv){ var e2 = document.getElementById(rv); if(e2) e2.classList.toggle('show', input.checked); }
+    }
+  }
+
+  Array.prototype.forEach.call(document.querySelectorAll('.opt input'), function(input){
+    input.addEventListener('change', function(){
+      if(input.type === 'checkbox' && input.checked && /^NONE/.test(input.value)){
+        Array.prototype.forEach.call(document.querySelectorAll('input[name="'+CSS.escape(input.name)+'"]'), function(o){
+          if(o !== input && o.checked){ o.checked = false; syncOpt(o); }
+        });
+      }
+      if(input.type === 'checkbox' && input.checked && !/^NONE/.test(input.value)){
+        Array.prototype.forEach.call(document.querySelectorAll('input[name="'+CSS.escape(input.name)+'"]'), function(o){
+          if(/^NONE/.test(o.value) && o.checked){ o.checked = false; syncOpt(o); }
+        });
+      }
+      syncOpt(input);
+    });
+  });
+
+  // hard stop: pregnancy / breastfeeding
+  var pregStop  = document.getElementById('pregStop');
+  var pregBlock = document.getElementById('pregBlock');
+  function pregOK(){
+    var blocked = pregStop && pregStop.checked;
+    if(pregBlock) pregBlock.style.display = blocked ? 'block' : 'none';
+    return !blocked;
+  }
+  if(pregStop) pregStop.addEventListener('change', function(){ pregOK(); });
+
+  // hard stop: lesion red flags
+  var redFlagBlock = document.getElementById('redFlagBlock');
+  function redFlagOK(){
+    var any = document.querySelector('input.redflag:checked');
+    if(redFlagBlock) redFlagBlock.style.display = any ? 'block' : 'none';
+    return !any;
+  }
+  Array.prototype.forEach.call(document.querySelectorAll('input.redflag'), function(i){
+    i.addEventListener('change', redFlagOK);
+  });
+
+  var dob = document.getElementById('dob');
+  var ageErr = document.getElementById('ageErr');
+  function ageOK(){
+    if(!dob.value) return true;
+    var d = new Date(dob.value), n = new Date();
+    var a = n.getFullYear() - d.getFullYear();
+    var m = n.getMonth() - d.getMonth();
+    if(m < 0 || (m === 0 && n.getDate() < d.getDate())) a--;
+    if(a < 18){
+      ageErr.textContent = "We are unable to offer this treatment to anyone under 18. Please call the clinic on 0800 772 0137 if you think this is an error.";
+      ageErr.classList.add('show');
+      return false;
+    }
+    ageErr.classList.remove('show');
+    return true;
+  }
+  dob.addEventListener('change', ageOK);
+
+  function show(i){
+    steps[current].classList.remove('active');
+    current = i;
+    steps[current].classList.add('active');
+    bar.style.width = ((current + 1) / steps.length * 100) + '%';
+    stepName.textContent = steps[current].getAttribute('data-name').replace(/&amp;/g,'&');
+    stepNum.textContent = 'Step ' + (current + 1) + ' of ' + steps.length;
+    errBox.classList.remove('show');
+    toTop();
+    setTimeout(reportHeight, 60);
+  }
+
+  function validate(step){
+    var bad = [];
+    Array.prototype.forEach.call(step.querySelectorAll('[required]'), function(f){
+      if(f.type === 'radio'){
+        if(!step.querySelector('input[name="'+CSS.escape(f.name)+'"]:checked')) bad.push(f.name);
+      } else if(!f.value.trim()){
+        bad.push(f.name);
+      }
+    });
+    Array.prototype.forEach.call(step.querySelectorAll('[data-checkgroup]'), function(grp){
+      var nm = grp.getAttribute('data-checkgroup');
+      if(grp.getAttribute('data-requireall')){
+        var boxes = grp.querySelectorAll('input[type=checkbox]');
+        var done  = grp.querySelectorAll('input[type=checkbox]:checked');
+        if(done.length < boxes.length) bad.push('every statement under "' + nm + '"');
+        return;
+      }
+      if(grp.getAttribute('data-optional')) return;
+      var cond = grp.getAttribute('data-conditional');
+      if(cond && !document.querySelector('input[name="'+CSS.escape(cond)+'"]:checked')) return;
+      if(!grp.querySelector('input:checked')) bad.push(nm);
+    });
+    // at least one area must be selected on the areas step
+    if(step.querySelector('[data-checkgroup="Licensed areas"]')){
+      var anyArea = document.querySelector('input[name="Licensed areas"]:checked') ||
+                    document.querySelector('input[name="Off-label areas"]:checked');
+      if(!anyArea) bad.push('At least one treatment area');
+    }
+    return bad;
+  }
+
+  Array.prototype.forEach.call(document.querySelectorAll('[data-next]'), function(b){
+    b.addEventListener('click', function(){
+      if(current === 0 && !ageOK()){ toTop(); return; }
+      if(!pregOK()){ toTop(); return; }
+      if(!redFlagOK()){ toTop(); return; }
+      var bad = validate(steps[current]);
+      if(bad.length){
+        errBox.innerHTML = 'Please complete the following before continuing: <strong>' +
+          bad.filter(function(v,i,a){return a.indexOf(v)===i;}).join(', ') + '</strong>';
+        errBox.classList.add('show');
+        toTop();
+        return;
+      }
+      show(current + 1);
+    });
+  });
+
+  Array.prototype.forEach.call(document.querySelectorAll('[data-back]'), function(b){
+    b.addEventListener('click', function(){ show(current - 1); });
+  });
+
+  (function(){
+    var t = new Date(), p = function(n){ return (n<10?'0':'')+n; };
+    document.getElementById('dateSigned').value = t.getFullYear()+'-'+p(t.getMonth()+1)+'-'+p(t.getDate());
+  })();
+
+  function collect(){
+    var out = [], seen = {}, order = [];
+    Array.prototype.forEach.call(form.elements, function(el){
+      if(!el.name) return;
+      if(el.type === 'checkbox' || el.type === 'radio'){
+        if(!el.checked) return;
+        if(!seen[el.name]){ seen[el.name] = []; order.push(el.name); }
+        seen[el.name].push(el.value);
+      } else {
+        if(!el.value.trim()) return;
+        if(!seen[el.name]){ seen[el.name] = []; order.push(el.name); }
+        seen[el.name].push(el.value.trim());
+      }
+    });
+    order.forEach(function(k){ out.push(k.toUpperCase() + ':\n  ' + seen[k].join('\n  ')); });
+    // explicitly record a declined marketing consent
+    if(!document.querySelector('input[name="Marketing image consent"]:checked')){
+      out.push('MARKETING IMAGE CONSENT:\n  NOT ANSWERED — treat as declined');
+    }
+    return out.join('\n\n');
+  }
+
+  var submitBtn = document.getElementById('submitBtn');
+  submitBtn.addEventListener('click', function(){
+    if(!ageOK() || !pregOK() || !redFlagOK()){ toTop(); return; }
+    var bad = validate(steps[current]);
+    if(bad.length){
+      errBox.innerHTML = 'Please complete the following: <strong>' +
+        bad.filter(function(v,i,a){return a.indexOf(v)===i;}).join(', ') + '</strong>';
+      errBox.classList.add('show');
+      toTop();
+      return;
+    }
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Sending…';
+
+    var name = (form.querySelector('[name="First name"]').value + ' ' +
+                form.querySelector('[name="Surname"]').value).trim();
+
+    var params = {
+      form_type: 'CRYOPEN CONSENT',
+      patient_name: name,
+      from_name: name,
+      reply_to: form.querySelector('[name="Email"]').value,
+      full_data: 'CRYOPEN — INFORMATION & CONSENT\nSubmitted: ' +
+                 new Date().toLocaleString('en-GB') + '\n\n' + collect(),
+      id_document_url: 'N/A — consent form'
+    };
+
+    emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, params)
+      .then(function(){
+        document.querySelector('.progress-shell').style.display = 'none';
+        form.style.display = 'none';
+        document.getElementById('done').style.display = 'block';
+        toTop();
+      })
+      .catch(function(e){
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Submit consent';
+        errBox.innerHTML = 'Sorry — this did not send. Please check your connection and try again, or speak to your practitioner. <br><small>' + (e && e.text ? e.text : '') + '</small>';
+        errBox.classList.add('show');
+        toTop();
+      });
+  });
+})();
+</script>
+</body>
+</html>
