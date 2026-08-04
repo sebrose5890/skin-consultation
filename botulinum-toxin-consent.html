@@ -107,6 +107,8 @@ button.primary:hover{background:var(--accent-dark)}
 button.primary:disabled{opacity:.55;cursor:not-allowed}
 button.ghost{padding:15px 26px;background:#fff;color:var(--muted);border:1px solid var(--line);border-radius:2px;font-size:12.5px;letter-spacing:.18em;text-transform:uppercase;font-weight:700;cursor:pointer;font-family:inherit}
 button.ghost:hover{border-color:var(--accent);color:var(--accent)}
+a.linkbtn{display:inline-block;padding:13px 22px;background:var(--accent);color:#fff;text-decoration:none;border-radius:2px;font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;font-weight:700;transition:background .15s}
+a.linkbtn:hover{background:var(--accent-dark)}
 
 .err{display:none;background:#fbeceb;border:1px solid #e0b2ac;color:#8a3a31;padding:12px 15px;border-radius:2px;font-size:13.5px;margin-bottom:16px}
 .err.show{display:block}
@@ -167,7 +169,8 @@ button.ghost:hover{border-color:var(--accent);color:var(--accent)}
           <label class="opt inline-sm" data-reveal="noHxDetail"><input type="radio" name="Medical history completed" value="No / not sure"><span class="mark radio"></span>No, or not sure</label>
         </div>
         <div class="reveal" id="noHxDetail">
-          <p class="body" style="margin:0">Please let your practitioner know before proceeding — a full medical history is needed before any injectable treatment.</p>
+          <p class="body" style="margin:0 0 12px">A full medical history is needed before any injectable treatment. Please complete it now — it takes a few minutes, and you can come straight back here afterwards.</p>
+          <a href="https://www.sebastianrose.co.uk/medical-history-and-prescreening" target="_blank" rel="noopener" class="linkbtn">Complete the medical history form &rarr;</a>
         </div>
       </div>
 
