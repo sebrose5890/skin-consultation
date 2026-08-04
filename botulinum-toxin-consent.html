@@ -560,6 +560,26 @@ a.linkbtn:hover{background:var(--accent-dark)}
   var errBox   = document.getElementById('err');
   var current  = 0;
 
+  // tell the hosting page how tall we are, so it can resize the frame
+  var lastH = 0;
+  function reportHeight(){
+    try{
+      var h = Math.max(
+        document.body.scrollHeight,
+        document.documentElement.scrollHeight,
+        document.body.offsetHeight
+      );
+      if(Math.abs(h - lastH) > 8){
+        lastH = h;
+        window.parent.postMessage({ srType:'height', height: h }, '*');
+        window.parent.postMessage(String(h), '*');
+      }
+    }catch(e){}
+  }
+  window.addEventListener('load', reportHeight);
+  window.addEventListener('resize', reportHeight);
+  setInterval(reportHeight, 400);
+
   function toTop(){
     try { window.scrollTo(0,0); } catch(e){}
     try { document.documentElement.scrollTop = 0; document.body.scrollTop = 0; } catch(e){}
@@ -640,6 +660,7 @@ a.linkbtn:hover{background:var(--accent-dark)}
     stepNum.textContent = 'Step ' + (current + 1) + ' of ' + steps.length;
     errBox.classList.remove('show');
     toTop();
+    setTimeout(reportHeight, 60);
   }
 
   function validate(step){
