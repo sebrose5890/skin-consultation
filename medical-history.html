@@ -1,0 +1,1016 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Medical History &amp; Pre-Screening | Sebastian Rose Medical Aesthetics</title>
+
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@uploadcare/file-uploader@v1/web/uc-file-uploader-regular.min.js" type="module"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@uploadcare/file-uploader@v1/web/uc-file-uploader-regular.min.css">
+
+<style>
+/* ============================================================
+   BRAND COLOURS — change these six lines to match your site
+   ============================================================ */
+:root{
+  --ink:#22201e;          /* main text */
+  --muted:#6f6a64;        /* secondary text */
+  --accent:#8c6f5e;       /* buttons, highlights, progress bar */
+  --accent-dark:#6f5647;  /* button hover */
+  --bg:#f7f4f0;           /* page background */
+  --card:#ffffff;         /* panel background */
+  --line:#e4ddd5;         /* borders */
+  --warn-bg:#fdf6ec;
+  --warn-line:#e3c9a4;
+  --ok-bg:#eef5ef;
+  --ok-line:#b9d2be;
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;
+  background:var(--bg);
+  color:var(--ink);
+  line-height:1.65;
+  font-size:16px;
+  -webkit-font-smoothing:antialiased;
+  padding:0 0 60px;
+}
+.wrap{max-width:780px;margin:0 auto;padding:28px 18px 0}
+
+/* ---------- Header ---------- */
+.hero{text-align:center;padding:14px 0 26px}
+.hero .eyebrow{
+  font-size:11px;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--accent);font-weight:700;margin-bottom:12px;
+}
+.hero h1{
+  font-family:Georgia,'Times New Roman',serif;
+  font-weight:400;font-size:31px;line-height:1.25;letter-spacing:.01em;margin-bottom:12px;
+}
+.hero p{color:var(--muted);font-size:15px;max-width:560px;margin:0 auto}
+
+/* ---------- Progress ---------- */
+.progress-shell{margin:0 0 26px}
+.progress-track{height:3px;background:var(--line);border-radius:2px;overflow:hidden}
+.progress-fill{height:100%;width:12.5%;background:var(--accent);transition:width .35s ease}
+.progress-label{
+  display:flex;justify-content:space-between;margin-top:9px;
+  font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);
+}
+
+/* ---------- Panels ---------- */
+.step{display:none}
+.step.active{display:block;animation:fade .3s ease}
+@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+.panel{
+  background:var(--card);border:1px solid var(--line);border-radius:4px;
+  padding:30px 26px;margin-bottom:18px;
+}
+.panel h2{
+  font-family:Georgia,'Times New Roman',serif;font-weight:400;font-size:22px;
+  margin-bottom:6px;
+}
+.panel .sub{color:var(--muted);font-size:14px;margin-bottom:24px}
+
+.group{margin-bottom:22px}
+.group:last-child{margin-bottom:0}
+label.q{display:block;font-weight:600;font-size:14.5px;margin-bottom:8px}
+label.q .req{color:var(--accent);margin-left:3px}
+.hint{font-size:13px;color:var(--muted);margin:-3px 0 9px;line-height:1.5}
+
+input[type=text],input[type=email],input[type=tel],input[type=date],input[type=number],select,textarea{
+  width:100%;padding:12px 13px;font-size:15px;font-family:inherit;color:var(--ink);
+  background:#fff;border:1px solid var(--line);border-radius:3px;outline:none;
+  transition:border-color .15s;
+}
+input:focus,select:focus,textarea:focus{border-color:var(--accent)}
+textarea{min-height:90px;resize:vertical}
+select{appearance:none;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8'><path d='M1 1l5 5 5-5' stroke='%236f6a64' stroke-width='1.5' fill='none'/></svg>");background-repeat:no-repeat;background-position:right 14px center}
+
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:560px){.two-col{grid-template-columns:1fr}}
+
+/* ---------- Choice controls ---------- */
+.opts{display:flex;flex-direction:column;gap:8px}
+.opts.inline{flex-direction:row;flex-wrap:wrap;gap:10px}
+.opts.grid2{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+@media(max-width:560px){.opts.grid2{grid-template-columns:1fr}}
+
+.opt{
+  position:relative;display:flex;align-items:flex-start;gap:11px;
+  padding:11px 14px;border:1px solid var(--line);border-radius:3px;background:#fff;
+  cursor:pointer;font-size:14.5px;transition:border-color .15s,background .15s;
+  user-select:none;
+}
+.opt:hover{border-color:var(--accent)}
+.opt input{position:absolute;opacity:0;width:0;height:0;pointer-events:none}
+.mark{
+  flex:0 0 18px;width:18px;height:18px;margin-top:2px;border:1.5px solid #bdb4aa;
+  background:#fff;position:relative;transition:all .15s;
+}
+.mark.radio{border-radius:50%}
+.opt.checked{border-color:var(--accent);background:#faf7f4}
+.opt.checked .mark{border-color:var(--accent);background:var(--accent)}
+.opt.checked .mark::after{
+  content:"";position:absolute;left:5px;top:1px;width:5px;height:10px;
+  border:solid #fff;border-width:0 2px 2px 0;transform:rotate(45deg);
+}
+.opt.checked .mark.radio::after{
+  content:"";position:absolute;left:4px;top:4px;width:6px;height:6px;border:0;
+  border-radius:50%;background:#fff;transform:none;
+}
+.opt.inline-sm{padding:9px 16px}
+
+/* ---------- Conditional reveals ---------- */
+.reveal{display:none;margin-top:11px;padding-left:14px;border-left:2px solid var(--accent)}
+.reveal.show{display:block;animation:fade .25s ease}
+
+/* ---------- Callouts ---------- */
+.note{
+  background:var(--warn-bg);border:1px solid var(--warn-line);border-radius:3px;
+  padding:14px 16px;font-size:13.5px;line-height:1.6;margin-bottom:22px;color:#5a4732;
+}
+.note strong{display:block;margin-bottom:4px}
+.privacy{
+  background:#f4f1ed;border:1px solid var(--line);border-radius:3px;
+  padding:16px 18px;font-size:13px;color:var(--muted);line-height:1.65;margin-top:18px;
+}
+.privacy strong{color:var(--ink)}
+
+/* ---------- Signature ---------- */
+#sigWrap{border:1px solid var(--line);border-radius:3px;background:#fff;overflow:hidden}
+#sigPad{display:block;width:100%;height:150px;touch-action:none;cursor:crosshair}
+.sig-bar{display:flex;justify-content:space-between;align-items:center;padding:8px 12px;border-top:1px solid var(--line);background:#faf9f7}
+.sig-bar span{font-size:12px;color:var(--muted)}
+.link-btn{background:none;border:0;color:var(--accent);font-size:12.5px;cursor:pointer;text-decoration:underline;font-family:inherit;padding:0}
+
+/* ---------- Buttons ---------- */
+.nav{display:flex;gap:12px;margin-top:6px}
+button.primary{
+  flex:1;padding:15px;background:var(--accent);color:#fff;border:0;border-radius:3px;
+  font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;font-weight:700;
+  cursor:pointer;font-family:inherit;transition:background .15s;
+}
+button.primary:hover{background:var(--accent-dark)}
+button.primary:disabled{opacity:.55;cursor:not-allowed}
+button.ghost{
+  padding:15px 26px;background:#fff;color:var(--muted);border:1px solid var(--line);
+  border-radius:3px;font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;
+  font-weight:700;cursor:pointer;font-family:inherit;
+}
+button.ghost:hover{border-color:var(--accent);color:var(--accent)}
+
+/* ---------- Validation ---------- */
+.err{
+  display:none;background:#fbeceb;border:1px solid #e5b4af;color:#8c3a32;
+  padding:12px 15px;border-radius:3px;font-size:13.5px;margin-bottom:16px;
+}
+.err.show{display:block}
+.field-bad input,.field-bad select,.field-bad textarea{border-color:#c9776e}
+
+/* ---------- Success ---------- */
+#done{display:none;text-align:center;padding:52px 26px;background:var(--ok-bg);border:1px solid var(--ok-line);border-radius:4px}
+#done h2{font-family:Georgia,serif;font-weight:400;font-size:26px;margin-bottom:12px}
+#done p{color:#4c5f4f;font-size:15px;max-width:480px;margin:0 auto 10px}
+.tick{width:54px;height:54px;border-radius:50%;background:#5c8a66;color:#fff;font-size:27px;line-height:54px;margin:0 auto 20px}
+
+.foot{text-align:center;font-size:12px;color:var(--muted);margin-top:22px;line-height:1.7}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="hero">
+    <div class="eyebrow">Sebastian Rose Medical Aesthetics</div>
+    <h1>Medical History &amp; Pre-Screening</h1>
+    <p>Please complete this in full before your appointment. It is reviewed by your practitioner in advance so your consultation can be spent on you rather than on paperwork.</p>
+  </div>
+
+  <div class="progress-shell">
+    <div class="progress-track"><div class="progress-fill" id="bar"></div></div>
+    <div class="progress-label"><span id="stepName">Your details</span><span id="stepNum">Step 1 of 8</span></div>
+  </div>
+
+  <div class="err" id="err"></div>
+
+  <form id="form" autocomplete="on">
+
+  <!-- ============ STEP 1 ============ -->
+  <div class="step active" data-name="Your details">
+    <div class="panel">
+      <h2>Your details</h2>
+      <p class="sub">So we can identify your record and contact you if anything needs clarifying before you attend.</p>
+
+      <div class="note">
+        <strong>Please complete this no sooner than the day before your appointment.</strong>
+        Your health can change, and we need an accurate picture on the day. If anything changes between completing this and attending, tell your practitioner.
+      </div>
+
+      <div class="group two-col">
+        <div><label class="q">First name<span class="req">*</span></label><input type="text" name="First name" required></div>
+        <div><label class="q">Surname<span class="req">*</span></label><input type="text" name="Surname" required></div>
+      </div>
+
+      <div class="group two-col">
+        <div>
+          <label class="q">Date of birth<span class="req">*</span></label>
+          <input type="date" name="Date of birth" id="dob" required>
+        </div>
+        <div>
+          <label class="q">Sex at birth<span class="req">*</span></label>
+          <select name="Sex at birth" id="sexAtBirth" required>
+            <option value="">Please select</option>
+            <option>Female</option>
+            <option>Male</option>
+          </select>
+        </div>
+      </div>
+      <div class="err" id="ageErr" style="margin-top:-8px"></div>
+
+      <div class="group two-col">
+        <div><label class="q">Mobile number<span class="req">*</span></label><input type="tel" name="Mobile" required></div>
+        <div><label class="q">Email address<span class="req">*</span></label><input type="email" name="Email" required></div>
+      </div>
+
+      <div class="group">
+        <label class="q">Home address<span class="req">*</span></label>
+        <div class="hint">Including postcode.</div>
+        <textarea name="Address" required></textarea>
+      </div>
+
+      <div class="group">
+        <label class="q">Emergency contact — name and number<span class="req">*</span></label>
+        <input type="text" name="Emergency contact" required>
+      </div>
+
+      <div class="group">
+        <label class="q">Your GP surgery — name and town<span class="req">*</span></label>
+        <div class="hint">We do not routinely contact your GP. We ask so that we can, with your permission, in the unlikely event of a complication requiring it.</div>
+        <input type="text" name="GP surgery" required>
+      </div>
+
+      <div class="group">
+        <label class="q">Are you currently under the care of a hospital consultant or specialist?<span class="req">*</span></label>
+        <div class="opts inline" data-radio="Under specialist care">
+          <label class="opt inline-sm"><input type="radio" name="Under specialist care" value="No" required><span class="mark radio"></span>No</label>
+          <label class="opt inline-sm" data-reveal="specialistDetail"><input type="radio" name="Under specialist care" value="Yes"><span class="mark radio"></span>Yes</label>
+        </div>
+        <div class="reveal" id="specialistDetail">
+          <label class="q">Which specialty, and what for?</label>
+          <textarea name="Specialist care detail"></textarea>
+        </div>
+      </div>
+    </div>
+    <div class="nav"><button type="button" class="primary" data-next>Continue</button></div>
+  </div>
+
+  <!-- ============ STEP 2 ============ -->
+  <div class="step" data-name="Your treatment">
+    <div class="panel">
+      <h2>Your treatment</h2>
+      <p class="sub">Tick everything you are booked for or considering. Some questions later on will only be relevant to certain treatments.</p>
+
+      <div class="group">
+        <label class="q">Treatment(s)<span class="req">*</span></label>
+        <div class="opts grid2" data-checkgroup="Treatments">
+          <label class="opt"><input type="checkbox" name="Treatments" value="Anti-wrinkle injections (botulinum toxin)"><span class="mark"></span>Anti-wrinkle injections</label>
+          <label class="opt"><input type="checkbox" name="Treatments" value="Lip filler"><span class="mark"></span>Lip filler</label>
+          <label class="opt"><input type="checkbox" name="Treatments" value="Dermal filler (face)"><span class="mark"></span>Dermal filler (face)</label>
+          <label class="opt"><input type="checkbox" name="Treatments" value="Tear trough / under-eye"><span class="mark"></span>Tear trough / under-eye</label>
+          <label class="opt"><input type="checkbox" name="Treatments" value="Non-surgical rhinoplasty"><span class="mark"></span>Non-surgical rhinoplasty</label>
+          <label class="opt"><input type="checkbox" name="Treatments" value="Polynucleotides"><span class="mark"></span>Polynucleotides</label>
+          <label class="opt"><input type="checkbox" name="Treatments" value="Profhilo / skin boosters"><span class="mark"></span>Profhilo / skin boosters</label>
+          <label class="opt"><input type="checkbox" name="Treatments" value="Biostimulator (Sculptra / Julaine)"><span class="mark"></span>Biostimulator (Sculptra / Julaine)</label>
+          <label class="opt"><input type="checkbox" name="Treatments" value="Bio filler / PRP"><span class="mark"></span>Bio filler / PRP</label>
+          <label class="opt"><input type="checkbox" name="Treatments" value="Chemical peel"><span class="mark"></span>Chemical peel</label>
+          <label class="opt"><input type="checkbox" name="Treatments" value="Medical microneedling"><span class="mark"></span>Medical microneedling</label>
+          <label class="opt"><input type="checkbox" name="Treatments" value="Hair restoration"><span class="mark"></span>Hair restoration</label>
+          <label class="opt"><input type="checkbox" name="Treatments" value="CryoPen"><span class="mark"></span>CryoPen</label>
+          <label class="opt"><input type="checkbox" name="Treatments" value="Facial / skin treatment"><span class="mark"></span>Facial / skin treatment</label>
+          <label class="opt"><input type="checkbox" name="Treatments" value="Weight management injections"><span class="mark"></span>Weight management injections</label>
+          <label class="opt"><input type="checkbox" name="Treatments" value="Vitamin B12"><span class="mark"></span>Vitamin B12</label>
+          <label class="opt"><input type="checkbox" name="Treatments" value="Aller-Tox (hay fever)"><span class="mark"></span>Aller-Tox (hay fever)</label>
+          <label class="opt"><input type="checkbox" name="Treatments" value="Not sure yet / consultation"><span class="mark"></span>Not sure yet / consultation</label>
+        </div>
+      </div>
+
+      <div class="group">
+        <label class="q">Appointment date, if booked</label>
+        <input type="date" name="Appointment date">
+      </div>
+
+      <div class="group">
+        <label class="q">Have you had this treatment before?<span class="req">*</span></label>
+        <div class="opts inline" data-radio="Had treatment before">
+          <label class="opt inline-sm"><input type="radio" name="Had treatment before" value="No — first time" required><span class="mark radio"></span>No, first time</label>
+          <label class="opt inline-sm"><input type="radio" name="Had treatment before" value="Yes — here"><span class="mark radio"></span>Yes, here</label>
+          <label class="opt inline-sm"><input type="radio" name="Had treatment before" value="Yes — elsewhere"><span class="mark radio"></span>Yes, elsewhere</label>
+        </div>
+      </div>
+    </div>
+    <div class="nav"><button type="button" class="ghost" data-back>Back</button><button type="button" class="primary" data-next>Continue</button></div>
+  </div>
+
+  <!-- ============ STEP 3 ============ -->
+  <div class="step" data-name="Medical history">
+    <div class="panel">
+      <h2>Medical history</h2>
+      <p class="sub">Tick anything that applies, now or in the past. If none apply, tick "none of the above" at the end.</p>
+
+      <div class="note">
+        Some of these do not prevent treatment at all — they simply change how we plan it. Please be complete rather than cautious. Nothing here is shared outside the clinic.
+      </div>
+
+      <div class="group">
+        <label class="q">Have you ever been diagnosed with any of the following?<span class="req">*</span></label>
+        <div class="opts grid2" data-checkgroup="Medical history">
+          <label class="opt"><input type="checkbox" name="Medical history" value="Diabetes"><span class="mark"></span>Diabetes</label>
+          <label class="opt"><input type="checkbox" name="Medical history" value="High blood pressure"><span class="mark"></span>High blood pressure</label>
+          <label class="opt"><input type="checkbox" name="Medical history" value="Heart disease"><span class="mark"></span>Heart disease</label>
+          <label class="opt"><input type="checkbox" name="Medical history" value="Stroke or TIA"><span class="mark"></span>Stroke or mini-stroke</label>
+          <label class="opt"><input type="checkbox" name="Medical history" value="Bleeding or clotting disorder"><span class="mark"></span>Bleeding or clotting disorder</label>
+          <label class="opt"><input type="checkbox" name="Medical history" value="Epilepsy or seizures"><span class="mark"></span>Epilepsy or seizures</label>
+          <label class="opt"><input type="checkbox" name="Medical history" value="Neuromuscular condition (myasthenia gravis, Lambert-Eaton, MND, muscular dystrophy)"><span class="mark"></span>Neuromuscular condition</label>
+          <label class="opt"><input type="checkbox" name="Medical history" value="Autoimmune or connective tissue disease (lupus, RA, scleroderma, Sjogren's)"><span class="mark"></span>Autoimmune / connective tissue disease</label>
+          <label class="opt"><input type="checkbox" name="Medical history" value="Weakened immune system or immunosuppressant therapy"><span class="mark"></span>Weakened immune system</label>
+          <label class="opt"><input type="checkbox" name="Medical history" value="Cancer — current or previous"><span class="mark"></span>Cancer, current or previous</label>
+          <label class="opt"><input type="checkbox" name="Medical history" value="Liver disease"><span class="mark"></span>Liver disease</label>
+          <label class="opt"><input type="checkbox" name="Medical history" value="Kidney disease"><span class="mark"></span>Kidney disease</label>
+          <label class="opt"><input type="checkbox" name="Medical history" value="Thyroid disorder"><span class="mark"></span>Thyroid disorder</label>
+          <label class="opt"><input type="checkbox" name="Medical history" value="Blood-borne virus (hepatitis B/C, HIV)"><span class="mark"></span>Hepatitis B/C or HIV</label>
+          <label class="opt"><input type="checkbox" name="Medical history" value="Asthma or respiratory disease"><span class="mark"></span>Asthma / respiratory disease</label>
+          <label class="opt"><input type="checkbox" name="Medical history" value="Migraine"><span class="mark"></span>Migraine</label>
+          <label class="opt"><input type="checkbox" name="Medical history" value="Anxiety, depression or other mental health condition"><span class="mark"></span>Anxiety, depression or other mental health condition</label>
+          <label class="opt"><input type="checkbox" name="Medical history" value="Facial nerve palsy (Bell's palsy)"><span class="mark"></span>Facial nerve palsy</label>
+          <label class="opt"><input type="checkbox" name="Medical history" value="Recent surgery or hospital admission (12 months)"><span class="mark"></span>Surgery / admission in last 12 months</label>
+          <label class="opt"><input type="checkbox" name="Medical history" value="NONE OF THE ABOVE"><span class="mark"></span><strong>None of the above</strong></label>
+        </div>
+      </div>
+
+      <div class="group">
+        <label class="q">Please give brief details of anything ticked above</label>
+        <div class="hint">Diagnosis, roughly when, and whether it is currently controlled or being treated.</div>
+        <textarea name="Medical history detail"></textarea>
+      </div>
+
+      <div class="group">
+        <label class="q">Is there anything else about your health we should know?</label>
+        <div class="hint">Including anything you are waiting to be investigated for.</div>
+        <textarea name="Other health information"></textarea>
+      </div>
+    </div>
+    <div class="nav"><button type="button" class="ghost" data-back>Back</button><button type="button" class="primary" data-next>Continue</button></div>
+  </div>
+
+  <!-- ============ STEP 4 ============ -->
+  <div class="step" data-name="Medication &amp; allergies">
+    <div class="panel">
+      <h2>Medication &amp; allergies</h2>
+      <p class="sub">This section matters more than any other. Please take your time over it.</p>
+
+      <div class="group">
+        <label class="q">List all medication you currently take<span class="req">*</span></label>
+        <div class="hint">Prescribed and over-the-counter, including the pill, HRT, inhalers and anything injected. Write "none" if none.</div>
+        <textarea name="Current medication" required></textarea>
+      </div>
+
+      <div class="group">
+        <label class="q">Do you take any of the following?<span class="req">*</span></label>
+        <div class="opts grid2" data-checkgroup="Specific medications">
+          <label class="opt"><input type="checkbox" name="Specific medications" value="Blood thinner / anticoagulant (warfarin, apixaban, rivaroxaban, clopidogrel, aspirin)"><span class="mark"></span>Blood thinner or daily aspirin</label>
+          <label class="opt"><input type="checkbox" name="Specific medications" value="Steroids (tablets or injections)"><span class="mark"></span>Steroid tablets or injections</label>
+          <label class="opt"><input type="checkbox" name="Specific medications" value="Immunosuppressants or biologics"><span class="mark"></span>Immunosuppressants or biologics</label>
+          <label class="opt"><input type="checkbox" name="Specific medications" value="Antibiotics — currently taking"><span class="mark"></span>Antibiotics right now</label>
+          <label class="opt"><input type="checkbox" name="Specific medications" value="Roaccutane / isotretinoin — current or within 12 months"><span class="mark"></span>Roaccutane / isotretinoin</label>
+          <label class="opt"><input type="checkbox" name="Specific medications" value="Weight management injection (Mounjaro, Wegovy, Ozempic, Saxenda)"><span class="mark"></span>Weight management injection</label>
+          <label class="opt"><input type="checkbox" name="Specific medications" value="Supplements affecting bruising (fish oil, vitamin E, ginkgo, garlic, ginseng, turmeric)"><span class="mark"></span>Fish oil, vitamin E, ginkgo, garlic or turmeric</label>
+          <label class="opt"><input type="checkbox" name="Specific medications" value="NONE OF THESE"><span class="mark"></span><strong>None of these</strong></label>
+        </div>
+      </div>
+
+      <div class="group">
+        <label class="q">If you ticked isotretinoin, when did you finish it?</label>
+        <input type="text" name="Isotretinoin end date" placeholder="Month and year, or 'still taking'">
+      </div>
+
+      <div class="group">
+        <label class="q">Do you have any allergies?<span class="req">*</span></label>
+        <div class="opts grid2" data-checkgroup="Allergies">
+          <label class="opt"><input type="checkbox" name="Allergies" value="Local anaesthetic (lidocaine)"><span class="mark"></span>Local anaesthetic / lidocaine</label>
+          <label class="opt"><input type="checkbox" name="Allergies" value="Hyaluronidase"><span class="mark"></span>Hyaluronidase</label>
+          <label class="opt"><input type="checkbox" name="Allergies" value="Bee or wasp stings"><span class="mark"></span>Bee or wasp stings</label>
+          <label class="opt"><input type="checkbox" name="Allergies" value="Antibiotics"><span class="mark"></span>Antibiotics</label>
+          <label class="opt"><input type="checkbox" name="Allergies" value="Plasters or adhesive dressings"><span class="mark"></span>Plasters / adhesive dressings</label>
+          <label class="opt"><input type="checkbox" name="Allergies" value="Latex"><span class="mark"></span>Latex</label>
+          <label class="opt"><input type="checkbox" name="Allergies" value="Eggs"><span class="mark"></span>Eggs</label>
+          <label class="opt"><input type="checkbox" name="Allergies" value="Nuts or other foods"><span class="mark"></span>Nuts or other foods</label>
+          <label class="opt"><input type="checkbox" name="Allergies" value="Skincare, cosmetics or fragrance"><span class="mark"></span>Skincare, cosmetics or fragrance</label>
+          <label class="opt"><input type="checkbox" name="Allergies" value="Other"><span class="mark"></span>Something else</label>
+          <label class="opt"><input type="checkbox" name="Allergies" value="NO KNOWN ALLERGIES"><span class="mark"></span><strong>No known allergies</strong></label>
+        </div>
+      </div>
+
+      <div class="group">
+        <label class="q">Please describe your allergies and what happens</label>
+        <textarea name="Allergy detail"></textarea>
+      </div>
+
+      <div class="group">
+        <label class="q">Have you ever had a severe allergic reaction (anaphylaxis)?<span class="req">*</span></label>
+        <div class="opts inline" data-radio="Anaphylaxis">
+          <label class="opt inline-sm"><input type="radio" name="Anaphylaxis" value="No" required><span class="mark radio"></span>No</label>
+          <label class="opt inline-sm" data-reveal="anaDetail"><input type="radio" name="Anaphylaxis" value="Yes"><span class="mark radio"></span>Yes</label>
+        </div>
+        <div class="reveal" id="anaDetail">
+          <label class="q">What to, and do you carry an adrenaline pen?</label>
+          <textarea name="Anaphylaxis detail"></textarea>
+        </div>
+      </div>
+
+      <div class="group">
+        <label class="q">Have you ever fainted during or after an injection or blood test?<span class="req">*</span></label>
+        <div class="opts inline" data-radio="Fainting">
+          <label class="opt inline-sm"><input type="radio" name="Fainting" value="No" required><span class="mark radio"></span>No</label>
+          <label class="opt inline-sm"><input type="radio" name="Fainting" value="Yes"><span class="mark radio"></span>Yes</label>
+        </div>
+      </div>
+    </div>
+    <div class="nav"><button type="button" class="ghost" data-back>Back</button><button type="button" class="primary" data-next>Continue</button></div>
+  </div>
+
+  <!-- ============ STEP 5 ============ -->
+  <div class="step" data-name="Skin, infection &amp; timing">
+    <div class="panel">
+      <h2>Skin, infection &amp; timing</h2>
+      <p class="sub">A few things that are entirely about timing rather than suitability — but that we need to know before you sit in the chair.</p>
+
+      <div class="group">
+        <label class="q">Skin type<span class="req">*</span></label>
+        <div class="hint">Choose the description closest to how your skin behaves in strong sun without protection.</div>
+        <select name="Fitzpatrick" required>
+          <option value="">Please select</option>
+          <option>I — Always burns, never tans. Very fair skin, often freckles.</option>
+          <option>II — Burns easily, tans minimally. Fair skin.</option>
+          <option>III — Sometimes burns, tans gradually. Light to medium skin.</option>
+          <option>IV — Rarely burns, tans easily. Olive or light brown skin.</option>
+          <option>V — Very rarely burns, tans deeply. Brown skin.</option>
+          <option>VI — Never burns. Deeply pigmented brown to black skin.</option>
+        </select>
+      </div>
+
+      <div class="group">
+        <label class="q">Do any of these apply to your skin?<span class="req">*</span></label>
+        <div class="opts grid2" data-checkgroup="Skin factors">
+          <label class="opt"><input type="checkbox" name="Skin factors" value="Cold sores (herpes simplex) — history of"><span class="mark"></span>I get cold sores</label>
+          <label class="opt"><input type="checkbox" name="Skin factors" value="Keloid or raised scarring"><span class="mark"></span>I scar badly / keloid</label>
+          <label class="opt"><input type="checkbox" name="Skin factors" value="Eczema, psoriasis or dermatitis"><span class="mark"></span>Eczema, psoriasis or dermatitis</label>
+          <label class="opt"><input type="checkbox" name="Skin factors" value="Rosacea"><span class="mark"></span>Rosacea</label>
+          <label class="opt"><input type="checkbox" name="Skin factors" value="Active acne"><span class="mark"></span>Active acne</label>
+          <label class="opt"><input type="checkbox" name="Skin factors" value="Melasma or pigmentation"><span class="mark"></span>Melasma or pigmentation</label>
+          <label class="opt"><input type="checkbox" name="Skin factors" value="Pigment changes after injury or spots"><span class="mark"></span>Marks left behind after spots</label>
+          <label class="opt"><input type="checkbox" name="Skin factors" value="Current infection, rash or broken skin in treatment area"><span class="mark"></span>Infection or broken skin in the area</label>
+          <label class="opt"><input type="checkbox" name="Skin factors" value="Permanent makeup or tattoo in treatment area"><span class="mark"></span>Permanent makeup / tattoo in area</label>
+          <label class="opt"><input type="checkbox" name="Skin factors" value="NONE OF THE ABOVE"><span class="mark"></span><strong>None of the above</strong></label>
+        </div>
+      </div>
+
+      <div class="group">
+        <label class="q">In the next two weeks, will you have any of the following?<span class="req">*</span></label>
+        <div class="hint">Dental work and vaccinations are both associated with delayed inflammatory reactions to filler, so we schedule around them. This is timing, not a refusal.</div>
+        <div class="opts grid2" data-checkgroup="Upcoming events">
+          <label class="opt"><input type="checkbox" name="Upcoming events" value="Dental treatment (incl. hygienist) in the last or next 2 weeks"><span class="mark"></span>Dental treatment or hygienist</label>
+          <label class="opt"><input type="checkbox" name="Upcoming events" value="Vaccination in the last or next 2 weeks"><span class="mark"></span>Any vaccination</label>
+          <label class="opt"><input type="checkbox" name="Upcoming events" value="Wedding, holiday, photos or major event"><span class="mark"></span>Wedding, holiday, photos or event</label>
+          <label class="opt"><input type="checkbox" name="Upcoming events" value="Flying within 48 hours of treatment"><span class="mark"></span>Flying within 48 hours</label>
+          <label class="opt"><input type="checkbox" name="Upcoming events" value="Surgery or medical procedure"><span class="mark"></span>Surgery or procedure</label>
+          <label class="opt"><input type="checkbox" name="Upcoming events" value="NONE OF THE ABOVE"><span class="mark"></span><strong>None of the above</strong></label>
+        </div>
+      </div>
+
+      <div class="group">
+        <label class="q">Are you currently unwell, or have you been in the last 7 days?<span class="req">*</span></label>
+        <div class="hint">Including a cold, sore throat, temperature, stomach upset, cystitis, chest infection or dental abscess.</div>
+        <div class="opts inline" data-radio="Currently unwell">
+          <label class="opt inline-sm"><input type="radio" name="Currently unwell" value="No" required><span class="mark radio"></span>No</label>
+          <label class="opt inline-sm" data-reveal="unwellDetail"><input type="radio" name="Currently unwell" value="Yes"><span class="mark radio"></span>Yes</label>
+        </div>
+        <div class="reveal" id="unwellDetail">
+          <label class="q">What, and are you better now?</label>
+          <textarea name="Unwell detail"></textarea>
+        </div>
+      </div>
+
+      <div class="group">
+        <label class="q">In the last 4 weeks have you had sunbeds, significant sun exposure, self-tan, laser/IPL, a peel or microneedling?<span class="req">*</span></label>
+        <div class="opts inline" data-radio="Recent skin exposure">
+          <label class="opt inline-sm"><input type="radio" name="Recent skin exposure" value="No" required><span class="mark radio"></span>No</label>
+          <label class="opt inline-sm" data-reveal="sunDetail"><input type="radio" name="Recent skin exposure" value="Yes"><span class="mark radio"></span>Yes</label>
+        </div>
+        <div class="reveal" id="sunDetail">
+          <label class="q">What and when?</label>
+          <textarea name="Recent skin exposure detail"></textarea>
+        </div>
+      </div>
+    </div>
+    <div class="nav"><button type="button" class="ghost" data-back>Back</button><button type="button" class="primary" data-next>Continue</button></div>
+  </div>
+
+  <!-- ============ STEP 6 ============ -->
+  <div class="step" data-name="Treatment history">
+    <div class="panel">
+      <h2>Previous aesthetic treatments</h2>
+      <p class="sub">What is already in your face changes what we can safely put in next. Please include anything, however long ago and wherever it was done.</p>
+
+      <div class="note">
+        <strong>Permanent and semi-permanent products matter enormously.</strong>
+        Silicone, PMMA, Aquamid, Bio-Alcamid and similar are not dissolvable and can react years later. If you do not know what you had, say so — that is a useful answer in itself.
+      </div>
+
+      <div class="group">
+        <label class="q">Have you ever had any of the following?<span class="req">*</span></label>
+        <div class="opts grid2" data-checkgroup="Previous treatments">
+          <label class="opt"><input type="checkbox" name="Previous treatments" value="Anti-wrinkle injections"><span class="mark"></span>Anti-wrinkle injections</label>
+          <label class="opt"><input type="checkbox" name="Previous treatments" value="Dermal or lip filler"><span class="mark"></span>Dermal or lip filler</label>
+          <label class="opt"><input type="checkbox" name="Previous treatments" value="Permanent or semi-permanent filler (silicone, PMMA, Aquamid, Bio-Alcamid)"><span class="mark"></span>Permanent / semi-permanent filler</label>
+          <label class="opt"><input type="checkbox" name="Previous treatments" value="Filler dissolved with hyaluronidase"><span class="mark"></span>Filler dissolved</label>
+          <label class="opt"><input type="checkbox" name="Previous treatments" value="Biostimulator (Sculptra, Radiesse, Ellanse, Julaine)"><span class="mark"></span>Biostimulator</label>
+          <label class="opt"><input type="checkbox" name="Previous treatments" value="Polynucleotides or skin boosters"><span class="mark"></span>Polynucleotides / skin boosters</label>
+          <label class="opt"><input type="checkbox" name="Previous treatments" value="Thread lift"><span class="mark"></span>Thread lift</label>
+          <label class="opt"><input type="checkbox" name="Previous treatments" value="Facial or cosmetic surgery"><span class="mark"></span>Facial or cosmetic surgery</label>
+          <label class="opt"><input type="checkbox" name="Previous treatments" value="Fat transfer"><span class="mark"></span>Fat transfer</label>
+          <label class="opt"><input type="checkbox" name="Previous treatments" value="I don't know what I have had"><span class="mark"></span>I'm not sure what I've had</label>
+          <label class="opt"><input type="checkbox" name="Previous treatments" value="NONE — never had aesthetic treatment"><span class="mark"></span><strong>None, ever</strong></label>
+        </div>
+      </div>
+
+      <div class="group">
+        <label class="q">What, where on the face or body, when, and by whom?</label>
+        <div class="hint">Product names if you know them, and roughly how long ago.</div>
+        <textarea name="Previous treatment detail"></textarea>
+      </div>
+
+      <div class="group">
+        <label class="q">Have you ever had a problem or complication after a treatment?<span class="req">*</span></label>
+        <div class="hint">Including prolonged swelling, lumps or nodules appearing weeks or months later, infection, a blocked blood vessel, skin changes, asymmetry, or anything that needed treating afterwards.</div>
+        <div class="opts inline" data-radio="Previous complication">
+          <label class="opt inline-sm"><input type="radio" name="Previous complication" value="No" required><span class="mark radio"></span>No</label>
+          <label class="opt inline-sm" data-reveal="compDetail"><input type="radio" name="Previous complication" value="Yes"><span class="mark radio"></span>Yes</label>
+        </div>
+        <div class="reveal" id="compDetail">
+          <label class="q">Please tell us what happened, when, and how it was managed</label>
+          <textarea name="Complication detail" style="min-height:120px"></textarea>
+        </div>
+      </div>
+
+      <div class="group">
+        <label class="q">Have you ever been declined or advised against a treatment?<span class="req">*</span></label>
+        <div class="opts inline" data-radio="Previously declined">
+          <label class="opt inline-sm"><input type="radio" name="Previously declined" value="No" required><span class="mark radio"></span>No</label>
+          <label class="opt inline-sm" data-reveal="declineDetail"><input type="radio" name="Previously declined" value="Yes"><span class="mark radio"></span>Yes</label>
+        </div>
+        <div class="reveal" id="declineDetail">
+          <label class="q">By whom, and what reason were you given?</label>
+          <textarea name="Declined detail"></textarea>
+        </div>
+      </div>
+
+      <div class="group">
+        <label class="q">Photographs of the area (optional)</label>
+        <div class="hint">Helpful but not required. Natural light, no makeup, front and side. Uploaded securely.</div>
+        <uc-file-uploader-regular
+          ctx-name="photos"
+          class="uc-light">
+        </uc-file-uploader-regular>
+        <uc-config
+          ctx-name="photos"
+          pubkey="1b9920a3e9d2aae64bac"
+          multiple="true"
+          multiple-max="6"
+          img-only="true"
+          source-list="local, camera">
+        </uc-config>
+        <input type="hidden" name="Photo links" id="photoLinks">
+      </div>
+    </div>
+    <div class="nav"><button type="button" class="ghost" data-back>Back</button><button type="button" class="primary" data-next>Continue</button></div>
+  </div>
+
+  <!-- ============ STEP 7 ============ -->
+  <div class="step" data-name="You &amp; your goals">
+    <div class="panel">
+      <h2>You and your goals</h2>
+      <p class="sub">Understanding what you want, and why now, is as clinically important as the rest of it.</p>
+
+      <div class="group" id="pregBlock">
+        <label class="q">Are you pregnant, trying to conceive, or breastfeeding?<span class="req">*</span></label>
+        <div class="hint">Almost all injectable treatments are deferred in pregnancy and breastfeeding. This is precautionary rather than evidence of harm, but we do not make exceptions.</div>
+        <div class="opts" data-radio="Pregnancy status">
+          <label class="opt"><input type="radio" name="Pregnancy status" value="No — none of these apply"><span class="mark radio"></span>No, none of these apply</label>
+          <label class="opt"><input type="radio" name="Pregnancy status" value="Pregnant"><span class="mark radio"></span>I am pregnant</label>
+          <label class="opt"><input type="radio" name="Pregnancy status" value="Breastfeeding"><span class="mark radio"></span>I am breastfeeding</label>
+          <label class="opt"><input type="radio" name="Pregnancy status" value="Trying to conceive or undergoing fertility treatment"><span class="mark radio"></span>Trying to conceive / fertility treatment</label>
+          <label class="opt"><input type="radio" name="Pregnancy status" value="Possibly — unsure"><span class="mark radio"></span>Possibly — I'm not sure</label>
+        </div>
+      </div>
+
+      <div class="group">
+        <label class="q">Do you smoke or vape?<span class="req">*</span></label>
+        <div class="opts inline" data-radio="Smoking">
+          <label class="opt inline-sm"><input type="radio" name="Smoking" value="No" required><span class="mark radio"></span>No</label>
+          <label class="opt inline-sm"><input type="radio" name="Smoking" value="Occasionally"><span class="mark radio"></span>Occasionally</label>
+          <label class="opt inline-sm"><input type="radio" name="Smoking" value="Daily"><span class="mark radio"></span>Daily</label>
+          <label class="opt inline-sm"><input type="radio" name="Smoking" value="Ex-smoker"><span class="mark radio"></span>Ex-smoker</label>
+        </div>
+      </div>
+
+      <div class="group">
+        <label class="q">Alcohol in the 24 hours before treatment increases bruising. Do you plan to drink beforehand?<span class="req">*</span></label>
+        <div class="opts inline" data-radio="Alcohol">
+          <label class="opt inline-sm"><input type="radio" name="Alcohol" value="No" required><span class="mark radio"></span>No</label>
+          <label class="opt inline-sm"><input type="radio" name="Alcohol" value="Possibly"><span class="mark radio"></span>Possibly</label>
+        </div>
+      </div>
+
+      <div class="group">
+        <label class="q">What would you like to change, and what result are you hoping for?<span class="req">*</span></label>
+        <div class="hint">In your own words. There is no right answer.</div>
+        <textarea name="Treatment goals" style="min-height:110px" required></textarea>
+      </div>
+
+      <div class="group">
+        <label class="q">How much does this concern affect your day-to-day life?<span class="req">*</span></label>
+        <div class="opts" data-radio="Concern impact">
+          <label class="opt"><input type="radio" name="Concern impact" value="Not much — I'd just like to improve it"><span class="mark radio"></span>Not much, I'd just like to improve it</label>
+          <label class="opt"><input type="radio" name="Concern impact" value="I notice it often"><span class="mark radio"></span>I notice it often</label>
+          <label class="opt"><input type="radio" name="Concern impact" value="I think about it most days"><span class="mark radio"></span>I think about it most days</label>
+          <label class="opt"><input type="radio" name="Concern impact" value="It affects my confidence significantly"><span class="mark radio"></span>It significantly affects my confidence</label>
+        </div>
+      </div>
+
+      <div class="group">
+        <label class="q">Is anyone else encouraging you to have this treatment?<span class="req">*</span></label>
+        <div class="opts inline" data-radio="External pressure">
+          <label class="opt inline-sm"><input type="radio" name="External pressure" value="No — my own decision" required><span class="mark radio"></span>No, my own decision</label>
+          <label class="opt inline-sm"><input type="radio" name="External pressure" value="Yes"><span class="mark radio"></span>Yes</label>
+        </div>
+      </div>
+
+      <div class="group">
+        <label class="q">Is there anything you would like to discuss privately with your practitioner?</label>
+        <textarea name="Private notes"></textarea>
+      </div>
+    </div>
+    <div class="nav"><button type="button" class="ghost" data-back>Back</button><button type="button" class="primary" data-next>Continue</button></div>
+  </div>
+
+  <!-- ============ STEP 8 ============ -->
+  <div class="step" data-name="Declaration">
+    <div class="panel">
+      <h2>Declaration &amp; consent</h2>
+      <p class="sub">Please read each statement and tick to confirm.</p>
+
+      <div class="note">
+        <strong>This form is not a consent form.</strong>
+        It does not commit you to anything. You will have a face-to-face consultation with your practitioner, and separate written consent is taken for each treatment on the day, after risks have been explained and your questions answered.
+      </div>
+
+      <div class="group">
+        <div class="opts" data-checkgroup="Declarations">
+          <label class="opt"><input type="checkbox" name="Declarations" value="Information is true, accurate and complete"><span class="mark"></span>The information I have given is true, accurate and complete to the best of my knowledge.</label>
+          <label class="opt"><input type="checkbox" name="Declarations" value="Will notify clinic of any changes before treatment"><span class="mark"></span>I will tell the clinic if anything about my health, medication or circumstances changes before my appointment.</label>
+          <label class="opt"><input type="checkbox" name="Declarations" value="Understands results vary and are not guaranteed"><span class="mark"></span>I understand results vary between individuals, cannot be guaranteed, and that more than one session may be needed.</label>
+          <label class="opt"><input type="checkbox" name="Declarations" value="Understands common and rare risks including vascular occlusion"><span class="mark"></span>I understand all treatments carry risk, including bruising, swelling, tenderness, asymmetry and infection, and that rare but serious complications such as blockage of a blood vessel can occur with injectable treatments. These will be explained in full before I consent.</label>
+          <label class="opt"><input type="checkbox" name="Declarations" value="Consents to clinical photography for medical records"><span class="mark"></span>I consent to clinical photographs being taken and kept in my medical record.</label>
+          <label class="opt"><input type="checkbox" name="Declarations" value="Consents to GP contact if clinically necessary"><span class="mark"></span>I consent to the clinic contacting my GP or another healthcare professional if it becomes clinically necessary.</label>
+          <label class="opt"><input type="checkbox" name="Declarations" value="Understands aftercare must be followed"><span class="mark"></span>I understand I must follow the aftercare given, and contact the clinic promptly if I have any concerns afterwards.</label>
+          <label class="opt"><input type="checkbox" name="Declarations" value="Confirms aged 18 or over"><span class="mark"></span>I am 18 years of age or over.</label>
+          <label class="opt"><input type="checkbox" name="Declarations" value="Consents to storage of health data as described"><span class="mark"></span>I consent to Sebastian Rose Medical Aesthetics holding this information as described below.</label>
+        </div>
+      </div>
+
+      <div class="group">
+        <label class="q">Optional — separate to the above</label>
+        <div class="opts">
+          <label class="opt"><input type="checkbox" name="Optional consents" value="Consents to anonymised before/after images being used for marketing"><span class="mark"></span>I am happy for anonymised before and after photographs to be used on the clinic's website or social media. <em>(You can decline this and still have treatment, and you can withdraw it at any time.)</em></label>
+        </div>
+      </div>
+
+      <div class="group">
+        <label class="q">Signature<span class="req">*</span></label>
+        <div class="hint">Sign with your finger or mouse.</div>
+        <div id="sigWrap">
+          <canvas id="sigPad"></canvas>
+          <div class="sig-bar"><span>Sign above</span><button type="button" class="link-btn" id="clearSig">Clear</button></div>
+        </div>
+      </div>
+
+      <div class="group two-col">
+        <div><label class="q">Print your full name<span class="req">*</span></label><input type="text" name="Signed name" required></div>
+        <div><label class="q">Date<span class="req">*</span></label><input type="date" name="Date signed" id="dateSigned" required></div>
+      </div>
+
+      <div class="privacy">
+        <strong>How we look after this information.</strong>
+        This form is transmitted over an encrypted connection directly to the clinic's secure email. It is not stored on this web page and no copy is retained by the website. Your answers are special category health data under UK GDPR, processed for the purposes of providing healthcare under Article 9(2)(h), and held in your clinical record. We keep clinical records for the period required by professional guidance and do not sell, share or use them for marketing. You may request a copy of what we hold, ask for corrections, or raise a concern with the Information Commissioner's Office at any time. Data controller: R F Roberts Limited, trading as Sebastian Rose Medical Aesthetics. Contact info@sebastianrose.co.uk or 0800 772 0137.
+      </div>
+    </div>
+
+    <div class="nav">
+      <button type="button" class="ghost" data-back>Back</button>
+      <button type="button" class="primary" id="submitBtn">Submit securely</button>
+    </div>
+  </div>
+
+  </form>
+
+  <!-- ============ SUCCESS ============ -->
+  <div id="done">
+    <div class="tick">&#10003;</div>
+    <h2>Thank you — we've received it</h2>
+    <p>Your medical history has been sent securely to the clinic and will be reviewed by your practitioner before you attend.</p>
+    <p>If anything in it needs discussing beforehand, we'll contact you. Otherwise we'll see you at your appointment.</p>
+    <p style="margin-top:18px;font-size:13.5px">If your health changes between now and then, please call us on 0800 772 0137.</p>
+  </div>
+
+  <div class="foot">
+    Sebastian Rose Medical Aesthetics · 39 Charles Street, Cardiff, CF10 2GB<br>
+    0800 772 0137 · info@sebastianrose.co.uk
+  </div>
+
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  /* ---------- CONFIG ---------- */
+  var EMAILJS_PUBLIC_KEY = "04pcL3xdpVieS--Q9";
+  var EMAILJS_SERVICE_ID = "service_bdikve4";
+  var EMAILJS_TEMPLATE_ID = "template_2we5rm1";
+
+  if (window.emailjs) { emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY }); }
+
+  var form     = document.getElementById('form');
+  var steps    = Array.prototype.slice.call(document.querySelectorAll('.step'));
+  var bar      = document.getElementById('bar');
+  var stepName = document.getElementById('stepName');
+  var stepNum  = document.getElementById('stepNum');
+  var errBox   = document.getElementById('err');
+  var current  = 0;
+
+  /* ---------- Scroll to top (triple method for iframe) ---------- */
+  function toTop(){
+    try { window.scrollTo(0,0); } catch(e){}
+    try { document.documentElement.scrollTop = 0; document.body.scrollTop = 0; } catch(e){}
+    try { window.parent.postMessage({ type:'scrollTo', top:0 }, '*'); } catch(e){}
+  }
+
+  /* ---------- Custom tick states ---------- */
+  function syncOpt(input){
+    var box = input.closest('.opt');
+    if(!box) return;
+    if(input.type === 'radio'){
+      var same = document.querySelectorAll('input[name="'+CSS.escape(input.name)+'"]');
+      Array.prototype.forEach.call(same, function(r){
+        var b = r.closest('.opt'); if(b) b.classList.toggle('checked', r.checked);
+        var rev = b && b.getAttribute('data-reveal');
+        if(rev){ var el = document.getElementById(rev); if(el) el.classList.toggle('show', r.checked); }
+      });
+    } else {
+      box.classList.toggle('checked', input.checked);
+      var rv = box.getAttribute('data-reveal');
+      if(rv){ var e2 = document.getElementById(rv); if(e2) e2.classList.toggle('show', input.checked); }
+    }
+  }
+
+  Array.prototype.forEach.call(document.querySelectorAll('.opt input'), function(input){
+    input.addEventListener('change', function(){
+      // "none of the above" behaviour
+      if(input.type === 'checkbox' && input.checked && /^(NONE|NO KNOWN)/.test(input.value)){
+        Array.prototype.forEach.call(document.querySelectorAll('input[name="'+CSS.escape(input.name)+'"]'), function(o){
+          if(o !== input && o.checked){ o.checked = false; syncOpt(o); }
+        });
+      }
+      if(input.type === 'checkbox' && input.checked && !/^(NONE|NO KNOWN)/.test(input.value)){
+        Array.prototype.forEach.call(document.querySelectorAll('input[name="'+CSS.escape(input.name)+'"]'), function(o){
+          if(/^(NONE|NO KNOWN)/.test(o.value) && o.checked){ o.checked = false; syncOpt(o); }
+        });
+      }
+      syncOpt(input);
+    });
+  });
+
+  /* ---------- Pregnancy block only for female at birth ---------- */
+  var sexSel = document.getElementById('sexAtBirth');
+  var pregBlock = document.getElementById('pregBlock');
+  function togglePreg(){
+    var show = sexSel.value === 'Female';
+    pregBlock.style.display = show ? '' : 'none';
+    Array.prototype.forEach.call(pregBlock.querySelectorAll('input'), function(i){ if(!show) i.checked = false; });
+  }
+  sexSel.addEventListener('change', togglePreg);
+
+  /* ---------- Age gate ---------- */
+  var dob = document.getElementById('dob');
+  var ageErr = document.getElementById('ageErr');
+  function ageOK(){
+    if(!dob.value) return true;
+    var d = new Date(dob.value), n = new Date();
+    var a = n.getFullYear() - d.getFullYear();
+    var m = n.getMonth() - d.getMonth();
+    if(m < 0 || (m === 0 && n.getDate() < d.getDate())) a--;
+    if(a < 18){
+      ageErr.textContent = "We are unable to offer treatment to anyone under 18. Please call the clinic on 0800 772 0137 if you think this is an error.";
+      ageErr.classList.add('show');
+      return false;
+    }
+    ageErr.classList.remove('show');
+    return true;
+  }
+  dob.addEventListener('change', ageOK);
+
+  /* ---------- Signature ---------- */
+  var canvas = document.getElementById('sigPad');
+  var ctx = canvas.getContext('2d');
+  var drawing = false, hasSig = false;
+
+  function sizeCanvas(){
+    var ratio = window.devicePixelRatio || 1;
+    var w = canvas.offsetWidth, h = 150;
+    canvas.width = w * ratio; canvas.height = h * ratio;
+    ctx.scale(ratio, ratio);
+    ctx.lineWidth = 2; ctx.lineCap = 'round'; ctx.lineJoin = 'round'; ctx.strokeStyle = '#22201e';
+  }
+  sizeCanvas();
+  window.addEventListener('resize', function(){ var d = hasSig; sizeCanvas(); hasSig = d; });
+
+  function pos(e){
+    var r = canvas.getBoundingClientRect();
+    var p = e.touches ? e.touches[0] : e;
+    return { x: p.clientX - r.left, y: p.clientY - r.top };
+  }
+  function start(e){ e.preventDefault(); drawing = true; hasSig = true; var p = pos(e); ctx.beginPath(); ctx.moveTo(p.x, p.y); }
+  function move(e){ if(!drawing) return; e.preventDefault(); var p = pos(e); ctx.lineTo(p.x, p.y); ctx.stroke(); }
+  function stop(){ drawing = false; }
+
+  canvas.addEventListener('mousedown', start); canvas.addEventListener('mousemove', move);
+  canvas.addEventListener('mouseup', stop);    canvas.addEventListener('mouseleave', stop);
+  canvas.addEventListener('touchstart', start, {passive:false});
+  canvas.addEventListener('touchmove', move, {passive:false});
+  canvas.addEventListener('touchend', stop);
+
+  document.getElementById('clearSig').addEventListener('click', function(){
+    ctx.clearRect(0,0,canvas.width,canvas.height); hasSig = false;
+  });
+
+  /* ---------- Uploadcare ---------- */
+  var photoLinks = document.getElementById('photoLinks');
+  window.addEventListener('LR_DATA_OUTPUT', function(e){
+    try{
+      var files = (e.detail && e.detail.data) || [];
+      photoLinks.value = files.map(function(f){ return f.cdnUrl; }).filter(Boolean).join('  |  ');
+    }catch(err){}
+  });
+
+  /* ---------- Navigation ---------- */
+  function show(i){
+    steps[current].classList.remove('active');
+    current = i;
+    steps[current].classList.add('active');
+    bar.style.width = ((current + 1) / steps.length * 100) + '%';
+    stepName.textContent = steps[current].getAttribute('data-name').replace(/&amp;/g,'&');
+    stepNum.textContent = 'Step ' + (current + 1) + ' of ' + steps.length;
+    errBox.classList.remove('show');
+    toTop();
+  }
+
+  function validate(step){
+    var bad = [];
+    Array.prototype.forEach.call(step.querySelectorAll('[required]'), function(f){
+      var wrapHidden = f.closest('.group') && f.closest('.group').style.display === 'none';
+      if(wrapHidden) return;
+      var g = f.closest('.group');
+      if(f.type === 'radio'){
+        var any = step.querySelector('input[name="'+CSS.escape(f.name)+'"]:checked');
+        if(!any) bad.push(f.name);
+      } else if(!f.value.trim()){
+        bad.push(f.name);
+        if(g) g.classList.add('field-bad');
+      } else if(g){ g.classList.remove('field-bad'); }
+    });
+    // required checkbox groups
+    Array.prototype.forEach.call(step.querySelectorAll('[data-checkgroup]'), function(grp){
+      var nm = grp.getAttribute('data-checkgroup');
+      if(nm === 'Optional consents') return;
+      if(!grp.querySelector('input:checked')) bad.push(nm);
+    });
+    return bad;
+  }
+
+  Array.prototype.forEach.call(document.querySelectorAll('[data-next]'), function(b){
+    b.addEventListener('click', function(){
+      if(current === 0 && !ageOK()) { toTop(); return; }
+      var bad = validate(steps[current]);
+      if(bad.length){
+        errBox.innerHTML = 'Please complete the following before continuing: <strong>' +
+          bad.filter(function(v,i,a){return a.indexOf(v)===i;}).join(', ') + '</strong>';
+        errBox.classList.add('show');
+        toTop();
+        return;
+      }
+      show(current + 1);
+    });
+  });
+
+  Array.prototype.forEach.call(document.querySelectorAll('[data-back]'), function(b){
+    b.addEventListener('click', function(){ show(current - 1); });
+  });
+
+  /* ---------- Prefill date ---------- */
+  (function(){
+    var t = new Date(), p = function(n){ return (n<10?'0':'')+n; };
+    document.getElementById('dateSigned').value = t.getFullYear()+'-'+p(t.getMonth()+1)+'-'+p(t.getDate());
+  })();
+
+  /* ---------- Build readable submission ---------- */
+  function collect(){
+    var out = [];
+    var seen = {};
+    var order = [];
+    Array.prototype.forEach.call(form.elements, function(el){
+      if(!el.name) return;
+      if(el.type === 'checkbox' || el.type === 'radio'){
+        if(!el.checked) return;
+        if(!seen[el.name]){ seen[el.name] = []; order.push(el.name); }
+        seen[el.name].push(el.value);
+      } else {
+        if(!el.value.trim()) return;
+        if(!seen[el.name]){ seen[el.name] = []; order.push(el.name); }
+        seen[el.name].push(el.value.trim());
+      }
+    });
+    order.forEach(function(k){
+      out.push(k.toUpperCase() + ':\n  ' + seen[k].join('\n  '));
+    });
+    return out.join('\n\n');
+  }
+
+  /* ---------- Submit ---------- */
+  var submitBtn = document.getElementById('submitBtn');
+  submitBtn.addEventListener('click', function(){
+    var bad = validate(steps[current]);
+    if(!hasSig) bad.push('Signature');
+    var decls = document.querySelectorAll('input[name="Declarations"]');
+    var declChecked = document.querySelectorAll('input[name="Declarations"]:checked');
+    if(declChecked.length < decls.length) bad.push('All declaration statements must be ticked');
+
+    if(bad.length){
+      errBox.innerHTML = 'Please complete the following: <strong>' +
+        bad.filter(function(v,i,a){return a.indexOf(v)===i;}).join(', ') + '</strong>';
+      errBox.classList.add('show');
+      toTop();
+      return;
+    }
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Sending…';
+
+    var name = (form.querySelector('[name="First name"]').value + ' ' +
+                form.querySelector('[name="Surname"]').value).trim();
+
+    var params = {
+      form_type: 'MEDICAL HISTORY & PRE-SCREENING',
+      patient_name: name,
+      from_name: name,
+      reply_to: form.querySelector('[name="Email"]').value,
+      full_data: 'MEDICAL HISTORY & PRE-SCREENING\nSubmitted: ' + new Date().toLocaleString('en-GB') + '\n\n' + collect(),
+      signature_image: canvas.toDataURL('image/png'),
+      id_document_url: photoLinks.value || 'No photographs uploaded'
+    };
+
+    emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, params)
+      .then(function(){
+        document.querySelector('.progress-shell').style.display = 'none';
+        form.style.display = 'none';
+        document.getElementById('done').style.display = 'block';
+        toTop();
+      })
+      .catch(function(e){
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Submit securely';
+        errBox.innerHTML = 'Sorry — this did not send. Please check your connection and try again, or call the clinic on 0800 772 0137. <br><small>' + (e && e.text ? e.text : '') + '</small>';
+        errBox.classList.add('show');
+        toTop();
+      });
+  });
+
+  togglePreg();
+})();
+</script>
+</body>
+</html>
