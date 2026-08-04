@@ -30,10 +30,14 @@
 
 *{box-sizing:border-box;margin:0;padding:0}
 html,body{overflow-x:hidden;height:auto;min-height:0}
+/* hide the widget's own scrollbar so it never doubles up with the page's.
+   scrolling still works by wheel/trackpad, so nothing is ever unreachable. */
+html::-webkit-scrollbar,body::-webkit-scrollbar{width:0;height:0;display:none}
+html,body{scrollbar-width:none;-ms-overflow-style:none}
 body{
   font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;
   background:var(--bg);color:var(--ink);line-height:1.65;font-size:16px;
-  -webkit-font-smoothing:antialiased;padding:0 0 140px;
+  -webkit-font-smoothing:antialiased;padding:0 0 50px;
 }
 .wrap{max-width:800px;margin:0 auto;padding:28px 18px 0}
 
@@ -281,7 +285,7 @@ a.linkbtn:hover{background:var(--accent-dark)}
       </div>
 
       <div class="group">
-        <div class="opts" data-checkgroup="Understanding treatment">
+        <div class="opts" data-checkgroup="Understanding treatment" data-requireall="1">
           <label class="opt"><input type="checkbox" name="Understanding treatment" value="Understands what filler is, onset, duration and limitations"><span class="mark"></span>I have read and understood the above, including how long it lasts and what it will not do.</label>
           <label class="opt"><input type="checkbox" name="Understanding treatment" value="Understands result should not be judged before 4 weeks"><span class="mark"></span>I understand swelling is normal, and that my final result is at four weeks.</label>
           <label class="opt"><input type="checkbox" name="Understanding treatment" value="Understands results cannot be guaranteed and further product may be needed"><span class="mark"></span>I understand results vary between individuals, cannot be guaranteed, and that further product or sessions may be needed at additional cost.</label>
@@ -384,7 +388,7 @@ a.linkbtn:hover{background:var(--accent-dark)}
       </div>
 
       <div class="group">
-        <div class="opts" data-checkgroup="Risk acknowledgement">
+        <div class="opts" data-checkgroup="Risk acknowledgement" data-requireall="1">
           <label class="opt"><input type="checkbox" name="Risk acknowledgement" value="Has read and understood all listed risks"><span class="mark"></span>I have read all of the risks above, including the rare ones, and I understand them.</label>
           <label class="opt"><input type="checkbox" name="Risk acknowledgement" value="Has had opportunity to ask questions"><span class="mark"></span>I have had the opportunity to ask questions and to raise any risk that matters particularly to me.</label>
           <label class="opt"><input type="checkbox" name="Risk acknowledgement" value="Understands to contact clinic urgently for signs of vascular occlusion"><span class="mark"></span>I understand the warning signs of a blocked blood vessel, and that I must contact the clinic immediately rather than waiting.</label>
@@ -413,7 +417,7 @@ a.linkbtn:hover{background:var(--accent-dark)}
       </div>
 
       <div class="group">
-        <div class="opts" data-checkgroup="Hyaluronidase consent">
+        <div class="opts" data-checkgroup="Hyaluronidase consent" data-requireall="1">
           <label class="opt"><input type="checkbox" name="Hyaluronidase consent" value="Consents to emergency hyaluronidase without further consent"><span class="mark"></span>I consent to hyaluronidase being given immediately, without further discussion, if my practitioner believes a blood vessel may be blocked.</label>
           <label class="opt"><input type="checkbox" name="Hyaluronidase consent" value="Understands hyaluronidase risks including allergy and loss of natural HA"><span class="mark"></span>I understand hyaluronidase carries a risk of allergic reaction, and that it also dissolves my own natural hyaluronic acid in the area.</label>
           <label class="opt"><input type="checkbox" name="Hyaluronidase consent" value="Understands elective dissolving is a separate chargeable treatment"><span class="mark"></span>I understand that if I later choose to have filler dissolved for cosmetic reasons, that is a separate treatment with its own consent and cost.</label>
@@ -431,7 +435,7 @@ a.linkbtn:hover{background:var(--accent-dark)}
       </ul>
 
       <div class="group">
-        <div class="opts" data-checkgroup="Alternatives acknowledgement">
+        <div class="opts" data-checkgroup="Alternatives acknowledgement" data-requireall="1">
           <label class="opt"><input type="checkbox" name="Alternatives acknowledgement" value="Alternatives including no treatment have been explained"><span class="mark"></span>The alternatives, including having no treatment at all, have been explained to me and I have chosen to proceed.</label>
         </div>
       </div>
@@ -487,7 +491,7 @@ a.linkbtn:hover{background:var(--accent-dark)}
       <p class="body">Call <strong>0800 772 0137</strong>. For visual symptoms or rapidly worsening pain, go to A&amp;E and tell them you have had dermal filler, then call us.</p>
 
       <div class="group">
-        <div class="opts" data-checkgroup="Aftercare acknowledgement">
+        <div class="opts" data-checkgroup="Aftercare acknowledgement" data-requireall="1">
           <label class="opt"><input type="checkbox" name="Aftercare acknowledgement" value="Has read and agrees to follow aftercare"><span class="mark"></span>I have read the aftercare and I agree to follow it.</label>
           <label class="opt"><input type="checkbox" name="Aftercare acknowledgement" value="Will contact the clinic promptly with any concerns"><span class="mark"></span>I will contact the clinic promptly if I have any concerns following treatment.</label>
         </div>
@@ -503,7 +507,7 @@ a.linkbtn:hover{background:var(--accent-dark)}
       <p class="sub">Please read each statement and tick to confirm.</p>
 
       <div class="group">
-        <div class="opts" data-checkgroup="Consent">
+        <div class="opts" data-checkgroup="Consent" data-requireall="1">
           <label class="opt"><input type="checkbox" name="Consent" value="Aged 18 or over"><span class="mark"></span>I am 18 years of age or over.</label>
           <label class="opt"><input type="checkbox" name="Consent" value="Information given is true and complete"><span class="mark"></span>The information I have given today is true and complete to the best of my knowledge.</label>
           <label class="opt"><input type="checkbox" name="Consent" value="Treatment, risks and alternatives discussed and understood"><span class="mark"></span>The proposed treatment, its risks and the alternatives have been explained to me, my questions have been answered, and I understand what I am agreeing to.</label>
@@ -697,6 +701,12 @@ a.linkbtn:hover{background:var(--accent-dark)}
     });
     Array.prototype.forEach.call(step.querySelectorAll('[data-checkgroup]'), function(grp){
       var nm = grp.getAttribute('data-checkgroup');
+      if(grp.getAttribute('data-requireall')){
+        var boxes = grp.querySelectorAll('input[type=checkbox]');
+        var done  = grp.querySelectorAll('input[type=checkbox]:checked');
+        if(done.length < boxes.length) bad.push('every statement under "' + nm + '"');
+        return;
+      }
       if(grp.getAttribute('data-optional')) return;
       var cond = grp.getAttribute('data-conditional');
       if(cond && !document.querySelector('input[name="'+CSS.escape(cond)+'"]:checked')) return;
