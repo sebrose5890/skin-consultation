@@ -1,0 +1,872 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Chemical Peel Consent | Sebastian Rose Medical Aesthetics</title>
+
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
+<style>
+/* ============================================================
+   BRAND COLOURS — change these to match your site
+   ============================================================ */
+:root{
+  --ink:#221f1c;
+  --muted:#6f6960;
+  --accent:#b09a77;
+  --accent-dark:#96805f;
+  --bg:#faf8f5;
+  --card:#ffffff;
+  --line:#e6ded2;
+  --warn-bg:#fdf7ee;
+  --warn-line:#e2caa5;
+  --alert-bg:#fbf1ef;
+  --alert-line:#ddb3ab;
+  --ok-bg:#f0f4ee;
+  --ok-line:#c0d1b8;
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{overflow-x:hidden;height:auto;min-height:0}
+/* hide the widget's own scrollbar so it never doubles up with the page's.
+   scrolling still works by wheel/trackpad, so nothing is ever unreachable. */
+html::-webkit-scrollbar,body::-webkit-scrollbar{width:0;height:0;display:none}
+html,body{scrollbar-width:none;-ms-overflow-style:none}
+body{
+  font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;
+  background:var(--bg);color:var(--ink);line-height:1.65;font-size:16px;
+  -webkit-font-smoothing:antialiased;padding:0 0 50px;
+}
+.wrap{max-width:800px;margin:0 auto;padding:28px 18px 0}
+
+.hero{text-align:center;padding:14px 0 26px}
+.hero .eyebrow{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);font-weight:700;margin-bottom:12px}
+.hero h1{font-family:Georgia,'Times New Roman',serif;font-weight:400;font-size:30px;line-height:1.3;letter-spacing:.02em;text-transform:uppercase;margin-bottom:12px}
+.hero p{color:var(--muted);font-size:15px;max-width:580px;margin:0 auto}
+
+.progress-shell{margin:0 0 26px}
+.progress-track{height:3px;background:var(--line);border-radius:2px;overflow:hidden}
+.progress-fill{height:100%;width:12.5%;background:var(--accent);transition:width .35s ease}
+.progress-label{display:flex;justify-content:space-between;margin-top:9px;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+
+.step{display:none}
+.step.active{display:block;animation:fade .3s ease}
+@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+.panel{background:var(--card);border:1px solid var(--line);border-radius:3px;padding:32px 28px;margin-bottom:18px}
+.panel h2{font-family:Georgia,'Times New Roman',serif;font-weight:400;font-size:19px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:8px}
+.panel .sub{color:var(--muted);font-size:14px;margin-bottom:24px}
+.panel h3{font-family:Georgia,serif;font-weight:400;font-size:16px;letter-spacing:.05em;text-transform:uppercase;margin:26px 0 10px;padding-bottom:7px;border-bottom:1px solid var(--line)}
+.panel p.body{font-size:14.8px;margin-bottom:14px;color:#3a352f}
+.panel ul.plain{margin:0 0 16px 18px;font-size:14.8px;color:#3a352f}
+.panel ul.plain li{margin-bottom:7px}
+
+.group{margin-bottom:22px}
+.group:last-child{margin-bottom:0}
+label.q{display:block;font-weight:600;font-size:14.5px;margin-bottom:8px}
+label.q .req{color:var(--accent);margin-left:3px}
+.hint{font-size:13px;color:var(--muted);margin:-3px 0 9px;line-height:1.5}
+
+input[type=text],input[type=email],input[type=tel],input[type=date],select,textarea{
+  width:100%;padding:12px 13px;font-size:15px;font-family:inherit;color:var(--ink);
+  background:#fff;border:1px solid var(--line);border-radius:2px;outline:none;transition:border-color .15s;
+}
+input:focus,select:focus,textarea:focus{border-color:var(--accent)}
+textarea{min-height:88px;resize:vertical}
+select{appearance:none;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8'><path d='M1 1l5 5 5-5' stroke='%236f6960' stroke-width='1.5' fill='none'/></svg>");background-repeat:no-repeat;background-position:right 14px center}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:560px){.two-col{grid-template-columns:1fr}}
+
+.opts{display:flex;flex-direction:column;gap:8px}
+.opts.inline{flex-direction:row;flex-wrap:wrap;gap:10px}
+.opts.grid2{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+@media(max-width:560px){.opts.grid2{grid-template-columns:1fr}}
+
+.opt{position:relative;display:flex;align-items:flex-start;gap:11px;padding:11px 14px;border:1px solid var(--line);border-radius:2px;background:#fff;cursor:pointer;font-size:14.5px;transition:border-color .15s,background .15s;user-select:none}
+.opt:hover{border-color:var(--accent)}
+.opt input{position:absolute;opacity:0;width:0;height:0;pointer-events:none}
+.mark{flex:0 0 18px;width:18px;height:18px;margin-top:2px;border:1.5px solid #c4bbae;background:#fff;position:relative;transition:all .15s}
+.mark.radio{border-radius:50%}
+.opt.checked{border-color:var(--accent);background:#fcfaf7}
+.opt.checked .mark{border-color:var(--accent);background:var(--accent)}
+.opt.checked .mark::after{content:"";position:absolute;left:5px;top:1px;width:5px;height:10px;border:solid #fff;border-width:0 2px 2px 0;transform:rotate(45deg)}
+.opt.checked .mark.radio::after{content:"";position:absolute;left:4px;top:4px;width:6px;height:6px;border:0;border-radius:50%;background:#fff;transform:none}
+.opt.inline-sm{padding:9px 16px}
+
+.reveal{display:none;margin-top:11px;padding-left:14px;border-left:2px solid var(--accent)}
+.reveal.show{display:block;animation:fade .25s ease}
+
+.note{background:var(--warn-bg);border:1px solid var(--warn-line);border-radius:2px;padding:15px 17px;font-size:13.8px;line-height:1.65;margin-bottom:22px;color:#5c4a33}
+.note strong{display:block;margin-bottom:4px}
+.alert{background:var(--alert-bg);border:1px solid var(--alert-line);border-radius:2px;padding:15px 17px;font-size:13.8px;line-height:1.65;margin-bottom:22px;color:#6b3a33}
+.alert strong{display:block;margin-bottom:4px}
+.privacy{background:#f5f2ed;border:1px solid var(--line);border-radius:2px;padding:16px 18px;font-size:12.8px;color:var(--muted);line-height:1.65;margin-top:18px}
+.privacy strong{color:var(--ink)}
+
+.nav{display:flex;gap:12px;margin-top:6px}
+button.primary{flex:1;padding:15px;background:var(--accent);color:#fff;border:0;border-radius:2px;font-size:12.5px;letter-spacing:.18em;text-transform:uppercase;font-weight:700;cursor:pointer;font-family:inherit;transition:background .15s}
+button.primary:hover{background:var(--accent-dark)}
+button.primary:disabled{opacity:.55;cursor:not-allowed}
+button.ghost{padding:15px 26px;background:#fff;color:var(--muted);border:1px solid var(--line);border-radius:2px;font-size:12.5px;letter-spacing:.18em;text-transform:uppercase;font-weight:700;cursor:pointer;font-family:inherit}
+button.ghost:hover{border-color:var(--accent);color:var(--accent)}
+a.linkbtn{display:inline-block;padding:13px 22px;background:var(--accent);color:#fff;text-decoration:none;border-radius:2px;font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;font-weight:700;transition:background .15s}
+a.linkbtn:hover{background:var(--accent-dark)}
+
+.err{display:none;background:#fbeceb;border:1px solid #e0b2ac;color:#8a3a31;padding:12px 15px;border-radius:2px;font-size:13.5px;margin-bottom:16px}
+.err.show{display:block}
+
+#done{display:none;text-align:center;padding:52px 26px;background:var(--ok-bg);border:1px solid var(--ok-line);border-radius:3px}
+#done h2{font-family:Georgia,serif;font-weight:400;font-size:24px;letter-spacing:.05em;text-transform:uppercase;margin-bottom:14px}
+#done p{color:#48553f;font-size:15px;max-width:490px;margin:0 auto 10px}
+.tick{width:54px;height:54px;border-radius:50%;background:#7d9370;color:#fff;font-size:27px;line-height:54px;margin:0 auto 20px}
+
+.foot{text-align:center;font-size:12px;color:var(--muted);margin-top:22px;line-height:1.7}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <span id="topAnchor" aria-hidden="true"></span>
+
+  <div class="hero">
+    <div class="eyebrow">Sebastian Rose Medical Aesthetics</div>
+    <h1>Chemical Peels<br>Information &amp; Consent</h1>
+    <p>BioRePeel, PRX-T33, Jessner's and Obagi Blue Peel Radiance. Please read this in full. Your practitioner will discuss it with you and answer any questions before treatment. You may decline at any time, including after giving consent.</p>
+  </div>
+
+  <div class="progress-shell">
+    <div class="progress-track"><div class="progress-fill" id="bar"></div></div>
+    <div class="progress-label"><span id="stepName">Your details</span><span id="stepNum">Step 1 of 8</span></div>
+  </div>
+
+  <div class="err" id="err"></div>
+
+  <form id="form" autocomplete="on">
+
+  <!-- ===== STEP 1 ===== -->
+  <div class="step active" data-name="Your details">
+    <div class="panel">
+      <h2>Your details</h2>
+      <p class="sub">So this consent can be filed against your clinical record.</p>
+
+      <div class="alert">
+        <strong>We do not treat anyone under the age of 18.</strong>
+        Treatments at Sebastian Rose are for adults only, without exception.
+      </div>
+
+      <div class="group two-col">
+        <div><label class="q">First name<span class="req">*</span></label><input type="text" name="First name" required></div>
+        <div><label class="q">Surname<span class="req">*</span></label><input type="text" name="Surname" required></div>
+      </div>
+
+      <div class="group two-col">
+        <div><label class="q">Date of birth<span class="req">*</span></label><input type="date" name="Date of birth" id="dob" required></div>
+        <div><label class="q">Mobile number<span class="req">*</span></label><input type="tel" name="Mobile" required></div>
+      </div>
+      <div class="err" id="ageErr" style="margin-top:-8px"></div>
+
+      <div class="group">
+        <label class="q">Email address<span class="req">*</span></label>
+        <input type="email" name="Email" required>
+      </div>
+
+      <div class="group">
+        <label class="q">Have you completed our medical history and pre-screening questionnaire?<span class="req">*</span></label>
+        <div class="opts inline" data-radio="Medical history completed">
+          <label class="opt inline-sm"><input type="radio" name="Medical history completed" value="Yes" required><span class="mark radio"></span>Yes</label>
+          <label class="opt inline-sm" data-reveal="noHxDetail"><input type="radio" name="Medical history completed" value="No / not sure"><span class="mark radio"></span>No, or not sure</label>
+        </div>
+        <div class="reveal" id="noHxDetail">
+          <p class="body" style="margin:0 0 12px">A full medical history is needed before treatment. Please complete it now — it takes a few minutes, and you can come straight back here afterwards.</p>
+          <a href="https://www.sebastianrose.co.uk/medical-history-and-prescreening" target="_blank" rel="noopener" class="linkbtn">Complete the medical history form &rarr;</a>
+        </div>
+      </div>
+
+      <div class="group">
+        <label class="q">Has anything changed since you completed it?<span class="req">*</span></label>
+        <div class="hint">New medication, illness, pregnancy, surgery, or a new diagnosis.</div>
+        <div class="opts inline" data-radio="Anything changed">
+          <label class="opt inline-sm"><input type="radio" name="Anything changed" value="Nothing has changed" required><span class="mark radio"></span>Nothing has changed</label>
+          <label class="opt inline-sm" data-reveal="changeDetail"><input type="radio" name="Anything changed" value="Yes — something has changed"><span class="mark radio"></span>Yes, something has changed</label>
+        </div>
+        <div class="reveal" id="changeDetail">
+          <label class="q">Please tell us what</label>
+          <textarea name="What has changed"></textarea>
+        </div>
+      </div>
+    </div>
+    <div class="nav"><button type="button" class="primary" data-next>Continue</button></div>
+  </div>
+
+  <!-- ===== STEP 2 ===== -->
+  <div class="step" data-name="Safety screening">
+    <div class="panel">
+      <h2>Safety screening</h2>
+      <p class="sub">Please answer each one. Several of these change which peel we can use, or prevent treatment entirely.</p>
+
+      <div class="alert" id="pregBlock" style="display:none">
+        <strong>We cannot proceed with this treatment.</strong>
+        Chemical peels are not carried out in pregnancy or while breastfeeding. Several of the acids we use can be absorbed systemically and are not considered safe. Please contact the clinic on 0800 772 0137 and we will be glad to book you in once you are ready.
+      </div>
+
+      <div class="note">
+        <strong>Aspirin allergy matters here.</strong>
+        Salicylic acid is chemically related to aspirin and is present in several of the peels we use. If you are allergic to aspirin or any salicylate, you must tell us — it changes which peel we can offer you, and in some cases means we cannot peel you at all.
+      </div>
+
+      <div class="group">
+        <label class="q">Do any of the following apply to you?<span class="req">*</span></label>
+        <div class="opts" data-checkgroup="Screening">
+          <label class="opt"><input type="checkbox" name="Screening" id="pregStop" value="PREGNANT OR BREASTFEEDING"><span class="mark"></span>I am pregnant or breastfeeding</label>
+          <label class="opt"><input type="checkbox" name="Screening" value="ALLERGY to aspirin or salicylates"><span class="mark"></span><strong>I am allergic to aspirin or salicylates</strong></label>
+          <label class="opt"><input type="checkbox" name="Screening" value="Allergy to resorcinol, phenol or hair dye"><span class="mark"></span>I am allergic to resorcinol, phenol or hair dye</label>
+          <label class="opt"><input type="checkbox" name="Screening" value="Isotretinoin (Roaccutane) current or within 6 months"><span class="mark"></span>I take, or have taken within 6 months, Roaccutane or isotretinoin</label>
+          <label class="opt"><input type="checkbox" name="Screening" value="Active skin infection, cold sore or broken skin in the area"><span class="mark"></span>I have an active skin infection, cold sore or broken skin in the area</label>
+          <label class="opt"><input type="checkbox" name="Screening" value="History of cold sores (herpes simplex)"><span class="mark"></span>I get cold sores</label>
+          <label class="opt"><input type="checkbox" name="Screening" value="Melasma or chloasma"><span class="mark"></span>I have melasma</label>
+          <label class="opt"><input type="checkbox" name="Screening" value="Tendency to pigment or mark after inflammation, spots or injury"><span class="mark"></span>I mark easily after spots or injury</label>
+          <label class="opt"><input type="checkbox" name="Screening" value="Tendency to keloid or hypertrophic scarring"><span class="mark"></span>I scar badly, or form raised or keloid scars</label>
+          <label class="opt"><input type="checkbox" name="Screening" value="Eczema, psoriasis, rosacea or dermatitis in the area"><span class="mark"></span>I have eczema, psoriasis, rosacea or dermatitis in the area</label>
+          <label class="opt"><input type="checkbox" name="Screening" value="Very sensitive or reactive skin"><span class="mark"></span>My skin is very sensitive or reactive</label>
+          <label class="opt"><input type="checkbox" name="Screening" value="Thyroid disorder"><span class="mark"></span>I have a thyroid condition</label>
+          <label class="opt"><input type="checkbox" name="Screening" value="Diabetes or delayed wound healing"><span class="mark"></span>I have diabetes, or my skin heals slowly</label>
+          <label class="opt"><input type="checkbox" name="Screening" value="Autoimmune condition or immunosuppressive therapy"><span class="mark"></span>I have an autoimmune condition, or take immunosuppressant medication</label>
+          <label class="opt"><input type="checkbox" name="Screening" value="Taking a photosensitising medication (some antibiotics, diuretics, St John's Wort)"><span class="mark"></span>I take a medication that makes me sensitive to sunlight</label>
+          <label class="opt"><input type="checkbox" name="Screening" value="Recent facial surgery or laser resurfacing"><span class="mark"></span>I have had recent facial surgery or laser resurfacing</label>
+          <label class="opt"><input type="checkbox" name="Screening" value="Currently unwell or recent infection"><span class="mark"></span>I am unwell, or have recently had an infection</label>
+          <label class="opt"><input type="checkbox" name="Screening" value="NONE OF THE ABOVE"><span class="mark"></span><strong>None of the above apply to me</strong></label>
+        </div>
+      </div>
+
+      <div class="group">
+        <label class="q">Details of anything ticked above</label>
+        <textarea name="Screening detail"></textarea>
+      </div>
+
+      <div class="group">
+        <label class="q">In the last 4 weeks, have you had any of the following?<span class="req">*</span></label>
+        <div class="opts grid2" data-checkgroup="Recent treatments">
+          <label class="opt"><input type="checkbox" name="Recent treatments" value="Sunbed, significant sun exposure or self-tan"><span class="mark"></span>Sun, sunbed or self-tan</label>
+          <label class="opt"><input type="checkbox" name="Recent treatments" value="Another chemical peel"><span class="mark"></span>Another peel</label>
+          <label class="opt"><input type="checkbox" name="Recent treatments" value="Laser or IPL"><span class="mark"></span>Laser or IPL</label>
+          <label class="opt"><input type="checkbox" name="Recent treatments" value="Microneedling"><span class="mark"></span>Microneedling</label>
+          <label class="opt"><input type="checkbox" name="Recent treatments" value="Waxing, threading or hair removal cream in the area"><span class="mark"></span>Waxing or hair removal in the area</label>
+          <label class="opt"><input type="checkbox" name="Recent treatments" value="Injectable treatment in the same area"><span class="mark"></span>Injectables in the same area</label>
+          <label class="opt"><input type="checkbox" name="Recent treatments" value="Electrolysis or facial hair removal"><span class="mark"></span>Electrolysis</label>
+          <label class="opt"><input type="checkbox" name="Recent treatments" value="NONE OF THE ABOVE"><span class="mark"></span><strong>None of these</strong></label>
+        </div>
+      </div>
+
+      <div class="group">
+        <label class="q">Are you currently using retinoids, acids or other active skincare?<span class="req">*</span></label>
+        <div class="hint">Retinol, tretinoin, adapalene, glycolic or salicylic acid, benzoyl peroxide, high-strength vitamin C, hydroquinone. These usually need pausing for around a week beforehand.</div>
+        <div class="opts inline" data-radio="Active skincare">
+          <label class="opt inline-sm"><input type="radio" name="Active skincare" value="No" required><span class="mark radio"></span>No</label>
+          <label class="opt inline-sm" data-reveal="activeDetail"><input type="radio" name="Active skincare" value="Yes"><span class="mark radio"></span>Yes</label>
+        </div>
+        <div class="reveal" id="activeDetail">
+          <label class="q">Which products, and how often?</label>
+          <textarea name="Active skincare detail"></textarea>
+        </div>
+      </div>
+
+      <div class="group">
+        <label class="q">Skin type<span class="req">*</span></label>
+        <div class="hint">This genuinely changes which peel is safe for you. Choose the description closest to how your skin behaves in strong sun without protection.</div>
+        <select name="Fitzpatrick" required>
+          <option value="">Please select</option>
+          <option>I — Always burns, never tans. Very fair skin, often freckles.</option>
+          <option>II — Burns easily, tans minimally. Fair skin.</option>
+          <option>III — Sometimes burns, tans gradually. Light to medium skin.</option>
+          <option>IV — Rarely burns, tans easily. Olive or light brown skin.</option>
+          <option>V — Very rarely burns, tans deeply. Brown skin.</option>
+          <option>VI — Never burns. Deeply pigmented brown to black skin.</option>
+        </select>
+      </div>
+    </div>
+    <div class="nav"><button type="button" class="ghost" data-back>Back</button><button type="button" class="primary" data-next>Continue</button></div>
+  </div>
+
+  <!-- ===== STEP 3 ===== -->
+  <div class="step" data-name="About chemical peels">
+    <div class="panel">
+      <h2>About chemical peels</h2>
+      <p class="sub">The peels we offer behave very differently from one another. This matters for what you should expect.</p>
+
+      <h3>How peels work</h3>
+      <p class="body">A chemical solution is applied to the skin to break the bonds between surface cells and stimulate repair beneath. Depending on the formulation and depth, this can improve texture, tone, pigmentation, congestion, fine lines and scarring, and prompt new collagen production.</p>
+
+      <div class="alert">
+        <strong>Not all of our peels make you peel — and the ones that do, do it visibly.</strong>
+        This is the single thing patients most often get wrong. Please read the descriptions below and be clear which you are having, because the downtime is completely different.
+      </div>
+
+      <h3>The peels we offer</h3>
+
+      <h3 style="font-size:15px;border:0;margin-bottom:4px">BioRePeel</h3>
+      <p class="body">An Italian biphasic peel combining TCA with salicylic, lactobionic and other acids, plus amino acids and vitamins. The oil phase protects the surface of the skin while the acids work underneath, which is why it is well tolerated and why most people do not visibly peel. Available for the face, neck and décolletage, and in a body formulation for areas such as the back, arms and legs. Typically a course of 4 to 6 sessions, 1 to 2 weeks apart.</p>
+
+      <h3 style="font-size:15px;border:0;margin-bottom:4px">PRX-T33</h3>
+      <p class="body">A TCA-based treatment combined with hydrogen peroxide and kojic acid, massaged into the skin rather than left to work on the surface. The hydrogen peroxide protects the epidermis, so it stimulates the deeper layers without causing surface injury. There is essentially no peeling and no light sensitivity afterwards, which makes it one of the few treatments that can be done at any time of year and immediately before an event. Typically 4 to 6 sessions, a week apart.</p>
+
+      <h3 style="font-size:15px;border:0;margin-bottom:4px">Jessner's peel</h3>
+      <p class="body">A medium-depth peel combining salicylic acid, lactic acid and resorcinol. <strong>This one genuinely peels.</strong> The skin frosts during treatment, then over the following days darkens, tightens and flakes away — usually starting around day two or three and lasting up to a week. It is the most effective of our peels for pigmentation, sun damage and acne scarring, but it requires real downtime and cannot be done casually before an event.</p>
+
+      <h3 style="font-size:15px;border:0;margin-bottom:4px">Obagi Blue Peel Radiance</h3>
+      <p class="body">A superficial salicylic acid peel with a blue base, giving brightness and smoothness with light flaking over three to five days. A good introduction to peeling, and effective for congestion, dullness and uneven tone. Often used as a course.</p>
+
+      <h3>What to expect generally</h3>
+      <ul class="plain">
+        <li>Tingling, stinging or heat during application. This is normal and settles quickly.</li>
+        <li>Redness afterwards, ranging from mild to like moderate sunburn depending on the peel.</li>
+        <li>Tightness and dryness over the following days.</li>
+        <li>Results build with a course. A single peel gives a freshening; a course changes the skin.</li>
+        <li>Sun protection afterwards is not optional. Skipping it is the most common cause of pigmentation problems.</li>
+      </ul>
+
+      <div class="group">
+        <div class="opts" data-checkgroup="Understanding treatment" data-requireall="1">
+          <label class="opt"><input type="checkbox" name="Understanding treatment" value="Understands which peel they are having and its downtime"><span class="mark"></span><strong>I understand the peels differ significantly, and I understand which one I am having and what downtime to expect.</strong></label>
+          <label class="opt"><input type="checkbox" name="Understanding treatment" value="Understands a Jessner's peel causes visible peeling and real downtime"><span class="mark"></span><strong>If I am having a Jessner's peel, I understand my skin will visibly darken, tighten and flake away over about a week.</strong></label>
+          <label class="opt"><input type="checkbox" name="Understanding treatment" value="Understands a course is usually needed, each charged separately"><span class="mark"></span>I understand a course is usually needed for meaningful change, each session charged separately.</label>
+          <label class="opt"><input type="checkbox" name="Understanding treatment" value="Understands results vary and cannot be guaranteed"><span class="mark"></span>I understand results vary between individuals and cannot be guaranteed.</label>
+          <label class="opt"><input type="checkbox" name="Understanding treatment" value="Understands the practitioner selects the peel and strength clinically"><span class="mark"></span>I understand my practitioner will select the peel, strength and number of layers based on clinical assessment, and may adjust during treatment.</label>
+        </div>
+      </div>
+    </div>
+    <div class="nav"><button type="button" class="ghost" data-back>Back</button><button type="button" class="primary" data-next>Continue</button></div>
+  </div>
+
+  <!-- ===== STEP 4 ===== -->
+  <div class="step" data-name="Your treatment plan">
+    <div class="panel">
+      <h2>Your treatment plan</h2>
+      <p class="sub">Which peel, where, and what you are hoping for.</p>
+
+      <div class="group">
+        <label class="q">Which peel are you having?<span class="req">*</span></label>
+        <div class="hint">If you are not sure, choose the last option — your practitioner will select what is right for your skin.</div>
+        <div class="opts" data-radio="Peel">
+          <label class="opt"><input type="radio" name="Peel" value="BioRePeel — face, neck or décolletage" required><span class="mark radio"></span>BioRePeel — face, neck or décolletage</label>
+          <label class="opt"><input type="radio" name="Peel" value="BioRePeel Body"><span class="mark radio"></span>BioRePeel Body</label>
+          <label class="opt"><input type="radio" name="Peel" value="PRX-T33"><span class="mark radio"></span>PRX-T33</label>
+          <label class="opt"><input type="radio" name="Peel" value="Jessner's peel"><span class="mark radio"></span>Jessner's peel</label>
+          <label class="opt"><input type="radio" name="Peel" value="Obagi Blue Peel Radiance"><span class="mark radio"></span>Obagi Blue Peel Radiance</label>
+          <label class="opt"><input type="radio" name="Peel" value="To be decided by my practitioner"><span class="mark radio"></span>Practitioner to decide</label>
+        </div>
+      </div>
+
+      <div class="group">
+        <label class="q">Areas to be treated<span class="req">*</span></label>
+        <div class="opts grid2" data-checkgroup="Areas">
+          <label class="opt"><input type="checkbox" name="Areas" value="Full face"><span class="mark"></span>Full face</label>
+          <label class="opt"><input type="checkbox" name="Areas" value="Targeted area of face"><span class="mark"></span>Part of the face only</label>
+          <label class="opt"><input type="checkbox" name="Areas" value="Neck"><span class="mark"></span>Neck</label>
+          <label class="opt"><input type="checkbox" name="Areas" value="Décolletage"><span class="mark"></span>Décolletage</label>
+          <label class="opt"><input type="checkbox" name="Areas" value="Back"><span class="mark"></span>Back</label>
+          <label class="opt"><input type="checkbox" name="Areas" value="Chest"><span class="mark"></span>Chest</label>
+          <label class="opt"><input type="checkbox" name="Areas" value="Arms"><span class="mark"></span>Arms</label>
+          <label class="opt"><input type="checkbox" name="Areas" value="Legs"><span class="mark"></span>Legs</label>
+          <label class="opt"><input type="checkbox" name="Areas" value="Hands"><span class="mark"></span>Hands</label>
+          <label class="opt"><input type="checkbox" name="Areas" value="Other — as discussed"><span class="mark"></span>Other, as discussed</label>
+        </div>
+      </div>
+
+      <div class="group">
+        <label class="q">What are you hoping to improve?<span class="req">*</span></label>
+        <div class="opts grid2" data-checkgroup="Concerns">
+          <label class="opt"><input type="checkbox" name="Concerns" value="Dullness and general radiance"><span class="mark"></span>Dullness</label>
+          <label class="opt"><input type="checkbox" name="Concerns" value="Uneven texture"><span class="mark"></span>Uneven texture</label>
+          <label class="opt"><input type="checkbox" name="Concerns" value="Pigmentation or sun damage"><span class="mark"></span>Pigmentation or sun damage</label>
+          <label class="opt"><input type="checkbox" name="Concerns" value="Melasma"><span class="mark"></span>Melasma</label>
+          <label class="opt"><input type="checkbox" name="Concerns" value="Fine lines"><span class="mark"></span>Fine lines</label>
+          <label class="opt"><input type="checkbox" name="Concerns" value="Congestion, blackheads or enlarged pores"><span class="mark"></span>Congestion or pores</label>
+          <label class="opt"><input type="checkbox" name="Concerns" value="Active acne"><span class="mark"></span>Active acne</label>
+          <label class="opt"><input type="checkbox" name="Concerns" value="Acne scarring or post-acne marks"><span class="mark"></span>Acne scarring or marks</label>
+          <label class="opt"><input type="checkbox" name="Concerns" value="Keratosis pilaris or rough body skin"><span class="mark"></span>Rough body skin</label>
+          <label class="opt"><input type="checkbox" name="Concerns" value="General skin health and maintenance"><span class="mark"></span>General skin health</label>
+        </div>
+      </div>
+
+      <div class="group">
+        <label class="q">What are you hoping this treatment will achieve?<span class="req">*</span></label>
+        <div class="hint">In your own words.</div>
+        <textarea name="Patient goals" required></textarea>
+      </div>
+
+      <div class="group">
+        <label class="q">Do you have an event, holiday or photographs coming up?<span class="req">*</span></label>
+        <div class="hint">This genuinely changes which peel we would use, and when. A Jessner's peel two days before a wedding would be a serious mistake.</div>
+        <textarea name="Upcoming events" required></textarea>
+      </div>
+
+      <div class="note">
+        <strong>A note on holidays and sun.</strong>
+        Peeled skin is more vulnerable to burning and to pigmentation. We would not normally peel you within two weeks of a sunshine holiday, and you should not book a peel expecting to sunbathe afterwards. If you have a trip coming up, tell us and we will time it properly or suggest PRX-T33, which does not photosensitise the skin.
+      </div>
+    </div>
+    <div class="nav"><button type="button" class="ghost" data-back>Back</button><button type="button" class="primary" data-next>Continue</button></div>
+  </div>
+
+  <!-- ===== STEP 5 ===== -->
+  <div class="step" data-name="Risks">
+    <div class="panel">
+      <h2>Risks and side effects</h2>
+      <p class="sub">These vary considerably by peel. The deeper the peel, the greater the effect and the greater the risk.</p>
+
+      <h3>Common — expect these</h3>
+      <ul class="plain">
+        <li>Stinging, tingling or heat during application</li>
+        <li>Redness afterwards, from mild to like moderate sunburn</li>
+        <li>Tightness and dryness for several days</li>
+        <li>Flaking or peeling, from barely noticeable to obvious depending on the peel</li>
+        <li>Temporary sensitivity of the treated skin</li>
+        <li>Skin looking worse before it looks better, particularly with deeper peels</li>
+      </ul>
+
+      <h3>Less common</h3>
+      <ul class="plain">
+        <li><strong>Post-inflammatory hyperpigmentation</strong> — a darker patch after healing. This is the most common significant complication and the risk is higher in deeper skin tones and where sun protection is not used properly.</li>
+        <li>Temporary lightening of the skin</li>
+        <li>A breakout or purge in the first week or two</li>
+        <li>Cold sore outbreak, where you are prone to them</li>
+        <li>Prolonged redness</li>
+        <li>Swelling, particularly around the eyes</li>
+        <li>Milia — small white bumps</li>
+        <li>Flare of an underlying condition such as eczema, rosacea or melasma</li>
+        <li>Uneven peeling or patchy results</li>
+        <li>Infection, occasionally needing antibiotics</li>
+      </ul>
+
+      <h3>Rare</h3>
+      <ul class="plain">
+        <li>Scarring, including raised or keloid scarring in those prone to it</li>
+        <li>Permanent pigment change, lighter or darker</li>
+        <li>Chemical burn from an unexpectedly strong reaction</li>
+        <li>Allergic reaction to a component of the peel</li>
+        <li>Systemic effects from absorption of resorcinol or salicylic acid where large areas are treated</li>
+      </ul>
+
+      <div class="alert">
+        <strong>Sun protection is the difference between a good result and a pigmentation problem.</strong>
+        Freshly peeled skin has lost some of its natural protection and its pigment cells are primed to react. Daily SPF 50, no sunbeds, and genuine sun avoidance for at least two weeks is not advice — it is a condition of having the treatment. The most common reason a peel goes wrong is someone going out in the sun afterwards.
+      </div>
+
+      <div class="alert">
+        <strong>Contact the clinic promptly on 0800 772 0137 if you develop:</strong> blistering; skin that weeps, crusts or breaks down; spreading redness, heat or discharge; a temperature and feeling generally unwell; severe pain rather than tightness; or redness worsening rather than settling after 72 hours.
+      </div>
+
+      <div class="group">
+        <div class="opts" data-checkgroup="Risk acknowledgement" data-requireall="1">
+          <label class="opt"><input type="checkbox" name="Risk acknowledgement" value="Has read and understood all listed risks"><span class="mark"></span>I have read all of the risks above, including the rare ones, and I understand them.</label>
+          <label class="opt"><input type="checkbox" name="Risk acknowledgement" value="Understands pigmentation risk, higher in deeper skin tones"><span class="mark"></span><strong>I understand there is a risk of a darker or lighter mark after healing, that this risk is higher in deeper skin tones, and that it can occasionally be permanent.</strong></label>
+          <label class="opt"><input type="checkbox" name="Risk acknowledgement" value="Understands sun protection is a condition of treatment"><span class="mark"></span><strong>I understand daily SPF 50 and sun avoidance afterwards are a condition of having this treatment, not a suggestion.</strong></label>
+          <label class="opt"><input type="checkbox" name="Risk acknowledgement" value="Has had opportunity to ask questions"><span class="mark"></span>I have had the opportunity to ask questions and to raise any risk that matters particularly to me.</label>
+        </div>
+      </div>
+    </div>
+    <div class="nav"><button type="button" class="ghost" data-back>Back</button><button type="button" class="primary" data-next>Continue</button></div>
+  </div>
+
+  <!-- ===== STEP 6 ===== -->
+  <div class="step" data-name="Alternatives">
+    <div class="panel">
+      <h2>Alternatives</h2>
+      <p class="sub">You are entitled to know what else could achieve your goal, including doing nothing.</p>
+
+      <ul class="plain">
+        <li><strong>No treatment.</strong> Always a reasonable choice. There is no harm in declining.</li>
+        <li><strong>Medical skincare and daily sun protection.</strong> For pigmentation especially, what you do at home matters more than what we do in clinic. A peel without a home routine is a short-lived result.</li>
+        <li><strong>A gentler peel</strong> than the one being considered, or a course building up in strength.</li>
+        <li><strong>Medical microneedling</strong>, which stimulates from within rather than resurfacing from the surface, and is safer in deeper skin tones.</li>
+        <li><strong>Laser or IPL</strong>, for certain pigmentation and vascular concerns — though with a higher risk of pigmentation change in darker skin.</li>
+        <li><strong>Prescription topical treatment</strong>, particularly for melasma and acne, where a peel alone will not hold the result.</li>
+        <li><strong>Injectable regenerative treatments</strong>, where the concern is skin quality and firmness rather than surface texture and tone.</li>
+      </ul>
+
+      <div class="note">
+        <strong>If you have melasma, please read this.</strong>
+        Melasma is driven by heat, light and inflammation, and peels can make it worse as easily as better. It needs a careful, layered plan involving prescription topicals, rigorous sun protection and conservative treatment. We will treat it, but we will not treat it aggressively, and we will be honest that it is managed rather than cured.
+      </div>
+
+      <div class="group">
+        <div class="opts" data-checkgroup="Alternatives acknowledgement" data-requireall="1">
+          <label class="opt"><input type="checkbox" name="Alternatives acknowledgement" value="Alternatives including no treatment have been explained"><span class="mark"></span>The alternatives, including having no treatment at all, have been explained to me and I have chosen to proceed.</label>
+        </div>
+      </div>
+    </div>
+    <div class="nav"><button type="button" class="ghost" data-back>Back</button><button type="button" class="primary" data-next>Continue</button></div>
+  </div>
+
+  <!-- ===== STEP 7 ===== -->
+  <div class="step" data-name="Aftercare">
+    <div class="panel">
+      <h2>Aftercare</h2>
+      <p class="sub">What you do in the following week decides most of your result.</p>
+
+      <div class="alert">
+        <strong>Do not pick, peel, scrub or pull at flaking skin.</strong>
+        Let it shed on its own, even when it is hanging off and driving you mad. Pulling skin away before it is ready is the single most common cause of scarring and pigmentation after a peel.
+      </div>
+
+      <h3>For the first 24 hours</h3>
+      <ul class="plain">
+        <li>Leave the skin alone. No makeup unless we have said otherwise.</li>
+        <li>No exercise, saunas, steam rooms, swimming or very hot showers.</li>
+        <li>No touching your face with unwashed hands.</li>
+        <li>Cleanse gently with lukewarm water and only the products we advise.</li>
+        <li>For BioRePeel, follow the specific instruction we give you about when to wash the product off.</li>
+      </ul>
+
+      <h3>Until the skin has fully recovered</h3>
+      <ul class="plain">
+        <li><strong>SPF 50 every single day</strong>, reapplied, and a hat where you can.</li>
+        <li>No sunbeds, no deliberate sun exposure, no self-tan.</li>
+        <li>No retinoids, acids, exfoliants or scrubs.</li>
+        <li>No waxing, threading, hair removal cream or electrolysis in the area.</li>
+        <li>No other facial treatments, laser or microneedling.</li>
+        <li>Moisturise generously and often. Dry, tight skin peels worse and heals worse.</li>
+        <li>Drink plenty of water.</li>
+      </ul>
+
+      <h3>Contact us if</h3>
+      <ul class="plain">
+        <li>You develop blistering, weeping or crusting</li>
+        <li>The skin becomes hot, increasingly painful or produces discharge</li>
+        <li>Redness spreads or worsens after 72 hours</li>
+        <li>You feel generally unwell with a temperature</li>
+        <li>A cold sore develops</li>
+        <li>Anything at all concerns you</li>
+      </ul>
+      <p class="body">Call <strong>0800 772 0137</strong>.</p>
+
+      <div class="group">
+        <div class="opts" data-checkgroup="Aftercare acknowledgement" data-requireall="1">
+          <label class="opt"><input type="checkbox" name="Aftercare acknowledgement" value="AGREES not to pick or peel flaking skin"><span class="mark"></span><strong>I will not pick, peel, scrub or pull at flaking skin.</strong></label>
+          <label class="opt"><input type="checkbox" name="Aftercare acknowledgement" value="Agrees to daily SPF 50 and sun avoidance until fully recovered"><span class="mark"></span><strong>I will use SPF 50 daily and avoid sun, sunbeds and self-tan until my skin has fully recovered.</strong></label>
+          <label class="opt"><input type="checkbox" name="Aftercare acknowledgement" value="Has read and agrees to follow the rest of the aftercare"><span class="mark"></span>I have read the rest of the aftercare and I agree to follow it.</label>
+          <label class="opt"><input type="checkbox" name="Aftercare acknowledgement" value="Will contact the clinic promptly with any concerns"><span class="mark"></span>I will contact the clinic promptly if I have any concerns following treatment.</label>
+        </div>
+      </div>
+    </div>
+    <div class="nav"><button type="button" class="ghost" data-back>Back</button><button type="button" class="primary" data-next>Continue</button></div>
+  </div>
+
+  <!-- ===== STEP 8 ===== -->
+  <div class="step" data-name="Consent">
+    <div class="panel">
+      <h2>Consent</h2>
+      <p class="sub">Please read each statement and tick to confirm.</p>
+
+      <div class="group">
+        <div class="opts" data-checkgroup="Consent" data-requireall="1">
+          <label class="opt"><input type="checkbox" name="Consent" value="Aged 18 or over"><span class="mark"></span>I am 18 years of age or over.</label>
+          <label class="opt"><input type="checkbox" name="Consent" value="Information given is true and complete"><span class="mark"></span>The information I have given today is true and complete to the best of my knowledge.</label>
+          <label class="opt"><input type="checkbox" name="Consent" value="Confirms no aspirin or salicylate allergy, or has disclosed it"><span class="mark"></span><strong>I have told the clinic about any allergy to aspirin, salicylates, resorcinol or hair dye.</strong></label>
+          <label class="opt"><input type="checkbox" name="Consent" value="Consents to practitioner selecting peel, strength and layers"><span class="mark"></span>I consent to my practitioner selecting the peel, its strength and the number of layers based on clinical assessment.</label>
+          <label class="opt"><input type="checkbox" name="Consent" value="Treatment, risks and alternatives discussed and understood"><span class="mark"></span>The proposed treatment, its risks and the alternatives have been explained to me, my questions have been answered, and I understand what I am agreeing to.</label>
+          <label class="opt"><input type="checkbox" name="Consent" value="Had sufficient time to consider"><span class="mark"></span>I have had enough time to consider this and I do not feel rushed or pressured.</label>
+          <label class="opt"><input type="checkbox" name="Consent" value="Understands consent may be withdrawn at any time"><span class="mark"></span>I understand I may withdraw my consent and decline treatment at any point, including after signing this.</label>
+          <label class="opt"><input type="checkbox" name="Consent" value="Understands no refund for treatment delivered as intended"><span class="mark"></span>I understand that fees cover the treatment provided and are not refundable where treatment has been carried out as agreed.</label>
+          <label class="opt"><input type="checkbox" name="Consent" value="Consents to clinical photography for the medical record"><span class="mark"></span>I consent to clinical photographs being taken and kept in my medical record as part of assessing my treatment.</label>
+          <label class="opt"><input type="checkbox" name="Consent" value="CONSENTS TO TREATMENT"><span class="mark"></span><strong>I consent to chemical peel treatment as discussed.</strong></label>
+        </div>
+      </div>
+
+      <div class="note">
+        <strong>Before and after photographs — please choose one.</strong>
+        Your answer makes no difference at all to your treatment, and you can change your mind at any time by telling us.
+      </div>
+
+      <div class="group">
+        <div class="opts" data-radio="Marketing image consent">
+          <label class="opt"><input type="radio" name="Marketing image consent" value="YES — consents to before/after images being used on website and social media" required><span class="mark radio"></span><strong>Yes</strong> — I'm happy for before and after photographs of my treatment to be shared on the clinic's website and social media. Most of our patients found us this way, so it genuinely helps.</label>
+          <label class="opt"><input type="radio" name="Marketing image consent" value="YES — but treated area only, face not identifiable"><span class="mark radio"></span><strong>Yes, but treated area only</strong> — please don't show my full face.</label>
+          <label class="opt"><input type="radio" name="Marketing image consent" value="NO — DECLINED. Do not use images for marketing."><span class="mark radio"></span><strong>No</strong> — please keep my photographs for my clinical record only.</label>
+        </div>
+      </div>
+
+      <div class="group two-col">
+        <div><label class="q">Type your full name<span class="req">*</span></label><input type="text" name="Signed name" required></div>
+        <div><label class="q">Date<span class="req">*</span></label><input type="date" name="Date signed" id="dateSigned" required></div>
+      </div>
+      <div class="hint" style="margin-top:-8px">Typing your name here acts as your electronic signature confirming the statements above.</div>
+    </div>
+
+    <div class="nav">
+      <button type="button" class="ghost" data-back>Back</button>
+      <button type="button" class="primary" id="submitBtn">Submit consent</button>
+    </div>
+
+    <div class="panel" style="padding:20px 24px">
+      <div class="privacy">
+        <strong>How we look after this information.</strong>
+        This form is transmitted over an encrypted connection directly to the clinic's secure email. It is not stored on this web page and no copy is retained by the website. Your answers are special category health data under UK GDPR, processed for the purposes of providing healthcare under Article 9(2)(h), and held in your clinical record. We keep clinical records for the period required by professional guidance and do not sell or share them. Consent to use images for marketing is held separately under Article 6(1)(a) and may be withdrawn at any time. You may request a copy of what we hold, ask for corrections, or raise a concern with the Information Commissioner's Office. Data controller: R F Roberts Limited, trading as Sebastian Rose Medical Aesthetics. Contact info@sebastianrose.co.uk or 0800 772 0137.
+      </div>
+    </div>
+  </div>
+
+  </form>
+
+  <div id="done">
+    <div class="tick">&#10003;</div>
+    <h2>Thank you</h2>
+    <p>Your consent has been recorded and sent securely to the clinic.</p>
+    <p>Please pause any retinoids or acids in the week before your appointment, and come with clean skin and no makeup if you can.</p>
+    <p style="margin-top:18px;font-size:13.5px">Any questions before then — call us on 0800 772 0137.</p>
+  </div>
+
+  <div class="foot">
+    Sebastian Rose Medical Aesthetics · 39 Charles Street, Cardiff, CF10 2GB<br>
+    0800 772 0137 · info@sebastianrose.co.uk
+  </div>
+
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  var EMAILJS_PUBLIC_KEY  = "04pcL3xdpVieS--Q9";
+  var EMAILJS_SERVICE_ID  = "service_bdikve4";
+  var EMAILJS_TEMPLATE_ID = "template_2we5rm1";
+
+  if (window.emailjs) { emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY }); }
+
+  var form     = document.getElementById('form');
+  var steps    = Array.prototype.slice.call(document.querySelectorAll('.step'));
+  var bar      = document.getElementById('bar');
+  var stepName = document.getElementById('stepName');
+  var stepNum  = document.getElementById('stepNum');
+  var errBox   = document.getElementById('err');
+  var current  = 0;
+
+  // tell the hosting page how tall we are, so it can resize the frame
+  var lastH = 0;
+  function reportHeight(){
+    try{
+      var h = Math.max(
+        document.body.scrollHeight,
+        document.documentElement.scrollHeight,
+        document.body.offsetHeight
+      );
+      if(Math.abs(h - lastH) > 8){
+        lastH = h;
+        window.parent.postMessage({ srType:'height', height: h }, '*');
+        window.parent.postMessage(String(h), '*');
+      }
+    }catch(e){}
+  }
+  window.addEventListener('load', reportHeight);
+  window.addEventListener('resize', reportHeight);
+  setInterval(reportHeight, 400);
+
+  function toTop(){
+    try { window.scrollTo(0,0); } catch(e){}
+    try { document.documentElement.scrollTop = 0; document.body.scrollTop = 0; } catch(e){}
+    try {
+      var a = document.getElementById('topAnchor');
+      if(a && a.scrollIntoView) a.scrollIntoView({ block:'start', inline:'nearest' });
+    } catch(e){}
+    try { window.parent.postMessage({ type:'scrollTo', top:0 }, '*'); } catch(e){}
+  }
+
+  function syncOpt(input){
+    var box = input.closest('.opt');
+    if(!box) return;
+    if(input.type === 'radio'){
+      var same = document.querySelectorAll('input[name="'+CSS.escape(input.name)+'"]');
+      Array.prototype.forEach.call(same, function(r){
+        var b = r.closest('.opt'); if(b) b.classList.toggle('checked', r.checked);
+        var rev = b && b.getAttribute('data-reveal');
+        if(rev){ var el = document.getElementById(rev); if(el) el.classList.toggle('show', r.checked); }
+      });
+    } else {
+      box.classList.toggle('checked', input.checked);
+      var rv = box.getAttribute('data-reveal');
+      if(rv){ var e2 = document.getElementById(rv); if(e2) e2.classList.toggle('show', input.checked); }
+    }
+  }
+
+  Array.prototype.forEach.call(document.querySelectorAll('.opt input'), function(input){
+    input.addEventListener('change', function(){
+      if(input.type === 'checkbox' && input.checked && /^NONE/.test(input.value)){
+        Array.prototype.forEach.call(document.querySelectorAll('input[name="'+CSS.escape(input.name)+'"]'), function(o){
+          if(o !== input && o.checked){ o.checked = false; syncOpt(o); }
+        });
+      }
+      if(input.type === 'checkbox' && input.checked && !/^NONE/.test(input.value)){
+        Array.prototype.forEach.call(document.querySelectorAll('input[name="'+CSS.escape(input.name)+'"]'), function(o){
+          if(/^NONE/.test(o.value) && o.checked){ o.checked = false; syncOpt(o); }
+        });
+      }
+      syncOpt(input);
+    });
+  });
+
+  // hard stop: pregnancy / breastfeeding
+  var pregStop  = document.getElementById('pregStop');
+  var pregBlock = document.getElementById('pregBlock');
+  function pregOK(){
+    var blocked = pregStop && pregStop.checked;
+    if(pregBlock) pregBlock.style.display = blocked ? 'block' : 'none';
+    return !blocked;
+  }
+  if(pregStop) pregStop.addEventListener('change', function(){ pregOK(); });
+
+  var dob = document.getElementById('dob');
+  var ageErr = document.getElementById('ageErr');
+  function ageOK(){
+    if(!dob.value) return true;
+    var d = new Date(dob.value), n = new Date();
+    var a = n.getFullYear() - d.getFullYear();
+    var m = n.getMonth() - d.getMonth();
+    if(m < 0 || (m === 0 && n.getDate() < d.getDate())) a--;
+    if(a < 18){
+      ageErr.textContent = "We are unable to offer this treatment to anyone under 18. Please call the clinic on 0800 772 0137 if you think this is an error.";
+      ageErr.classList.add('show');
+      return false;
+    }
+    ageErr.classList.remove('show');
+    return true;
+  }
+  dob.addEventListener('change', ageOK);
+
+  function show(i){
+    steps[current].classList.remove('active');
+    current = i;
+    steps[current].classList.add('active');
+    bar.style.width = ((current + 1) / steps.length * 100) + '%';
+    stepName.textContent = steps[current].getAttribute('data-name').replace(/&amp;/g,'&');
+    stepNum.textContent = 'Step ' + (current + 1) + ' of ' + steps.length;
+    errBox.classList.remove('show');
+    toTop();
+    setTimeout(reportHeight, 60);
+  }
+
+  function validate(step){
+    var bad = [];
+    Array.prototype.forEach.call(step.querySelectorAll('[required]'), function(f){
+      if(f.type === 'radio'){
+        if(!step.querySelector('input[name="'+CSS.escape(f.name)+'"]:checked')) bad.push(f.name);
+      } else if(!f.value.trim()){
+        bad.push(f.name);
+      }
+    });
+    Array.prototype.forEach.call(step.querySelectorAll('[data-checkgroup]'), function(grp){
+      var nm = grp.getAttribute('data-checkgroup');
+      if(grp.getAttribute('data-requireall')){
+        var boxes = grp.querySelectorAll('input[type=checkbox]');
+        var done  = grp.querySelectorAll('input[type=checkbox]:checked');
+        if(done.length < boxes.length) bad.push('every statement under "' + nm + '"');
+        return;
+      }
+      if(grp.getAttribute('data-optional')) return;
+      var cond = grp.getAttribute('data-conditional');
+      if(cond && !document.querySelector('input[name="'+CSS.escape(cond)+'"]:checked')) return;
+      if(!grp.querySelector('input:checked')) bad.push(nm);
+    });
+    // at least one area must be selected on the areas step
+    if(step.querySelector('[data-checkgroup="Licensed areas"]')){
+      var anyArea = document.querySelector('input[name="Licensed areas"]:checked') ||
+                    document.querySelector('input[name="Off-label areas"]:checked');
+      if(!anyArea) bad.push('At least one treatment area');
+    }
+    return bad;
+  }
+
+  Array.prototype.forEach.call(document.querySelectorAll('[data-next]'), function(b){
+    b.addEventListener('click', function(){
+      if(current === 0 && !ageOK()){ toTop(); return; }
+      if(!pregOK()){ toTop(); return; }
+      var bad = validate(steps[current]);
+      if(bad.length){
+        errBox.innerHTML = 'Please complete the following before continuing: <strong>' +
+          bad.filter(function(v,i,a){return a.indexOf(v)===i;}).join(', ') + '</strong>';
+        errBox.classList.add('show');
+        toTop();
+        return;
+      }
+      show(current + 1);
+    });
+  });
+
+  Array.prototype.forEach.call(document.querySelectorAll('[data-back]'), function(b){
+    b.addEventListener('click', function(){ show(current - 1); });
+  });
+
+  (function(){
+    var t = new Date(), p = function(n){ return (n<10?'0':'')+n; };
+    document.getElementById('dateSigned').value = t.getFullYear()+'-'+p(t.getMonth()+1)+'-'+p(t.getDate());
+  })();
+
+  function collect(){
+    var out = [], seen = {}, order = [];
+    Array.prototype.forEach.call(form.elements, function(el){
+      if(!el.name) return;
+      if(el.type === 'checkbox' || el.type === 'radio'){
+        if(!el.checked) return;
+        if(!seen[el.name]){ seen[el.name] = []; order.push(el.name); }
+        seen[el.name].push(el.value);
+      } else {
+        if(!el.value.trim()) return;
+        if(!seen[el.name]){ seen[el.name] = []; order.push(el.name); }
+        seen[el.name].push(el.value.trim());
+      }
+    });
+    order.forEach(function(k){ out.push(k.toUpperCase() + ':\n  ' + seen[k].join('\n  ')); });
+    // explicitly record a declined marketing consent
+    if(!document.querySelector('input[name="Marketing image consent"]:checked')){
+      out.push('MARKETING IMAGE CONSENT:\n  NOT ANSWERED — treat as declined');
+    }
+    return out.join('\n\n');
+  }
+
+  var submitBtn = document.getElementById('submitBtn');
+  submitBtn.addEventListener('click', function(){
+    if(!ageOK() || !pregOK()){ toTop(); return; }
+    var bad = validate(steps[current]);
+    if(bad.length){
+      errBox.innerHTML = 'Please complete the following: <strong>' +
+        bad.filter(function(v,i,a){return a.indexOf(v)===i;}).join(', ') + '</strong>';
+      errBox.classList.add('show');
+      toTop();
+      return;
+    }
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Sending…';
+
+    var name = (form.querySelector('[name="First name"]').value + ' ' +
+                form.querySelector('[name="Surname"]').value).trim();
+
+    var params = {
+      form_type: 'CHEMICAL PEEL CONSENT',
+      patient_name: name,
+      from_name: name,
+      reply_to: form.querySelector('[name="Email"]').value,
+      full_data: 'CHEMICAL PEEL — INFORMATION & CONSENT\nSubmitted: ' +
+                 new Date().toLocaleString('en-GB') + '\n\n' + collect(),
+      id_document_url: 'N/A — consent form'
+    };
+
+    emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, params)
+      .then(function(){
+        document.querySelector('.progress-shell').style.display = 'none';
+        form.style.display = 'none';
+        document.getElementById('done').style.display = 'block';
+        toTop();
+      })
+      .catch(function(e){
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Submit consent';
+        errBox.innerHTML = 'Sorry — this did not send. Please check your connection and try again, or speak to your practitioner. <br><small>' + (e && e.text ? e.text : '') + '</small>';
+        errBox.classList.add('show');
+        toTop();
+      });
+  });
+})();
+</script>
+</body>
+</html>
