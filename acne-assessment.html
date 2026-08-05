@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Marks or Scars? | Sebastian Rose Medical Aesthetics</title>
+<style>
+  :root{
+    --gold:#b09a77;
+    --gold-dk:#8f7c5e;
+    --ink:#1c1a17;
+    --body:#3f3a34;
+    --line:#e4ded4;
+    --bg:#faf8f5;
+    --panel:#ffffff;
+    --alert:#a4453a;
+    --alert-bg:#fdf4f3;
+  }
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  html,body{margin:0;padding:0}
+  html{scrollbar-width:none;-ms-overflow-style:none}
+  html::-webkit-scrollbar{display:none}
+  body{
+    background:var(--bg);
+    color:var(--body);
+    font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size:15.5px;
+    line-height:1.62;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:760px;margin:0 auto;padding:24px 18px 50px}
+
+  .hero{text-align:center;padding:6px 0 26px}
+  .eyebrow{
+    font-size:10.5px;letter-spacing:.3em;text-transform:uppercase;
+    color:var(--gold);margin-bottom:14px;font-weight:600;
+  }
+  h1{
+    font-family:Georgia,"Times New Roman",serif;
+    font-weight:400;font-size:30px;line-height:1.22;
+    letter-spacing:.06em;text-transform:uppercase;
+    color:var(--ink);margin:0 0 14px;
+  }
+  .hero p{margin:0 auto;max-width:560px;font-size:15px;color:var(--body)}
+
+  .progress-shell{margin:0 0 20px}
+  .progress-track{height:2px;background:var(--line);border-radius:2px;overflow:hidden}
+  .progress-fill{height:100%;background:var(--gold);width:0;transition:width .35s ease}
+  .progress-label{
+    display:flex;justify-content:space-between;margin-top:9px;
+    font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold-dk);
+  }
+
+  .panel{
+    background:var(--panel);border:1px solid var(--line);
+    border-radius:3px;padding:28px 26px;
+  }
+  h2{
+    font-family:Georgia,"Times New Roman",serif;
+    font-weight:400;font-size:20px;letter-spacing:.05em;
+    text-transform:uppercase;color:var(--ink);
+    margin:0 0 6px;padding-bottom:12px;border-bottom:1px solid var(--line);
+  }
+  h3{
+    font-family:Georgia,"Times New Roman",serif;
+    font-weight:400;font-size:16px;letter-spacing:.04em;
+    text-transform:uppercase;color:var(--ink);
+    margin:26px 0 10px;
+  }
+  .sub{font-size:13.5px;color:#7a736a;margin:10px 0 20px}
+  .hint{font-size:13px;color:#7a736a;margin:-2px 0 12px}
+  p.body{margin:0 0 14px}
+
+  .step{display:none}
+  .step.active{display:block;animation:fade .3s ease}
+  @keyframes fade{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
+
+  .q{
+    display:block;font-size:16px;color:var(--ink);
+    margin:0 0 14px;font-weight:600;line-height:1.45;
+  }
+
+  .opts{display:flex;flex-direction:column;gap:9px}
+  .opt{
+    position:relative;display:flex;align-items:flex-start;gap:13px;
+    border:1px solid var(--line);border-radius:3px;
+    padding:15px 16px;cursor:pointer;background:#fff;
+    transition:border-color .16s,background .16s;
+    font-size:14.8px;line-height:1.5;
+  }
+  .opt:hover{border-color:var(--gold)}
+  .opt input{position:absolute;opacity:0;pointer-events:none}
+  .mark{
+    flex:0 0 17px;width:17px;height:17px;margin-top:2px;
+    border:1px solid #c8c0b3;border-radius:50%;
+    display:inline-block;position:relative;transition:all .16s;
+  }
+  .opt input:checked ~ .mark{border-color:var(--gold);background:var(--gold)}
+  .mark:after{
+    content:"";position:absolute;inset:4px;border-radius:50%;
+    background:#fff;opacity:0;transition:opacity .16s;
+  }
+  .opt input:checked ~ .mark:after{opacity:1}
+  .opt.sel{border-color:var(--gold);background:#fdfbf8}
+  .opt em{font-style:normal;color:#7a736a;font-size:13.5px;display:block;margin-top:2px}
+
+  .note,.alert{
+    border-radius:3px;padding:17px 19px;margin:20px 0;
+    font-size:14.3px;line-height:1.6;
+  }
+  .note{background:#f7f4ef;border-left:2px solid var(--gold)}
+  .alert{background:var(--alert-bg);border-left:2px solid var(--alert);color:#6d2f27}
+  .note strong,.alert strong{display:block;margin-bottom:5px;color:var(--ink)}
+  .alert strong{color:var(--alert)}
+
+  .nav{display:flex;gap:11px;margin-top:22px;justify-content:flex-end}
+  button{
+    font-family:inherit;font-size:11px;letter-spacing:.17em;
+    text-transform:uppercase;padding:14px 28px;border-radius:2px;
+    cursor:pointer;border:1px solid transparent;transition:all .16s;font-weight:600;
+  }
+  .primary{background:var(--gold);color:#fff}
+  .primary:hover{background:var(--gold-dk)}
+  .primary:disabled{background:#ded7cb;cursor:not-allowed}
+  .ghost{background:transparent;color:var(--gold-dk);border-color:var(--line)}
+  .ghost:hover{border-color:var(--gold)}
+
+  .linkbtn{
+    display:inline-block;background:var(--gold);color:#fff;text-decoration:none;
+    font-size:11px;letter-spacing:.17em;text-transform:uppercase;
+    padding:14px 28px;border-radius:2px;font-weight:600;transition:background .16s;
+  }
+  .linkbtn:hover{background:var(--gold-dk)}
+  .linkbtn.outline{background:transparent;color:var(--gold-dk);border:1px solid var(--line)}
+  .linkbtn.outline:hover{border-color:var(--gold);background:#fdfbf8}
+
+  ul.plain{margin:0 0 16px;padding-left:19px}
+  ul.plain li{margin-bottom:8px}
+
+  .verdict{
+    text-align:center;padding:8px 0 4px;
+  }
+  .verdict .tag{
+    display:inline-block;font-size:10.5px;letter-spacing:.26em;
+    text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:12px;
+  }
+  .verdict h2{border:0;padding:0;font-size:23px;margin-bottom:14px}
+
+  .cta-row{display:flex;flex-wrap:wrap;gap:11px;margin-top:22px}
+
+  .foot{
+    text-align:center;font-size:12px;color:#8d867c;
+    margin-top:30px;line-height:1.75;
+  }
+  .disclaim{
+    font-size:12.5px;color:#8d867c;line-height:1.6;
+    border-top:1px solid var(--line);margin-top:26px;padding-top:16px;
+  }
+
+  @media(max-width:640px){
+    h1{font-size:24px}
+    .panel{padding:22px 18px}
+    .nav{flex-direction:column-reverse}
+    .nav button{width:100%}
+    .cta-row .linkbtn{width:100%;text-align:center}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <span id="topAnchor" aria-hidden="true"></span>
+
+  <div class="hero">
+    <div class="eyebrow">Sebastian Rose Medical Aesthetics</div>
+    <h1>Marks or Scars?</h1>
+    <p>Most people who come to us about acne scarring don't have scarring — they have marks, which fade on their own and need something completely different. Five questions to work out which you're dealing with.</p>
+  </div>
+
+  <div class="progress-shell" id="progShell">
+    <div class="progress-track"><div class="progress-fill" id="bar"></div></div>
+    <div class="progress-label"><span id="stepName">Active breakouts</span><span id="stepNum">1 of 5</span></div>
+  </div>
+
+  <!-- Q1 -->
+  <div class="step active" data-name="Active breakouts">
+    <div class="panel">
+      <h2>First — are you still breaking out?</h2>
+      <p class="sub">This matters more than anything else, because it changes the order of treatment.</p>
+      <div class="opts" data-q="active">
+        <label class="opt"><input type="radio" name="q1" value="3"><span class="mark"></span>Yes, regularly — I get new spots most weeks</label>
+        <label class="opt"><input type="radio" name="q1" value="2"><span class="mark"></span>Occasionally — the odd one, or around my cycle</label>
+        <label class="opt"><input type="radio" name="q1" value="0"><span class="mark"></span>Rarely — a few months since my last proper breakout</label>
+        <label class="opt"><input type="radio" name="q1" value="0"><span class="mark"></span>No — my acne cleared a long time ago</label>
+      </div>
+    </div>
+    <div class="nav"><button type="button" class="primary" data-next disabled>Continue</button></div>
+  </div>
+
+  <!-- Q2 -->
+  <div class="step" data-name="Texture">
+    <div class="panel">
+      <h2>Run a finger over the area. What can you feel?</h2>
+      <p class="sub">Do this in good light, in front of a mirror, without makeup.</p>
+      <div class="opts" data-q="texture">
+        <label class="opt"><input type="radio" name="q2" value="marks"><span class="mark"></span>Completely flat — I can see it but not feel it</label>
+        <label class="opt"><input type="radio" name="q2" value="both"><span class="mark"></span>Slightly uneven in places<em>Some areas feel smooth, others don't</em></label>
+        <label class="opt"><input type="radio" name="q2" value="scar"><span class="mark"></span>Definite dips or pits I can feel<em>The surface is clearly not level</em></label>
+        <label class="opt"><input type="radio" name="q2" value="scar"><span class="mark"></span>Raised or lumpy rather than indented</label>
+      </div>
+    </div>
+    <div class="nav"><button type="button" class="ghost" data-back>Back</button><button type="button" class="primary" data-next disabled>Continue</button></div>
+  </div>
+
+  <!-- Q3 -->
+  <div class="step" data-name="Stretch test">
+    <div class="panel">
+      <h2>Now the stretch test</h2>
+      <div class="note">
+        <strong>How to do it</strong>
+        Put a finger either side of the mark and gently stretch the skin apart. Watch what happens to it. This is the single most useful thing you can do at home, and it's what we do first in clinic too.
+      </div>
+      <label class="q">What happened?</label>
+      <div class="opts" data-q="stretch">
+        <label class="opt"><input type="radio" name="q3" value="marks"><span class="mark"></span>It faded or disappeared</label>
+        <label class="opt"><input type="radio" name="q3" value="marks"><span class="mark"></span>It got lighter but didn't vanish</label>
+        <label class="opt"><input type="radio" name="q3" value="scar"><span class="mark"></span>A dip or shadow stayed put<em>Stretching made no difference to the shape</em></label>
+        <label class="opt"><input type="radio" name="q3" value="both"><span class="mark"></span>Some faded, others didn't</label>
+        <label class="opt"><input type="radio" name="q3" value="unsure"><span class="mark"></span>I genuinely can't tell</label>
+      </div>
+    </div>
+    <div class="nav"><button type="button" class="ghost" data-back>Back</button><button type="button" class="primary" data-next disabled>Continue</button></div>
+  </div>
+
+  <!-- Q4 -->
+  <div class="step" data-name="Colour">
+    <div class="panel">
+      <h2>What colour are they?</h2>
+      <p class="sub">Colour tells us a surprising amount about what's going on underneath.</p>
+      <div class="opts" data-q="colour">
+        <label class="opt"><input type="radio" name="q4" value="pie"><span class="mark"></span>Red, pink or purple</label>
+        <label class="opt"><input type="radio" name="q4" value="pih"><span class="mark"></span>Brown, tan or grey-brown</label>
+        <label class="opt"><input type="radio" name="q4" value="scar"><span class="mark"></span>Much the same colour as the rest of my skin<em>It's the shape I notice, not the colour</em></label>
+        <label class="opt"><input type="radio" name="q4" value="mixed"><span class="mark"></span>A mixture of these</label>
+      </div>
+    </div>
+    <div class="nav"><button type="button" class="ghost" data-back>Back</button><button type="button" class="primary" data-next disabled>Continue</button></div>
+  </div>
+
+  <!-- Q5 -->
+  <div class="step" data-name="How long">
+    <div class="panel">
+      <h2>How long have they been there?</h2>
+      <p class="sub">Think about the ones that bother you most, not the newest.</p>
+      <div class="opts" data-q="time">
+        <label class="opt"><input type="radio" name="q5" value="new"><span class="mark"></span>Less than 6 months</label>
+        <label class="opt"><input type="radio" name="q5" value="mid"><span class="mark"></span>6 to 18 months</label>
+        <label class="opt"><input type="radio" name="q5" value="old"><span class="mark"></span>Over 2 years</label>
+        <label class="opt"><input type="radio" name="q5" value="old"><span class="mark"></span>Years — they've never really changed</label>
+      </div>
+    </div>
+    <div class="nav"><button type="button" class="ghost" data-back>Back</button><button type="button" class="primary" data-next disabled>See my result</button></div>
+  </div>
+
+  <!-- RESULT -->
+  <div class="step" data-name="Result">
+    <div class="panel">
+      <div class="verdict">
+        <span class="tag" id="rTag"></span>
+        <h2 id="rTitle"></h2>
+      </div>
+      <div id="rBody"></div>
+
+      <div class="cta-row">
+        <a href="https://www.sebastianrose.co.uk/service-page/acne-consultation-cardiff" target="_blank" rel="noopener" class="linkbtn">Book an acne consultation &rarr;</a>
+        <a href="https://www.sebastianrose.co.uk/acne-treatments-in-cardiff" target="_blank" rel="noopener" class="linkbtn outline">Read more about acne treatment</a>
+      </div>
+
+      <div class="disclaim">
+        <strong style="color:#1c1a17">A word of caution about this tool.</strong><br>
+        This is a guide to help you understand what you're likely dealing with — it is not a diagnosis and it cannot replace someone looking at your skin. Skin is genuinely difficult to assess from a description, most people have a combination of things going on, and the treatment that's right for you depends on a great deal this tool can't see. Please treat the result as a starting point for a conversation rather than an answer.
+      </div>
+    </div>
+    <div class="nav"><button type="button" class="ghost" data-restart>Start again</button></div>
+  </div>
+
+  <div class="foot">
+    Sebastian Rose Medical Aesthetics · 39 Charles Street, Cardiff, CF10 2GB<br>
+    0800 772 0137 · info@sebastianrose.co.uk
+  </div>
+</div>
+
+<script>
+(function(){
+  var steps = Array.prototype.slice.call(document.querySelectorAll('.step'));
+  var qCount = steps.length - 1;
+  var i = 0;
+  var bar = document.getElementById('bar');
+  var stepName = document.getElementById('stepName');
+  var stepNum = document.getElementById('stepNum');
+  var progShell = document.getElementById('progShell');
+  var top = document.getElementById('topAnchor');
+
+  function toTop(){
+    try{ window.scrollTo(0,0); }catch(e){}
+    try{ document.documentElement.scrollTop = 0; document.body.scrollTop = 0; }catch(e){}
+    try{ if(top && top.scrollIntoView) top.scrollIntoView({block:'start'}); }catch(e){}
+  }
+
+  function render(){
+    steps.forEach(function(s,n){ s.classList.toggle('active', n===i); });
+    if(i >= qCount){
+      progShell.style.display = 'none';
+    } else {
+      progShell.style.display = '';
+      bar.style.width = ((i)/qCount*100) + '%';
+      stepName.textContent = steps[i].getAttribute('data-name');
+      stepNum.textContent = (i+1) + ' of ' + qCount;
+    }
+    toTop();
+  }
+
+  // selection styling + enable continue
+  steps.forEach(function(s){
+    var btn = s.querySelector('[data-next]');
+    s.addEventListener('change', function(e){
+      if(e.target.type !== 'radio') return;
+      var group = e.target.closest('.opts');
+      Array.prototype.forEach.call(group.querySelectorAll('.opt'), function(o){
+        o.classList.toggle('sel', o.contains(e.target));
+      });
+      if(btn) btn.disabled = false;
+    });
+  });
+
+  document.addEventListener('click', function(e){
+    if(e.target.matches('[data-next]')){
+      if(i === qCount - 1){ compute(); }
+      i = Math.min(i+1, steps.length-1); render();
+    }
+    if(e.target.matches('[data-back]')){ i = Math.max(i-1, 0); render(); }
+    if(e.target.matches('[data-restart]')){
+      Array.prototype.forEach.call(document.querySelectorAll('input[type=radio]'), function(r){ r.checked = false; });
+      Array.prototype.forEach.call(document.querySelectorAll('.opt'), function(o){ o.classList.remove('sel'); });
+      Array.prototype.forEach.call(document.querySelectorAll('[data-next]'), function(b){ b.disabled = true; });
+      i = 0; render();
+    }
+  });
+
+  function val(name){
+    var el = document.querySelector('input[name="'+name+'"]:checked');
+    return el ? el.value : null;
+  }
+
+  function compute(){
+    var active  = parseInt(val('q1')||'0', 10);
+    var texture = val('q2');
+    var stretch = val('q3');
+    var colour  = val('q4');
+    var time    = val('q5');
+
+    var scar = 0, marks = 0;
+
+    if(texture === 'scar') scar += 3;
+    else if(texture === 'both'){ scar += 1; marks += 1; }
+    else marks += 3;
+
+    if(stretch === 'scar') scar += 3;
+    else if(stretch === 'both'){ scar += 1; marks += 1; }
+    else if(stretch === 'marks') marks += 3;
+
+    if(colour === 'scar') scar += 2;
+    else if(colour === 'mixed'){ scar += 1; marks += 1; }
+    else marks += 2;
+
+    if(time === 'old') scar += 1;
+    else if(time === 'new') marks += 1;
+
+    var tag = document.getElementById('rTag');
+    var title = document.getElementById('rTitle');
+    var body = document.getElementById('rBody');
+
+    // Active acne takes priority — order of treatment matters more than type
+    if(active >= 3){
+      tag.textContent = 'Treat the acne first';
+      title.textContent = 'You\u2019re still breaking out';
+      body.innerHTML =
+        '<div class="alert"><strong>This is the one thing that has to come first.</strong>' +
+        'Whatever else is going on with your skin, treating marks or scarring while you are still getting new spots does not work \u2014 and several of the treatments involved can make active acne worse.</div>' +
+        '<p class="body">That is not us putting you off. It is that every new spot has the potential to leave another mark or another scar, so treating what is already there while more is being created is a losing battle and an expensive one.</p>' +
+        '<h3>What happens instead</h3>' +
+        '<ul class="plain">' +
+        '<li>We settle the acne first \u2014 usually with prescription topical treatment and a corrected routine, sometimes alongside gentle in-clinic work.</li>' +
+        '<li>Once you are stable, we reassess. A good proportion of what looked like scarring turns out to be marks, and those often improve considerably on their own by then.</li>' +
+        '<li>Then, and only then, we treat what is genuinely left.</li>' +
+        '</ul>' +
+        '<div class="note"><strong>If your acne is severe</strong>Deep, painful cysts or nodules, or acne that is already leaving scars, needs oral treatment and a dermatology referral through your GP. We will tell you honestly if that is where you should be, and we will still be here for what it leaves behind.</div>';
+      return;
+    }
+
+    if(scar >= 5 && marks >= 4){
+      tag.textContent = 'Likely a combination';
+      title.textContent = 'Probably both marks and scarring';
+      body.innerHTML =
+        '<p class="body">Your answers suggest you have some flat discolouration that will fade, <strong>and</strong> some genuine textural change that will not. This is the most common picture of the three, and it is the reason people get frustrated \u2014 part of what they see improves over time and part of it stubbornly does not.</p>' +
+        '<h3>What that means for treatment</h3>' +
+        '<ul class="plain">' +
+        '<li><strong>The flat, discoloured areas</strong> will fade on their own. Treatment speeds it up and evens it out, but time is doing most of the work.</li>' +
+        '<li><strong>The textural areas</strong> are permanent unless treated, and need something that works at depth \u2014 usually medical microneedling, and where scars are tethered, subcision.</li>' +
+        '<li>The two are usually treated together over a course, which is more efficient than tackling them separately.</li>' +
+        '</ul>' +
+        '<div class="note"><strong>Worth knowing before you spend anything</strong>Because part of what you are seeing will fade regardless, it is genuinely difficult to judge how much scarring you have until the marks have settled. We would rather assess you properly and tell you what is actually structural than sell you a scarring course for something that was going to resolve anyway.</div>' +
+        '<p class="body">Realistically this is a programme over several months rather than a few appointments, and we will tell you roughly how long and how much at the outset.</p>';
+      return;
+    }
+
+    if(scar > marks){
+      tag.textContent = 'Likely structural';
+      title.textContent = 'This looks like genuine scarring';
+      body.innerHTML =
+        '<p class="body">Your answers point to a structural change in the skin rather than discolouration \u2014 something you can feel as well as see, that does not change when the skin is stretched. That will not fade on its own, and no amount of skincare will alter it.</p>' +
+        '<p class="body">The good news is that it is treatable, and often more treatable than people expect.</p>' +
+        '<h3>What it usually needs</h3>' +
+        '<ul class="plain">' +
+        '<li><strong>Medical microneedling</strong> at depth, over a course, to stimulate collagen and remodel the tissue.</li>' +
+        '<li><strong>Subcision</strong> where scars are tethered \u2014 broad, shallow, shadowy depressions that are being pulled down from beneath. Releasing the tethering is the part microneedling alone cannot do.</li>' +
+        '<li><strong>Peels and regenerative treatments</strong> alongside, for surface quality and to support healing.</li>' +
+        '</ul>' +
+        '<div class="note"><strong>Different scars need different things</strong>Rolling scars respond well to subcision. Boxcar scars respond to one or both, depending on whether they are tethered. Narrow, deep icepick scars are the most difficult and often need a different approach entirely \u2014 if that is what you have, we will tell you rather than sell you a course that will not reach them.</div>' +
+        '<div class="alert"><strong>What is realistic</strong>Significant improvement, yes. Complete removal, no. Anyone promising you smooth skin from a course of anything is selling. We will show you what a realistic result looks like before you commit to it.</div>';
+      return;
+    }
+
+    // marks — differentiate red vs brown
+    var isRed = colour === 'pie';
+    var isBrown = colour === 'pih';
+    tag.textContent = 'Likely marks, not scars';
+    title.textContent = 'Good news \u2014 these should fade';
+    var extra = '';
+    if(isRed){
+      extra = '<div class="note"><strong>Red marks specifically</strong>Flat red or pink patches are dilated blood vessels left behind by inflammation, not damage to the structure of your skin. They are the quickest of the two to resolve \u2014 typically three to twelve months \u2014 and they respond well to treatment.</div>';
+    } else if(isBrown){
+      extra = '<div class="note"><strong>Brown marks specifically</strong>Flat brown or grey-brown patches are excess pigment produced during inflammation. They are slower than red marks \u2014 anywhere from six months to two years untreated \u2014 but they respond very well to the right treatment, and prescription topicals in particular.<br><br>Sun exposure is what keeps them there. This is the single biggest thing within your control.</div>';
+    }
+    body.innerHTML =
+      '<p class="body">Your answers suggest what is bothering you is flat discolouration rather than a change in the structure of your skin. That means <strong>it will fade on its own</strong>, whether or not you spend a penny with us.</p>' +
+      '<p class="body">We would rather tell you that than sell you a course of scar treatment you do not need.</p>' +
+      extra +
+      '<h3>What actually helps</h3>' +
+      '<ul class="plain">' +
+      '<li><strong>Daily SPF 50, without exception.</strong> This is the most important thing on this list by a wide margin. UV drives pigmentation directly, and marks that would have faded in months can persist for years without it.</li>' +
+      '<li><strong>Prescription topical treatment</strong> \u2014 the biggest accelerator for brown marks in particular.</li>' +
+      '<li><strong>A course of peels</strong> to speed up turnover and lift pigment more evenly.</li>' +
+      '<li><strong>Not picking.</strong> Obvious, difficult, and genuinely the difference between a mark and a scar.</li>' +
+      '</ul>' +
+      '<h3>What you do not need</h3>' +
+      '<p class="body">Subcision, or an expensive scarring programme. If a clinic has recommended one for flat marks, ask them to do the stretch test with you and explain what they are seeing.</p>' +
+      '<div class="note"><strong>Still worth a consultation?</strong>Often, yes \u2014 but for a different reason. Most people with post-acne marks are also still getting the occasional breakout, and preventing the next mark is worth more than treating the last one. A consultation will get your routine right, which is where most of the result comes from anyway.</div>';
+  }
+
+  render();
+})();
+</script>
+</body>
+</html>
