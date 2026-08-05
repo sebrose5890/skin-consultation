@@ -1,0 +1,991 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Weight Management Online Consultation | Sebastian Rose Medical Aesthetics</title>
+
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@uploadcare/file-uploader@v1/web/uc-file-uploader-regular.min.js" type="module"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@uploadcare/file-uploader@v1/web/uc-file-uploader-regular.min.css">
+
+<style>
+/* ============================================================
+   BRAND COLOURS — change these to match your site
+   ============================================================ */
+:root{
+  --ink:#221f1c;
+  --muted:#6f6960;
+  --accent:#b09a77;
+  --accent-dark:#96805f;
+  --bg:#faf8f5;
+  --card:#ffffff;
+  --line:#e6ded2;
+  --warn-bg:#fdf7ee;
+  --warn-line:#e2caa5;
+  --alert-bg:#fbf1ef;
+  --alert-line:#ddb3ab;
+  --ok-bg:#f0f4ee;
+  --ok-line:#c0d1b8;
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{overflow-x:hidden;height:auto;min-height:0}
+/* hide the widget's own scrollbar so it never doubles up with the page's.
+   scrolling still works by wheel/trackpad, so nothing is ever unreachable. */
+html::-webkit-scrollbar,body::-webkit-scrollbar{width:0;height:0;display:none}
+html,body{scrollbar-width:none;-ms-overflow-style:none}
+body{
+  font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;
+  background:var(--bg);color:var(--ink);line-height:1.65;font-size:16px;
+  -webkit-font-smoothing:antialiased;padding:0 0 50px;
+}
+.wrap{max-width:800px;margin:0 auto;padding:28px 18px 0}
+
+.hero{text-align:center;padding:14px 0 26px}
+.hero .eyebrow{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);font-weight:700;margin-bottom:12px}
+.hero h1{font-family:Georgia,'Times New Roman',serif;font-weight:400;font-size:30px;line-height:1.3;letter-spacing:.02em;text-transform:uppercase;margin-bottom:12px}
+.hero p{color:var(--muted);font-size:15px;max-width:580px;margin:0 auto}
+
+.progress-shell{margin:0 0 26px}
+.progress-track{height:3px;background:var(--line);border-radius:2px;overflow:hidden}
+.progress-fill{height:100%;width:12.5%;background:var(--accent);transition:width .35s ease}
+.progress-label{display:flex;justify-content:space-between;margin-top:9px;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+
+.step{display:none}
+.step.active{display:block;animation:fade .3s ease}
+@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+.panel{background:var(--card);border:1px solid var(--line);border-radius:3px;padding:32px 28px;margin-bottom:18px}
+.panel h2{font-family:Georgia,'Times New Roman',serif;font-weight:400;font-size:19px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:8px}
+.panel .sub{color:var(--muted);font-size:14px;margin-bottom:24px}
+.panel h3{font-family:Georgia,serif;font-weight:400;font-size:16px;letter-spacing:.05em;text-transform:uppercase;margin:26px 0 10px;padding-bottom:7px;border-bottom:1px solid var(--line)}
+.panel p.body{font-size:14.8px;margin-bottom:14px;color:#3a352f}
+.panel ul.plain{margin:0 0 16px 18px;font-size:14.8px;color:#3a352f}
+.panel ul.plain li{margin-bottom:7px}
+
+.group{margin-bottom:22px}
+.group:last-child{margin-bottom:0}
+label.q{display:block;font-weight:600;font-size:14.5px;margin-bottom:8px}
+label.q .req{color:var(--accent);margin-left:3px}
+.hint{font-size:13px;color:var(--muted);margin:-3px 0 9px;line-height:1.5}
+
+input[type=text],input[type=email],input[type=tel],input[type=date],select,textarea{
+  width:100%;padding:12px 13px;font-size:15px;font-family:inherit;color:var(--ink);
+  background:#fff;border:1px solid var(--line);border-radius:2px;outline:none;transition:border-color .15s;
+}
+input:focus,select:focus,textarea:focus{border-color:var(--accent)}
+textarea{min-height:88px;resize:vertical}
+select{appearance:none;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8'><path d='M1 1l5 5 5-5' stroke='%236f6960' stroke-width='1.5' fill='none'/></svg>");background-repeat:no-repeat;background-position:right 14px center}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:560px){.two-col{grid-template-columns:1fr}}
+
+.opts{display:flex;flex-direction:column;gap:8px}
+.opts.inline{flex-direction:row;flex-wrap:wrap;gap:10px}
+.opts.grid2{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+@media(max-width:560px){.opts.grid2{grid-template-columns:1fr}}
+
+.opt{position:relative;display:flex;align-items:flex-start;gap:11px;padding:11px 14px;border:1px solid var(--line);border-radius:2px;background:#fff;cursor:pointer;font-size:14.5px;transition:border-color .15s,background .15s;user-select:none}
+.opt:hover{border-color:var(--accent)}
+.opt input{position:absolute;opacity:0;width:0;height:0;pointer-events:none}
+.mark{flex:0 0 18px;width:18px;height:18px;margin-top:2px;border:1.5px solid #c4bbae;background:#fff;position:relative;transition:all .15s}
+.mark.radio{border-radius:50%}
+.opt.checked{border-color:var(--accent);background:#fcfaf7}
+.opt.checked .mark{border-color:var(--accent);background:var(--accent)}
+.opt.checked .mark::after{content:"";position:absolute;left:5px;top:1px;width:5px;height:10px;border:solid #fff;border-width:0 2px 2px 0;transform:rotate(45deg)}
+.opt.checked .mark.radio::after{content:"";position:absolute;left:4px;top:4px;width:6px;height:6px;border:0;border-radius:50%;background:#fff;transform:none}
+.opt.inline-sm{padding:9px 16px}
+
+.reveal{display:none;margin-top:11px;padding-left:14px;border-left:2px solid var(--accent)}
+.reveal.show{display:block;animation:fade .25s ease}
+
+.note{background:var(--warn-bg);border:1px solid var(--warn-line);border-radius:2px;padding:15px 17px;font-size:13.8px;line-height:1.65;margin-bottom:22px;color:#5c4a33}
+.note strong{display:block;margin-bottom:4px}
+.alert{background:var(--alert-bg);border:1px solid var(--alert-line);border-radius:2px;padding:15px 17px;font-size:13.8px;line-height:1.65;margin-bottom:22px;color:#6b3a33}
+.alert strong{display:block;margin-bottom:4px}
+.privacy{background:#f5f2ed;border:1px solid var(--line);border-radius:2px;padding:16px 18px;font-size:12.8px;color:var(--muted);line-height:1.65;margin-top:18px}
+.privacy strong{color:var(--ink)}
+
+.nav{display:flex;gap:12px;margin-top:6px}
+button.primary{flex:1;padding:15px;background:var(--accent);color:#fff;border:0;border-radius:2px;font-size:12.5px;letter-spacing:.18em;text-transform:uppercase;font-weight:700;cursor:pointer;font-family:inherit;transition:background .15s}
+button.primary:hover{background:var(--accent-dark)}
+button.primary:disabled{opacity:.55;cursor:not-allowed}
+button.ghost{padding:15px 26px;background:#fff;color:var(--muted);border:1px solid var(--line);border-radius:2px;font-size:12.5px;letter-spacing:.18em;text-transform:uppercase;font-weight:700;cursor:pointer;font-family:inherit}
+button.ghost:hover{border-color:var(--accent);color:var(--accent)}
+a.linkbtn{display:inline-block;padding:13px 22px;background:var(--accent);color:#fff;text-decoration:none;border-radius:2px;font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;font-weight:700;transition:background .15s}
+a.linkbtn:hover{background:var(--accent-dark)}
+
+.err{display:none;background:#fbeceb;border:1px solid #e0b2ac;color:#8a3a31;padding:12px 15px;border-radius:2px;font-size:13.5px;margin-bottom:16px}
+.err.show{display:block}
+
+#done{display:none;text-align:center;padding:52px 26px;background:var(--ok-bg);border:1px solid var(--ok-line);border-radius:3px}
+#done h2{font-family:Georgia,serif;font-weight:400;font-size:24px;letter-spacing:.05em;text-transform:uppercase;margin-bottom:14px}
+#done p{color:#48553f;font-size:15px;max-width:490px;margin:0 auto 10px}
+.tick{width:54px;height:54px;border-radius:50%;background:#7d9370;color:#fff;font-size:27px;line-height:54px;margin:0 auto 20px}
+
+.foot{text-align:center;font-size:12px;color:var(--muted);margin-top:22px;line-height:1.7}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <span id="topAnchor" aria-hidden="true"></span>
+
+  <div class="hero">
+    <div class="eyebrow">Sebastian Rose Medical Aesthetics</div>
+    <h1>Weight Management<br>Online Consultation</h1>
+    <p>Reviewed by an Independent Nurse Prescriber. Please answer everything honestly — this is a clinical assessment, not an order form, and a prescription is not guaranteed.</p>
+  </div>
+
+  <div class="progress-shell">
+    <div class="progress-track"><div class="progress-fill" id="bar"></div></div>
+    <div class="progress-label"><span id="stepName">Your details</span><span id="stepNum">Step 1 of 9</span></div>
+  </div>
+
+  <div class="err" id="err"></div>
+
+  <form id="form" autocomplete="on">
+
+  <!-- ===== STEP 1 ===== -->
+  <div class="step active" data-name="Your details">
+    <div class="panel">
+      <h2>Your details</h2>
+      <p class="sub">Please use your legal name as it appears on your ID.</p>
+
+      <div class="alert">
+        <strong>We do not treat anyone under the age of 18.</strong>
+        Weight management medication is licensed for adults only and we will verify your age.
+      </div>
+
+      <div class="note">
+        <strong>Before you start.</strong>
+        This is a clinical assessment. Your answers are reviewed by an Independent Nurse Prescriber who decides whether treatment is appropriate for you. <strong>Completing this form does not entitle you to a prescription.</strong> If we do not think this is right for you, we will tell you and you will not be charged for medication.
+        <br><br>
+        Please give accurate information. Withholding a health condition or medication to obtain treatment puts you at real risk, and we cross-check what you tell us against your GP records.
+      </div>
+
+      <div class="group two-col">
+        <div><label class="q">First name<span class="req">*</span></label><input type="text" name="First name" required></div>
+        <div><label class="q">Surname<span class="req">*</span></label><input type="text" name="Surname" required></div>
+      </div>
+
+      <div class="group two-col">
+        <div><label class="q">Date of birth<span class="req">*</span></label><input type="date" name="Date of birth" id="dob" required></div>
+        <div><label class="q">Mobile number<span class="req">*</span></label><input type="tel" name="Mobile" required></div>
+      </div>
+      <div class="err" id="ageErr" style="margin-top:-8px"></div>
+
+      <div class="group">
+        <label class="q">Email address<span class="req">*</span></label>
+        <input type="email" name="Email" required>
+      </div>
+
+      <div class="group">
+        <label class="q">Sex at birth<span class="req">*</span></label>
+        <div class="hint">Asked because it affects dosing considerations and some contraindications.</div>
+        <div class="opts inline" data-radio="Sex at birth">
+          <label class="opt inline-sm"><input type="radio" name="Sex at birth" value="Female" required><span class="mark radio"></span>Female</label>
+          <label class="opt inline-sm"><input type="radio" name="Sex at birth" value="Male"><span class="mark radio"></span>Male</label>
+        </div>
+      </div>
+
+      <div class="group">
+        <label class="q">Full delivery address<span class="req">*</span></label>
+        <div class="hint">Including postcode. Medication is dispatched to this address only.</div>
+        <textarea name="Address" required></textarea>
+      </div>
+
+      <div class="group">
+        <label class="q">Photo ID<span class="req">*</span></label>
+        <div class="hint">Passport or driving licence. We verify your identity and age before any prescription is issued. Please make sure the whole document is visible and readable.</div>
+        <uc-file-uploader-regular ctx-name="idphoto" class="uc-light"></uc-file-uploader-regular>
+        <uc-config ctx-name="idphoto" pubkey="1b9920a3e9d2aae64bac" multiple="true" multiple-max="2" img-only="true" source-list="local, camera"></uc-config>
+        <input type="hidden" name="ID document" id="idLinks">
+      </div>
+    </div>
+    <div class="nav"><button type="button" class="primary" data-next>Continue</button></div>
+  </div>
+
+  <!-- ===== STEP 2 ===== -->
+  <div class="step" data-name="Your GP">
+    <div class="panel">
+      <h2>Your GP</h2>
+      <p class="sub">This section is not optional, and it is the part people most often want to skip.</p>
+
+      <div class="alert" id="gpBlock" style="display:none">
+        <strong>We cannot proceed without a registered GP.</strong>
+        Being registered with a UK GP, and consenting to us informing them, is a condition of this service. We are required to verify the information you give us independently, and notifying your GP is how we do that. It also means that whoever looks after the rest of your health knows what you are taking.
+        <br><br>
+        If you are not currently registered, please register with a practice and come back to us. If you would prefer your GP not to know, we understand the instinct — but we will not prescribe on that basis.
+      </div>
+
+      <div class="note">
+        <strong>Why we insist on this.</strong>
+        Weight management medication interacts with other conditions and medicines. Your GP holds the full picture and we do not. Notifying them is a safeguard for you, and it is how we independently verify what you have told us rather than taking it purely on trust. Every reputable provider does this.
+      </div>
+
+      <div class="group">
+        <label class="q">Are you registered with a UK GP?<span class="req">*</span></label>
+        <div class="opts" data-radio="GP registered">
+          <label class="opt"><input type="radio" name="GP registered" value="Yes" required><span class="mark radio"></span>Yes</label>
+          <label class="opt"><input type="radio" name="GP registered" id="noGP" value="NO — not registered with a GP"><span class="mark radio"></span>No, I'm not registered with a GP</label>
+        </div>
+      </div>
+
+      <div class="group">
+        <label class="q">GP practice name and full address<span class="req">*</span></label>
+        <textarea name="GP practice" required></textarea>
+      </div>
+
+      <div class="group">
+        <label class="q">GP practice telephone number</label>
+        <input type="tel" name="GP phone">
+      </div>
+
+      <div class="group">
+        <label class="q">Consent to contact your GP<span class="req">*</span></label>
+        <div class="opts" data-checkgroup="GP consent" data-requireall="1">
+          <label class="opt"><input type="checkbox" name="GP consent" value="CONSENTS to GP being notified of treatment"><span class="mark"></span><strong>I consent to Sebastian Rose informing my GP that I have started weight management treatment, and what has been prescribed.</strong></label>
+          <label class="opt"><input type="checkbox" name="GP consent" value="CONSENTS to clinical records being accessed or GP contacted to verify information"><span class="mark"></span><strong>I consent to my prescriber contacting my GP, or accessing my clinical records, to verify the information I have given.</strong></label>
+          <label class="opt"><input type="checkbox" name="GP consent" value="Understands treatment will not proceed without this consent"><span class="mark"></span>I understand treatment will not proceed without this consent.</label>
+        </div>
+      </div>
+    </div>
+    <div class="nav"><button type="button" class="ghost" data-back>Back</button><button type="button" class="primary" data-next>Continue</button></div>
+  </div>
+
+  <!-- ===== STEP 3 ===== -->
+  <div class="step" data-name="Height &amp; weight">
+    <div class="panel">
+      <h2>Height and weight</h2>
+      <p class="sub">Please weigh yourself today, on scales you trust, before completing this.</p>
+
+      <div class="group two-col">
+        <div>
+          <label class="q">Height<span class="req">*</span></label>
+          <div class="hint">In centimetres.</div>
+          <input type="number" name="Height cm" id="htcm" min="120" max="230" step="0.1" placeholder="e.g. 165" required>
+        </div>
+        <div>
+          <label class="q">Weight<span class="req">*</span></label>
+          <div class="hint">In kilograms, measured today.</div>
+          <input type="number" name="Weight kg" id="wtkg" min="30" max="350" step="0.1" placeholder="e.g. 92.4" required>
+        </div>
+      </div>
+
+      <div class="group">
+        <div class="hint" style="margin:0 0 6px">Not sure in metric? 1 stone = 6.35kg. 1 foot = 30.48cm. Your BMI will calculate below.</div>
+        <div id="bmiOut" class="note" style="display:none;margin:0"></div>
+      </div>
+      <input type="hidden" name="Calculated BMI" id="bmiField">
+
+      <div class="alert" id="bmiBlock" style="display:none">
+        <strong>Based on the figures entered, you do not meet the eligibility criteria.</strong>
+        Weight management medication is licensed for adults with a BMI of 30 or above, or 27 or above where there is a weight-related health condition. We prescribe within those criteria and we will not treat outside them.
+        <br><br>
+        If you have entered something incorrectly, please correct it. If the figures are right, we are sorry — but this is not the right treatment for you, and being told so honestly is better than being sold something that isn't. You are very welcome to call us on 0800 772 0137 to talk about what else might help.
+      </div>
+
+      <div class="group">
+        <label class="q">What is the most you have ever weighed as an adult?</label>
+        <div class="hint">Approximately, in kilograms or stones.</div>
+        <input type="text" name="Highest adult weight">
+      </div>
+
+      <div class="group">
+        <label class="q">Has your weight changed significantly in the last 6 months?<span class="req">*</span></label>
+        <div class="opts" data-radio="Recent weight change">
+          <label class="opt"><input type="radio" name="Recent weight change" value="No — stable" required><span class="mark radio"></span>No, it's been fairly stable</label>
+          <label class="opt"><input type="radio" name="Recent weight change" value="Gained weight"><span class="mark radio"></span>I've gained weight</label>
+          <label class="opt" data-reveal="lossDetail"><input type="radio" name="Recent weight change" value="LOST weight unintentionally"><span class="mark radio"></span>I've lost weight without trying to</label>
+          <label class="opt"><input type="radio" name="Recent weight change" value="Lost weight intentionally"><span class="mark radio"></span>I've lost weight deliberately</label>
+        </div>
+        <div class="reveal" id="lossDetail">
+          <p class="body" style="margin:0">Unintentional weight loss should be investigated by your GP before starting any weight management treatment. Please tell us more below, and expect us to ask you to see them first.</p>
+        </div>
+      </div>
+
+      <div class="group">
+        <label class="q">Any detail you'd like to add about your weight history</label>
+        <textarea name="Weight history"></textarea>
+      </div>
+    </div>
+    <div class="nav"><button type="button" class="ghost" data-back>Back</button><button type="button" class="primary" data-next>Continue</button></div>
+  </div>
+
+  <!-- ===== STEP 4 ===== -->
+  <div class="step" data-name="Photo verification">
+    <div class="panel">
+      <h2>Photo verification</h2>
+      <p class="sub">Required. We cannot prescribe without these.</p>
+
+      <div class="alert">
+        <strong>We are required to independently verify your height, weight and BMI.</strong>
+        We cannot rely on what you have typed in. These photographs are how we do that, and your prescriber will compare them against the figures you gave us.
+        <br><br>
+        <strong>If they do not match, we will decline.</strong> That is not us being difficult — it is the check working. Please take them today, honestly.
+      </div>
+
+      <div class="group">
+        <label class="q">Photograph 1 — on the scales<span class="req">*</span></label>
+        <div class="hint">Standing on your scales, taken from above, with the reading clearly legible. Bare feet, minimal clothing, and please make sure the number is in focus.</div>
+        <uc-file-uploader-regular ctx-name="scales" class="uc-light"></uc-file-uploader-regular>
+        <uc-config ctx-name="scales" pubkey="1b9920a3e9d2aae64bac" multiple="true" multiple-max="3" img-only="true" source-list="local, camera"></uc-config>
+        <input type="hidden" name="Scales photo" id="scalesLinks">
+      </div>
+
+      <div class="group">
+        <label class="q">Photograph 2 — full body, front facing<span class="req">*</span></label>
+        <div class="hint">Standing, whole body in frame from head to feet, against a plain background, in close-fitting clothing or underwear. Your face does not need to be included if you would rather it wasn't.</div>
+        <uc-file-uploader-regular ctx-name="body" class="uc-light"></uc-file-uploader-regular>
+        <uc-config ctx-name="body" pubkey="1b9920a3e9d2aae64bac" multiple="true" multiple-max="3" img-only="true" source-list="local, camera"></uc-config>
+        <input type="hidden" name="Body photo" id="bodyLinks">
+      </div>
+
+      <div class="group">
+        <label class="q">Photograph 3 — full body, side on</label>
+        <div class="hint">Optional but helpful.</div>
+        <uc-file-uploader-regular ctx-name="side" class="uc-light"></uc-file-uploader-regular>
+        <uc-config ctx-name="side" pubkey="1b9920a3e9d2aae64bac" multiple="true" multiple-max="2" img-only="true" source-list="local, camera"></uc-config>
+        <input type="hidden" name="Side photo" id="sideLinks">
+      </div>
+
+      <div class="group">
+        <div class="opts" data-checkgroup="Photo declaration" data-requireall="1">
+          <label class="opt"><input type="checkbox" name="Photo declaration" value="Photographs are of me and taken within the last 7 days"><span class="mark"></span><strong>These photographs are of me, taken within the last 7 days, and have not been edited or altered in any way.</strong></label>
+          <label class="opt"><input type="checkbox" name="Photo declaration" value="Understands prescriber may decline if photos do not match declared figures"><span class="mark"></span>I understand my prescriber will compare these against the height and weight I have given, and will decline to prescribe if they do not correspond.</label>
+        </div>
+      </div>
+    </div>
+    <div class="nav"><button type="button" class="ghost" data-back>Back</button><button type="button" class="primary" data-next>Continue</button></div>
+  </div>
+
+  <!-- ===== STEP 5 ===== -->
+  <div class="step" data-name="Medical history">
+    <div class="panel">
+      <h2>Medical history</h2>
+      <p class="sub">Please tick everything that applies, now or in the past.</p>
+
+      <div class="alert" id="hardStopBlock" style="display:none">
+        <strong>We cannot prescribe this treatment for you.</strong>
+        One or more of the conditions you have ticked is an absolute contraindication to this class of medication. This is not a judgement about you and it is not negotiable — it is a safety limit written into the licence for these medicines.
+        <br><br>
+        Please speak to your GP about weight management options that would be safe for you. You are welcome to call us on 0800 772 0137 if you would like to talk it through.
+      </div>
+
+      <div class="group">
+        <label class="q">Do any of the following apply to you or your immediate family?<span class="req">*</span></label>
+        <div class="opts" data-checkgroup="Absolute contraindications">
+          <label class="opt"><input type="checkbox" name="Absolute contraindications" class="hardstop" value="MEDULLARY THYROID CARCINOMA — personal or family history"><span class="mark"></span><strong>Medullary thyroid cancer, in me or a close relative</strong></label>
+          <label class="opt"><input type="checkbox" name="Absolute contraindications" class="hardstop" value="MEN2 — Multiple Endocrine Neoplasia syndrome type 2"><span class="mark"></span><strong>Multiple Endocrine Neoplasia syndrome type 2 (MEN2)</strong></label>
+          <label class="opt"><input type="checkbox" name="Absolute contraindications" class="hardstop" value="PREGNANT, BREASTFEEDING OR TRYING TO CONCEIVE"><span class="mark"></span><strong>I am pregnant, breastfeeding, or trying to conceive</strong></label>
+          <label class="opt"><input type="checkbox" name="Absolute contraindications" class="hardstop" value="PANCREATITIS — history of"><span class="mark"></span><strong>I have had pancreatitis</strong></label>
+          <label class="opt"><input type="checkbox" name="Absolute contraindications" class="hardstop" value="TYPE 1 DIABETES"><span class="mark"></span><strong>I have type 1 diabetes</strong></label>
+          <label class="opt"><input type="checkbox" name="Absolute contraindications" class="hardstop" value="Known allergy to semaglutide, tirzepatide or GLP-1 medication"><span class="mark"></span><strong>I have reacted to this type of medication before</strong></label>
+          <label class="opt"><input type="checkbox" name="Absolute contraindications" value="NONE OF THE ABOVE"><span class="mark"></span><strong>None of the above apply to me or my family</strong></label>
+        </div>
+      </div>
+
+      <div class="group">
+        <label class="q">Do any of these apply?<span class="req">*</span></label>
+        <div class="hint">These do not necessarily prevent treatment, but they change how we manage it.</div>
+        <div class="opts" data-checkgroup="Medical history">
+          <label class="opt"><input type="checkbox" name="Medical history" value="Type 2 diabetes"><span class="mark"></span>Type 2 diabetes</label>
+          <label class="opt"><input type="checkbox" name="Medical history" value="Taking insulin or sulfonylurea (gliclazide, glipizide)"><span class="mark"></span>I take insulin, gliclazide or a similar diabetes medication</label>
+          <label class="opt"><input type="checkbox" name="Medical history" value="Diabetic retinopathy"><span class="mark"></span>Diabetic eye disease (retinopathy)</label>
+          <label class="opt"><input type="checkbox" name="Medical history" value="Gallstones or gallbladder disease"><span class="mark"></span>Gallstones or gallbladder problems</label>
+          <label class="opt"><input type="checkbox" name="Medical history" value="Kidney disease"><span class="mark"></span>Kidney disease</label>
+          <label class="opt"><input type="checkbox" name="Medical history" value="Liver disease"><span class="mark"></span>Liver disease</label>
+          <label class="opt"><input type="checkbox" name="Medical history" value="Heart disease, heart failure or previous heart attack"><span class="mark"></span>Heart disease or heart failure</label>
+          <label class="opt"><input type="checkbox" name="Medical history" value="High blood pressure"><span class="mark"></span>High blood pressure</label>
+          <label class="opt"><input type="checkbox" name="Medical history" value="Stroke or TIA"><span class="mark"></span>Stroke or mini-stroke</label>
+          <label class="opt"><input type="checkbox" name="Medical history" value="Thyroid disorder"><span class="mark"></span>Thyroid condition</label>
+          <label class="opt"><input type="checkbox" name="Medical history" value="Gastroparesis or slow stomach emptying"><span class="mark"></span>Gastroparesis or slow stomach emptying</label>
+          <label class="opt"><input type="checkbox" name="Medical history" value="Inflammatory bowel disease, Crohn's or colitis"><span class="mark"></span>Crohn's, colitis or another bowel condition</label>
+          <label class="opt"><input type="checkbox" name="Medical history" value="Previous bariatric or weight loss surgery"><span class="mark"></span>Previous weight loss surgery</label>
+          <label class="opt"><input type="checkbox" name="Medical history" value="Sleep apnoea"><span class="mark"></span>Sleep apnoea</label>
+          <label class="opt"><input type="checkbox" name="Medical history" value="Polycystic ovary syndrome"><span class="mark"></span>Polycystic ovary syndrome</label>
+          <label class="opt"><input type="checkbox" name="Medical history" value="Current or previous cancer"><span class="mark"></span>Cancer, current or previous</label>
+          <label class="opt"><input type="checkbox" name="Medical history" value="Epilepsy"><span class="mark"></span>Epilepsy</label>
+          <label class="opt"><input type="checkbox" name="Medical history" value="NONE OF THE ABOVE"><span class="mark"></span><strong>None of the above</strong></label>
+        </div>
+      </div>
+
+      <div class="group">
+        <label class="q">Details of anything ticked above</label>
+        <textarea name="Medical history detail"></textarea>
+      </div>
+
+      <div class="group">
+        <label class="q">List every medication you currently take<span class="req">*</span></label>
+        <div class="hint">Prescribed and over-the-counter, including the contraceptive pill, HRT, inhalers, supplements and anything injected. Include the dose if you know it. Write "none" if none.</div>
+        <textarea name="Current medication" style="min-height:110px" required></textarea>
+      </div>
+
+      <div class="group">
+        <label class="q">Allergies<span class="req">*</span></label>
+        <div class="hint">Including what happens. Write "none known" if none.</div>
+        <textarea name="Allergies" required></textarea>
+      </div>
+
+      <div class="group">
+        <label class="q">Do you use oral contraception?</label>
+        <div class="hint">Asked because these medicines slow stomach emptying, which can affect how well the pill is absorbed, particularly in the first weeks and after dose increases.</div>
+        <div class="opts inline" data-radio="Oral contraception">
+          <label class="opt inline-sm"><input type="radio" name="Oral contraception" value="Yes"><span class="mark radio"></span>Yes</label>
+          <label class="opt inline-sm"><input type="radio" name="Oral contraception" value="No"><span class="mark radio"></span>No</label>
+          <label class="opt inline-sm"><input type="radio" name="Oral contraception" value="Not applicable"><span class="mark radio"></span>N/A</label>
+        </div>
+      </div>
+    </div>
+    <div class="nav"><button type="button" class="ghost" data-back>Back</button><button type="button" class="primary" data-next>Continue</button></div>
+  </div>
+
+  <!-- ===== STEP 6 ===== -->
+  <div class="step" data-name="Eating &amp; wellbeing">
+    <div class="panel">
+      <h2>Eating and wellbeing</h2>
+      <p class="sub">Please answer these honestly. Nothing here automatically stops us helping you.</p>
+
+      <div class="note">
+        <strong>Why we ask.</strong>
+        Medication that suppresses appetite can be genuinely harmful for someone with a difficult relationship with food, and it can make a hidden eating disorder considerably worse. We ask everyone, we ask it plainly, and it is not a trick question.
+        <br><br>
+        A "yes" does not automatically mean no. It means we will want to talk with you before prescribing, and it may mean we recommend other support alongside or instead.
+      </div>
+
+      <div class="group">
+        <label class="q">Have you ever been diagnosed with, or treated for, an eating disorder?<span class="req">*</span></label>
+        <div class="opts" data-radio="Eating disorder history">
+          <label class="opt"><input type="radio" name="Eating disorder history" value="No" required><span class="mark radio"></span>No</label>
+          <label class="opt" data-reveal="edDetail"><input type="radio" name="Eating disorder history" value="Yes — in the past"><span class="mark radio"></span>Yes, in the past</label>
+          <label class="opt" data-reveal="edDetail"><input type="radio" name="Eating disorder history" value="Yes — currently"><span class="mark radio"></span>Yes, currently</label>
+          <label class="opt" data-reveal="edDetail"><input type="radio" name="Eating disorder history" value="Never diagnosed but I have struggled"><span class="mark radio"></span>Never diagnosed, but I have struggled</label>
+        </div>
+        <div class="reveal" id="edDetail">
+          <label class="q">Please tell us more</label>
+          <textarea name="Eating disorder detail"></textarea>
+        </div>
+      </div>
+
+      <div class="group">
+        <label class="q">Do any of these describe you?<span class="req">*</span></label>
+        <div class="opts" data-checkgroup="Eating patterns">
+          <label class="opt"><input type="checkbox" name="Eating patterns" value="Episodes of eating a large amount and feeling out of control"><span class="mark"></span>I sometimes eat a large amount and feel out of control while doing it</label>
+          <label class="opt"><input type="checkbox" name="Eating patterns" value="Makes self sick, or uses laxatives or diuretics to control weight"><span class="mark"></span>I have made myself sick, or used laxatives or diuretics, to control my weight</label>
+          <label class="opt"><input type="checkbox" name="Eating patterns" value="Exercises to compensate for eating"><span class="mark"></span>I exercise to make up for what I have eaten</label>
+          <label class="opt"><input type="checkbox" name="Eating patterns" value="Thinks about food, weight or body shape most of the day"><span class="mark"></span>I think about food, weight or my body most of the day</label>
+          <label class="opt"><input type="checkbox" name="Eating patterns" value="Skips meals or restricts significantly"><span class="mark"></span>I regularly skip meals or restrict what I eat significantly</label>
+          <label class="opt"><input type="checkbox" name="Eating patterns" value="Feels their weight strongly affects how they feel about themselves"><span class="mark"></span>How I feel about myself depends heavily on my weight</label>
+          <label class="opt"><input type="checkbox" name="Eating patterns" value="NONE OF THESE"><span class="mark"></span><strong>None of these</strong></label>
+        </div>
+      </div>
+
+      <div class="group">
+        <label class="q">Do you have, or have you had, any mental health condition?<span class="req">*</span></label>
+        <div class="hint">Including depression, anxiety, bipolar disorder, or thoughts of self-harm.</div>
+        <div class="opts inline" data-radio="Mental health">
+          <label class="opt inline-sm"><input type="radio" name="Mental health" value="No" required><span class="mark radio"></span>No</label>
+          <label class="opt inline-sm" data-reveal="mhDetail"><input type="radio" name="Mental health" value="Yes"><span class="mark radio"></span>Yes</label>
+        </div>
+        <div class="reveal" id="mhDetail">
+          <label class="q">Please tell us more, including any treatment</label>
+          <textarea name="Mental health detail"></textarea>
+        </div>
+      </div>
+
+      <div class="group">
+        <label class="q">Alcohol — how much do you drink in a typical week?<span class="req">*</span></label>
+        <div class="opts inline" data-radio="Alcohol">
+          <label class="opt inline-sm"><input type="radio" name="Alcohol" value="None" required><span class="mark radio"></span>None</label>
+          <label class="opt inline-sm"><input type="radio" name="Alcohol" value="1-7 units"><span class="mark radio"></span>1–7 units</label>
+          <label class="opt inline-sm"><input type="radio" name="Alcohol" value="8-14 units"><span class="mark radio"></span>8–14</label>
+          <label class="opt inline-sm"><input type="radio" name="Alcohol" value="15-21 units"><span class="mark radio"></span>15–21</label>
+          <label class="opt inline-sm"><input type="radio" name="Alcohol" value="More than 21 units"><span class="mark radio"></span>21+</label>
+        </div>
+      </div>
+
+      <div class="group">
+        <label class="q">Anything you'd like your prescriber to know, or would find difficult to say out loud</label>
+        <textarea name="Private notes"></textarea>
+      </div>
+    </div>
+    <div class="nav"><button type="button" class="ghost" data-back>Back</button><button type="button" class="primary" data-next>Continue</button></div>
+  </div>
+
+  <!-- ===== STEP 7 ===== -->
+  <div class="step" data-name="Previous treatment">
+    <div class="panel">
+      <h2>Previous treatment</h2>
+      <p class="sub">Including anything obtained privately, online or from outside the UK.</p>
+
+      <div class="group">
+        <label class="q">Have you used weight management medication before?<span class="req">*</span></label>
+        <div class="opts" data-radio="Previous treatment">
+          <label class="opt"><input type="radio" name="Previous treatment" value="No — never" required><span class="mark radio"></span>No, never</label>
+          <label class="opt" data-reveal="prevDetail"><input type="radio" name="Previous treatment" value="Yes — currently taking"><span class="mark radio"></span>Yes, I am currently taking something</label>
+          <label class="opt" data-reveal="prevDetail"><input type="radio" name="Previous treatment" value="Yes — in the past"><span class="mark radio"></span>Yes, in the past</label>
+        </div>
+        <div class="reveal" id="prevDetail">
+          <label class="q">Which medication, what dose, from whom, and when?<span class="req">*</span></label>
+          <div class="hint">If you are currently taking something, we need the exact product and current dose so we can continue safely rather than restarting you. Please be accurate — starting at the wrong dose causes real harm.</div>
+          <textarea name="Previous treatment detail" style="min-height:110px"></textarea>
+        </div>
+      </div>
+
+      <div class="group">
+        <label class="q">Did you experience any side effects or problems?</label>
+        <textarea name="Previous side effects"></textarea>
+      </div>
+
+      <div class="group">
+        <label class="q">Have you ever obtained this type of medication without a prescription?<span class="req">*</span></label>
+        <div class="hint">From a beauty salon, a gym, social media, abroad, or anywhere it was not prescribed to you personally. We are not here to tell you off — we need to know what has been in your system.</div>
+        <div class="opts inline" data-radio="Unprescribed source">
+          <label class="opt inline-sm"><input type="radio" name="Unprescribed source" value="No" required><span class="mark radio"></span>No</label>
+          <label class="opt inline-sm" data-reveal="unpresDetail"><input type="radio" name="Unprescribed source" value="Yes"><span class="mark radio"></span>Yes</label>
+        </div>
+        <div class="reveal" id="unpresDetail">
+          <label class="q">Please tell us what and when</label>
+          <textarea name="Unprescribed source detail"></textarea>
+        </div>
+      </div>
+
+      <div class="group">
+        <label class="q">What have you already tried, without medication?</label>
+        <div class="hint">Diets, exercise, slimming groups, apps — anything. It helps us advise you properly.</div>
+        <textarea name="Previous attempts"></textarea>
+      </div>
+
+      <div class="group">
+        <label class="q">What are you hoping to achieve?<span class="req">*</span></label>
+        <div class="hint">In your own words.</div>
+        <textarea name="Patient goals" required></textarea>
+      </div>
+    </div>
+    <div class="nav"><button type="button" class="ghost" data-back>Back</button><button type="button" class="primary" data-next>Continue</button></div>
+  </div>
+
+  <!-- ===== STEP 8 ===== -->
+  <div class="step" data-name="What to expect">
+    <div class="panel">
+      <h2>What to expect</h2>
+      <p class="sub">Please read this properly before consenting.</p>
+
+      <h3>How treatment works</h3>
+      <ul class="plain">
+        <li>Treatment is a weekly injection you give yourself, using a pre-filled pen. We will show you how.</li>
+        <li>You start on a low dose and increase gradually over several months. This is deliberate — it reduces side effects.</li>
+        <li>Medication is licensed for use <strong>alongside</strong> a reduced-calorie diet and increased activity, not instead of them.</li>
+        <li>You will be reviewed regularly. Continuing is a clinical decision each time, not an automatic repeat.</li>
+      </ul>
+
+      <h3>Side effects</h3>
+      <ul class="plain">
+        <li><strong>Common:</strong> nausea, constipation, diarrhoea, vomiting, reflux, burping, fatigue, headache, dizziness. Most settle as your body adjusts and are worst after a dose increase.</li>
+        <li><strong>Less common:</strong> gallstones, hair thinning, changes in taste, injection site reactions, low mood.</li>
+        <li><strong>Serious but uncommon:</strong> pancreatitis, gallbladder disease, kidney problems from dehydration, severe allergic reaction, and low blood sugar if you take insulin or certain diabetes medications.</li>
+      </ul>
+
+      <div class="alert">
+        <strong>Stop and seek urgent medical help if you develop:</strong> severe, persistent abdominal pain, particularly if it spreads to your back and comes with vomiting — this can be pancreatitis. Also seek help for signs of a severe allergic reaction, or if you cannot keep fluids down.
+      </div>
+
+      <h3>Things people are not usually told</h3>
+      <ul class="plain">
+        <li><strong>You will lose muscle as well as fat.</strong> Protein intake and resistance training matter enormously here. Losing weight without them costs you strength and metabolic rate.</li>
+        <li><strong>Your face will change.</strong> Fat is lost from the cheeks and temples, and skin loses the support beneath it. It is well recognised and it catches people out.</li>
+        <li><strong>Weight regain after stopping is common</strong>, particularly where eating and activity habits have not changed alongside.</li>
+        <li><strong>It does not work for everyone.</strong> Some people respond very well, some modestly, some not at all.</li>
+        <li><strong>Alcohol tolerance often changes</strong>, and many people find they lose interest in it.</li>
+      </ul>
+
+      <div class="group">
+        <div class="opts" data-checkgroup="Understanding treatment" data-requireall="1">
+          <label class="opt"><input type="checkbox" name="Understanding treatment" value="Understands a prescription is not guaranteed"><span class="mark"></span><strong>I understand completing this form does not entitle me to a prescription, and that my prescriber may decline.</strong></label>
+          <label class="opt"><input type="checkbox" name="Understanding treatment" value="Has read and understood the side effects"><span class="mark"></span>I have read the side effects, including the serious ones, and I understand them.</label>
+          <label class="opt"><input type="checkbox" name="Understanding treatment" value="Understands medication works alongside diet and activity changes"><span class="mark"></span>I understand this works alongside changes to my eating and activity, not instead of them.</label>
+          <label class="opt"><input type="checkbox" name="Understanding treatment" value="Understands results vary and are not guaranteed"><span class="mark"></span>I understand results vary considerably and cannot be guaranteed.</label>
+          <label class="opt"><input type="checkbox" name="Understanding treatment" value="Understands to seek urgent help for severe abdominal pain"><span class="mark"></span>I understand I should seek urgent medical help for severe abdominal pain, and tell them what I am taking.</label>
+        </div>
+      </div>
+    </div>
+    <div class="nav"><button type="button" class="ghost" data-back>Back</button><button type="button" class="primary" data-next>Continue</button></div>
+  </div>
+
+  <!-- ===== STEP 9 ===== -->
+  <div class="step" data-name="Declaration">
+    <div class="panel">
+      <h2>Declaration and consent</h2>
+      <p class="sub">Please read each statement and tick to confirm.</p>
+
+      <div class="group">
+        <div class="opts" data-checkgroup="Consent" data-requireall="1">
+          <label class="opt"><input type="checkbox" name="Consent" value="Aged 18 or over"><span class="mark"></span>I am 18 years of age or over.</label>
+          <label class="opt"><input type="checkbox" name="Consent" value="ALL information given is true, accurate and complete"><span class="mark"></span><strong>Everything I have told you is true, accurate and complete. I have not left anything out in order to be prescribed treatment.</strong></label>
+          <label class="opt"><input type="checkbox" name="Consent" value="Understands withholding information may cause serious harm"><span class="mark"></span><strong>I understand that withholding a health condition or medication could cause me serious harm, and that the clinic cannot be responsible for harm arising from information I did not give.</strong></label>
+          <label class="opt"><input type="checkbox" name="Consent" value="Consents to GP notification and verification"><span class="mark"></span>I consent to my GP being notified, and to my information being verified with them or through my clinical records.</label>
+          <label class="opt"><input type="checkbox" name="Consent" value="Understands the medication is for personal use only"><span class="mark"></span>Medication prescribed to me is for my personal use only. I will not share it, sell it, or give it to anyone else.</label>
+          <label class="opt"><input type="checkbox" name="Consent" value="Will inform the clinic of any change in health or medication"><span class="mark"></span>I will tell the clinic if my health, medication or circumstances change during treatment.</label>
+          <label class="opt"><input type="checkbox" name="Consent" value="Will attend reviews as requested"><span class="mark"></span>I will complete the review requested before each further supply.</label>
+          <label class="opt"><input type="checkbox" name="Consent" value="Understands prescription medicines cannot be returned"><span class="mark"></span>I understand prescription medicines cannot be returned or refunded once dispatched, other than where faulty or incorrectly supplied.</label>
+          <label class="opt"><input type="checkbox" name="Consent" value="CONSENTS to assessment and treatment if deemed appropriate"><span class="mark"></span><strong>I consent to this assessment, and to being prescribed weight management medication if my prescriber considers it appropriate.</strong></label>
+        </div>
+      </div>
+
+      <div class="group">
+        <label class="q">Keeping in touch<span class="req">*</span></label>
+        <div class="opts" data-radio="Marketing contact consent">
+          <label class="opt"><input type="radio" name="Marketing contact consent" value="YES — reminders, support content and offers" required><span class="mark radio"></span><strong>Yes</strong> — reminders when I'm due, plus support content and clinic news.</label>
+          <label class="opt"><input type="radio" name="Marketing contact consent" value="REMINDERS ONLY"><span class="mark radio"></span><strong>Reminders only</strong> — no marketing.</label>
+          <label class="opt"><input type="radio" name="Marketing contact consent" value="NO — clinical messages only"><span class="mark radio"></span><strong>No</strong> — clinical messages only.</label>
+        </div>
+      </div>
+
+      <div class="group two-col">
+        <div><label class="q">Type your full name<span class="req">*</span></label><input type="text" name="Signed name" required></div>
+        <div><label class="q">Date<span class="req">*</span></label><input type="date" name="Date signed" id="dateSigned" required></div>
+      </div>
+      <div class="hint" style="margin-top:-8px">Typing your name here acts as your electronic signature confirming the statements above.</div>
+    </div>
+
+    <div class="nav">
+      <button type="button" class="ghost" data-back>Back</button>
+      <button type="button" class="primary" id="submitBtn">Submit for review</button>
+    </div>
+
+    <div class="panel" style="padding:20px 24px">
+      <div class="privacy">
+        <strong>How we look after this information.</strong>
+        This form is transmitted over an encrypted connection directly to the clinic's secure email. Your answers are special category health data under UK GDPR, processed for the purposes of providing healthcare under Article 9(2)(h), and held in your clinical record. Photographs and identity documents are used solely to verify your identity and to assess your eligibility, and are held in your clinical record. Prescribing records are kept in accordance with professional and legal requirements. We do not sell or share your data. Consent to receive marketing communications is held separately under Article 6(1)(a) and may be withdrawn at any time. You may request a copy of what we hold, ask for corrections, or raise a concern with the Information Commissioner's Office. Data controller: R F Roberts Limited, trading as Sebastian Rose Medical Aesthetics. Contact info@sebastianrose.co.uk or 0800 772 0137.
+      </div>
+    </div>
+  </div>
+
+  </form>
+
+  <div id="done">
+    <div class="tick">&#10003;</div>
+    <h2>Thank you — submitted for review</h2>
+    <p>Your assessment has been sent securely to the clinic and will be reviewed by an Independent Nurse Prescriber, usually within 24 hours.</p>
+    <p>We will email you either way. If anything needs clarifying, or if we need better photographs, we will contact you before making a decision.</p>
+    <p style="margin-top:18px;font-size:13.5px">If your health changes in the meantime, please call us on 0800 772 0137.</p>
+  </div>
+
+  <div class="foot">
+    Sebastian Rose Medical Aesthetics · 39 Charles Street, Cardiff, CF10 2GB<br>
+    0800 772 0137 · info@sebastianrose.co.uk
+  </div>
+
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  var EMAILJS_PUBLIC_KEY  = "04pcL3xdpVieS--Q9";
+  var EMAILJS_SERVICE_ID  = "service_bdikve4";
+  var EMAILJS_TEMPLATE_ID = "template_2we5rm1";
+
+  if (window.emailjs) { emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY }); }
+
+  var form     = document.getElementById('form');
+  var steps    = Array.prototype.slice.call(document.querySelectorAll('.step'));
+  var bar      = document.getElementById('bar');
+  var stepName = document.getElementById('stepName');
+  var stepNum  = document.getElementById('stepNum');
+  var errBox   = document.getElementById('err');
+  var current  = 0;
+
+  // tell the hosting page how tall we are, so it can resize the frame
+  var lastH = 0;
+  function reportHeight(){
+    try{
+      var h = Math.max(
+        document.body.scrollHeight,
+        document.documentElement.scrollHeight,
+        document.body.offsetHeight
+      );
+      if(Math.abs(h - lastH) > 8){
+        lastH = h;
+        window.parent.postMessage({ srType:'height', height: h }, '*');
+        window.parent.postMessage(String(h), '*');
+      }
+    }catch(e){}
+  }
+  window.addEventListener('load', reportHeight);
+  window.addEventListener('resize', reportHeight);
+  setInterval(reportHeight, 400);
+
+  // Uploadcare — capture CDN links per uploader
+  var upMap = { idphoto:'idLinks', scales:'scalesLinks', body:'bodyLinks', side:'sideLinks' };
+  window.addEventListener('LR_DATA_OUTPUT', function(e){
+    try{
+      var ctx = e.target && e.target.getAttribute && e.target.getAttribute('ctx-name');
+      var target = upMap[ctx];
+      if(!target) return;
+      var files = (e.detail && e.detail.data) || [];
+      var el = document.getElementById(target);
+      if(el) el.value = files.map(function(f){ return f.cdnUrl; }).filter(Boolean).join('  |  ');
+    }catch(err){}
+  });
+
+  function toTop(){
+    try { window.scrollTo(0,0); } catch(e){}
+    try { document.documentElement.scrollTop = 0; document.body.scrollTop = 0; } catch(e){}
+    try {
+      var a = document.getElementById('topAnchor');
+      if(a && a.scrollIntoView) a.scrollIntoView({ block:'start', inline:'nearest' });
+    } catch(e){}
+    try { window.parent.postMessage({ type:'scrollTo', top:0 }, '*'); } catch(e){}
+  }
+
+  function syncOpt(input){
+    var box = input.closest('.opt');
+    if(!box) return;
+    if(input.type === 'radio'){
+      var same = document.querySelectorAll('input[name="'+CSS.escape(input.name)+'"]');
+      Array.prototype.forEach.call(same, function(r){
+        var b = r.closest('.opt'); if(b) b.classList.toggle('checked', r.checked);
+        var rev = b && b.getAttribute('data-reveal');
+        if(rev){ var el = document.getElementById(rev); if(el) el.classList.toggle('show', r.checked); }
+      });
+    } else {
+      box.classList.toggle('checked', input.checked);
+      var rv = box.getAttribute('data-reveal');
+      if(rv){ var e2 = document.getElementById(rv); if(e2) e2.classList.toggle('show', input.checked); }
+    }
+  }
+
+  Array.prototype.forEach.call(document.querySelectorAll('.opt input'), function(input){
+    input.addEventListener('change', function(){
+      if(input.type === 'checkbox' && input.checked && /^NONE/.test(input.value)){
+        Array.prototype.forEach.call(document.querySelectorAll('input[name="'+CSS.escape(input.name)+'"]'), function(o){
+          if(o !== input && o.checked){ o.checked = false; syncOpt(o); }
+        });
+      }
+      if(input.type === 'checkbox' && input.checked && !/^NONE/.test(input.value)){
+        Array.prototype.forEach.call(document.querySelectorAll('input[name="'+CSS.escape(input.name)+'"]'), function(o){
+          if(/^NONE/.test(o.value) && o.checked){ o.checked = false; syncOpt(o); }
+        });
+      }
+      syncOpt(input);
+    });
+  });
+
+  // ---- hard stops ----
+  var hardStopBlock = document.getElementById('hardStopBlock');
+  var gpBlock       = document.getElementById('gpBlock');
+  var noGP          = document.getElementById('noGP');
+  var bmiBlock      = document.getElementById('bmiBlock');
+  var htcm = document.getElementById('htcm');
+  var wtkg = document.getElementById('wtkg');
+  var bmiOut = document.getElementById('bmiOut');
+  var bmiField = document.getElementById('bmiField');
+
+  function contraOK(){
+    var any = document.querySelector('input.hardstop:checked');
+    if(hardStopBlock) hardStopBlock.style.display = any ? 'block' : 'none';
+    return !any;
+  }
+  Array.prototype.forEach.call(document.querySelectorAll('input.hardstop'), function(i){
+    i.addEventListener('change', contraOK);
+  });
+
+  function gpOK(){
+    var blocked = noGP && noGP.checked;
+    if(gpBlock) gpBlock.style.display = blocked ? 'block' : 'none';
+    return !blocked;
+  }
+  if(noGP){
+    Array.prototype.forEach.call(document.querySelectorAll('input[name="GP registered"]'), function(i){
+      i.addEventListener('change', gpOK);
+    });
+  }
+
+  function calcBMI(){
+    if(!htcm || !wtkg) return null;
+    var h = parseFloat(htcm.value), w = parseFloat(wtkg.value);
+    if(!h || !w || h < 100 || w < 25) { if(bmiOut) bmiOut.style.display='none'; if(bmiBlock) bmiBlock.style.display='none'; return null; }
+    var m = h/100, bmi = w/(m*m);
+    return Math.round(bmi*10)/10;
+  }
+  function bmiOK(){
+    var bmi = calcBMI();
+    if(bmi === null) return true;
+    if(bmiField) bmiField.value = bmi;
+    if(bmiOut){
+      bmiOut.style.display = 'block';
+      bmiOut.innerHTML = '<strong>Your BMI is ' + bmi + '.</strong> ' +
+        (bmi >= 30 ? 'This is within the range where weight management medication is licensed, subject to full assessment.'
+         : bmi >= 27 ? 'Medication is licensed at this BMI only where you have a weight-related health condition such as high blood pressure, sleep apnoea or type 2 diabetes. Your prescriber will assess this.'
+         : 'This is below the range where weight management medication is licensed.');
+    }
+    var blocked = bmi < 27;
+    if(bmiBlock) bmiBlock.style.display = blocked ? 'block' : 'none';
+    return !blocked;
+  }
+  if(htcm) htcm.addEventListener('input', bmiOK);
+  if(wtkg) wtkg.addEventListener('input', bmiOK);
+
+  function pregOK(){ return contraOK() && gpOK() && bmiOK(); }
+
+  var dob = document.getElementById('dob');
+  var ageErr = document.getElementById('ageErr');
+  function ageOK(){
+    if(!dob.value) return true;
+    var d = new Date(dob.value), n = new Date();
+    var a = n.getFullYear() - d.getFullYear();
+    var m = n.getMonth() - d.getMonth();
+    if(m < 0 || (m === 0 && n.getDate() < d.getDate())) a--;
+    if(a < 18){
+      ageErr.textContent = "We are unable to offer this treatment to anyone under 18. Please call the clinic on 0800 772 0137 if you think this is an error.";
+      ageErr.classList.add('show');
+      return false;
+    }
+    ageErr.classList.remove('show');
+    return true;
+  }
+  dob.addEventListener('change', ageOK);
+
+  function show(i){
+    steps[current].classList.remove('active');
+    current = i;
+    steps[current].classList.add('active');
+    bar.style.width = ((current + 1) / steps.length * 100) + '%';
+    stepName.textContent = steps[current].getAttribute('data-name').replace(/&amp;/g,'&');
+    stepNum.textContent = 'Step ' + (current + 1) + ' of ' + steps.length;
+    errBox.classList.remove('show');
+    toTop();
+    setTimeout(reportHeight, 60);
+  }
+
+  function validate(step){
+    var bad = [];
+    Array.prototype.forEach.call(step.querySelectorAll('[required]'), function(f){
+      if(f.type === 'radio'){
+        if(!step.querySelector('input[name="'+CSS.escape(f.name)+'"]:checked')) bad.push(f.name);
+      } else if(!f.value.trim()){
+        bad.push(f.name);
+      }
+    });
+    Array.prototype.forEach.call(step.querySelectorAll('[data-checkgroup]'), function(grp){
+      var nm = grp.getAttribute('data-checkgroup');
+      if(grp.getAttribute('data-requireall')){
+        var boxes = grp.querySelectorAll('input[type=checkbox]');
+        var done  = grp.querySelectorAll('input[type=checkbox]:checked');
+        if(done.length < boxes.length) bad.push('every statement under "' + nm + '"');
+        return;
+      }
+      if(grp.getAttribute('data-optional')) return;
+      var cond = grp.getAttribute('data-conditional');
+      if(cond && !document.querySelector('input[name="'+CSS.escape(cond)+'"]:checked')) return;
+      if(!grp.querySelector('input:checked')) bad.push(nm);
+    });
+    // at least one area must be selected on the areas step
+    if(step.querySelector('[data-checkgroup="Licensed areas"]')){
+      var anyArea = document.querySelector('input[name="Licensed areas"]:checked') ||
+                    document.querySelector('input[name="Off-label areas"]:checked');
+      if(!anyArea) bad.push('At least one treatment area');
+    }
+    return bad;
+  }
+
+  Array.prototype.forEach.call(document.querySelectorAll('[data-next]'), function(b){
+    b.addEventListener('click', function(){
+      if(current === 0 && !ageOK()){ toTop(); return; }
+      if(!pregOK()){ toTop(); return; }
+      var bad = validate(steps[current]);
+      if(bad.length){
+        errBox.innerHTML = 'Please complete the following before continuing: <strong>' +
+          bad.filter(function(v,i,a){return a.indexOf(v)===i;}).join(', ') + '</strong>';
+        errBox.classList.add('show');
+        toTop();
+        return;
+      }
+      show(current + 1);
+    });
+  });
+
+  Array.prototype.forEach.call(document.querySelectorAll('[data-back]'), function(b){
+    b.addEventListener('click', function(){ show(current - 1); });
+  });
+
+  (function(){
+    var t = new Date(), p = function(n){ return (n<10?'0':'')+n; };
+    document.getElementById('dateSigned').value = t.getFullYear()+'-'+p(t.getMonth()+1)+'-'+p(t.getDate());
+  })();
+
+  function collect(){
+    var out = [], seen = {}, order = [];
+    Array.prototype.forEach.call(form.elements, function(el){
+      if(!el.name) return;
+      if(el.type === 'checkbox' || el.type === 'radio'){
+        if(!el.checked) return;
+        if(!seen[el.name]){ seen[el.name] = []; order.push(el.name); }
+        seen[el.name].push(el.value);
+      } else {
+        if(!el.value.trim()) return;
+        if(!seen[el.name]){ seen[el.name] = []; order.push(el.name); }
+        seen[el.name].push(el.value.trim());
+      }
+    });
+    order.forEach(function(k){ out.push(k.toUpperCase() + ':\n  ' + seen[k].join('\n  ')); });
+    // explicitly record a declined marketing consent
+    if(!document.querySelector('input[name="Marketing image consent"]:checked')){
+      out.push('MARKETING IMAGE CONSENT:\n  NOT ANSWERED — treat as declined');
+    }
+    ['ID document','Scales photo','Body photo','Side photo'].forEach(function(k){
+      var el = form.querySelector('[name="'+k+'"]');
+      if(el && !el.value.trim()) out.push(k.toUpperCase() + ':\n  *** NOT SUPPLIED ***');
+    });
+    return out.join('\n\n');
+  }
+
+  var submitBtn = document.getElementById('submitBtn');
+  submitBtn.addEventListener('click', function(){
+    if(!ageOK() || !pregOK()){ toTop(); return; }
+    var bad = validate(steps[current]);
+    if(bad.length){
+      errBox.innerHTML = 'Please complete the following: <strong>' +
+        bad.filter(function(v,i,a){return a.indexOf(v)===i;}).join(', ') + '</strong>';
+      errBox.classList.add('show');
+      toTop();
+      return;
+    }
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Sending…';
+
+    var name = (form.querySelector('[name="First name"]').value + ' ' +
+                form.querySelector('[name="Surname"]').value).trim();
+
+    var params = {
+      form_type: 'WEIGHT MANAGEMENT ONLINE CONSULTATION',
+      patient_name: name,
+      from_name: name,
+      reply_to: form.querySelector('[name="Email"]').value,
+      full_data: 'WEIGHT MANAGEMENT — ONLINE CONSULTATION\nSubmitted: ' +
+                 new Date().toLocaleString('en-GB') + '\n\n' + collect(),
+      id_document_url: 'N/A — consent form'
+    };
+
+    emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, params)
+      .then(function(){
+        document.querySelector('.progress-shell').style.display = 'none';
+        form.style.display = 'none';
+        document.getElementById('done').style.display = 'block';
+        toTop();
+      })
+      .catch(function(e){
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Submit consent';
+        errBox.innerHTML = 'Sorry — this did not send. Please check your connection and try again, or speak to your practitioner. <br><small>' + (e && e.text ? e.text : '') + '</small>';
+        errBox.classList.add('show');
+        toTop();
+      });
+  });
+})();
+</script>
+</body>
+</html>
